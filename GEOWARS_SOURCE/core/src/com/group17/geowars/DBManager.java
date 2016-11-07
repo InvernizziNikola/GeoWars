@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class DBManager {
 
     public ArrayList<String> resultselect;
-    public ArrayList<String> lijst;
+    public ArrayList<String> list;
 
 
     public ArrayList DBselect() {
@@ -46,21 +46,21 @@ public class DBManager {
 
             java.sql.Statement stmt = conn.createStatement();
             if (BoolSelect) {
-                ResultSet databankgegevens = stmt.executeQuery(sqlString);
+                ResultSet DBMemory = stmt.executeQuery(sqlString);
 
-                ResultSetMetaData databankgegevensmd = databankgegevens.getMetaData();
-                int aantalKolommen = databankgegevensmd.getColumnCount();
+                ResultSetMetaData DBMemorymd = DBMemory.getMetaData();
+                int columCount = DBMemorymd.getColumnCount();
 
-                lijst = new ArrayList<String>();
-                while (databankgegevens.next()) {
+                list = new ArrayList<String>();
+                while (DBMemory.next()) {
 
-                    for (int i = 1; i <= aantalKolommen; i++) {
-                        lijst.add(databankgegevens.getString(i));
+                    for (int i = 1; i <= columCount; i++) {
+                        list.add(DBMemory.getString(i));
 
                     }
 
                 }
-                databankgegevens.close();
+                DBMemory.close();
                 stmt.close();
                 //System.out.println("select geslaagd");
             } else {
@@ -75,6 +75,6 @@ public class DBManager {
             System.out.println("Dataconnectie gefaald: " + ex.getMessage());
         }
 
-        return lijst;
+        return list;
     }
 }
