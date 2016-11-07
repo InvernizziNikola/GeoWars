@@ -23,15 +23,11 @@ public class GeoWars extends ApplicationAdapter {
 		batch.begin();
 <<<<<<< HEAD
 <<<<<<< HEAD
-<<<<<<< HEAD
    //amopjerzkpoazijerôizaejrpoiazjerpoijazeporijazeproijazeporjizaepoirjzaeoijrpiozae
 =======
    //hhhhhhhsdkfbsdk
 >>>>>>> origin/master
 		batch.draw(img, 500, 1000);
-=======
-		batch.draw(img, 0, 0);
->>>>>>> parent of d280c24... Update test
 =======
 		batch.draw(img, 0, 0);
 >>>>>>> parent of d280c24... Update test
