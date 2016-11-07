@@ -3,10 +3,6 @@ package com.group17.geowars;
 /**
  * Created by nikola on 07/11/2016.
  */
-
-
-
-
 public class Geom
 {
     public EnemyLoot loot;
