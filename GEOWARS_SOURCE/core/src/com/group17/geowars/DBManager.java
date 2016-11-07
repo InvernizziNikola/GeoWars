@@ -1,13 +1,16 @@
 package com.group17.geowars;
 
 
+
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
+
 import java.sql.*;
 import java.util.ArrayList;
 
 public class DBManager {
 
     public ArrayList<String> resultselect;
+    public ArrayList<String> lijst;
 
 
     public ArrayList DBselect() {
@@ -36,6 +39,7 @@ public class DBManager {
         dataSource.setPort(3306);
         dataSource.setServerName("127.0.0.1");
         dataSource.setDatabaseName("howest");
+
         try {
             java.sql.Connection conn = dataSource.getConnection();
             //System.out.println("connectie met database is gelukt");
