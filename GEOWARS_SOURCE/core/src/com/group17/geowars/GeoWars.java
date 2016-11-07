@@ -21,13 +21,10 @@ public class GeoWars extends ApplicationAdapter {
 		Gdx.gl.glClearColor(1, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		batch.begin();
-<<<<<<< HEAD
-		batch.draw(img, 250, 250);
-		batch.end();//heyyyy
-=======
+   //hhhhhhh
 		batch.draw(img, 500, 250);
 		batch.end();
->>>>>>> origin/master
+
 	}
 	
 	@Override
