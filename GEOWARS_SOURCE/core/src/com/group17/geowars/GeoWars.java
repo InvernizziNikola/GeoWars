@@ -22,7 +22,7 @@ public class GeoWars extends ApplicationAdapter {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		batch.begin();
    //hhhhhhh
-		batch.draw(img, 500, 250);
+		batch.draw(img, 500, 1000);
 		batch.end();
 
 	}
