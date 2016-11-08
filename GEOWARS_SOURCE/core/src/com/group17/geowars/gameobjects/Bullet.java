@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
+import com.group17.geowars.managers.AssetManager;
 import com.group17.geowars.managers.BulletManager;
 
 /**
@@ -21,8 +22,7 @@ public class Bullet extends GameObject implements GOInterface {
         super(pos);
         direction = dir;
 
-
-        texture = BulletManager.GetInstance().text;
+        texture = AssetManager.GetInstance().getTexture("thief");
 
         sprite = new Sprite(texture, texture.getWidth(), texture.getHeight());
 

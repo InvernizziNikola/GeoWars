@@ -14,10 +14,6 @@ import java.util.List;
 public class BulletManager implements GOInterface {
     private static BulletManager _instance;
 
-
-
-    public Texture text = new Texture("thief.png");
-
     public static BulletManager GetInstance()
     {
         if(_instance == null)
@@ -50,7 +46,5 @@ public class BulletManager implements GOInterface {
         for (Bullet b: bullets) {
             b.update();
         }
-
-        System.out.println(bullets.size());
     }
 }
