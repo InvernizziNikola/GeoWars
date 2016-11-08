@@ -1,7 +1,7 @@
 package com.group17.geowars.gameobjects;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -28,7 +28,7 @@ public class Geom extends GameObject implements GOInterface
         setGeomData(enemyID);
     }
 
-    public void setGeomData(int enemyId)
+    private void setGeomData(int enemyId)
     {
         loot = ScoreManager.GetInstance().getLoot(enemyId);
     }
@@ -41,26 +41,25 @@ public class Geom extends GameObject implements GOInterface
 
     public void render(Batch batch)
     {
+        float angle = 0;
 
-        if(Gdx.input.isButtonPressed(Input.Buttons.LEFT))
-        {
-            System.out.println(Gdx.input.getY());
-        }
+        Vector2 mousePos = new Vector2(Gdx.input.getX(), -Gdx.input.getY() + 600);
 
+        Vector2 difference = mousePos.sub(position.x + 25, position.y + 25);
+
+        sprite.setColor(new Color(0.8f, 0.8f,0,1));
         sprite.setSize(50,50);
         sprite.setOrigin(25,25);
-        sprite.setRotation(20);
+        sprite.setRotation(difference.angle());
         sprite.setPosition(position.x, position.y);
         sprite.draw(batch);
+
+
 
         // TODO DRAW IMAGE CORRRECTLY
     }
     public void update()
     {
-
-        //timer+= Gdx.graphics.getDeltaTime()*5;
-
-        //position.x += MathUtils.sin(timer) * 5;
 
         // TODO MOVEMENT
     }
