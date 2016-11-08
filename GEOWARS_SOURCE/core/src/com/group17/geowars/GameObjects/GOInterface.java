@@ -8,14 +8,8 @@ import com.badlogic.gdx.math.Vector2;
 /**
  * Created by nikola on 08/11/2016.
  */
-public abstract class GameObject
+public interface GOInterface
 {
-    protected Vector2 position;
-    protected Texture texture;
-    protected Sprite sprite;
-
-    public GameObject(Vector2 pos)
-    {
-        position = pos;
-    }
+    void render(Batch batch);
+    void update();
 }
