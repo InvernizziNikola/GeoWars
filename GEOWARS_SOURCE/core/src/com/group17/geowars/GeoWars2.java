@@ -18,8 +18,10 @@ public class GeoWars2 extends ApplicationAdapter {
 	Sprite shipSprite;
 	Sprite droneSprite;
 	Integer pos;
+	int veranderingPos;
 	int r;
 	int g;
+	boolean up;
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
@@ -42,8 +44,9 @@ public class GeoWars2 extends ApplicationAdapter {
 
 		shipSprite = player1.getShip().getSprite();
 		droneSprite = player1.getDrone().getSprite();
-
+		veranderingPos=2;
 	pos=100;
+		up=true;
 	}
 
 	@Override
@@ -53,23 +56,30 @@ public class GeoWars2 extends ApplicationAdapter {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		batch.begin();
 
-		r+=10;
-		g+=10;
+		r+=2;
+		g+=2;
 		shipSprite.setSize(50,50);
 		droneSprite.setSize(20,20);
-		pos+=10;
-		if(pos>600)
+		pos+=veranderingPos;
+		System.out.println(pos);
+		if(up &&pos>548)
 		{
-			pos=5;
+			veranderingPos=-2;
+			up=false;
 		}
-		//sprite.setCenter(25,25);
-		droneSprite.setPosition(500,100);
-		shipSprite.setPosition(pos, pos);
+		if(!up &&pos<4)
+		{
+			veranderingPos=2;
+			up=true;
+		}
+
+		droneSprite.setPosition(100+50,pos+50);
+		shipSprite.setPosition(100, pos);
 		shipSprite.setColor(r,g,0,1);
+		droneSprite.setColor(r,g,0,1);
 
 		droneSprite.draw(batch);
 		shipSprite.draw(batch);
-		//batch.draw(sprite, 150, 150 ,50,50);
 		batch.end();
 
 
