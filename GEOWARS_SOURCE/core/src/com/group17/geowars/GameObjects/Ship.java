@@ -25,7 +25,8 @@ public class Ship { //interface shoot?    extends DynamicGameObject ?
         dead = false;
         //img = new Texture("badlogic.jpg"); //uit de assets halen
     }
-    
-    
-    
+
+    public String getType() {
+        return type;
+    }
 }

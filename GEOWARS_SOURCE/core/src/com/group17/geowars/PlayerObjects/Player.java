@@ -18,8 +18,11 @@ public class Player {
     private Drone drone;
     //private Controller x;
 
-    public Player(String naam){
+    public Player(String naam , Drone dr ,Ship sp)
+    {
        name =naam;
+        drone=dr;
+        ship=sp;
     }
 
     public void setShip(Ship ship) {
@@ -31,7 +34,9 @@ public class Player {
     }
     
     public String getStats(){
-        return "name= "+ name+"  "+"drone= "+drone.getType();
+        return "name= "+ name+
+                "\n   drone= "+drone.getType()+
+                "\n   ship=  "+ship.getType();
     }
     
     

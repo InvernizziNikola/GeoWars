@@ -24,36 +24,40 @@ public class Profile {
     public Profile(String playerId)
     {
         this.playerId = playerId;
-        // get data from player id #databank
-        player = getPlayer();
+        //get data from player id #databank
+        //player = getPlayer();
         ships = setShips();  
         drones = SetDrones();
         level = setLevel();
 
+
     }
 
-    public Player getPlayer() {//#TODO: VIA DATABANK
-       
-        //Player p = player met id uit databank 
-         Player p = new Player("nikoala");
-       return p;
+    public void setPlayer(Drone dr , Ship sp)//#TODO: VIA DATABANK
+    {
+        //Player player = new Player("playerId");
+         player = new Player("nikoala",dr,sp);
+
+    }
+    public Player getPlayer() {
+       return player;
     }
 
-    public List<Ship> setShips( ) {//#TODO: VIA DATABANK
+    private List<Ship> setShips( ) {//#TODO: VIA DATABANK
         List<Ship> s = new ArrayList();
         s.add(new Ship("tank"));
         s.add(new Ship("fighter"));
         return s;
     }
 
-    public List<Drone> SetDrones() {//#TODO: VIA DATABANK
+    private List<Drone> SetDrones() {//#TODO: VIA DATABANK
         List<Drone> d = new ArrayList();
         d.add(new Drone("support"));
         d.add(new Drone("defence"));
         return d;
     }
 
-    public int setLevel() {//#TODO: VIA DATABANK
+    private int setLevel() {//#TODO: VIA DATABANK
            return 1;
     }
     

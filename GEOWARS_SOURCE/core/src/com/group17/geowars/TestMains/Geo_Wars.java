@@ -7,6 +7,7 @@
 package com.group17.geowars.TestMains;
 
 import com.group17.geowars.GameObjects.Drone;
+import com.group17.geowars.GameObjects.Ship;
 import com.group17.geowars.PlayerObjects.Player;
 import com.group17.geowars.PlayerObjects.Profile;
 
@@ -21,12 +22,17 @@ public class Geo_Wars {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+
+        //nikoala start geo wars
         Profile proff = new Profile("1");
-        Player player1 = proff.getPlayer();
-        
+
+        //nikoala kiest drone en ship
         Drone dr = proff.getDrones().get(0);
-        player1.setDrone(dr);
-        
+        Ship sp =proff.getShips().get(0);
+        proff.setPlayer(dr,sp);
+
+        //controle
+        Player player1 = proff.getPlayer();
         System.out.println(player1.getStats());
     }
     
