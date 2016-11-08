@@ -36,11 +36,11 @@ public class GeoWarsEgon extends ApplicationAdapter {
 	*
 	* */
 
-	private com.group17.geowars.Database
+	private com.group17.geowars.database.DBManager eennaam;
 
 	@Override
 	public void render () {
-
+		com.group17.geowars.database.DBManager test = new com.group17.geowars.database.DBManager();
 
 		System.out.println(test.DBselect());
 		geom.update();
