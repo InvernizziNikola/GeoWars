@@ -14,10 +14,12 @@ public class Geom extends GameObject
 {
     private EnemyLoot loot;
     private float timer;
+    Texture img;
 
     public Geom(int enemyID)
     {
         super();
+        img = new Texture("badlogic.jpg");
         setGeomData(enemyID);
     }
 
@@ -34,7 +36,6 @@ public class Geom extends GameObject
     @Override
     public void render(Batch batch)
     {
-        Texture img = new Texture("badlogic.jpg");
         batch.draw(img, position.x, position.y);
         // TODO DRAW IMAGE
     }
