@@ -23,8 +23,7 @@ public class Ship { //interface shoot?    extends DynamicGameObject ?
     {
         this.type =type;
         dead = false;
-        Texture img = new Texture("badlogic.jpg");
-        //img = new Texture("badlogic.jpg"); //uit de assets halen
+         img = new Texture("Speler.png");
     }
 
     public String getType() {
@@ -32,6 +31,6 @@ public class Ship { //interface shoot?    extends DynamicGameObject ?
     }
     public Texture getTexture()
     {
-        return null;//img;
+        return img;
     }
 }
