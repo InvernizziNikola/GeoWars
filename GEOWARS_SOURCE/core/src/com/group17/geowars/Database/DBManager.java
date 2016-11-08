@@ -1,4 +1,4 @@
-package com.group17.geowars;
+package com.group17.geowars.Database;
 
 
 

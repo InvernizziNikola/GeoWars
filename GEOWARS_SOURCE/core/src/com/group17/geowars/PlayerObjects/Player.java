@@ -3,7 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.group17.geowars;
+package com.group17.geowars.PlayerObjects;
+
+import com.group17.geowars.GameObjects.Drone;
+import com.group17.geowars.GameObjects.Ship;
 
 /**
  *

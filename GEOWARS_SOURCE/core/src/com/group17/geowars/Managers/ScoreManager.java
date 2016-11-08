@@ -1,6 +1,6 @@
-package com.group17.geowars;
+package com.group17.geowars.Managers;
 
-import sun.security.jca.GetInstance;
+import com.group17.geowars.Database.EnemyLoot;
 
 import java.util.Dictionary;
 import java.util.Hashtable;

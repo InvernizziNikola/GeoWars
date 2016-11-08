@@ -1,4 +1,4 @@
-package com.group17.geowars;
+package com.group17.geowars.Database;
 
 /**
  * Created by nikola on 07/11/2016.
@@ -9,7 +9,7 @@ public class EnemyLoot
     private int experience  = 0;
     private int multiplier  = 0;
 
-    EnemyLoot(int score, int exp, int mult)
+    public EnemyLoot(int score, int exp, int mult)
     {
         scorePoints = score;
         experience = exp;

@@ -1,4 +1,7 @@
-package com.group17.geowars;
+package com.group17.geowars.GameObjects;
+
+import com.group17.geowars.Database.EnemyLoot;
+import com.group17.geowars.Managers.ScoreManager;
 
 /**
  * Created by nikola on 07/11/2016.

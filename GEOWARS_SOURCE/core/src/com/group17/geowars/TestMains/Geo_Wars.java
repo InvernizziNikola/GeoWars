@@ -4,7 +4,12 @@
  * and open the template in the editor.
  */
 
-package com.group17.geowars;
+package com.group17.geowars.TestMains;
+
+import com.group17.geowars.GameObjects.Drone;
+import com.group17.geowars.PlayerObjects.Player;
+import com.group17.geowars.PlayerObjects.Profile;
+
 /**
  *
  * @author kevin
