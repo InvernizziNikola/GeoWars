@@ -1,4 +1,4 @@
-package com.group17.geowars.Database;
+package com.group17.geowars.database;
 
 /**
  * Created by nikola on 07/11/2016.

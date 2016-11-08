@@ -1,6 +1,6 @@
-package com.group17.geowars.Managers;
+package com.group17.geowars.managers;
 
-import com.group17.geowars.Database.EnemyLoot;
+import com.group17.geowars.database.EnemyLoot;
 
 import java.util.Dictionary;
 import java.util.Hashtable;

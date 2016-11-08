@@ -5,12 +5,15 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.group17.geowars.GameObjects.GameObject;
 import com.group17.geowars.GameObjects.Geom;
 
 public class GeoWars extends ApplicationAdapter {
 	SpriteBatch batch;
 	Texture img;
-	
+
+	Geom geom;
+
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
@@ -18,8 +21,9 @@ public class GeoWars extends ApplicationAdapter {
 
 
 		// REMOVE: GEOM TEST
-		Geom test = new Geom(2);
-		System.out.println(test.loot.toString());
+		geom = new Geom(2);
+		System.out.println(geom.toString());
+		System.out.println(geom.getLoot().toString());
 	}
 
 	@Override
@@ -28,9 +32,13 @@ public class GeoWars extends ApplicationAdapter {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		batch.begin();
 
+		geom.render(batch);
+
 		batch.draw(img, 150, 150);
 		batch.end();
 
+
+		geom.update();
 
 
 	}

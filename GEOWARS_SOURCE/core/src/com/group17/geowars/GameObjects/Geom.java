@@ -1,23 +1,23 @@
 package com.group17.geowars.GameObjects;
 
-import com.group17.geowars.Database.EnemyLoot;
-import com.group17.geowars.Managers.ScoreManager;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.math.MathUtils;
+import com.group17.geowars.database.EnemyLoot;
+import com.group17.geowars.managers.ScoreManager;
 
 /**
  * Created by nikola on 07/11/2016.
  */
-public class Geom
+public class Geom extends GameObject
 {
-    public EnemyLoot loot;
-
-    private Geom()
-    {
-        //super of dynamicobject
-    }
+    private EnemyLoot loot;
+    private float timer;
 
     public Geom(int enemyID)
     {
-        // super of dynamic object
+        super();
         setGeomData(enemyID);
     }
 
@@ -26,14 +26,26 @@ public class Geom
         loot = ScoreManager.GetInstance().getLoot(enemyId);
     }
 
-    //override
-    public void Render()
+    public EnemyLoot getLoot()
     {
+        return loot;
+    }
+
+    @Override
+    public void render(Batch batch)
+    {
+        Texture img = new Texture("badlogic.jpg");
+        batch.draw(img, position.x, position.y);
         // TODO DRAW IMAGE
     }
-    //override
-    public void Update()
+
+    @Override
+    public void update()
     {
+        timer+= Gdx.graphics.getDeltaTime();
+
+        position.x += MathUtils.sin(timer);
+
         // TODO MOVEMENT
     }
 
