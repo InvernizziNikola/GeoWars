@@ -44,7 +44,7 @@ public class Geom extends GameObject implements GOInterface
 
         if(Gdx.input.isButtonPressed(Input.Buttons.LEFT))
         {
-            Gdx.input.getY()
+            System.out.println(Gdx.input.getY());
         }
 
         sprite.setSize(50,50);
