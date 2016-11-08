@@ -26,8 +26,22 @@ public class DBManager {
     public boolean DBupdate(String tabel,String columName,String columValue,String whereColum,String whereColumValue) {
         boolean succes = false;
         try {
-            String SQLstring = "UPDATE "+ tabel +" SET "+columName+"='"+columValue+"' where" +whereColum+"= \""+whereColumValue+"\";";
-            resultselect = DBconnect(SQLstring, true);
+            String SQLstring = "UPDATE "+ tabel +" SET "+columName+"='"+columValue+"' where " +whereColum+"= \""+whereColumValue+"\";";
+            resultselect = DBconnect(SQLstring, false);
+            succes=true;
+        } catch (Exception e) {
+            System.out.println("Fout in update: " + e.getMessage());
+        }
+        return succes;
+    }
+    public boolean DBInsert(String tabel,String columone,String valueone) {
+        String SQLstring = "INSERT INTO "+ tabel +" ("+columone+") VALUES ('"+valueone+"');";
+        boolean succes = false;
+        try {
+            /*INSERT INTO table_name (column1,column2,column3,...)
+            VALUES (value1,value2,value3,...);*/
+
+            resultselect = DBconnect(SQLstring, false);
         } catch (Exception e) {
             System.out.println("Fout in update: " + e.getMessage());
         }

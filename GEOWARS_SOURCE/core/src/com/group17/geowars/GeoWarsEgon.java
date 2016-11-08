@@ -24,15 +24,13 @@ public class GeoWarsEgon extends ApplicationAdapter {
 	*
 	* */
 
-
-	@Override
-	public void render () {
+	public void DBTest () {
 
 
 		DBManager manager = new DBManager();
-		System.out.println(manager.DBselect("*","profile","IDProfile","1"));
-
-
+		/*System.out.println(manager.DBupdate("profile","name","egoon2","name","egoon"));
+		testselect System.out.println(manager.DBselect("*","profile","IDProfile","1"));*/
+		System.out.println(manager.DBInsert("drone","name","iets"));
 
 	}
 

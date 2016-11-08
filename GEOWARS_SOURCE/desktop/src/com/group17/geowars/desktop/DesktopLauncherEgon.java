@@ -9,7 +9,7 @@ public class DesktopLauncherEgon {
 	public static void main (String[] arg) {
 
 
-		new GeoWarsEgon().render();
+		new GeoWarsEgon().DBTest();
 
 	}
 }
