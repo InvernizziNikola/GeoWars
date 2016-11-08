@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.group17.geowars.database.*;
+import com.group17.geowars.screens.Menu;
 
 public class GeoWarsEgon extends ApplicationAdapter {
 
@@ -29,8 +30,10 @@ public class GeoWarsEgon extends ApplicationAdapter {
 
 		DBManager manager = new DBManager();
 		/*System.out.println(manager.DBupdate("profile","name","egoon2","name","egoon"));
-		testselect System.out.println(manager.DBselect("*","profile","IDProfile","1"));*/
-		System.out.println(manager.DBInsert("drone","name","iets"));
+		testselect System.out.println(manager.DBselect("*","profile","IDProfile","1"));
+		System.out.println(manager.DBInsert("drone","name","iets"));*/
+		Menu mainmenu = new Menu();
+		mainmenu.create();
 
 	}
 
