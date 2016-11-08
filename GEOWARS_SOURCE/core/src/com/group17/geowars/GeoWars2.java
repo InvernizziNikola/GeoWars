@@ -6,10 +6,10 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.group17.geowars.GameObjects.Drone;
-import com.group17.geowars.GameObjects.Ship;
-import com.group17.geowars.PlayerObjects.Player;
-import com.group17.geowars.PlayerObjects.Profile;
+import com.group17.geowars.gameobjects.Drone;
+import com.group17.geowars.gameobjects.Ship;
+import com.group17.geowars.playerobjects.Player;
+import com.group17.geowars.playerobjects.Profile;
 
 public class GeoWars2 extends ApplicationAdapter {
 	SpriteBatch batch;
