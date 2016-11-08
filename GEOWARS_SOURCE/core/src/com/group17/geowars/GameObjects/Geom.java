@@ -1,6 +1,7 @@
 package com.group17.geowars.gameobjects;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -16,6 +17,7 @@ public class Geom extends GameObject implements GOInterface
 {
     private EnemyLoot loot;
     private float timer;
+    private Vector2 direction;
 
     public Geom(int enemyID, Vector2 pos)
     {
@@ -42,29 +44,44 @@ public class Geom extends GameObject implements GOInterface
     @Override
     public void render(Batch batch)
     {
-        float angle = 0;
-
-        Vector2 mousePos = new Vector2(Gdx.input.getX(), -Gdx.input.getY() + 600);
-
-        Vector2 difference = mousePos.sub(position.x + 25, position.y + 25);
-
+        // TODO DRAW IMAGE CORRRECTLY
         sprite.setColor(new Color(0.8f, 0.8f,0,1));
         sprite.setSize(50,50);
         sprite.setOrigin(25,25);
-        sprite.setRotation(difference.angle());
+        sprite.setRotation(direction.angle());
         sprite.setPosition(position.x, position.y);
         sprite.draw(batch);
-
-
-
-        // TODO DRAW IMAGE CORRRECTLY
     }
 
     @Override
     public void update()
     {
-
         // TODO MOVEMENT
+
+        Vector2 mousePos = new Vector2(Gdx.input.getX(), -Gdx.input.getY() + 600);
+        direction = mousePos.sub(position.x + 25, position.y + 25);
+
+
+
+        // TODO HACK TILL WE GET CONTROLLERS
+        if(Gdx.input.isKeyPressed(Input.Keys.A))
+        {
+            position = new Vector2(position.x + (-200 * Gdx.graphics.getDeltaTime()), position.y);
+        }
+        if(Gdx.input.isKeyPressed(Input.Keys.D))
+        {
+            position = new Vector2(position.x + (200 * Gdx.graphics.getDeltaTime()), position.y);
+        }
+        if(Gdx.input.isKeyPressed(Input.Keys.S))
+        {
+            position = new Vector2(position.x, position.y + (-200 * Gdx.graphics.getDeltaTime()));
+        }
+        if(Gdx.input.isKeyPressed(Input.Keys.W))
+        {
+            position = new Vector2(position.x, position.y + (200 * Gdx.graphics.getDeltaTime()));
+        }
+
+
     }
 
 }

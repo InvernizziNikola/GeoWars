@@ -1,6 +1,7 @@
 package com.group17.geowars.managers;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.group17.geowars.gameobjects.Bullet;
 import com.group17.geowars.gameobjects.Enemy;
 import com.group17.geowars.gameobjects.Geom;
 import com.group17.geowars.playerobjects.Player;
@@ -15,6 +16,7 @@ public class GameWorld
 {
     public List<Geom> geoms;
     public List<Enemy> enemies;
+    public List<Bullet> bullets;
     public Player player;
 
 
@@ -26,6 +28,7 @@ public class GameWorld
 
         geoms = new ArrayList<Geom>();
         enemies = new ArrayList<Enemy>();
+        bullets = new ArrayList<Bullet>();
         player = null; // TODO WORD OPGEVRAAGD
 
 
@@ -34,13 +37,21 @@ public class GameWorld
     public void update()
     {
         for(int i = 0; i < geoms.size(); i++)
-           geoms.get(i).update();
+            geoms.get(i).update();
+
+
+        for(int i = 0; i < geoms.size(); i++)
+            bullets.get(i).update();
     }
 
     public void render()
     {
         for(int i = 0; i < geoms.size(); i++)
-           geoms.get(i).render(batch);
+            geoms.get(i).render(batch);
+
+
+        for(int i = 0; i < geoms.size(); i++)
+            bullets.get(i).render(batch);
     }
 
 }
