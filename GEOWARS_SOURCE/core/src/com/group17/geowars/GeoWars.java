@@ -6,46 +6,34 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.group17.geowars.GameObjects.Geom;
+import com.group17.geowars.screens.GameScreen;
 
 public class GeoWars extends ApplicationAdapter {
 	SpriteBatch batch;
-	Texture img;
-
-	Geom geom;
-
+	GameScreen screen;
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-		img = new Texture("badlogic.jpg");
 
-
-		// REMOVE: GEOM TEST
-		geom = new Geom(2);
-		System.out.println(geom.toString());
-		System.out.println(geom.getLoot().toString());
+		screen = new GameScreen(batch);
 	}
 
 	@Override
 	public void render () {
 
-		geom.update();
+		Gdx.gl.glClearColor(0.5f, 0.5f, 0, 1);
+		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT |
+						GL20.GL_DEPTH_BUFFER_BIT |
+						(Gdx.graphics.getBufferFormat().coverageSampling?GL20.GL_COVERAGE_BUFFER_BIT_NV:0));
 
-
-		Gdx.gl.glClearColor(1, 0, 0, 1);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		batch.begin();
-
-		geom.render(batch);
-
-		batch.draw(img, 150, 150);
+		screen.render();
 		batch.end();
-
 
 	}
 	
 	@Override
 	public void dispose () {
 		batch.dispose();
-		img.dispose();
 	}
 }
