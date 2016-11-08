@@ -43,11 +43,14 @@ public class Geom extends GameObject implements GOInterface
     public void render(Batch batch)
     {
 
-        //if(Input.Buttons.LEFT)
+        if(Gdx.input.isButtonPressed(Input.Buttons.LEFT))
+        {
+            Gdx.input.getY()
+        }
 
         sprite.setSize(50,50);
         sprite.setOrigin(25,25);
-        sprite.setRotation(0);
+        sprite.setRotation(20);
         sprite.setPosition(position.x, position.y);
         sprite.draw(batch);
 

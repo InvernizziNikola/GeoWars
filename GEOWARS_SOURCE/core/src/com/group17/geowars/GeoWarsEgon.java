@@ -14,7 +14,6 @@ public class GeoWarsEgon extends ApplicationAdapter {
 	SpriteBatch batch;
 	Texture img;
 
-	Geom geom;
 
 
 	@Override
@@ -23,10 +22,6 @@ public class GeoWarsEgon extends ApplicationAdapter {
 		img = new Texture("badlogic.jpg");
 
 
-		// REMOVE: GEOM TEST
-		geom = new Geom(2);
-		System.out.println(geom.toString());
-		System.out.println(geom.getLoot().toString());
 	}
 	/*
 	*
@@ -46,14 +41,11 @@ public class GeoWarsEgon extends ApplicationAdapter {
 
 
 		System.out.println(test.DBselect());
-		geom.update();
 
 
 		Gdx.gl.glClearColor(1, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		batch.begin();
-
-		geom.render(batch);
 
 		batch.draw(img, 150, 150);
 		batch.end();
