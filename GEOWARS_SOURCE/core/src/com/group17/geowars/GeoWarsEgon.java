@@ -6,12 +6,16 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.group17.geowars.GameObjects.Geom;
+import com.group17.geowars.database.DBManager;
+
+
 
 public class GeoWarsEgon extends ApplicationAdapter {
 	SpriteBatch batch;
 	Texture img;
 
 	Geom geom;
+
 
 	@Override
 	public void create () {
@@ -36,7 +40,6 @@ public class GeoWarsEgon extends ApplicationAdapter {
 	*
 	* */
 
-	private com.group17.geowars.Database
 
 	@Override
 	public void render () {
