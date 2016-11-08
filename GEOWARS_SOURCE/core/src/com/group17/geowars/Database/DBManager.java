@@ -15,7 +15,7 @@ public class DBManager {
 
     public ArrayList DBselect() {
         try {
-            String select = "SELECT * FROM howest.student;";
+            String select = "SELECT * FROM Profile";
             resultselect = DBconnect(select, true);
         } catch (Exception e) {
             System.out.println("Fout in select: " + e.getMessage());
@@ -34,11 +34,11 @@ public class DBManager {
         }
         MysqlDataSource dataSource = new MysqlDataSource();
         // gegevens van de database
-        dataSource.setUser("root");
-        dataSource.setPassword("Laiko123");
+        dataSource.setUser("egondebaeniuk4me");
+        dataSource.setPassword("Iek3rohThoTo");
         dataSource.setPort(3306);
-        dataSource.setServerName("127.0.0.1");
-        dataSource.setDatabaseName("howest");
+        dataSource.setServerName("http://student.howest.be/phpmyadmin");
+        dataSource.setDatabaseName("egondebaeniuk4me");
 
         try {
             java.sql.Connection conn = dataSource.getConnection();

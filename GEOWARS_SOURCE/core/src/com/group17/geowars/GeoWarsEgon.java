@@ -24,10 +24,25 @@ public class GeoWarsEgon extends ApplicationAdapter {
 		System.out.println(geom.toString());
 		System.out.println(geom.getLoot().toString());
 	}
+	/*
+	*
+	*     private JdbcTemplate template;
+
+
+    public static void main(String[] args) {
+        JdbcTemplate test = new JdbcTemplate();
+
+        System.out.println(test.DBselect());
+	*
+	* */
+
+	private com.group17.geowars.Database
 
 	@Override
 	public void render () {
 
+
+		System.out.println(test.DBselect());
 		geom.update();
 
 
