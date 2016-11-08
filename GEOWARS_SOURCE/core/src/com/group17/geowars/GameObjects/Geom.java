@@ -39,6 +39,7 @@ public class Geom extends GameObject implements GOInterface
     }
 
 
+    @Override
     public void render(Batch batch)
     {
         float angle = 0;
@@ -58,6 +59,8 @@ public class Geom extends GameObject implements GOInterface
 
         // TODO DRAW IMAGE CORRRECTLY
     }
+
+    @Override
     public void update()
     {
 
