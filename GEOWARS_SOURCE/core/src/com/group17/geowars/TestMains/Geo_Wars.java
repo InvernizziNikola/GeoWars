@@ -34,6 +34,7 @@ public class Geo_Wars {
         //controle
         Player player1 = proff.getPlayer();
         System.out.println(player1.getStats());
+        //System.out.println(player1.getShip().getTexture());
     }
     
 }

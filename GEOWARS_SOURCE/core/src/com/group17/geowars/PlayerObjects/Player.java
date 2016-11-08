@@ -38,7 +38,8 @@ public class Player {
                 "\n   drone= "+drone.getType()+
                 "\n   ship=  "+ship.getType();
     }
-    
-    
-    
+
+    public Ship getShip() {
+        return ship;
+    }
 }

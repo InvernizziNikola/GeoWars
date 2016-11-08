@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package com.group17.geowars.GameObjects;
+import com.badlogic.gdx.graphics.Texture;
 
 /**
  *
@@ -16,17 +17,21 @@ public class Ship { //interface shoot?    extends DynamicGameObject ?
     private int level;
     private String position; //private Vector2 position; 
     private String type;
-    
-  // Texture img;
+    private Texture img;
 
     public Ship(String type)
     {
         this.type =type;
         dead = false;
+        Texture img = new Texture("badlogic.jpg");
         //img = new Texture("badlogic.jpg"); //uit de assets halen
     }
 
     public String getType() {
         return type;
+    }
+    public Texture getTexture()
+    {
+        return null;//img;
     }
 }
