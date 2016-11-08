@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
 import com.group17.geowars.gameobjects.Drone;
 import com.group17.geowars.gameobjects.Ship;
 import com.group17.geowars.playerobjects.Player;
@@ -51,15 +52,21 @@ public class GeoWars2 extends ApplicationAdapter {
 
 	@Override
 	public void render () {
-
+		Vector2 mousePos = new Vector2(Gdx.input.getX(), -Gdx.input.getY() + 600);
 		Gdx.gl.glClearColor(1, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		batch.begin();
 
+		System.out.println(mousePos.x+", "+mousePos.y);
 		r+=2;
 		g+=2;
 		shipSprite.setSize(50,50);
 		droneSprite.setSize(20,20);
+
+		droneSprite.setPosition(mousePos.x,mousePos.y+50);
+		shipSprite.setPosition(mousePos.x, mousePos.y);
+
+		/*
 		pos+=veranderingPos;
 		System.out.println(pos);
 		if(up &&pos>548)
@@ -75,6 +82,8 @@ public class GeoWars2 extends ApplicationAdapter {
 
 		droneSprite.setPosition(100+50,pos+50);
 		shipSprite.setPosition(100, pos);
+		*/
+
 		shipSprite.setColor(r,g,0,1);
 		droneSprite.setColor(r,g,0,1);
 
