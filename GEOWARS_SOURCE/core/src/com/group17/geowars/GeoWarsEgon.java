@@ -5,8 +5,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.group17.geowars.GameObjects.Geom;
-import com.group17.geowars.database.DBManager;
 
 
 
@@ -34,7 +32,6 @@ public class GeoWarsEgon extends ApplicationAdapter {
         System.out.println(test.DBselect());
 	*
 	* */
-
 
 	@Override
 	public void render () {
