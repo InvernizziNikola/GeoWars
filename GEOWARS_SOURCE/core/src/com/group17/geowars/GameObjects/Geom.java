@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.group17.geowars.database.EnemyLoot;
+import com.group17.geowars.managers.BulletManager;
 import com.group17.geowars.managers.ScoreManager;
 
 /**
@@ -59,9 +60,20 @@ public class Geom extends GameObject implements GOInterface
         // TODO MOVEMENT
 
         Vector2 mousePos = new Vector2(Gdx.input.getX(), -Gdx.input.getY() + 600);
-        direction = mousePos.sub(position.x + 25, position.y + 25);
+        direction = mousePos.sub(position.x + 25, position.y + 25).nor();
 
-
+        if(Gdx.input.isButtonPressed(Input.Buttons.LEFT))
+        {
+            BulletManager.GetInstance().addBullet(new Bullet(new Vector2(position.x +10, position.y + 10), new Vector2(direction)));
+            BulletManager.GetInstance().addBullet(new Bullet(new Vector2(position.x +20, position.y + 10), new Vector2(direction)));
+            BulletManager.GetInstance().addBullet(new Bullet(new Vector2(position.x +30, position.y + 10), new Vector2(direction)));
+            BulletManager.GetInstance().addBullet(new Bullet(new Vector2(position.x +40, position.y + 10), new Vector2(direction)));
+            BulletManager.GetInstance().addBullet(new Bullet(new Vector2(position.x +50, position.y + 10), new Vector2(direction)));
+            BulletManager.GetInstance().addBullet(new Bullet(new Vector2(position.x +60, position.y + 10), new Vector2(direction)));
+            BulletManager.GetInstance().addBullet(new Bullet(new Vector2(position.x +70, position.y + 10), new Vector2(direction)));
+            BulletManager.GetInstance().addBullet(new Bullet(new Vector2(position.x +80, position.y + 10), new Vector2(direction)));
+            BulletManager.GetInstance().addBullet(new Bullet(new Vector2(position.x +90, position.y + 10), new Vector2(direction)));
+        }
 
         // TODO HACK TILL WE GET CONTROLLERS
         if(Gdx.input.isKeyPressed(Input.Keys.A))

@@ -17,4 +17,8 @@ public abstract class GameObject
     {
         position = pos;
     }
+    public Vector2 getPosition()
+    {
+        return position;
+    }
 }

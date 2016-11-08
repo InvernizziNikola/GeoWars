@@ -28,10 +28,7 @@ public class GameWorld
 
         geoms = new ArrayList<Geom>();
         enemies = new ArrayList<Enemy>();
-        bullets = new ArrayList<Bullet>();
         player = null; // TODO WORD OPGEVRAAGD
-
-
     }
 
     public void update()
@@ -39,19 +36,15 @@ public class GameWorld
         for(int i = 0; i < geoms.size(); i++)
             geoms.get(i).update();
 
-
-        for(int i = 0; i < geoms.size(); i++)
-            bullets.get(i).update();
+        BulletManager.GetInstance().update();
     }
 
     public void render()
     {
+        BulletManager.GetInstance().render(batch);
+
         for(int i = 0; i < geoms.size(); i++)
             geoms.get(i).render(batch);
-
-
-        for(int i = 0; i < geoms.size(); i++)
-            bullets.get(i).render(batch);
     }
 
 }
