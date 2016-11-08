@@ -5,6 +5,9 @@
  */
 package com.group17.geowars.gameobjects;
 
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+
 /**
  *
  * @author kevin
@@ -14,14 +17,20 @@ public class Drone {
     private int attack;
     private int level;
     private String type;
-  //  Texture img;
     private String position; //private Vector2 position;
+    private Sprite sprite;
+
   
 
     public Drone(String type)
     {
         this.type =type;
-         //img = new Texture("badlogic.jpg");
+        Texture  img = new Texture("Hitcircle.png");
+        sprite = new Sprite(img,img.getWidth(),img.getHeight());
+    }
+    public Sprite getSprite()
+    {
+        return sprite;
     }
 
     public String getType() {

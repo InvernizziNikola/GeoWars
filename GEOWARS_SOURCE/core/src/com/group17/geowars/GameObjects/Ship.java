@@ -5,6 +5,7 @@
  */
 package com.group17.geowars.gameobjects;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 
 /**
  *
@@ -17,20 +18,22 @@ public class Ship { //interface shoot?    extends DynamicGameObject ?
     private int level;
     private String position; //private Vector2 position; 
     private String type;
-    private Texture img;
+    private Sprite sprite;
 
     public Ship(String type)
     {
         this.type =type;
         dead = false;
-         img = new Texture("Speler.png");
+        Texture img = new Texture("Speler.png");
+        sprite = new Sprite(img,img.getWidth(),img.getHeight());
     }
 
     public String getType() {
         return type;
     }
-    public Texture getTexture()
+    public Sprite getSprite()
     {
-        return img;
+        return sprite;
     }
 }
+

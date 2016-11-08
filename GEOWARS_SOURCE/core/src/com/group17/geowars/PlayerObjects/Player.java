@@ -42,4 +42,12 @@ public class Player {
     public Ship getShip() {
         return ship;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public Drone getDrone() {
+        return drone;
+    }
 }

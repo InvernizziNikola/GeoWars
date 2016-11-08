@@ -15,8 +15,8 @@ public class GeoWars2 extends ApplicationAdapter {
 	SpriteBatch batch;
 	Texture img;
 	Player player1;
-	Sprite sprite;
-	Texture ship;
+	Sprite shipSprite;
+	Sprite droneSprite;
 	Integer pos;
 	int r;
 	int g;
@@ -37,12 +37,11 @@ public class GeoWars2 extends ApplicationAdapter {
 		//controle
 		player1 = proff.getPlayer();
 		System.out.println(player1.getStats());
-		System.out.println(player1.getShip().getTexture());
+		System.out.println(player1.getShip().getSprite());
 
 
-		ship = player1.getShip().getTexture();
-
-		sprite = new Sprite(ship,ship.getWidth(),ship.getHeight());
+		shipSprite = player1.getShip().getSprite();
+		droneSprite = player1.getDrone().getSprite();
 
 	pos=100;
 	}
@@ -50,28 +49,26 @@ public class GeoWars2 extends ApplicationAdapter {
 	@Override
 	public void render () {
 
-
-
 		Gdx.gl.glClearColor(1, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		batch.begin();
 
 		r+=10;
 		g+=10;
-		sprite.setSize(50,50);
+		shipSprite.setSize(50,50);
+		droneSprite.setSize(20,20);
 		pos+=10;
 		if(pos>600)
 		{
-			pos=1;
-			sprite.rotate90(true);
-
+			pos=5;
 		}
 		//sprite.setCenter(25,25);
-		sprite.setPosition(pos, pos);
-		sprite.setColor(r,g,0,1);
+		droneSprite.setPosition(500,100);
+		shipSprite.setPosition(pos, pos);
+		shipSprite.setColor(r,g,0,1);
 
-
-		sprite.draw(batch);
+		droneSprite.draw(batch);
+		shipSprite.draw(batch);
 		//batch.draw(sprite, 150, 150 ,50,50);
 		batch.end();
 

@@ -5,6 +5,9 @@
  */
 package com.group17.geowars.gameobjects;
 
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+
 /**
  *
  * @author kevin
@@ -15,9 +18,13 @@ public class Enemy {
     private int attack;
     private boolean dead;
     private String position; //private Vector2 position;
+    private Sprite sprite;
 
-    public Enemy() {
+    public Enemy(String type) {
+
         dead = false;
+        Texture img = new Texture("tank.png");
+        sprite = new Sprite(img,img.getWidth(),img.getHeight());
     }
     
     public void dropPowerUp(int EnemyType)
@@ -26,5 +33,9 @@ public class Enemy {
         PowerUp pow = new PowerUp(dropPosition);
         // pow naar game scherm doen
     }
-    
+    public Sprite getSprite()
+    {
+        return sprite;
+    }
+
 }
