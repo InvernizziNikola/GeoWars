@@ -1,117 +1,156 @@
 package com.group17.geowars.screens;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Pixmap;
-import com.badlogic.gdx.graphics.Pixmap.Format;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
-import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+
+public class Menu {
 
 
-public class Menu implements Screen {
-    Skin skin;
-    Stage stage;
-    SpriteBatch batch;
+    private Stage stage;
+    private SpriteBatch batch;
+    private Skin skin;
+    private BitmapFont title;
+    private TextButton quitButton;
+    private TextButton shopButton;
+    private TextButton playButton;
+    private TextButton optionButton;
+    private TextButton leaderBordButton;
+    private TextButton profileButton;
+    private TextButtonStyle textButtonStyle;
+    private TextButton backButton;
 
-    Game g;
-    public Menu(Game g){
-        create();
-        this.g=g;
-    }
 
     public Menu(){
-        create();
+        mainMenu();
     }
-    public void create(){
+    public void mainMenu(){
         batch = new SpriteBatch();
+        title = new BitmapFont();
+        title.setColor(Color.WHITE);
         stage = new Stage();
         Gdx.input.setInputProcessor(stage);
-
-        // A skin can be loaded via JSON or defined programmatically, either is fine. Using a skin is optional but strongly
-        // recommended solely for the convenience of getting a texture, region, etc as a drawable, tinted drawable, etc.
         skin = new Skin();
-        // Generate a 1x1 white texture and store it in the skin named "white".
-        Pixmap pixmap = new Pixmap(100, 100, Format.RGBA8888);
-        pixmap.setColor(Color.GREEN);
+        Pixmap pixmap = new Pixmap(200,50, Pixmap.Format.RGBA8888);
+        pixmap.setColor(Color.WHITE);
         pixmap.fill();
 
         skin.add("white", new Texture(pixmap));
 
-        // Store the default libgdx font under the name "default".
-        BitmapFont bfont=new BitmapFont();
-        /*bfont.scale(1);*/
-        skin.add("default",bfont);
+        BitmapFont playButtonText = new BitmapFont();
+        skin.add("default",playButtonText);
 
-        // Configure a TextButtonStyle and name it "default". Skin resources are stored by type, so this doesn't overwrite the font.
-        TextButtonStyle textButtonStyle = new TextButtonStyle();
-        textButtonStyle.up = skin.newDrawable("white", Color.DARK_GRAY);
-        textButtonStyle.down = skin.newDrawable("white", Color.DARK_GRAY);
-        textButtonStyle.checked = skin.newDrawable("white", Color.BLUE);
-        textButtonStyle.over = skin.newDrawable("white", Color.LIGHT_GRAY);
+        textButtonStyle = new TextButtonStyle();
+        textButtonStyle.up = skin.newDrawable("white", Color.WHITE);
+        textButtonStyle.checked = skin.newDrawable("white", Color.LIGHT_GRAY);
 
         textButtonStyle.font = skin.getFont("default");
-
+        textButtonStyle.fontColor = Color.BLACK;
         skin.add("default", textButtonStyle);
 
-        // Create a button with the "default" TextButtonStyle. A 3rd parameter can be used to specify a name other than "default".
-        final TextButton textButton=new TextButton("PLAY",textButtonStyle);
-        textButton.setPosition(200, 200);
-        stage.addActor(textButton);
+        playButton=new TextButton("PLAY",textButtonStyle);
+        playButton.setPosition(300, 450);
+        stage.addActor(playButton);
+
+        profileButton = new TextButton("PROFILE", textButtonStyle);
+        profileButton.setPosition(300, 390);
+        stage.addActor(profileButton);
+
+        optionButton = new TextButton("OPTIONS", textButtonStyle);
+        optionButton.setPosition(300, 330);
+        stage.addActor(optionButton);
+
+        leaderBordButton = new TextButton("LEADERBORDS", textButtonStyle);
+        leaderBordButton.setPosition(300, 270);
+        stage.addActor(leaderBordButton);
+
+        shopButton = new TextButton("SHOP", textButtonStyle);
+        shopButton.setPosition(300, 210);
+        stage.addActor(shopButton);
+
+        quitButton = new TextButton("QUIT GAME", textButtonStyle);
+        quitButton.setPosition(300, 90);
+        stage.addActor(quitButton);
+
+
+
+    }
+
+    public void playMenu(){
+        batch = new SpriteBatch();
+        stage = new Stage();
+
+        final TextButton campaignButton = new TextButton("CAMPAIGN",textButtonStyle);
+        campaignButton.setPosition(125, 400);
+        campaignButton.setWidth(150);
+        stage.addActor(campaignButton);
+
+        final TextButton arcadeButton = new TextButton("ARCADE", textButtonStyle);
+        arcadeButton.setPosition(325,400);
+        arcadeButton.setWidth(150);
+        stage.addActor(arcadeButton);
+
+        final TextButton multiplayerButton = new TextButton("CO-OP", textButtonStyle);
+        multiplayerButton.setPosition(525,400);
+        multiplayerButton.setWidth(150);
+        stage.addActor(multiplayerButton);
+
+        backButton = new TextButton("BACK", textButtonStyle);
+        backButton.setPosition(325,150);
+        backButton.setWidth(150);
+        stage.addActor(backButton);
+
+        stage.draw();
+
+
+
+
+    }
+
+    public void profileMenu(){
+        Gdx.gl.glClearColor(0, 0, 0, 0);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        stage.clear();
+        stage = new Stage();
+        stage.draw();
+        batch.begin();
+        title.draw(batch,"profile",325,550);
+        batch.end();
 
     }
 
     public void render (float delta) {
-        Gdx.gl.glClearColor(0.2f, 0.2f, 0.2f, 1);
+        Gdx.gl.glClearColor(0, 0, 0, 0);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
+        batch.begin();
+        title.draw(batch,"GEOMETRYWARS",325,550);
+        batch.end();
         stage.draw();
-        stage.setDebugAll(true);
-    }
+        if(playButton.isChecked()){
+            stage.clear();
+            playMenu();
+        }
 
-    @Override
-    public void resize (int width, int height) {
-        //stage.setViewport(width, height, false);
-    }
+        if (quitButton.isChecked()){
+            Gdx.app.exit();
+        }
 
-    @Override
-    public void dispose () {
-        stage.dispose();
-        skin.dispose();
-    }
+        if (profileButton.isChecked()){
+            stage.clear();
+            profileMenu();
+        }
 
-    @Override
-    public void show() {
-        // TODO Auto-generated method stub
+
 
     }
 
-    @Override
-    public void hide() {
-        // TODO Auto-generated method stub
 
-    }
-
-    @Override
-    public void pause() {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public void resume() {
-        // TODO Auto-generated method stub
-
-    }
 }
