@@ -6,13 +6,15 @@
 package com.group17.geowars.gameobjects;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.math.Vector2;
 
 /**
  *
  * @author kevin
  */
-public class Enemy {
+public class Enemy extends GameObject implements GOInterface {
     private int EnemyType;
     private int hp;
     private int attack;
@@ -20,7 +22,8 @@ public class Enemy {
     private String position; //private Vector2 position;
     private Sprite sprite;
 
-    public Enemy(String type) {
+    public Enemy(String type,Vector2 spawnLocation) {
+        super(new Vector2(0,0));
 
         dead = false;
         Texture img = new Texture("tank.png");
@@ -38,4 +41,14 @@ public class Enemy {
         return sprite;
     }
 
+
+    @Override
+    public void render(Batch batch) {
+
+    }
+
+    @Override
+    public void update() {
+
+    }
 }
