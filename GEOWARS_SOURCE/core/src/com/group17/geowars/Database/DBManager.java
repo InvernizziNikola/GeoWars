@@ -1,7 +1,6 @@
 package com.group17.geowars.database;
 
 
-
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
 
 import java.sql.*;
@@ -12,41 +11,91 @@ public class DBManager {
     public ArrayList<String> resultselect;
     public ArrayList<String> list;
 
-
-    public ArrayList DBselect(String selectValue,String tabel,String columName,String value) {
+    /*----------------Select----------------------------*/
+    public ArrayList DBselect(String selectValue, String tabel, String columName, String value) {
         try {
-            String SQLstring2 = "SELECT * FROM profile where IDProfile = '1'";
-            String SQLstring = "SELECT "+ selectValue +" FROM "+tabel+" where " +columName+"= \""+value+"\";";
+            String SQLstring = "SELECT " + selectValue + " FROM " + tabel + " where " + columName + "= \"" + value + "\";";
             resultselect = DBconnect(SQLstring, true);
         } catch (Exception e) {
             System.out.println("Fout in select: " + e.getMessage());
         }
         return resultselect;
     }
-    public boolean DBupdate(String tabel,String columName,String columValue,String whereColum,String whereColumValue) {
+
+    public ArrayList DBselectHighscore(String Gamemode) {
+        try {
+            String SQLstring = "SELECT nameProfile,score,gamemode FROM Highscore where gamemode ='" + Gamemode + "'";
+            resultselect = DBconnect(SQLstring, true);
+        } catch (Exception e) {
+            System.out.println("Fout in select: " + e.getMessage());
+        }
+        return resultselect;
+    }
+
+    public ArrayList DBselectTOP10Highscore(String Gamemode) {
+        try {
+            String SQLstring = "SELECT nameProfile,score,gamemode FROM Highscore where gamemode ='" + Gamemode + "' LIMIT 10;";
+            resultselect = DBconnect(SQLstring, true);
+        } catch (Exception e) {
+            System.out.println("Fout in select: " + e.getMessage());
+        }
+        return resultselect;
+    }
+
+    public ArrayList DBselectGeom() {
+        try {
+            String SQLstring = "SELECT name,muliplier,experience,points FROM Geom;";
+            resultselect = DBconnect(SQLstring, true);
+        } catch (Exception e) {
+            System.out.println("Fout in select: " + e.getMessage());
+        }
+        return resultselect;
+    }
+
+    /*----------------------------update------------------------------------*/
+    public boolean DBupdate(String tabel, String columName, String columValue, String whereColum, String whereColumValue) {
         boolean succes = false;
         try {
-            String SQLstring = "UPDATE "+ tabel +" SET "+columName+"='"+columValue+"' where " +whereColum+"= \""+whereColumValue+"\";";
+            String SQLstring = "UPDATE " + tabel + " SET " + columName + "='" + columValue + "' where " + whereColum + "= \"" + whereColumValue + "\";";
             resultselect = DBconnect(SQLstring, false);
-            succes=true;
+            succes = true;
         } catch (Exception e) {
             System.out.println("Fout in update: " + e.getMessage());
         }
         return succes;
     }
-    public boolean DBInsert(String tabel,String columone,String valueone) {
-        String SQLstring = "INSERT INTO "+ tabel +" ("+columone+") VALUES ('"+valueone+"');";
+
+    public boolean DBInsert(String tabel, String columone, String valueone) {
+        String SQLstring = "INSERT INTO " + tabel + " (" + columone + ") VALUES ('" + valueone + "');";
         boolean succes = false;
         try {
             /*INSERT INTO table_name (column1,column2,column3,...)
             VALUES (value1,value2,value3,...);*/
 
             resultselect = DBconnect(SQLstring, false);
+            succes = true;
         } catch (Exception e) {
             System.out.println("Fout in update: " + e.getMessage());
         }
         return succes;
     }
+
+    public boolean DBInsertCampainProfile(String tabel, String columone, String valueone) {
+        String SQLstring = "INSERT INTO CampaignProfile(name,credits,ships,shipLvl,drones,powerups,campainlvl) VALUES ('" + valueone + "');";
+        boolean succes = false;
+        try {
+            /*INSERT INTO table_name (column1,column2,column3,...)
+            VALUES (value1,value2,value3,...);*/
+
+            resultselect = DBconnect(SQLstring, false);
+            succes = true;
+        } catch (Exception e) {
+            System.out.println("Fout in update: " + e.getMessage());
+        }
+        return succes;
+    }
+
+
     // connectie naar DB
     public ArrayList DBconnect(String sqlString, boolean BoolSelect) throws SQLException {
 

@@ -31,12 +31,12 @@ public class GeoWarsEgon extends ApplicationAdapter {
 
 		DBManager manager = new DBManager();
 		/*System.out.println(manager.DBupdate("profile","name","egoon2","name","egoon"));
-		testselect System.out.println(manager.DBselect("*","profile","IDProfile","1"));
-		System.out.println(manager.DBInsert("drone","name","iets"));*/
+		testselect System.out.println(manager.DBselect("*","profile","IDProfile","1"));*/
+		System.out.println("test"+manager.DBselectTOP10Highscore("arcade"));
 
 
 	}
-
+/*
 	public Menu mainmenu;
 
 	@Override
@@ -57,5 +57,5 @@ public class GeoWarsEgon extends ApplicationAdapter {
 	public void dispose () {
 
 
-	}
+	}*/
 }
