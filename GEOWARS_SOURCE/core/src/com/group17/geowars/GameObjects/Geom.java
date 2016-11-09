@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.group17.geowars.database.EnemyLoot;
+import com.group17.geowars.managers.AssetManager;
 import com.group17.geowars.managers.BulletManager;
 import com.group17.geowars.managers.ScoreManager;
 
@@ -24,7 +25,7 @@ public class Geom extends GameObject implements GOInterface
     {
         super(pos);
 
-        texture = new Texture("fighter.png");
+        texture = AssetManager.GetInstance().getTexture("Speler_2");
 
         sprite = new Sprite(texture, texture.getWidth(), texture.getHeight());
 
@@ -84,8 +85,5 @@ public class Geom extends GameObject implements GOInterface
         {
             position = new Vector2(position.x, position.y + (200 * Gdx.graphics.getDeltaTime()));
         }
-
-
     }
-
 }

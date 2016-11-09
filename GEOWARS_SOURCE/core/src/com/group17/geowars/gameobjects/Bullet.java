@@ -16,13 +16,13 @@ import com.group17.geowars.managers.BulletManager;
 public class Bullet extends GameObject implements GOInterface {
 
     Vector2 direction = new Vector2(0,0);
-    float speed = 1;
+    float speed = 200;
 
     public Bullet(Vector2 pos, Vector2 dir) {
         super(pos);
         direction = dir;
 
-        texture = AssetManager.GetInstance().getTexture("thief");
+        texture = AssetManager.GetInstance().getTexture("thief_2");
 
         sprite = new Sprite(texture, texture.getWidth(), texture.getHeight());
 
