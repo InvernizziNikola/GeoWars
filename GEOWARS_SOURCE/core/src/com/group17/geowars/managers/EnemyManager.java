@@ -1,8 +1,10 @@
 package com.group17.geowars.managers;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.math.Vector2;
 import com.group17.geowars.gameobjects.Enemy;
 import com.group17.geowars.gameobjects.GOInterface;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
@@ -24,13 +26,15 @@ public class EnemyManager implements GOInterface {
     private List<Enemy> enemies;
 
     private EnemyManager () {
-        enemies = new LinkedList<Enemy>();
-        for (int i=LevelManager.GetInstance().getNrOfEnemys(); i>0;i--)
-        {
-            enemies.add( new Enemy(LevelManager.GetInstance().getEnemies().get(new Random().nextInt(LevelManager.GetInstance().getEnemies().size()))
-                    ,LevelManager.GetInstance().getSpawnLocations().get(new Random().nextInt(LevelManager.GetInstance().getEnemies().size()))));
 
-        }
+        enemies = new LinkedList<Enemy>();
+        enemies.add( new Enemy(LevelManager.GetInstance().getEnemies().get(0),LevelManager.GetInstance().getSpawnLocations().get(0)));//HACK:testen of 1 enemy kan opgevraagd worden
+        enemies.add( new Enemy(LevelManager.GetInstance().getEnemies().get(1),LevelManager.GetInstance().getSpawnLocations().get(1)));
+        //for (int i=LevelManager.GetInstance().getNrOfEnemys(); i>0;i--) {
+
+        //    enemies.add(new Enemy(LevelManager.GetInstance().getEnemies().get(new Random().nextInt(LevelManager.GetInstance().getEnemies().size()))
+           //         , LevelManager.GetInstance().getSpawnLocations().get(new Random().nextInt(LevelManager.GetInstance().getEnemies().size()))));
+        //}
         //HACK:testen of 1 enemy kan opgevraagd worden
 
     }
