@@ -52,6 +52,34 @@ public class DBManager {
         return resultselect;
     }
 
+    public ArrayList DBselectDrone(String name) {
+        try {
+            String SQLstring = "SELECT name,image,hitpoints,hpinfinite,attack,speed,type FROM drone where name='" + name + "';";
+            resultselect = DBconnect(SQLstring, true);
+        } catch (Exception e) {
+            System.out.println("Fout in select: " + e.getMessage());
+        }
+        return resultselect;
+    }
+
+    public ArrayList DBselectEnemy(String name) {
+        try {
+            String SQLstring = "SELECT name,image,hitpoints,geom,attack,speed,type FROM enemy where name='" + name + "';";
+            resultselect = DBconnect(SQLstring, true);
+        } catch (Exception e) {
+            System.out.println("Fout in select: " + e.getMessage());
+        }
+        return resultselect;
+    }
+    public ArrayList DBselectPowerUp(String name) {
+        try {
+            String SQLstring = "SELECT name,type,amount,description FROM PowerUp where name='" + name + "';";
+            resultselect = DBconnect(SQLstring, true);
+        } catch (Exception e) {
+            System.out.println("Fout in select: " + e.getMessage());
+        }
+        return resultselect;
+    }
     /*----------------------------update------------------------------------*/
     public boolean DBupdate(String tabel, String columName, String columValue, String whereColum, String whereColumValue) {
         boolean succes = false;
