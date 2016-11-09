@@ -5,8 +5,11 @@
  */
 package com.group17.geowars.playerobjects;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.controllers.Controller;
 import com.group17.geowars.gameobjects.Drone;
 import com.group17.geowars.gameobjects.Ship;
+import com.group17.geowars.managers.PlayerInput;
 
 /**
  *
@@ -16,7 +19,8 @@ public class Player {
     private String name;
     private Ship ship;
     private Drone drone;
-    //private Controller x;
+    private Controller controller;// nodig ?
+    private PlayerInput playerInput;
 
     public Player(String naam , Drone dr ,Ship sp)
     {
@@ -49,5 +53,15 @@ public class Player {
 
     public Drone getDrone() {
         return drone;
+    }
+
+    public void setController(Controller controller) {
+        this.controller = controller;
+        playerInput = new PlayerInput(controller,this);
+        Gdx.app.log("controller: ", controller.getName());
+    }
+
+    public Controller getController() {
+        return controller;
     }
 }

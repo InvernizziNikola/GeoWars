@@ -2,6 +2,8 @@ package com.group17.geowars;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.controllers.Controller;
+import com.badlogic.gdx.controllers.Controllers;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -23,6 +25,7 @@ public class GeoWars2 extends ApplicationAdapter {
 	int r;
 	int g;
 	boolean up;
+	Controller controller1;
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
@@ -39,8 +42,12 @@ public class GeoWars2 extends ApplicationAdapter {
 
 		//controle
 		player1 = proff.getPlayer();
-		System.out.println(player1.getStats());
-		System.out.println(player1.getShip().getSprite());
+		controller1 = Controllers.getControllers().first();
+		player1.setController(controller1);
+
+
+
+
 
 
 		shipSprite = player1.getShip().getSprite();
@@ -48,16 +55,19 @@ public class GeoWars2 extends ApplicationAdapter {
 		veranderingPos=2;
 	pos=100;
 		up=true;
-	}
+
+
+}
 
 	@Override
 	public void render () {
+
 		Vector2 mousePos = new Vector2(Gdx.input.getX(), -Gdx.input.getY() + 600);
 		Gdx.gl.glClearColor(1, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		batch.begin();
 
-		System.out.println(mousePos.x+", "+mousePos.y);
+		//System.out.println(mousePos.x+", "+mousePos.y);
 		r+=2;
 		g+=2;
 		shipSprite.setSize(50,50);
