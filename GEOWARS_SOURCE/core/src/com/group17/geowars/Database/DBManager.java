@@ -71,6 +71,15 @@ public class DBManager {
         }
         return resultselect;
     }
+    public ArrayList DBselectShip(String name) {
+        try {
+            String SQLstring = "SELECT name,image,hitpoints,attack,speed,type FROM enemy where name='" + name + "';";
+            resultselect = DBconnect(SQLstring, true);
+        } catch (Exception e) {
+            System.out.println("Fout in select: " + e.getMessage());
+        }
+        return resultselect;
+    }
     public ArrayList DBselectPowerUp(String name) {
         try {
             String SQLstring = "SELECT name,type,amount,description FROM PowerUp where name='" + name + "';";
@@ -92,14 +101,11 @@ public class DBManager {
         }
         return succes;
     }
-
+    /*----------------------------insert------------------------------------*/
     public boolean DBInsert(String tabel, String columone, String valueone) {
         String SQLstring = "INSERT INTO " + tabel + " (" + columone + ") VALUES ('" + valueone + "');";
         boolean succes = false;
         try {
-            /*INSERT INTO table_name (column1,column2,column3,...)
-            VALUES (value1,value2,value3,...);*/
-
             resultselect = DBconnect(SQLstring, false);
             succes = true;
         } catch (Exception e) {
@@ -112,9 +118,17 @@ public class DBManager {
         String SQLstring = "INSERT INTO CampaignProfile(name,credits,ships,shipLvl,drones,powerups,campainlvl) VALUES ('" + valueone + "');";
         boolean succes = false;
         try {
-            /*INSERT INTO table_name (column1,column2,column3,...)
-            VALUES (value1,value2,value3,...);*/
-
+            resultselect = DBconnect(SQLstring, false);
+            succes = true;
+        } catch (Exception e) {
+            System.out.println("Fout in update: " + e.getMessage());
+        }
+        return succes;
+    }
+    public boolean DBInsertHighscore(String nameProfile, Integer Score, String Gamemode) {
+        String SQLstring = "INSERT INTO Highscore (nameProfile,Score,gamemode) VALUES ('" + nameProfile + "','" + Score + "','" + Gamemode + "');";
+        boolean succes = false;
+        try {
             resultselect = DBconnect(SQLstring, false);
             succes = true;
         } catch (Exception e) {
@@ -124,7 +138,9 @@ public class DBManager {
     }
 
 
-    // connectie naar DB
+
+
+    /*----------------------------Connectie Naar DB------------------------------------*/
     public ArrayList DBconnect(String sqlString, boolean BoolSelect) throws SQLException {
 
         try {

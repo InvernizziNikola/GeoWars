@@ -11,28 +11,11 @@ import com.group17.geowars.screens.Menu;
 
 public class GeoWarsEgon extends ApplicationAdapter {
 
-
-
-
-	/*
-	*
-	*     private JdbcTemplate template;
-
-
-    public static void main(String[] args) {
-        JdbcTemplate test = new JdbcTemplate();
-
-        System.out.println(test.DBselect());
-	*
-	* */
-
 	public void DBTest () {
-
-
 		DBManager manager = new DBManager();
 		/*System.out.println(manager.DBupdate("profile","name","egoon2","name","egoon"));
 		testselect System.out.println(manager.DBselect("*","profile","IDProfile","1"));*/
-		System.out.println("test"+manager.DBselectDrone("attack"));
+		System.out.println("test"+manager.DBInsertHighscore("egoon",2000,"arcade"));
 
 
 	}
