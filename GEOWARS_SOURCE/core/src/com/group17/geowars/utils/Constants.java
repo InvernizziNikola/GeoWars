@@ -5,5 +5,4 @@ package com.group17.geowars.utils;
  */
 public final class Constants {
 
-    public static final float PPM = 32;
 }

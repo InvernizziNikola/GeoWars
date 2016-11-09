@@ -7,8 +7,11 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.group17.geowars.database.EnemyLoot;
 import com.group17.geowars.managers.AssetManager;
+import com.group17.geowars.managers.BulletManager;
 import com.group17.geowars.managers.ScoreManager;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -65,6 +68,23 @@ public class Geom extends GameObject implements GOInterface
         // TODO MOVEMENT
         // ROTATE
         // move
+
+
+        // TODO REMOVE COLLISION BULLET
+        List<Bullet> bulletList = BulletManager.GetInstance().getBullets();
+
+        List<Bullet> toRemove = new ArrayList<Bullet>();
+
+
+        for (Bullet b: bulletList) {
+            Vector2 newV = new Vector2(b.getPosition().x - getPosition().x, b.getPosition().y - getPosition().y);
+            if(newV.len() < 10){
+                toRemove.add(b);
+            }
+        }
+
+        bulletList.removeAll(toRemove);
+
         angle += Gdx.graphics.getDeltaTime() * rotateSpeed * rotateDirection;
         angle = angle % 360;
     }

@@ -51,4 +51,8 @@ public class BulletManager implements GOInterface {
     public void clearAll() {
         bullets.clear();
     }
+
+    public List<Bullet> getBullets() {
+        return bullets;
+    }
 }

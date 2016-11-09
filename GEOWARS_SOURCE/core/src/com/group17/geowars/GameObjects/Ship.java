@@ -66,10 +66,10 @@ public class Ship extends GameObject implements GOInterface { //interface shoot?
     {
         BulletManager.GetInstance().addBullet(new Bullet(new Vector2(position), new Vector2(shootDir)));
     }
-public void nuke()
-{
-    BulletManager.GetInstance().clearAll();
-}
+    public void nuke()
+    {
+        BulletManager.GetInstance().clearAll();
+    }
 
     @Override
     public void update()
