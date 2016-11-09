@@ -7,7 +7,9 @@ package com.group17.geowars.playerobjects;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.controllers.Controller;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.group17.geowars.gameobjects.Drone;
+import com.group17.geowars.gameobjects.GOInterface;
 import com.group17.geowars.gameobjects.Ship;
 import com.group17.geowars.managers.PlayerInput;
 
@@ -15,7 +17,7 @@ import com.group17.geowars.managers.PlayerInput;
  *
  * @author kevin
  */
-public class Player {
+public class Player implements GOInterface {
     private String name;
     private Ship ship;
     private Drone drone;
@@ -27,6 +29,7 @@ public class Player {
        name =naam;
         drone=dr;
         ship=sp;
+
     }
 
     public void setShip(Ship ship) {
@@ -58,10 +61,21 @@ public class Player {
     public void setController(Controller controller) {
         this.controller = controller;
         playerInput = new PlayerInput(controller,this);
+        controller.addListener(playerInput);
         Gdx.app.log("controller: ", controller.getName());
     }
 
     public Controller getController() {
         return controller;
+    }
+
+    @Override
+    public void render(Batch batch) {
+
+    }
+
+    @Override
+    public void update() {
+
     }
 }
