@@ -42,20 +42,4 @@ public abstract class GameObject
     public void setSprite(Sprite sprite) {
         this.sprite = sprite;
     }
-    public void moveLeft()
-    {
-        position = new Vector2(position.x + (-200 * Gdx.graphics.getDeltaTime()), position.y);
-    }
-    public void moveRight()
-    {
-        position = new Vector2(position.x + (200 * Gdx.graphics.getDeltaTime()), position.y);
-    }
-    public void moveUp()
-    {
-        position = new Vector2(position.x, position.y + (200 * Gdx.graphics.getDeltaTime()));
-    }
-    public void moveDown()
-    {
-        position = new Vector2(position.x, position.y + (-200 * Gdx.graphics.getDeltaTime()));
-    }
 }

@@ -28,8 +28,8 @@ public class Ship extends GameObject implements GOInterface { //interface shoot?
     private String type;
     private Sprite sprite;
 
-    private Vector2 direction;
-
+    private Vector2 shootDir = new Vector2(0,0);
+    private Vector2 moveDir = new Vector2(0,0);
 
     public Ship(Vector2 pos, String type)
     {
@@ -57,56 +57,44 @@ public class Ship extends GameObject implements GOInterface { //interface shoot?
         sprite.setColor(new Color(0.8f, 0.8f,0,1));
         sprite.setSize(50,50);
         sprite.setOrigin(25,25);
-        sprite.setRotation(direction.angle());
+        sprite.setRotation(shootDir.angle());
         sprite.setPosition(position.x, position.y);
         sprite.draw(batch);
     }
 
     public void shoot()
     {
-        BulletManager.GetInstance().addBullet(new Bullet(new Vector2(position), new Vector2(direction)));
+        BulletManager.GetInstance().addBullet(new Bullet(new Vector2(position), new Vector2(shootDir)));
     }
-    public void moveShip(Vector2 dir)
-    {
-        String moveTo = "left";
-
-        if (moveTo.equals("left")) {
-            position = new Vector2(position.x + (-200 * Gdx.graphics.getDeltaTime()), position.y);
-        }
-        if (moveTo.equals("right")) {
-            position = new Vector2(position.x + (200 * Gdx.graphics.getDeltaTime()), position.y);
-        }
-        if (moveTo.equals("down")) {
-            position = new Vector2(position.x, position.y + (-200 * Gdx.graphics.getDeltaTime()));
-        }
-        if (moveTo.equals("up")) {
-            position = new Vector2(position.x, position.y + (200 * Gdx.graphics.getDeltaTime()));
-        }
-    }
+public void nuke()
+{
+    BulletManager.GetInstance().clearAll();
+}
 
     @Override
-    public void update() {
-
-        Vector2 mousePos = new Vector2(Gdx.input.getX(), -Gdx.input.getY() + 600);
-        direction = mousePos.sub(position.x + 25, position.y + 25).nor();
-
-
-
-        // TODO HACK TILL WE GET CONTROLLERS
-        if (Gdx.input.isKeyPressed(Input.Keys.A)) {
-            position = new Vector2(position.x + (-200 * Gdx.graphics.getDeltaTime()), position.y);
+    public void update()
+    {
+        if(shootDir.len() > 0.1f)
+        {
+            shoot();
+        }else
+        {
+            shootDir = moveDir;
         }
-        if (Gdx.input.isKeyPressed(Input.Keys.D)) {
-            position = new Vector2(position.x + (200 * Gdx.graphics.getDeltaTime()), position.y);
-        }
-        if (Gdx.input.isKeyPressed(Input.Keys.S)) {
-            position = new Vector2(position.x, position.y + (-200 * Gdx.graphics.getDeltaTime()));
-        }
-        if (Gdx.input.isKeyPressed(Input.Keys.W)) {
-            position = new Vector2(position.x, position.y + (200 * Gdx.graphics.getDeltaTime()));
-        }
+        Move();
     }
 
+    void Move()
+    {
+        position.mulAdd(moveDir, 200 * Gdx.graphics.getDeltaTime());
+    }
 
+    public void setMoveDirection(Vector2 dir)
+    {
+        moveDir = dir;
+    }
+    public void setShootDirection(Vector2 dir) {
+        shootDir = dir;
+    }
 }
 

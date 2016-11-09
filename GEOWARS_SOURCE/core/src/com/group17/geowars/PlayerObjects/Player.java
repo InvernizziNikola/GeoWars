@@ -61,7 +61,7 @@ public class Player implements GOInterface {
     public void setController(Controller controller) {
         this.controller = controller;
         playerInput = new PlayerInput(controller,this);
-        controller.addListener(playerInput);
+        //controller.addListener(playerInput);
         Gdx.app.log("controller: ", controller.getName());
     }
 
@@ -78,6 +78,7 @@ public class Player implements GOInterface {
     @Override
     public void update()
     {
+        playerInput.update();
         ship.update();
     }
 }
