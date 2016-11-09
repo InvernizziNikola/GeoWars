@@ -30,6 +30,7 @@ public class Ship extends GameObject implements GOInterface { //interface shoot?
 
     private Vector2 shootDir = new Vector2(0,0);
     private Vector2 moveDir = new Vector2(0,0);
+    private Vector2 lookDir = new Vector2(0,0);
 
     public Ship(Vector2 pos, String type)
     {
@@ -57,14 +58,13 @@ public class Ship extends GameObject implements GOInterface { //interface shoot?
         sprite.setColor(new Color(0.8f, 0.8f,0,1));
         sprite.setSize(50, 50);
         sprite.setOrigin(25, 25);
-        sprite.setRotation(shootDir.angle());
+        sprite.setRotation(lookDir.angle());
         sprite.setPosition(position.x - 25, position.y - 25);
         sprite.draw(batch);
     }
 
     public void shoot()
     {
-
         BulletManager.GetInstance().addBullet(new Bullet(new Vector2(position), new Vector2(shootDir)));
     }
     public void nuke()
@@ -78,10 +78,13 @@ public class Ship extends GameObject implements GOInterface { //interface shoot?
         if(shootDir.len() > 0.1f)
         {
             shoot();
-        }else
-        {
-            shootDir = moveDir;
+            lookDir = shootDir;
         }
+        else if (moveDir.len() > 0.1f)
+        {
+            lookDir = moveDir;
+        }
+
         Move();
     }
 
