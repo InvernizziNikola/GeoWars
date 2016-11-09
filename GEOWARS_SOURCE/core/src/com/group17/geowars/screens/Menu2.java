@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
@@ -28,11 +29,10 @@ public class Menu2 {
     private TextButtonStyle textButtonStyle;
     private TextButton backButton;
 
-
     public Menu2(){
-        mainMenu();
+        create();
     }
-    public void mainMenu(){
+    public void create(){
         batch = new SpriteBatch();
         title = new BitmapFont();
         title.setColor(Color.WHITE);
@@ -80,52 +80,8 @@ public class Menu2 {
         quitButton.setPosition(300, 90);
         stage.addActor(quitButton);
 
-
-
     }
 
-    public void playMenu(){
-        batch = new SpriteBatch();
-        stage = new Stage();
-
-        final TextButton campaignButton = new TextButton("CAMPAIGN",textButtonStyle);
-        campaignButton.setPosition(125, 400);
-        campaignButton.setWidth(150);
-        stage.addActor(campaignButton);
-
-        final TextButton arcadeButton = new TextButton("ARCADE", textButtonStyle);
-        arcadeButton.setPosition(325,400);
-        arcadeButton.setWidth(150);
-        stage.addActor(arcadeButton);
-
-        final TextButton multiplayerButton = new TextButton("CO-OP", textButtonStyle);
-        multiplayerButton.setPosition(525,400);
-        multiplayerButton.setWidth(150);
-        stage.addActor(multiplayerButton);
-
-        backButton = new TextButton("BACK", textButtonStyle);
-        backButton.setPosition(325,150);
-        backButton.setWidth(150);
-        stage.addActor(backButton);
-
-        stage.draw();
-
-
-
-
-    }
-
-    public void profileMenu(){
-        Gdx.gl.glClearColor(0, 0, 0, 0);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        stage.clear();
-        stage = new Stage();
-        stage.draw();
-        batch.begin();
-        title.draw(batch,"profile",325,550);
-        batch.end();
-
-    }
 
     public void render (float delta) {
         Gdx.gl.glClearColor(0, 0, 0, 0);
@@ -134,19 +90,11 @@ public class Menu2 {
         title.draw(batch,"GEOMETRYWARS",325,550);
         batch.end();
         stage.draw();
-        if(playButton.isChecked()){
-            stage.clear();
-            playMenu();
-        }
 
         if (quitButton.isChecked()){
             Gdx.app.exit();
         }
 
-        if (profileButton.isChecked()){
-            stage.clear();
-            profileMenu();
-        }
 
 
 
