@@ -10,6 +10,8 @@ public class DBManager {
 
     public ArrayList<String> resultselect;
     public ArrayList<String> list;
+    public ArrayList<String> SpelersId;
+    public ArrayList<String> ShipId;
 
     /*----------------Select----------------------------*/
     public ArrayList DBselect(String selectValue, String tabel, String columName, String value) {
@@ -101,6 +103,62 @@ public class DBManager {
         }
         return succes;
     }
+    public boolean DBupdateCampainProfileCredits(Integer CreditsAmount,String playername) {
+        boolean succes = false;
+        try {
+            String SQLstring = "UPDATE CampaignProfile SET credits='" + CreditsAmount + "' where name= '" + playername + "';";
+            resultselect = DBconnect(SQLstring, false);
+            succes = true;
+        } catch (Exception e) {
+            System.out.println("Fout in update: " + e.getMessage());
+        }
+        return succes;
+    }
+
+    public boolean DBupdateProfileCredits(Integer CreditsAmount,String playername) {
+        boolean succes = false;
+        try {
+            String SQLstring = "UPDATE Profile SET credits='" + CreditsAmount + "' where name= '" + playername + "';";
+            resultselect = DBconnect(SQLstring, false);
+            succes = true;
+        } catch (Exception e) {
+            System.out.println("Fout in update: " + e.getMessage());
+        }
+        return succes;
+    }
+    public boolean DBupdateProfileLvl(Integer ProfileLvl,String playername) {
+        boolean succes = false;
+        try {
+            String SQLstring = "UPDATE Profile SET profileLvl='" + ProfileLvl + "' where name= '" + playername + "';";
+            resultselect = DBconnect(SQLstring, false);
+            succes = true;
+        } catch (Exception e) {
+            System.out.println("Fout in update: " + e.getMessage());
+        }
+        return succes;
+    }
+    public boolean DBupdateCampaignShipLvl(Integer ShipLvl,String playername) {
+        boolean succes = false;
+        try {
+            String SQLstring = "UPDATE CampaignProfile SET shipLvl='" + ShipLvl + "' where name= '" + playername + "';";
+            resultselect = DBconnect(SQLstring, false);
+            succes = true;
+        } catch (Exception e) {
+            System.out.println("Fout in update: " + e.getMessage());
+        }
+        return succes;
+    }
+    public boolean DBupdateCampaignLvl(Integer campaignLvl,String playername) {
+        boolean succes = false;
+        try {
+            String SQLstring = "UPDATE CampaignProfile SET campaignLvl='" + campaignLvl + "' where name= '" + playername + "';";
+            resultselect = DBconnect(SQLstring, false);
+            succes = true;
+        } catch (Exception e) {
+            System.out.println("Fout in update: " + e.getMessage());
+        }
+        return succes;
+    }
     /*----------------------------insert------------------------------------*/
     public boolean DBInsert(String tabel, String columone, String valueone) {
         String SQLstring = "INSERT INTO " + tabel + " (" + columone + ") VALUES ('" + valueone + "');";
@@ -114,8 +172,19 @@ public class DBManager {
         return succes;
     }
 
-    public boolean DBInsertCampainProfile(String tabel, String columone, String valueone) {
-        String SQLstring = "INSERT INTO CampaignProfile(name,credits,ships,shipLvl,drones,powerups,campainlvl) VALUES ('" + valueone + "');";
+    public boolean DBInsertCampainProfile(String name,Integer credits,Integer ShipLvl,Integer CampainLvl) {
+        String SQLstring = "INSERT INTO CampaignProfile(name,credits,shipLvl,campainLvl) VALUES ('" + name + "','"+credits+ "','"+ShipLvl+ "','"+CampainLvl+"');";
+        boolean succes = false;
+        try {
+            resultselect = DBconnect(SQLstring, false);
+            succes = true;
+        } catch (Exception e) {
+            System.out.println("Fout in update: " + e.getMessage());
+        }
+        return succes;
+    }
+    public boolean DBInsertProfile(String name,Integer credits,Integer ShipLvl,Integer profileLvl) {
+        String SQLstring = "INSERT INTO Profile(name,profileLvl,credits) VALUES ('" + name + "','"+profileLvl+ "','"+credits+ "');";
         boolean succes = false;
         try {
             resultselect = DBconnect(SQLstring, false);
@@ -135,6 +204,39 @@ public class DBManager {
             System.out.println("Fout in update: " + e.getMessage());
         }
         return succes;
+    }
+    public boolean DBInsertShipsInProfile(String nameProfile, String nameShip) {
+        boolean succes = false;
+        String SQLstring = "select IDProfile FROM Profile WHERE name='"+nameProfile+"' Limit 1;";
+
+        try {
+            SpelersId = DBconnect(SQLstring, true);
+
+        } catch (Exception e) {
+            System.out.println("Fout in ophalen van spelersnaam: " + e.getMessage());
+        }
+        SQLstring = "select IDShip FROM Ship WHERE name='"+nameShip+"' Limit 1;";
+
+        try {
+            ShipId = DBconnect(SQLstring, true);
+
+        } catch (Exception e) {
+            System.out.println("Fout in ophalen van shipnaam: " + e.getMessage());
+        }
+        if (ShipId.isEmpty()|SpelersId.isEmpty()){
+            succes = false;
+            return succes;
+        }else {
+            SQLstring = "INSERT INTO ShipsForProfile (ship,profile) VALUES ('" + ShipId.get(0) + "','" + SpelersId.get(0) + "');";
+
+            try {
+                resultselect = DBconnect(SQLstring, false);
+                succes = true;
+            } catch (Exception e) {
+                System.out.println("Fout in update: " + e.getMessage());
+            }
+            return succes;
+        }
     }
 
 
