@@ -46,8 +46,8 @@ public class Profile {
 
     private List<Ship> setShips( ) {//#TODO: VIA DATABANK
         List<Ship> s = new ArrayList();
-        s.add(new Ship(new Vector2(100,100), "tank"));
-        s.add(new Ship(new Vector2(100,100), "fighter"));
+        s.add(new Ship(new Vector2(0,0), "tank"));
+        s.add(new Ship(new Vector2(0,0), "fighter"));
         return s;
     }
 

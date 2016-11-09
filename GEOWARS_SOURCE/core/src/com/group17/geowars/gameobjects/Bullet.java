@@ -35,7 +35,7 @@ public class Bullet extends GameObject implements GOInterface {
         sprite.setSize(20,20);
         sprite.setOrigin(10,10);
         //sprite.setRotation(difference.angle());
-        sprite.setPosition(position.x, position.y);
+        sprite.setPosition(position.x - 10, position.y - 10);
         sprite.draw(batch);
 
     }

@@ -55,15 +55,16 @@ public class Ship extends GameObject implements GOInterface { //interface shoot?
     {
         // TODO DRAW IMAGE CORRRECTLY
         sprite.setColor(new Color(0.8f, 0.8f,0,1));
-        sprite.setSize(50,50);
-        sprite.setOrigin(25,25);
+        sprite.setSize(50, 50);
+        sprite.setOrigin(25, 25);
         sprite.setRotation(shootDir.angle());
-        sprite.setPosition(position.x, position.y);
+        sprite.setPosition(position.x - 25, position.y - 25);
         sprite.draw(batch);
     }
 
     public void shoot()
     {
+
         BulletManager.GetInstance().addBullet(new Bullet(new Vector2(position), new Vector2(shootDir)));
     }
     public void nuke()

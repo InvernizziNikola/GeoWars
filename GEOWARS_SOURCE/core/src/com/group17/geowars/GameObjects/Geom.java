@@ -58,7 +58,7 @@ public class Geom extends GameObject implements GOInterface
         sprite.setSize(50, 50);
         sprite.setOrigin(25,25);
         sprite.setRotation(angle);
-        sprite.setPosition(position.x, position.y);
+        sprite.setPosition(position.x - 25, position.y - 25);
         sprite.draw(batch);
     }
 
@@ -72,17 +72,13 @@ public class Geom extends GameObject implements GOInterface
 
         // TODO REMOVE COLLISION BULLET
         List<Bullet> bulletList = BulletManager.GetInstance().getBullets();
-
         List<Bullet> toRemove = new ArrayList<Bullet>();
-
-
         for (Bullet b: bulletList) {
             Vector2 newV = new Vector2(b.getPosition().x - getPosition().x, b.getPosition().y - getPosition().y);
             if(newV.len() < 10){
                 toRemove.add(b);
             }
         }
-
         bulletList.removeAll(toRemove);
 
         angle += Gdx.graphics.getDeltaTime() * rotateSpeed * rotateDirection;
