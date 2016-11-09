@@ -81,9 +81,13 @@ public class Menu2 {
         stage.addActor(quitButton);
 
 
+
     }
 
     public void playMenu(){
+        batch = new SpriteBatch();
+        stage = new Stage();
+
         final TextButton campaignButton = new TextButton("CAMPAIGN",textButtonStyle);
         campaignButton.setPosition(125, 400);
         campaignButton.setWidth(150);
@@ -105,29 +109,45 @@ public class Menu2 {
         stage.addActor(backButton);
 
         stage.draw();
-        stage = new Stage();
-        batch.begin();
-        title.draw(batch,"GEOMETRYWARS",325,550);
-        batch.end();
 
+
+
+
+    }
+
+    public void profileMenu(){
+        Gdx.gl.glClearColor(0, 0, 0, 0);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        stage.clear();
+        stage = new Stage();
+        stage.draw();
+        batch.begin();
+        title.draw(batch,"profile",325,550);
+        batch.end();
 
     }
 
     public void render (float delta) {
         Gdx.gl.glClearColor(0, 0, 0, 0);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        stage.draw();
         batch.begin();
         title.draw(batch,"GEOMETRYWARS",325,550);
         batch.end();
-
+        stage.draw();
         if(playButton.isChecked()){
+            stage.clear();
             playMenu();
         }
-        
+
         if (quitButton.isChecked()){
             Gdx.app.exit();
         }
+
+        if (profileButton.isChecked()){
+            stage.clear();
+            profileMenu();
+        }
+
 
 
     }

@@ -13,6 +13,7 @@ public class GeoWars4 extends ApplicationAdapter{
 	public void create () {
 		mainmenu = new Menu2();
 		mainmenu.mainMenu();
+
 	}
 
 	@Override
