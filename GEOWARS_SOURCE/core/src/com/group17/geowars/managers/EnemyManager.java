@@ -24,18 +24,20 @@ public class EnemyManager implements GOInterface {
     }
 
     private List<Enemy> enemies;
+    private List<Enemy> enemiesToRemove;
 
     private EnemyManager () {
 
         enemies = new LinkedList<Enemy>();
-        enemies.add( new Enemy(LevelManager.GetInstance().getEnemies().get(0),LevelManager.GetInstance().getSpawnLocations().get(0)));//HACK:testen of 1 enemy kan opgevraagd worden
-        enemies.add( new Enemy(LevelManager.GetInstance().getEnemies().get(1),LevelManager.GetInstance().getSpawnLocations().get(1)));
-        //for (int i=LevelManager.GetInstance().getNrOfEnemys(); i>0;i--) {
+        enemiesToRemove = new LinkedList<Enemy>();
 
-        //    enemies.add(new Enemy(LevelManager.GetInstance().getEnemies().get(new Random().nextInt(LevelManager.GetInstance().getEnemies().size()))
-           //         , LevelManager.GetInstance().getSpawnLocations().get(new Random().nextInt(LevelManager.GetInstance().getEnemies().size()))));
-        //}
-        //HACK:testen of 1 enemy kan opgevraagd worden
+        for (int i=LevelManager.GetInstance().getNrOfEnemys(); i>0;i--) {
+
+             enemies.add(new Enemy(LevelManager.GetInstance().getEnemies().get(new Random().nextInt(LevelManager.GetInstance().getEnemies().size()))
+                    , new Vector2(new Random().nextInt(800),new Random().nextInt(600))));
+           // enemies.add(new Enemy(LevelManager.GetInstance().getEnemies().get(new Random().nextInt(LevelManager.GetInstance().getEnemies().size()))
+            //        , LevelManager.GetInstance().getSpawnLocations().get(new Random().nextInt(LevelManager.GetInstance().getEnemies().size()))));
+        }
 
     }
 
@@ -65,9 +67,12 @@ public class EnemyManager implements GOInterface {
         for (Enemy e: enemies) {
             e.update();
         }
+        enemies.removeAll(enemiesToRemove);
+
+
     }
 
     public void removeEnemy(Enemy enemy) {
-        enemies.remove(enemy);
+        enemiesToRemove.add(enemy);
     }
 }
