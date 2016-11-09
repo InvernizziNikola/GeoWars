@@ -70,12 +70,14 @@ public class Player implements GOInterface {
     }
 
     @Override
-    public void render(Batch batch) {
-
+    public void render(Batch batch)
+    {
+        ship.render(batch);
     }
 
     @Override
-    public void update() {
-
+    public void update()
+    {
+        ship.update();
     }
 }

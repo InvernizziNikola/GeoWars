@@ -18,6 +18,7 @@ public class GameWorld
     public List<Geom> geoms;
     public List<Enemy> enemies;
     public List<Ship> ships;
+    public List<Player> players;
     public Player player;
 
 
@@ -30,7 +31,7 @@ public class GameWorld
         geoms = new ArrayList<Geom>();
         enemies = new ArrayList<Enemy>();
         ships = new ArrayList<Ship>();
-        player = null; // TODO WORD OPGEVRAAGD
+        players = new ArrayList<Player>();
     }
 
     public void update()
@@ -38,8 +39,8 @@ public class GameWorld
         for(int i = 0; i < geoms.size(); i++)
             geoms.get(i).update();
 
-        for(int i = 0; i < ships.size(); i++)
-            ships.get(i).update();
+        for(int i = 0; i < players.size(); i++)
+            players.get(i).update();
 
         BulletManager.GetInstance().update();
     }
@@ -51,8 +52,8 @@ public class GameWorld
         for(int i = 0; i < geoms.size(); i++)
             geoms.get(i).render(batch);
 
-        for(int i = 0; i < ships.size(); i++)
-            ships.get(i).render(batch);
+        for(int i = 0; i < players.size(); i++)
+            players.get(i).render(batch);
     }
 
 }
