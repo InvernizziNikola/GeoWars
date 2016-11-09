@@ -13,100 +13,34 @@ import com.group17.geowars.gameobjects.Drone;
 import com.group17.geowars.gameobjects.Ship;
 import com.group17.geowars.playerobjects.Player;
 import com.group17.geowars.playerobjects.Profile;
+import com.group17.geowars.screens.GameScreen;
 
 public class GeoWars2 extends ApplicationAdapter {
 	SpriteBatch batch;
-	Texture img;
-	Player player1;
-	Sprite shipSprite;
-	Sprite droneSprite;
-	Integer pos;
-	int veranderingPos;
-	int r;
-	int g;
-	boolean up;
-	Controller controller1;
+	GameScreen screen;
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-		img = new Texture("badlogic.jpg");
 
-
-		//nikoala start geo wars
-		Profile proff = new Profile("1");
-
-		//nikoala kiest drone en ship
-		Drone dr = proff.getDrones().get(0);
-		Ship sp =proff.getShips().get(0);
-		proff.setPlayer(dr,sp);
-
-		//controle
-		player1 = proff.getPlayer();
-		controller1 = Controllers.getControllers().first();
-		player1.setController(controller1);
-
-
-
-
-
-
-		shipSprite = player1.getShip().getSprite();
-		droneSprite = player1.getDrone().getSprite();
-		veranderingPos=2;
-	pos=100;
-		up=true;
-
-
-}
+		screen = new GameScreen(batch);
+	}
 
 	@Override
 	public void render () {
 
-		Vector2 mousePos = new Vector2(Gdx.input.getX(), -Gdx.input.getY() + 600);
-		Gdx.gl.glClearColor(1, 0, 0, 1);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		Gdx.gl.glClearColor(0, 0, 0, 1);
+		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT |
+				GL20.GL_DEPTH_BUFFER_BIT |
+				(Gdx.graphics.getBufferFormat().coverageSampling?GL20.GL_COVERAGE_BUFFER_BIT_NV:0));
+
 		batch.begin();
-
-		//System.out.println(mousePos.x+", "+mousePos.y);
-		r+=2;
-		g+=2;
-		shipSprite.setSize(50,50);
-		droneSprite.setSize(20,20);
-
-		droneSprite.setPosition(mousePos.x,mousePos.y+50);
-		shipSprite.setPosition(mousePos.x, mousePos.y);
-
-		/*
-		pos+=veranderingPos;
-		System.out.println(pos);
-		if(up &&pos>548)
-		{
-			veranderingPos=-2;
-			up=false;
-		}
-		if(!up &&pos<4)
-		{
-			veranderingPos=2;
-			up=true;
-		}
-
-		droneSprite.setPosition(100+50,pos+50);
-		shipSprite.setPosition(100, pos);
-		*/
-
-		shipSprite.setColor(r,g,0,1);
-		droneSprite.setColor(r,g,0,1);
-
-		droneSprite.draw(batch);
-		shipSprite.draw(batch);
+		screen.render();
 		batch.end();
 
-
 	}
-	
+
 	@Override
 	public void dispose () {
 		batch.dispose();
-		img.dispose();
 	}
 }

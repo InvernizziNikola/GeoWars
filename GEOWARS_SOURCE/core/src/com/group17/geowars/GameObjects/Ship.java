@@ -14,6 +14,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.group17.geowars.managers.AssetManager;
 import com.group17.geowars.managers.BulletManager;
 
+
 /**
  *
  * @author kevin
@@ -65,39 +66,47 @@ public class Ship extends GameObject implements GOInterface { //interface shoot?
     {
         BulletManager.GetInstance().addBullet(new Bullet(new Vector2(position), new Vector2(direction)));
     }
+    public void moveShip(Vector2 dir)
+    {
+        String moveTo = "left";
+
+        if (moveTo.equals("left")) {
+            position = new Vector2(position.x + (-200 * Gdx.graphics.getDeltaTime()), position.y);
+        }
+        if (moveTo.equals("right")) {
+            position = new Vector2(position.x + (200 * Gdx.graphics.getDeltaTime()), position.y);
+        }
+        if (moveTo.equals("down")) {
+            position = new Vector2(position.x, position.y + (-200 * Gdx.graphics.getDeltaTime()));
+        }
+        if (moveTo.equals("up")) {
+            position = new Vector2(position.x, position.y + (200 * Gdx.graphics.getDeltaTime()));
+        }
+    }
 
     @Override
-    public void update()
-    {
+    public void update() {
 
         Vector2 mousePos = new Vector2(Gdx.input.getX(), -Gdx.input.getY() + 600);
         direction = mousePos.sub(position.x + 25, position.y + 25).nor();
 
 
-        if(Gdx.input.isButtonPressed(Input.Buttons.LEFT))
-        {
-            //shoot();
-            //BulletManager.GetInstance().addBullet(new Bullet(new Vector2(position), new Vector2(direction)));
-        }
-
 
         // TODO HACK TILL WE GET CONTROLLERS
-        if(Gdx.input.isKeyPressed(Input.Keys.A))
-        {
+        if (Gdx.input.isKeyPressed(Input.Keys.A)) {
             position = new Vector2(position.x + (-200 * Gdx.graphics.getDeltaTime()), position.y);
         }
-        if(Gdx.input.isKeyPressed(Input.Keys.D))
-        {
+        if (Gdx.input.isKeyPressed(Input.Keys.D)) {
             position = new Vector2(position.x + (200 * Gdx.graphics.getDeltaTime()), position.y);
         }
-        if(Gdx.input.isKeyPressed(Input.Keys.S))
-        {
+        if (Gdx.input.isKeyPressed(Input.Keys.S)) {
             position = new Vector2(position.x, position.y + (-200 * Gdx.graphics.getDeltaTime()));
         }
-        if(Gdx.input.isKeyPressed(Input.Keys.W))
-        {
+        if (Gdx.input.isKeyPressed(Input.Keys.W)) {
             position = new Vector2(position.x, position.y + (200 * Gdx.graphics.getDeltaTime()));
         }
     }
+
+
 }
 
