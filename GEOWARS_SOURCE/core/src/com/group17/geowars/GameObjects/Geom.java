@@ -24,18 +24,19 @@ public class Geom extends GameObject implements GOInterface
     public Geom(int enemyID, Vector2 pos)
     {
         super(pos);
+        
         Random rand = new Random();
         angle = rand.nextInt();
         rotateSpeed *= rand.nextFloat() + 0.5f;
         rotateDirection = (rand.nextInt(2) * 2) -1;
+        
         texture = AssetManager.getInstance().getTexture("geom");
-
         sprite = new Sprite(texture, texture.getWidth(), texture.getHeight());
 
-        setGeomData(enemyID);
+        setGeomLoot(enemyID);
     }
 
-    private void setGeomData(int enemyId)
+    private void setGeomLoot(int enemyId)
     {
         loot = ScoreManager.GetInstance().getLoot(enemyId);
     }
@@ -51,7 +52,7 @@ public class Geom extends GameObject implements GOInterface
     {
         // TODO DRAW IMAGE CORRRECTLY
         sprite.setColor(new Color(0.8f, 0.8f,0,1));
-        sprite.setSize(50,50);
+        sprite.setSize(50, 50);
         sprite.setOrigin(25,25);
         sprite.setRotation(angle);
         sprite.setPosition(position.x, position.y);
