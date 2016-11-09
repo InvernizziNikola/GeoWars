@@ -1,10 +1,10 @@
-package com.group17.geowars.managers;
+package com.group17.geowars;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.group17.geowars.gameobjects.Bullet;
 import com.group17.geowars.gameobjects.Enemy;
 import com.group17.geowars.gameobjects.Geom;
 import com.group17.geowars.gameobjects.Ship;
+import com.group17.geowars.managers.BulletManager;
 import com.group17.geowars.playerobjects.Player;
 
 import java.util.ArrayList;
@@ -20,8 +20,6 @@ public class GameWorld
     public List<Enemy> enemies;
     public List<Ship> ships;
     public List<Player> players;
-    public Player player;
-
 
     private Batch batch;
 

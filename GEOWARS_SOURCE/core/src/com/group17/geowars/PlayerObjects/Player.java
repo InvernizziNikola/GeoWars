@@ -11,7 +11,6 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.group17.geowars.gameobjects.Drone;
 import com.group17.geowars.gameobjects.GOInterface;
 import com.group17.geowars.gameobjects.Ship;
-import com.group17.geowars.managers.PlayerInput;
 
 /**
  *

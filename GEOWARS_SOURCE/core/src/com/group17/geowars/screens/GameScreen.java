@@ -2,15 +2,10 @@ package com.group17.geowars.screens;
 
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.controllers.Controllers;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.utils.viewport.ExtendViewport;
-import com.group17.geowars.gameobjects.Bullet;
 import com.group17.geowars.gameobjects.Geom;
-import com.group17.geowars.gameobjects.Ship;
-import com.group17.geowars.managers.BulletManager;
-import com.group17.geowars.managers.GameWorld;
+import com.group17.geowars.GameWorld;
 import com.group17.geowars.playerobjects.Player;
 import com.group17.geowars.playerobjects.Profile;
 

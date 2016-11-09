@@ -1,4 +1,4 @@
-package com.group17.geowars.managers;
+package com.group17.geowars.playerobjects;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.controllers.Controller;
@@ -29,9 +29,6 @@ private boolean fired = false;
         this.player = player;
         System.out.println("on!!");
         //constructor empty ?
-
-
-
     }
 
 
