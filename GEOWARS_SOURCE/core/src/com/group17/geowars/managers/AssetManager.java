@@ -15,7 +15,7 @@ import java.util.List;
 public class AssetManager {
     private static AssetManager _instance;
 
-    public static AssetManager GetInstance()
+    public static AssetManager getInstance()
     {
         if(_instance == null)
             _instance = new AssetManager();
@@ -33,7 +33,7 @@ public class AssetManager {
         return addTexture(name);
     }
 
-    public Texture addTexture(String name)
+    private Texture addTexture(String name)
     {
         Texture texture = textures.get(name);
 

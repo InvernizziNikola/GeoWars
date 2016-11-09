@@ -5,6 +5,7 @@
  */
 package com.group17.geowars.playerobjects;
 
+import com.badlogic.gdx.math.Vector2;
 import com.group17.geowars.gameobjects.Drone;
 import com.group17.geowars.gameobjects.Ship;
 
@@ -45,8 +46,8 @@ public class Profile {
 
     private List<Ship> setShips( ) {//#TODO: VIA DATABANK
         List<Ship> s = new ArrayList();
-        s.add(new Ship("tank"));
-        s.add(new Ship("fighter"));
+        s.add(new Ship(new Vector2(0,0), "tank"));
+        s.add(new Ship(new Vector2(0,0), "fighter"));
         return s;
     }
 

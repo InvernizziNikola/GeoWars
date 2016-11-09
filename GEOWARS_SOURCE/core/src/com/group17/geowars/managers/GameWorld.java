@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.group17.geowars.gameobjects.Bullet;
 import com.group17.geowars.gameobjects.Enemy;
 import com.group17.geowars.gameobjects.Geom;
+import com.group17.geowars.gameobjects.Ship;
 import com.group17.geowars.playerobjects.Player;
 
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ public class GameWorld
 {
     public List<Geom> geoms;
     public List<Enemy> enemies;
-    public List<Bullet> bullets;
+    public List<Ship> ships;
     public Player player;
 
 
@@ -28,6 +29,7 @@ public class GameWorld
 
         geoms = new ArrayList<Geom>();
         enemies = new ArrayList<Enemy>();
+        ships = new ArrayList<Ship>();
         player = null; // TODO WORD OPGEVRAAGD
     }
 
@@ -35,6 +37,9 @@ public class GameWorld
     {
         for(int i = 0; i < geoms.size(); i++)
             geoms.get(i).update();
+
+        for(int i = 0; i < ships.size(); i++)
+            ships.get(i).update();
 
         BulletManager.GetInstance().update();
     }
@@ -45,6 +50,9 @@ public class GameWorld
 
         for(int i = 0; i < geoms.size(); i++)
             geoms.get(i).render(batch);
+
+        for(int i = 0; i < ships.size(); i++)
+            ships.get(i).render(batch);
     }
 
 }
