@@ -24,9 +24,11 @@ public class EnemyManager implements GOInterface {
 
     private EnemyManager () {
         enemies = new LinkedList<Enemy>();
+        enemies.add( new Enemy(LevelManager.GetInstance().getEnemies().get(0),LevelManager.GetInstance().getSpawnLocations().get(0)));//HACK:testen of 1 enemy kan opgevraagd worden
+        enemies.add( new Enemy(LevelManager.GetInstance().getEnemies().get(1),LevelManager.GetInstance().getSpawnLocations().get(1)));
     }
 
-    public void addBullet(Enemy enemy)
+    public void addEnemy(Enemy enemy)
     {
         enemies.add(enemy);
     }
