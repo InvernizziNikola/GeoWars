@@ -5,6 +5,7 @@ import com.group17.geowars.gameobjects.GOInterface;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by kevin on 9/11/2016.
@@ -24,8 +25,14 @@ public class EnemyManager implements GOInterface {
 
     private EnemyManager () {
         enemies = new LinkedList<Enemy>();
-        enemies.add( new Enemy(LevelManager.GetInstance().getEnemies().get(0),LevelManager.GetInstance().getSpawnLocations().get(0)));//HACK:testen of 1 enemy kan opgevraagd worden
-        enemies.add( new Enemy(LevelManager.GetInstance().getEnemies().get(1),LevelManager.GetInstance().getSpawnLocations().get(1)));
+        for (int i=LevelManager.GetInstance().getNrOfEnemys(); i>0;i--)
+        {
+            enemies.add( new Enemy(LevelManager.GetInstance().getEnemies().get(new Random().nextInt(LevelManager.GetInstance().getEnemies().size()))
+                    ,LevelManager.GetInstance().getSpawnLocations().get(new Random().nextInt(LevelManager.GetInstance().getEnemies().size()))));
+
+        }
+        //HACK:testen of 1 enemy kan opgevraagd worden
+
     }
 
     public void addEnemy(Enemy enemy)
@@ -54,5 +61,9 @@ public class EnemyManager implements GOInterface {
         for (Enemy e: enemies) {
             e.update();
         }
+    }
+
+    public void removeEnemy(Enemy enemy) {
+        enemies.remove(enemy);
     }
 }

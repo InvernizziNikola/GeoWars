@@ -10,6 +10,11 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
+import com.group17.geowars.managers.BulletManager;
+import com.group17.geowars.managers.EnemyManager;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -20,8 +25,8 @@ public class Enemy extends GameObject implements GOInterface {
     private int hp;
     private int attack;
     private boolean dead;
-    private Vector2 position; //private Vector2 position;
     private Sprite sprite;
+    private Color color;
 
     public Enemy(String type,Vector2 spawnLocation) {
         super(new Vector2(0,0));
@@ -29,6 +34,7 @@ public class Enemy extends GameObject implements GOInterface {
         dead = false;
         Texture img = new Texture(type+"_2.png");
         sprite = new Sprite(img,img.getWidth(),img.getHeight());
+        color =new Color(0,0,1,1);
     }
     
     public void dropPowerUp(int EnemyType)
@@ -46,7 +52,7 @@ public class Enemy extends GameObject implements GOInterface {
     @Override
     public void render(Batch batch) {
 
-        sprite.setColor(new Color(0,0,1,1));
+        sprite.setColor(color);
         sprite.setSize(50,50);
         sprite.setOrigin(25,25);
         //sprite.setRotation(difference.angle());
@@ -57,5 +63,16 @@ public class Enemy extends GameObject implements GOInterface {
     @Override
     public void update() {
 
+        List<Bullet> bulletList = BulletManager.GetInstance().getBullets();
+        List<Bullet> toRemove = new ArrayList<Bullet>();
+        for (Bullet b: bulletList) {
+            Vector2 newV = new Vector2(b.getPosition().x - getPosition().x, b.getPosition().y - getPosition().y);
+            if(newV.len() < 25){
+                toRemove.add(b);
+                color =new Color(0,0,0,1);
+                EnemyManager.GetInstance().removeEnemy(this);
+            }
+        }
+        bulletList.removeAll(toRemove);
     }
 }

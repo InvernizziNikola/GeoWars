@@ -26,15 +26,23 @@ public class LevelManager implements GOInterface {
 
     private List<String> enemies;
     private List<Vector2> spawnLocations;
+    private int NrOfEnemys;
 
 
     private LevelManager () {
         enemies = new LinkedList<String>();
         spawnLocations= new ArrayList<Vector2>();
         spawnLocations.add(new Vector2(400,400));
-        spawnLocations.add(new Vector2(600,600));
+        spawnLocations.add(new Vector2(111,222));
+        spawnLocations.add(new Vector2(400,333));
+        spawnLocations.add(new Vector2(100,500));
+        spawnLocations.add(new Vector2(500,400));
+        spawnLocations.add(new Vector2(300,600));
+        NrOfEnemys =5;
+
         enemies.add("tank");
         enemies.add("something else");
+        enemies.add("fighter");
     }
 
     public void addEnemy(String enemy)
@@ -66,5 +74,9 @@ public class LevelManager implements GOInterface {
     @Override
     public void update() {
 
+    }
+
+    public int getNrOfEnemys() {
+        return NrOfEnemys;
     }
 }
