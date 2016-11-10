@@ -1,13 +1,9 @@
 package com.group17.geowars;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.group17.geowars.gameobjects.Enemy;
 import com.group17.geowars.gameobjects.Geom;
 import com.group17.geowars.gameobjects.Ship;
-import com.group17.geowars.managers.BulletManager;
-import com.group17.geowars.managers.EnemyManager;
-import com.group17.geowars.managers.GeomManager;
-import com.group17.geowars.managers.MainManager;
+import com.group17.geowars.managers.Managers;
 import com.group17.geowars.playerobjects.Player;
 
 import java.util.ArrayList;
@@ -36,22 +32,22 @@ public class GameWorld
 
     public void update()
     {
-        GeomManager.GetInstance().update();
+        Managers.getGeomManager().update();
 
         for(int i = 0; i < players.size(); i++)
             players.get(i).update();
 
-        MainManager.getInstance().getBulletManager().update();
-        MainManager.getInstance().getEnemyManager().update();
+        Managers.getBulletManager().update();
+        Managers.getEnemyManager().update();
     }
 
     public void render()
     {
-        MainManager.getInstance().getBulletManager().render(batch);
-        GeomManager.GetInstance().render(batch);
+        Managers.getBulletManager().render(batch);
+        Managers.getGeomManager().render(batch);
 
 
-        MainManager.getInstance().getEnemyManager().render(batch);
+        Managers.getEnemyManager().render(batch);
 
 
         for(int i = 0; i < players.size(); i++)

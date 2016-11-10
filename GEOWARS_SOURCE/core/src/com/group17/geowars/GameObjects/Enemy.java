@@ -10,9 +10,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
-import com.group17.geowars.managers.MainManager;
-
-import com.group17.geowars.managers.GeomManager;
+import com.group17.geowars.managers.Managers;
 
 
 import java.util.ArrayList;
@@ -35,7 +33,7 @@ public class Enemy extends GameObject implements GOInterface {
         super(new Vector2(0,0));
         position =spawnLocation;
         dead = false;
-        texture = MainManager.getInstance().getAssetManager().getTexture(type+"_2");
+        texture = Managers.getAssetManager().getTexture(type+"_2");
         sprite = new Sprite(texture,texture.getWidth(),texture.getHeight());
         color =new Color(0,0,1,1);
 
@@ -54,7 +52,7 @@ public class Enemy extends GameObject implements GOInterface {
     {
         int lootId = 1;
         Geom g = new Geom( lootId,position);
-        GeomManager.GetInstance().addGeom(g);
+        Managers.getGeomManager().addGeom(g);
 
     }
 
@@ -80,19 +78,19 @@ public class Enemy extends GameObject implements GOInterface {
     public void update() {
 
         boolean toRemove2 = false;
-        List<Bullet> bulletList = MainManager.getInstance().getBulletManager().getBullets();
+        List<Bullet> bulletList = Managers.getBulletManager().getBullets();
         List<Bullet> toRemove = new ArrayList<Bullet>();
 
         for (Bullet b: bulletList) {
             Vector2 newV = new Vector2(b.getPosition().x - getPosition().x, b.getPosition().y - getPosition().y);
-            if(newV.len() < 25){
-
+            if(newV.len() < 25)
+            {
                 toRemove.add(b);
                 handleDead();
                 color =new Color(0,0,0,1);
-                MainManager.getInstance().getEnemyManager().removeEnemy(this);
+                Managers.getEnemyManager().removeEnemy(this);
                 toRemove2 = true;
-
+                break;
             }
         }
         bulletList.removeAll(toRemove);

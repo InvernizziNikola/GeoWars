@@ -15,6 +15,10 @@ public class ControllerManager {
     {
 
     }
+    public void init()
+    {
+
+    }
     private Set<Controller> controllers;
 
 }

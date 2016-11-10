@@ -6,13 +6,8 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.group17.geowars.database.EnemyLoot;
-import com.group17.geowars.managers.AssetManager;
-import com.group17.geowars.managers.BulletManager;
-import com.group17.geowars.managers.MainManager;
-import com.group17.geowars.managers.ScoreManager;
+import com.group17.geowars.managers.Managers;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 /**
@@ -34,7 +29,7 @@ public class Geom extends GameObject implements GOInterface
         rotateSpeed *= rand.nextFloat() + 0.5f;
         rotateDirection = (rand.nextInt(2) * 2) -1;
         
-        texture = MainManager.getInstance().getAssetManager().getTexture("geom");
+        texture = Managers.getAssetManager().getTexture("geom");
         sprite = new Sprite(texture, texture.getWidth(), texture.getHeight());
 
         setGeomLoot(enemyID);
@@ -42,7 +37,7 @@ public class Geom extends GameObject implements GOInterface
 
     private void setGeomLoot(int enemyId)
     {
-        loot = MainManager.getInstance().getScoreManager().getLoot(enemyId);
+        loot = Managers.getScoreManager().getLoot(enemyId);
     }
 
     public EnemyLoot getLoot()
@@ -71,16 +66,7 @@ public class Geom extends GameObject implements GOInterface
         // move
 
 
-        // TODO REMOVE COLLISION BULLET
-        List<Bullet> bulletList = MainManager.getInstance().getBulletManager().getBullets();
-        List<Bullet> toRemove = new ArrayList<Bullet>();
-        for (Bullet b: bulletList) {
-            Vector2 newV = new Vector2(b.getPosition().x - getPosition().x, b.getPosition().y - getPosition().y);
-            if(newV.len() < 10){
-                toRemove.add(b);
-            }
-        }
-        bulletList.removeAll(toRemove);
+
 
         angle += Gdx.graphics.getDeltaTime() * rotateSpeed * rotateDirection;
         angle = angle % 360;

@@ -22,6 +22,11 @@ public class LevelManager implements GOInterface {
     public LevelManager () {
         enemies = new LinkedList<String>();
         spawnLocations= new ArrayList<Vector2>();
+    }
+
+
+    public void init()
+    {
         spawnLocations.add(new Vector2(400,400));
         spawnLocations.add(new Vector2(111,222));
         spawnLocations.add(new Vector2(400,333));
@@ -33,8 +38,8 @@ public class LevelManager implements GOInterface {
         enemies.add("tank");
         enemies.add("something_else");
         enemies.add("fighter");
-    }
 
+    }
     public void addEnemy(String enemy)
     {
         enemies.add(enemy);

@@ -17,11 +17,17 @@ public class BulletManager implements GOInterface {
     private List<Bullet> bullets;
 
     public BulletManager () {
+
         bullets = new LinkedList<Bullet>();
     }
 
+    public void init()
+    {
+
+    }
     public void addBullet(Bullet bullet)
     {
+
         bullets.add(bullet);
     }
 

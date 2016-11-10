@@ -4,7 +4,6 @@ import com.badlogic.gdx.math.Vector2;
 import com.group17.geowars.gameobjects.Enemy;
 import com.group17.geowars.gameobjects.GOInterface;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
@@ -18,18 +17,19 @@ public class EnemyManager implements GOInterface {
     private List<Enemy> enemiesToRemove;
 
     public EnemyManager () {
-
         enemies = new LinkedList<Enemy>();
         enemiesToRemove = new LinkedList<Enemy>();
+    }
 
-        for (int i=MainManager.getInstance().getLevelManager().getNrOfEnemys(); i>0;i--) {
+    public void init()
+    {
+        for (int i = Managers.getLevelManager().getNrOfEnemys(); i>0; i--) {
 
-             enemies.add(new Enemy(MainManager.getInstance().getLevelManager().getEnemies().get(new Random().nextInt(MainManager.getInstance().getLevelManager().getEnemies().size()))
+            enemies.add(new Enemy(Managers.getLevelManager().getEnemies().get(new Random().nextInt(Managers.getLevelManager().getEnemies().size()))
                     , new Vector2(new Random().nextInt(800),new Random().nextInt(600))));
-           // enemies.add(new Enemy(LevelManager.GetInstance().getEnemies().get(new Random().nextInt(LevelManager.GetInstance().getEnemies().size()))
+            // enemies.add(new Enemy(LevelManager.GetInstance().getEnemies().get(new Random().nextInt(LevelManager.GetInstance().getEnemies().size()))
             //        , LevelManager.GetInstance().getSpawnLocations().get(new Random().nextInt(LevelManager.GetInstance().getEnemies().size()))));
         }
-
     }
 
     public void addEnemy(Enemy enemy)

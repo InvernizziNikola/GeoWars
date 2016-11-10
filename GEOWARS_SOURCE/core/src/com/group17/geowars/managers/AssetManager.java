@@ -19,6 +19,12 @@ public class AssetManager {
     public AssetManager () {
         textures = new Hashtable<String, Texture>();
     }
+
+    public void init()
+    {
+
+    }
+
     public Texture getTexture(String name)
     {
         return addTexture(name);

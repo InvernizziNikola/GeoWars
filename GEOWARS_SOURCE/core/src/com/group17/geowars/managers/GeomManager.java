@@ -12,25 +12,21 @@ import java.util.List;
  */
 public class GeomManager implements GOInterface {
 
-    private static GeomManager _instance;
-
-    public static GeomManager GetInstance()
-    {
-        if(_instance == null)
-            _instance = new GeomManager();
-
-        return _instance;
-    }
-
     private List<Geom> geomList;
 
-    private GeomManager()
+    public GeomManager()
     {
         geomList = new ArrayList<Geom>();
 
         // GET LOOTTABLE FROM DATABASE AND INSERT IN HASHTABLE
         // HACK
     }
+
+    public void init()
+    {
+
+    }
+
     public void addGeom(Geom geom)
     {
         geomList.add(geom);

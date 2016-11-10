@@ -18,7 +18,11 @@ public class ScoreManager {
     public ScoreManager ()
     {
         lootTable = new Hashtable<Integer, EnemyLoot>();
+    }
 
+
+    public void init()
+    {
         // GET LOOTTABLE FROM DATABASE AND INSERT IN HASHTABLE
         // HACK
         lootTable.put(1, new EnemyLoot(1,1,1));
