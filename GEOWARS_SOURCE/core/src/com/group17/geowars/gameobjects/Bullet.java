@@ -14,7 +14,7 @@ import com.group17.geowars.managers.AssetManager;
 public class Bullet extends GameObject implements GOInterface {
 
     Vector2 direction = new Vector2(0,0);
-    float speed = 200;
+    float speed = 200*2;
 
     public Bullet(Vector2 pos, Vector2 dir) {
         super(pos);

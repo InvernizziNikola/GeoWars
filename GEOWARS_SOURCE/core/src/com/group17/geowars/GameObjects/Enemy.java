@@ -12,6 +12,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.group17.geowars.managers.BulletManager;
 import com.group17.geowars.managers.EnemyManager;
+import com.group17.geowars.managers.GeomManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,10 +44,22 @@ public class Enemy extends GameObject implements GOInterface {
         //PowerUp pow = new PowerUp(dropPosition);
         // pow naar game scherm doen
     }
+    public void handleDead()
+    {
+        int lootId = 1;
+        Geom g = new Geom( lootId,position);
+       GeomManager.GetInstance().addGeom(g);
+
+    }
+
+
+
     public Sprite getSprite()
     {
         return sprite;
     }
+
+
 
 
     @Override
@@ -65,10 +78,12 @@ public class Enemy extends GameObject implements GOInterface {
 
         List<Bullet> bulletList = BulletManager.GetInstance().getBullets();
         List<Bullet> toRemove = new ArrayList<Bullet>();
+
         for (Bullet b: bulletList) {
             Vector2 newV = new Vector2(b.getPosition().x - getPosition().x, b.getPosition().y - getPosition().y);
             if(newV.len() < 25){
                 toRemove.add(b);
+                handleDead();
                 color =new Color(0,0,0,1);
                 EnemyManager.GetInstance().removeEnemy(this);
             }

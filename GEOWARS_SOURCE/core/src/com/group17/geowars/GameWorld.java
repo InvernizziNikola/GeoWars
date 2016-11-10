@@ -6,6 +6,7 @@ import com.group17.geowars.gameobjects.Geom;
 import com.group17.geowars.gameobjects.Ship;
 import com.group17.geowars.managers.BulletManager;
 import com.group17.geowars.managers.EnemyManager;
+import com.group17.geowars.managers.GeomManager;
 import com.group17.geowars.playerobjects.Player;
 
 import java.util.ArrayList;
@@ -34,8 +35,9 @@ public class GameWorld
 
     public void update()
     {
-        for(int i = 0; i < geoms.size(); i++)
-            geoms.get(i).update();
+       // for(int i = 0; i < geoms.size(); i++)
+        //    geoms.get(i).update();
+        GeomManager.GetInstance().update();
 
         for(int i = 0; i < players.size(); i++)
             players.get(i).update();
@@ -48,8 +50,9 @@ public class GameWorld
     {
         BulletManager.GetInstance().render(batch);
 
-        for(int i = 0; i < geoms.size(); i++)
-            geoms.get(i).render(batch);
+       // for(int i = 0; i < geoms.size(); i++)
+         //   geoms.get(i).render(batch);
+        GeomManager.GetInstance().render(batch);
 
         for(int i = 0; i < players.size(); i++)
             players.get(i).render(batch);
