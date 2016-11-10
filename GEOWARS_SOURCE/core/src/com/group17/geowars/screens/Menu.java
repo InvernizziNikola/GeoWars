@@ -8,9 +8,11 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
+import javafx.scene.control.Tab;
+
+import java.nio.charset.Charset;
 
 public class Menu {
 
@@ -27,12 +29,15 @@ public class Menu {
     private TextButton profileButton;
     private TextButtonStyle textButtonStyle;
     private TextButton backButton;
+    private Table table;
+    private Label label1;
 
 
     public Menu(){
         mainMenu();
     }
     public void mainMenu(){
+
         batch = new SpriteBatch();
         title = new BitmapFont();
         title.setColor(Color.WHITE);
@@ -57,75 +62,45 @@ public class Menu {
         skin.add("default", textButtonStyle);
 
         playButton=new TextButton("PLAY",textButtonStyle);
-        playButton.setPosition(300, 450);
+
         stage.addActor(playButton);
 
         profileButton = new TextButton("PROFILE", textButtonStyle);
-        profileButton.setPosition(300, 390);
         stage.addActor(profileButton);
 
         optionButton = new TextButton("OPTIONS", textButtonStyle);
-        optionButton.setPosition(300, 330);
         stage.addActor(optionButton);
 
         leaderBordButton = new TextButton("LEADERBORDS", textButtonStyle);
-        leaderBordButton.setPosition(300, 270);
         stage.addActor(leaderBordButton);
 
         shopButton = new TextButton("SHOP", textButtonStyle);
-        shopButton.setPosition(300, 210);
         stage.addActor(shopButton);
 
         quitButton = new TextButton("QUIT GAME", textButtonStyle);
-        quitButton.setPosition(300, 90);
         stage.addActor(quitButton);
 
+        String value1 = "test1";
+        String value2 = "test2";
+        String value3 = "test3";
+        String value4 = "test4";
+        CharSequence  value5 = "test5";
+        //Label label1 = new Label("test", skin);
 
+        table = new Table();
+        //table1.add(new Label("", skin)).width(10f).expandY().fillY();// a spacer
+      //  table.setSkin(skin);
+        table.setFillParent(true);
 
-    }
-
-    public void playMenu(){
-        batch = new SpriteBatch();
-        stage = new Stage();
-
-        final TextButton campaignButton = new TextButton("CAMPAIGN",textButtonStyle);
-        campaignButton.setPosition(125, 400);
-        campaignButton.setWidth(150);
-        stage.addActor(campaignButton);
-
-        final TextButton arcadeButton = new TextButton("ARCADE", textButtonStyle);
-        arcadeButton.setPosition(325,400);
-        arcadeButton.setWidth(150);
-        stage.addActor(arcadeButton);
-
-        final TextButton multiplayerButton = new TextButton("CO-OP", textButtonStyle);
-        multiplayerButton.setPosition(525,400);
-        multiplayerButton.setWidth(150);
-        stage.addActor(multiplayerButton);
-
-        backButton = new TextButton("BACK", textButtonStyle);
-        backButton.setPosition(325,150);
-        backButton.setWidth(150);
-        stage.addActor(backButton);
-
-        stage.draw();
-
-
-
+ 
+        table.add(shopButton);
+        table.row();
+        table.add(leaderBordButton);
+        table.add(profileButton);
+        stage.addActor(table);
 
     }
 
-    public void profileMenu(){
-        Gdx.gl.glClearColor(0, 0, 0, 0);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        stage.clear();
-        stage = new Stage();
-        stage.draw();
-        batch.begin();
-        title.draw(batch,"profile",325,550);
-        batch.end();
-
-    }
 
     public void render (float delta) {
         Gdx.gl.glClearColor(0, 0, 0, 0);
@@ -134,19 +109,9 @@ public class Menu {
         title.draw(batch,"GEOMETRYWARS",325,550);
         batch.end();
         stage.draw();
-        if(playButton.isChecked()){
-            stage.clear();
-            playMenu();
-        }
 
-        if (quitButton.isChecked()){
-            Gdx.app.exit();
-        }
 
-        if (profileButton.isChecked()){
-            stage.clear();
-            profileMenu();
-        }
+
 
 
 
