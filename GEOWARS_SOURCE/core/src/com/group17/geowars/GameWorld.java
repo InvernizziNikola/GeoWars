@@ -43,7 +43,7 @@ public class GameWorld
 
         font.draw(batch, "Wave"+Managers.getLevelManager().getCurrentwave(), 375, 590);
         //Sound sound = Managers.getAssetManager().getSounds("test");
-        Sound sound = Gdx.audio.newSound(Gdx.files.internal("pacman_beginning.wav"));
+        //Sound sound = Gdx.audio.newSound(Gdx.files.internal("pacman_beginning.wav"));
         //sound.play();
 
     }
