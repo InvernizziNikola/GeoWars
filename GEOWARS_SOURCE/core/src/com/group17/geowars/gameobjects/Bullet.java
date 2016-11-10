@@ -31,7 +31,7 @@ public class Bullet extends GameObject implements GOInterface {
     public void render(Batch batch)
     {
         // TODO DRAW IMAGE CORRRECTLY
-        sprite.setColor(new Color(1,0,0,1));
+        sprite.setColor(new Color(0.5f,0.5f,0.5f,0.5f));
         sprite.setSize(20,20);
         sprite.setOrigin(10,10);
         //sprite.setRotation(difference.angle());
