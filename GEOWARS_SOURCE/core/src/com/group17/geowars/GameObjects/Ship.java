@@ -11,6 +11,9 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.group17.geowars.managers.Managers;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 /**
  *
@@ -64,6 +67,15 @@ public class Ship extends GameObject implements GOInterface { //interface shoot?
     {
         Managers.getBulletManager().addBullet(new Bullet(new Vector2(position), new Vector2(shootDir)));
     }
+
+    public void handlePickedUp()
+    {
+
+    }
+
+
+
+
     public void nuke()
     {
         Managers.getBulletManager().clearAll();
@@ -81,6 +93,27 @@ public class Ship extends GameObject implements GOInterface { //interface shoot?
         {
             lookDir = moveDir;
         }
+
+////////////////////////////////
+        List<Geom> geomList = Managers.getGeomManager().getGeomList();
+        List<Geom> toRemove = new ArrayList<Geom>();
+        boolean toRemove2 = false;
+        for (Geom b: geomList) {
+            Vector2 distance = new Vector2(b.getPosition().x - getPosition().x, b.getPosition().y - getPosition().y);
+            if(distance.len() < 25)
+            {
+                toRemove.add(b);
+                handlePickedUp();
+                Managers.getGeomManager().removeGeom(b);
+                toRemove2 = true;
+                break;
+            }
+        }
+        geomList.removeAll(toRemove);
+
+        /////////////////////////////////////////
+
+
 
         Move();
     }

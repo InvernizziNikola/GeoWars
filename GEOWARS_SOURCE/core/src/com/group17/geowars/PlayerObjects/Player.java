@@ -79,5 +79,8 @@ public class Player implements GOInterface {
     {
         playerInput.update();
         ship.update();
+
+
+
     }
 }

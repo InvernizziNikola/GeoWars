@@ -1,6 +1,7 @@
 package com.group17.geowars.managers;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.math.Vector2;
 import com.group17.geowars.gameobjects.GOInterface;
 import com.group17.geowars.gameobjects.Geom;
 
@@ -50,5 +51,13 @@ public class GeomManager implements GOInterface {
     public void removeGeom(Geom geom) {
 
         geomsToRemove.add(geom);
+    }
+
+    public void removeGeomOnPos(Vector2 pos) {
+
+    }
+
+    public List<Geom> getGeomList() {
+        return geomList;
     }
 }
