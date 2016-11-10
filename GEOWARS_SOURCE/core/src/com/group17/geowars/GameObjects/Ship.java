@@ -28,8 +28,7 @@ public class Ship extends GameObject implements GOInterface { //interface shoot?
     private int level;
     private int score;
     private int multiplier;
-    BitmapFont font;
-
+    private BitmapFont font;
     private String type;
     private Sprite sprite;
 
@@ -56,6 +55,29 @@ public class Ship extends GameObject implements GOInterface { //interface shoot?
         return sprite;
     }
 
+
+
+    public void shoot()
+    {
+        Managers.getBulletManager().addBullet(new Bullet(new Vector2(position), new Vector2(shootDir)));
+    }
+
+    public void handlePickedUp(Geom geom)
+    {
+        exp +=geom.getLoot().getExperience();
+        level = (exp/100)+1;
+        multiplier += geom.getLoot().getMultiplier();
+        score +=(geom.getLoot().getScorePoints())*multiplier;
+    }
+
+    public void nuke()
+    {
+        Managers.getBulletManager().clearAll();
+    }
+
+
+
+
     @Override
     public void render(Batch batch)
     {
@@ -66,28 +88,7 @@ public class Ship extends GameObject implements GOInterface { //interface shoot?
         sprite.setRotation(lookDir.angle());
         sprite.setPosition(position.x - 25, position.y - 25);
         sprite.draw(batch);
-        font.draw(batch, "nikola: "+score+" multieplier= "+multiplier+"    level= "+level, 10, 20);
-    }
-
-    public void shoot()
-    {
-        Managers.getBulletManager().addBullet(new Bullet(new Vector2(position), new Vector2(shootDir)));
-    }
-
-    public void handlePickedUp(Geom geom)
-    {
-        exp +=geom.getLoot().getExperience();
-        level = exp/100;
-        multiplier += geom.getLoot().getMultiplier();
-        score +=(geom.getLoot().getScorePoints())*multiplier;
-    }
-
-
-
-
-    public void nuke()
-    {
-        Managers.getBulletManager().clearAll();
+        font.draw(batch, "speler: score "+score+" multieplier= "+multiplier+"    level= "+level, 10, 20);
     }
 
     @Override
@@ -121,13 +122,10 @@ public class Ship extends GameObject implements GOInterface { //interface shoot?
         geomList.removeAll(toRemove);
 
         /////////////////////////////////////////
-
-
-        System.out.println(score+" multieplier= "+multiplier+"    level= "+level);
         Move();
     }
 
-    void Move()
+    private void Move()
     {
         position.mulAdd(moveDir, 200 * Gdx.graphics.getDeltaTime());
     }
