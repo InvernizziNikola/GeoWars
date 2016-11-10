@@ -1,12 +1,12 @@
 package com.group17.geowars.screens;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -14,11 +14,12 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.group17.geowars.managers.Managers;
 
 /**
  * Created by michield on 10/11/2016.
  */
-public class MainMenu implements Screen{
+public class MainMenu implements Screen, hasStage{
     private Skin skin;
     private Stage stage;
     private SpriteBatch batch;
@@ -102,6 +103,9 @@ public class MainMenu implements Screen{
 
             public void changed(ChangeEvent event, Actor actor) {
 
+                System.out.println("CLICKED: " + actor);
+                Screen nextMenu = Managers.getMenuManager().getScreen("playmenu");
+                Managers.getMenuManager().setScreen(nextMenu);
             }
         });
 
@@ -109,13 +113,13 @@ public class MainMenu implements Screen{
         // Button#setChecked() is called, via a key press, etc. If the event.cancel() is called, the checked state will be reverted.
         // ClickListener could have been used, but would only fire when clicked. Also, canceling a ClickListener event won't
         // revert the checked state.
+
         quitButton.addListener(new ChangeListener() {
-            public void changed (ChangeEvent event, Actor actor) {
-                System.out.println("Clicked! Is checked: ");
-
+            @Override
+            public void changed(ChangeEvent event, Actor actor)
+            {
+                System.out.println("CLICKED: " + actor);
                 Gdx.app.exit();
-
-
             }
         });
 
@@ -126,7 +130,7 @@ public class MainMenu implements Screen{
 
     }
 
-    public void render (float delta) {
+    public void render (float deltaTime) {
         Gdx.gl.glClearColor(0.2f, 0.2f, 0.2f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
@@ -152,11 +156,15 @@ public class MainMenu implements Screen{
 
     @Override
     public void hide() {
-
     }
 
     @Override
     public void dispose() {
 
+    }
+
+    @Override
+    public Stage getStage() {
+        return stage;
     }
 }

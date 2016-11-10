@@ -1,5 +1,6 @@
 package com.group17.geowars.managers;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Batch;
 
 
@@ -29,6 +30,13 @@ public class Managers
 
         return  getInstance().controllerManager;
     }
+
+    private MenuManager menuManager;
+    public static MenuManager getMenuManager(){
+
+        return  getInstance().menuManager;
+    }
+
     private LevelManager levelManager;
     public static LevelManager getLevelManager(){
 
@@ -68,6 +76,7 @@ public class Managers
         bulletManager = new BulletManager();
         enemyManager = new EnemyManager();
         geomManager = new GeomManager();
+        menuManager = new MenuManager();
     }
 
     public void init()
@@ -79,20 +88,22 @@ public class Managers
         bulletManager.init();
         enemyManager.init();
         geomManager.init();
+        menuManager.init();
     }
-    public void render(Batch batch)
+    public static void render(Batch batch)
     {
-        geomManager.render(batch);
-        bulletManager.render(batch);
-        enemyManager.render(batch);
-        levelManager.render(batch);
+        getGeomManager().render(batch);
+        getBulletManager().render(batch);
+        getEnemyManager().render(batch);
+        getLevelManager().render(batch);
+        getMenuManager().render(Gdx.graphics.getDeltaTime());
     }
-    public void update()
+    public static void update()
     {
-        geomManager.update();
-        bulletManager.update();
-        enemyManager.update();
-        levelManager.update();
+        getGeomManager().update();
+        getBulletManager().update();
+        getEnemyManager().update();
+        getLevelManager().update();
     }
 
 }
