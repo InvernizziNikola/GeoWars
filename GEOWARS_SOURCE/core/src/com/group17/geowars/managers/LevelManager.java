@@ -37,7 +37,7 @@ public class LevelManager implements GOInterface {
         spawnLocations.add(new Vector2(100,500));
         spawnLocations.add(new Vector2(500,400));
         spawnLocations.add(new Vector2(300,600));
-        waveList.add(5);
+        waveList.add(20);
         waveList.add(200);
         waveList.add(500);
         enemies.add("tank");

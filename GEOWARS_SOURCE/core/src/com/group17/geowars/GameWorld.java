@@ -51,7 +51,8 @@ public class GameWorld
                 }
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
-            }}
+            }
+        }
 
     }
 

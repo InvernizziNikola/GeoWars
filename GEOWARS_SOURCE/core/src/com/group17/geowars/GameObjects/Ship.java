@@ -11,7 +11,13 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.group17.geowars.managers.Managers;
+import sun.audio.AudioPlayer;
+import sun.audio.AudioStream;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,6 +38,9 @@ public class Ship extends GameObject implements GOInterface { //interface shoot?
     private String type;
     private Sprite sprite;
 
+    private boolean canShoot = true;
+    private float timer = 0;
+
     private Vector2 shootDir = new Vector2(0,0);
     private Vector2 moveDir = new Vector2(0,0);
     private Vector2 lookDir = new Vector2(0,0);
@@ -39,6 +48,8 @@ public class Ship extends GameObject implements GOInterface { //interface shoot?
     public Ship(Vector2 pos, String type)
     {
         super(pos);
+
+
         font = new BitmapFont();
         texture = Managers.getAssetManager().getTexture("Speler_2");
         score=0;
@@ -59,7 +70,10 @@ public class Ship extends GameObject implements GOInterface { //interface shoot?
 
     public void shoot()
     {
-        Managers.getBulletManager().addBullet(new Bullet(new Vector2(position), new Vector2(shootDir)));
+        if(canShoot) {
+            Managers.getBulletManager().addBullet(new Bullet(new Vector2(position), new Vector2(shootDir)));
+            canShoot = false;
+        }
     }
 
     public void handlePickedUp(Geom geom)
@@ -94,6 +108,12 @@ public class Ship extends GameObject implements GOInterface { //interface shoot?
     @Override
     public void update()
     {
+        timer += Gdx.graphics.getDeltaTime();
+        if(timer > 0.2f) {
+            timer %= 0.2f;
+            canShoot = true;
+        }
+
         if(shootDir.len() > 0.1f)
         {
             shoot();
