@@ -65,9 +65,6 @@ public class Geom extends GameObject implements GOInterface
         // ROTATE
         // move
 
-
-
-
         angle += Gdx.graphics.getDeltaTime() * rotateSpeed * rotateDirection;
         angle = angle % 360;
     }

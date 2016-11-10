@@ -29,6 +29,7 @@ public class Enemy extends GameObject implements GOInterface {
     private Sprite sprite;
     private Color color;
     private Vector2 direction;
+
     public Enemy(String type,Vector2 spawnLocation) {
         super(new Vector2(0,0));
         position =spawnLocation;
@@ -78,16 +79,16 @@ public class Enemy extends GameObject implements GOInterface {
     public void update() {
 
         boolean toRemove2 = false;
+
         List<Bullet> bulletList = Managers.getBulletManager().getBullets();
         List<Bullet> toRemove = new ArrayList<Bullet>();
 
         for (Bullet b: bulletList) {
-            Vector2 newV = new Vector2(b.getPosition().x - getPosition().x, b.getPosition().y - getPosition().y);
-            if(newV.len() < 25)
+            Vector2 distance = new Vector2(b.getPosition().x - getPosition().x, b.getPosition().y - getPosition().y);
+            if(distance.len() < 25)
             {
                 toRemove.add(b);
                 handleDead();
-                color =new Color(0,0,0,1);
                 Managers.getEnemyManager().removeEnemy(this);
                 toRemove2 = true;
                 break;
@@ -95,7 +96,8 @@ public class Enemy extends GameObject implements GOInterface {
         }
         bulletList.removeAll(toRemove);
 
-        if(!toRemove2) {
+        if(!toRemove2)
+        {
             if (position.x < 0 || position.x > Gdx.graphics.getWidth())
                 direction.x *= -1;
             if (position.y < 0 || position.y > Gdx.graphics.getHeight())
