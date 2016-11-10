@@ -23,7 +23,9 @@ public class Ship extends GameObject implements GOInterface { //interface shoot?
     private int hp;
     private int attack;
     private boolean dead;
-    private int level;
+    private int exp;
+    private int score;
+    private int multiplier;
 
     private String type;
     private Sprite sprite;
@@ -68,8 +70,11 @@ public class Ship extends GameObject implements GOInterface { //interface shoot?
         Managers.getBulletManager().addBullet(new Bullet(new Vector2(position), new Vector2(shootDir)));
     }
 
-    public void handlePickedUp()
+    public void handlePickedUp(Geom geom)
     {
+        exp +=geom.getLoot().getExperience();
+        score +=geom.getLoot().getScorePoints();
+        multiplier += geom.getLoot().getMultiplier();
 
     }
 
@@ -103,7 +108,7 @@ public class Ship extends GameObject implements GOInterface { //interface shoot?
             if(distance.len() < 25)
             {
                 toRemove.add(b);
-                handlePickedUp();
+                handlePickedUp(b);
                 Managers.getGeomManager().removeGeom(b);
                 toRemove2 = true;
                 break;
@@ -114,7 +119,7 @@ public class Ship extends GameObject implements GOInterface { //interface shoot?
         /////////////////////////////////////////
 
 
-
+        System.out.println(score);
         Move();
     }
 
