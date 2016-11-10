@@ -109,8 +109,8 @@ public class Ship extends GameObject implements GOInterface { //interface shoot?
     public void update()
     {
         timer += Gdx.graphics.getDeltaTime();
-        if(timer > 0.2f) {
-            timer %= 0.2f;
+        if(timer > 0.05f) {
+            timer %= 0.05f;
             canShoot = true;
         }
 
@@ -125,6 +125,17 @@ public class Ship extends GameObject implements GOInterface { //interface shoot?
         }
 
         Move();
+
+
+        if(position.x < 0)
+            position.x = Gdx.graphics.getWidth();
+        if(position.x > Gdx.graphics.getWidth())
+             position.x = 0;
+        if(position.y < 0)
+            position.y = Gdx.graphics.getHeight();
+        if(position.y > Gdx.graphics.getHeight())
+            position.y = 0;
+
     }
 
     private void Move()
