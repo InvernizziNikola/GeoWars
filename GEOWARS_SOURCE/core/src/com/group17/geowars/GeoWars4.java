@@ -7,21 +7,18 @@ import com.group17.geowars.screens.Menu2;
 public class GeoWars4 extends ApplicationAdapter{
 
 
-	public Menu2 mainmenu;
+	private Menu2 menu;
 
 	@Override
 	public void create () {
-		mainmenu = new Menu2();
-		mainmenu.create();
+		menu = new Menu2();
+		menu.create();
 
 	}
 
 	@Override
 	public void render () {
-
-		mainmenu.render(Gdx.graphics.getDeltaTime());
-
-
+		menu.render(Gdx.graphics.getDeltaTime());
 
 	}
 }
