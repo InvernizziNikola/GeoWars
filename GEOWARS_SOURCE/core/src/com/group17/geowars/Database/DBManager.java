@@ -36,7 +36,7 @@ public class DBManager {
 
     public ArrayList DBselectTOP10Highscore(String Gamemode) {
         try {
-            String SQLstring = "SELECT nameProfile,score,gamemode FROM Highscore where gamemode ='" + Gamemode + "' LIMIT 10;";
+            String SQLstring = "SELECT nameProfile,score,gamemode FROM HighScore where gamemode ='" + Gamemode + "' LIMIT 10;";
             resultselect = DBconnect(SQLstring, true);
         } catch (Exception e) {
             System.out.println("Fout in select: " + e.getMessage());
@@ -253,18 +253,12 @@ public class DBManager {
             throw new RuntimeException("Driver niet gevonden, toevoegen via de properties: " + ex.getMessage());
         }
         MysqlDataSource dataSource = new MysqlDataSource();
-       /* // gegevens van de database
-        dataSource.setUser("egondebaeniuk4me");
-        dataSource.setPassword("Iek3rohThoTo");
+
+        dataSource.setUser("geowars");
+        dataSource.setPassword("12345");
         dataSource.setPort(3306);
-        dataSource.setServerName("student.howest.be");
-        dataSource.setDatabaseName("egondebaeniuk4me");
-*/
-        dataSource.setUser("root");
-        dataSource.setPassword("Laiko123");
-        dataSource.setPort(3306);
-        dataSource.setServerName("127.0.0.1");
-        dataSource.setDatabaseName("testpagegeowars");
+        dataSource.setServerName("www.egondebaene.be");
+        dataSource.setDatabaseName("GeoWars");
         try {
             java.sql.Connection conn = dataSource.getConnection();
             //System.out.println("connectie met database is gelukt");
