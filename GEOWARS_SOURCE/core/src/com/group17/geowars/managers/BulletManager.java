@@ -15,10 +15,12 @@ import java.util.List;
 public class BulletManager implements GOInterface {
 
     private List<Bullet> bullets;
+    private List<Bullet> toRemove;
 
     public BulletManager () {
 
         bullets = new LinkedList<Bullet>();
+        toRemove = new LinkedList<Bullet>();
     }
 
     public void init()
@@ -44,10 +46,18 @@ public class BulletManager implements GOInterface {
         for (Bullet b: bullets) {
             b.update();
         }
+
+        bullets.removeAll(toRemove);
     }
 
     public void clearAll() {
         bullets.clear();
+    }
+
+    public void remove(Bullet b)
+    {
+        b.destroy = true;
+        toRemove.add(b);
     }
 
     public List<Bullet> getBullets() {

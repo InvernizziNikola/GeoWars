@@ -15,21 +15,17 @@ import java.util.Random;
 public class EnemyManager implements GOInterface {
 
     private List<Enemy> enemies;
-    private List<Enemy> enemiesToRemove;
+    private List<Enemy> toRemove;
 
     public EnemyManager () {
         enemies = new LinkedList<Enemy>();
-        enemiesToRemove = new LinkedList<Enemy>();
+        toRemove = new LinkedList<Enemy>();
     }
 
     public void init()
     {
         newEnemyList(0);
-      /*  for (int i = Managers.getLevelManager().getWaveList().get(0); i>0; i--) {
 
-            enemies.add(new Enemy(Managers.getLevelManager().getEnemies().get(new Random().nextInt(Managers.getLevelManager().getEnemies().size()))
-                    , new Vector2(new Random().nextInt(800),new Random().nextInt(600))));
-        }*/
     }
 
     public void newEnemyList(int currentWave)
@@ -81,12 +77,12 @@ public class EnemyManager implements GOInterface {
         for (Enemy e: enemies) {
             e.update();
         }
-        enemies.removeAll(enemiesToRemove);
 
-
+        enemies.removeAll(toRemove);
     }
 
-    public void removeEnemy(Enemy enemy) {
-        enemiesToRemove.add(enemy);
+    public void remove(Enemy enemy) {
+        enemy.destroy = true;
+        toRemove.add(enemy);
     }
 }

@@ -55,7 +55,6 @@ public class Enemy extends GameObject implements GOInterface {
         int lootId = 1;
         Geom g = new Geom( lootId,position);
         Managers.getGeomManager().addGeom(g);
-
     }
 
     public Sprite getSprite()
@@ -76,26 +75,18 @@ public class Enemy extends GameObject implements GOInterface {
         sprite.draw(batch);
     }
 
+
+
+
     @Override
     public void update() {
 
-        boolean toRemove2 = false;
+        if (position.x < 0 || position.x > Gdx.graphics.getWidth())
+            direction.x *= -1;
+        if (position.y < 0 || position.y > Gdx.graphics.getHeight())
+            direction.y *= -1;
 
-        List<Bullet> bulletList = Managers.getBulletManager().getBullets();
-        List<Bullet> toRemove = new ArrayList<Bullet>();
-
-
-        bulletList.removeAll(toRemove);
-
-        if(!toRemove2)
-        {
-            if (position.x < 0 || position.x > Gdx.graphics.getWidth())
-                direction.x *= -1;
-            if (position.y < 0 || position.y > Gdx.graphics.getHeight())
-                direction.y *= -1;
-
-            position.mulAdd(direction, 50 * Gdx.graphics.getDeltaTime());
-        }
+        position.mulAdd(direction, 50 * Gdx.graphics.getDeltaTime());
 
     }
 }
