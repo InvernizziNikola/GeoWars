@@ -14,7 +14,7 @@ import com.group17.geowars.managers.Managers;
 public class Bullet extends GameObject implements GOInterface {
 
     Vector2 direction = new Vector2(0,0);
-    float speed = 200;
+    float speed = 400;
 
     public boolean destroy = false;
 
