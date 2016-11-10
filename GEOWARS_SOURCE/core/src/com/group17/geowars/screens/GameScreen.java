@@ -30,7 +30,6 @@ public class GameScreen extends ScreenAdapter
 
         world.players.add(player);
 
-
         //world.geoms.add(new Geom(1, new Vector2(300,50)));
         //world.geoms.add(new Geom(1, new Vector2(100,300)));
         //world.geoms.add(new Geom(1, new Vector2(300,300)));

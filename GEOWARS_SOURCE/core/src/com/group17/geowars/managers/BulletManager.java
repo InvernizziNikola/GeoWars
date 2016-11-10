@@ -11,6 +11,7 @@ import java.util.List;
 /**
  * Created by nikola on 08/11/2016.
  */
+
 public class BulletManager implements GOInterface {
 
     private List<Bullet> bullets;
