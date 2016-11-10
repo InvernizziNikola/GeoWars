@@ -22,6 +22,9 @@ public class Geom extends GameObject implements GOInterface
     private float angle = 0;
     private float rotateDirection = 1;
 
+
+    public boolean destroy = false;
+
     public Geom(int enemyID, Vector2 pos)
     {
         super(pos);
@@ -73,7 +76,4 @@ public class Geom extends GameObject implements GOInterface
     }
         // ROTATE
         // move
-
-
-
 }

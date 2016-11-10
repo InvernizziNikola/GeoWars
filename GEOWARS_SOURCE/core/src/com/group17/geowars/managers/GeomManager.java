@@ -14,12 +14,14 @@ import java.util.List;
 public class GeomManager implements GOInterface {
 
     private List<Geom> geomList;
-    private List<Geom> geomsToRemove;
+    private List<Geom> toRemove;
+
+
 
     public GeomManager()
     {
         geomList = new ArrayList<Geom>();
-        geomsToRemove = new ArrayList<Geom>();
+        toRemove = new ArrayList<Geom>();
 
         // GET LOOTTABLE FROM DATABASE AND INSERT IN HASHTABLE
         // HACK
@@ -43,14 +45,18 @@ public class GeomManager implements GOInterface {
     @Override
     public void update() {
 
-        for (Geom aGeomList : geomList)
-        {aGeomList.update();}
-        geomList.removeAll(geomsToRemove);
+        for (Geom geom : geomList)
+        {
+            geom.update();
+        }
+
+        geomList.removeAll(toRemove);
     }
 
-    public void removeGeom(Geom geom) {
+    public void removeGeom(Geom g) {
 
-        geomsToRemove.add(geom);
+        toRemove.add(g);
+        g.destroy = true;
     }
 
     public void removeGeomOnPos(Vector2 pos) {

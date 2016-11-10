@@ -104,24 +104,6 @@ public class Ship extends GameObject implements GOInterface { //interface shoot?
             lookDir = moveDir;
         }
 
-////////////////////////////////
-        List<Geom> geomList = Managers.getGeomManager().getGeomList();
-        List<Geom> toRemove = new ArrayList<Geom>();
-        boolean toRemove2 = false;
-        for (Geom b: geomList) {
-            Vector2 distance = new Vector2(b.getPosition().x - getPosition().x, b.getPosition().y - getPosition().y);
-            if(distance.len() < 25)
-            {
-                toRemove.add(b);
-                handlePickedUp(b);
-                Managers.getGeomManager().removeGeom(b);
-                toRemove2 = true;
-
-            }
-        }
-        geomList.removeAll(toRemove);
-
-        /////////////////////////////////////////
         Move();
     }
 
