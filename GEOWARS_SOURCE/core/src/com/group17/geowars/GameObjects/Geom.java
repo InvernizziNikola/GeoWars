@@ -52,7 +52,7 @@ public class Geom extends GameObject implements GOInterface
     public void render(Batch batch)
     {
         // TODO DRAW IMAGE CORRRECTLY
-        sprite.setColor(new Color(0.8f, 0.8f,0,1));
+        sprite.setColor(new Color(0.8f, 0.8f,0,0.6f));
         sprite.setSize(50, 50);
         sprite.setOrigin(25,25);
         sprite.setRotation(angle);

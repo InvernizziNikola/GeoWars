@@ -66,6 +66,7 @@ public class EnemyManager implements GOInterface {
             }
             else {
                 System.out.println("done");
+                Managers.getLevelManager().getWaveList().add(new Random().nextInt(600));
             }
 
         }
