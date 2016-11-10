@@ -24,6 +24,7 @@ public class Ship extends GameObject implements GOInterface { //interface shoot?
     private int attack;
     private boolean dead;
     private int exp;
+    private int level;
     private int score;
     private int multiplier;
 
@@ -73,9 +74,9 @@ public class Ship extends GameObject implements GOInterface { //interface shoot?
     public void handlePickedUp(Geom geom)
     {
         exp +=geom.getLoot().getExperience();
-        score +=geom.getLoot().getScorePoints();
+        level = exp/100;
         multiplier += geom.getLoot().getMultiplier();
-
+        score +=(geom.getLoot().getScorePoints())*multiplier;
     }
 
 
@@ -119,7 +120,7 @@ public class Ship extends GameObject implements GOInterface { //interface shoot?
         /////////////////////////////////////////
 
 
-        System.out.println(score);
+        System.out.println(score+" multieplier= "+multiplier+"    level= "+level);
         Move();
     }
 
