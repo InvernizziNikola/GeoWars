@@ -69,17 +69,50 @@ public class MainMenu implements Screen, hasStage{
         quitButton.setHeight(50);
         stage.addActor(quitButton);
 
+        // Add a listener to the button. ChangeListener is fired when the button's checked state changes, eg when clicked,
+        // Button#setChecked() is called, via a key press, etc. If the event.cancel() is called, the checked state will be reverted.
+        // ClickListener could have been used, but would only fire when clicked. Also, canceling a ClickListener event won't
+        // revert the checked state.
+        quitButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor)
+            {
+                System.out.println("CLICKED: " + actor);
+                Gdx.app.exit();
+            }
+        });
+
         final TextButton playButton = new TextButton("PLAY", textButtonStyle);
         playButton.setPosition(300,450);
         playButton.setWidth(150);
         playButton.setHeight(50);
         stage.addActor(playButton);
 
+        playButton.addListener(new ChangeListener() {
+
+            public void changed(ChangeEvent event, Actor actor) {
+
+                System.out.println("CLICKED: " + actor);
+                Screen nextMenu = Managers.getMenuManager().getScreen("playmenu");
+                Managers.getMenuManager().setScreen(nextMenu);
+            }
+        });
+
         final TextButton profileButton = new TextButton("PROFILE", textButtonStyle);
         profileButton.setPosition(300, 390);
         profileButton.setWidth(150);
         profileButton.setHeight(50);
         stage.addActor(profileButton);
+
+        profileButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor)
+            {
+                System.out.println("CLICKED: " + actor);
+                Screen newtMenu = Managers.getMenuManager().getScreen("profilemenu");
+                Managers.getMenuManager().setScreen(newtMenu);
+            }
+        });
 
         final TextButton optionButton = new TextButton("OPTIONS", textButtonStyle);
         optionButton.setPosition(300, 330);
@@ -98,30 +131,6 @@ public class MainMenu implements Screen, hasStage{
         shopButton.setWidth(150);
         shopButton.setHeight(50);
         stage.addActor(shopButton);
-
-        playButton.addListener(new ChangeListener() {
-
-            public void changed(ChangeEvent event, Actor actor) {
-
-                System.out.println("CLICKED: " + actor);
-                Screen nextMenu = Managers.getMenuManager().getScreen("playmenu");
-                Managers.getMenuManager().setScreen(nextMenu);
-            }
-        });
-
-        // Add a listener to the button. ChangeListener is fired when the button's checked state changes, eg when clicked,
-        // Button#setChecked() is called, via a key press, etc. If the event.cancel() is called, the checked state will be reverted.
-        // ClickListener could have been used, but would only fire when clicked. Also, canceling a ClickListener event won't
-        // revert the checked state.
-
-        quitButton.addListener(new ChangeListener() {
-            @Override
-            public void changed(ChangeEvent event, Actor actor)
-            {
-                System.out.println("CLICKED: " + actor);
-                Gdx.app.exit();
-            }
-        });
 
     }
 
