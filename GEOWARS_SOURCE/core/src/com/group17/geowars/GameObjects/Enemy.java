@@ -5,16 +5,20 @@
  */
 package com.group17.geowars.gameobjects;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g3d.particles.influencers.ColorInfluencer;
 import com.badlogic.gdx.math.Vector2;
 import com.group17.geowars.managers.BulletManager;
 import com.group17.geowars.managers.EnemyManager;
+import com.group17.geowars.managers.MainManager;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  *
@@ -27,14 +31,19 @@ public class Enemy extends GameObject implements GOInterface {
     private boolean dead;
     private Sprite sprite;
     private Color color;
-
+    private Vector2 direction;
     public Enemy(String type,Vector2 spawnLocation) {
         super(new Vector2(0,0));
         position =spawnLocation;
         dead = false;
-        Texture img = new Texture(type+"_2.png");
-        sprite = new Sprite(img,img.getWidth(),img.getHeight());
+        texture = MainManager.getInstance().getAssetManager().getTexture(type+"_2");
+        sprite = new Sprite(texture,texture.getWidth(),texture.getHeight());
         color =new Color(0,0,1,1);
+
+
+        Random rand = new Random();
+
+        direction = new Vector2(rand.nextInt(100) - 50, rand.nextInt(100) - 50).nor();
     }
     
     public void dropPowerUp(int EnemyType)
@@ -63,16 +72,28 @@ public class Enemy extends GameObject implements GOInterface {
     @Override
     public void update() {
 
-        List<Bullet> bulletList = BulletManager.GetInstance().getBullets();
+        boolean toRemove2 = false;
+        List<Bullet> bulletList = MainManager.getInstance().getBulletManager().getBullets();
         List<Bullet> toRemove = new ArrayList<Bullet>();
         for (Bullet b: bulletList) {
             Vector2 newV = new Vector2(b.getPosition().x - getPosition().x, b.getPosition().y - getPosition().y);
             if(newV.len() < 25){
-                toRemove.add(b);
+                //toRemove.add(b);
                 color =new Color(0,0,0,1);
-                EnemyManager.GetInstance().removeEnemy(this);
+                MainManager.getInstance().getEnemyManager().removeEnemy(this);
+                toRemove2 = true;
             }
         }
         bulletList.removeAll(toRemove);
+
+        if(!toRemove2) {
+            if (position.x < 0 || position.x > Gdx.graphics.getWidth())
+                direction.x *= -1;
+            if (position.y < 0 || position.y > Gdx.graphics.getHeight())
+                direction.y *= -1;
+
+            position.mulAdd(direction, 50 * Gdx.graphics.getDeltaTime());
+        }
+
     }
 }

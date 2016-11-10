@@ -13,27 +13,18 @@ import java.util.Random;
  * Created by kevin on 9/11/2016.
  */
 public class EnemyManager implements GOInterface {
-    private static EnemyManager _instance;
-
-    public static EnemyManager GetInstance()
-    {
-        if(_instance == null)
-            _instance = new EnemyManager();
-
-        return _instance;
-    }
 
     private List<Enemy> enemies;
     private List<Enemy> enemiesToRemove;
 
-    private EnemyManager () {
+    public EnemyManager () {
 
         enemies = new LinkedList<Enemy>();
         enemiesToRemove = new LinkedList<Enemy>();
 
-        for (int i=LevelManager.GetInstance().getNrOfEnemys(); i>0;i--) {
+        for (int i=MainManager.getInstance().getLevelManager().getNrOfEnemys(); i>0;i--) {
 
-             enemies.add(new Enemy(LevelManager.GetInstance().getEnemies().get(new Random().nextInt(LevelManager.GetInstance().getEnemies().size()))
+             enemies.add(new Enemy(MainManager.getInstance().getLevelManager().getEnemies().get(new Random().nextInt(MainManager.getInstance().getLevelManager().getEnemies().size()))
                     , new Vector2(new Random().nextInt(800),new Random().nextInt(600))));
            // enemies.add(new Enemy(LevelManager.GetInstance().getEnemies().get(new Random().nextInt(LevelManager.GetInstance().getEnemies().size()))
             //        , LevelManager.GetInstance().getSpawnLocations().get(new Random().nextInt(LevelManager.GetInstance().getEnemies().size()))));

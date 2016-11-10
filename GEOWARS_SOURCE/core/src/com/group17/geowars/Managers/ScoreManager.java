@@ -11,19 +11,11 @@ import java.util.Hashtable;
 
 public class ScoreManager {
 
-    private static ScoreManager _instance;
 
-    public static ScoreManager GetInstance()
-    {
-        if(_instance == null)
-            _instance = new ScoreManager();
-
-        return _instance;
-    }
 
     private Dictionary<Integer, EnemyLoot> lootTable;
 
-    private ScoreManager ()
+    public ScoreManager ()
     {
         lootTable = new Hashtable<Integer, EnemyLoot>();
 

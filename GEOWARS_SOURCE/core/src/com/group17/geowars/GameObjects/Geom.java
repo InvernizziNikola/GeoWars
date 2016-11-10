@@ -8,6 +8,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.group17.geowars.database.EnemyLoot;
 import com.group17.geowars.managers.AssetManager;
 import com.group17.geowars.managers.BulletManager;
+import com.group17.geowars.managers.MainManager;
 import com.group17.geowars.managers.ScoreManager;
 
 import java.util.ArrayList;
@@ -33,7 +34,7 @@ public class Geom extends GameObject implements GOInterface
         rotateSpeed *= rand.nextFloat() + 0.5f;
         rotateDirection = (rand.nextInt(2) * 2) -1;
         
-        texture = AssetManager.getInstance().getTexture("geom");
+        texture = MainManager.getInstance().getAssetManager().getTexture("geom");
         sprite = new Sprite(texture, texture.getWidth(), texture.getHeight());
 
         setGeomLoot(enemyID);
@@ -41,7 +42,7 @@ public class Geom extends GameObject implements GOInterface
 
     private void setGeomLoot(int enemyId)
     {
-        loot = ScoreManager.GetInstance().getLoot(enemyId);
+        loot = MainManager.getInstance().getScoreManager().getLoot(enemyId);
     }
 
     public EnemyLoot getLoot()
@@ -71,7 +72,7 @@ public class Geom extends GameObject implements GOInterface
 
 
         // TODO REMOVE COLLISION BULLET
-        List<Bullet> bulletList = BulletManager.GetInstance().getBullets();
+        List<Bullet> bulletList = MainManager.getInstance().getBulletManager().getBullets();
         List<Bullet> toRemove = new ArrayList<Bullet>();
         for (Bullet b: bulletList) {
             Vector2 newV = new Vector2(b.getPosition().x - getPosition().x, b.getPosition().y - getPosition().y);

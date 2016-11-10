@@ -13,6 +13,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.group17.geowars.managers.AssetManager;
 import com.group17.geowars.managers.BulletManager;
+import com.group17.geowars.managers.MainManager;
 
 
 /**
@@ -36,7 +37,7 @@ public class Ship extends GameObject implements GOInterface { //interface shoot?
     {
         super(pos);
 
-        texture = AssetManager.getInstance().getTexture("Speler_2");
+        texture = MainManager.getInstance().getAssetManager().getTexture("Speler_2");
 
         this.type = type;
         dead = false;
@@ -65,11 +66,11 @@ public class Ship extends GameObject implements GOInterface { //interface shoot?
 
     public void shoot()
     {
-        BulletManager.GetInstance().addBullet(new Bullet(new Vector2(position), new Vector2(shootDir)));
+        MainManager.getInstance().getBulletManager().addBullet(new Bullet(new Vector2(position), new Vector2(shootDir)));
     }
     public void nuke()
     {
-        BulletManager.GetInstance().clearAll();
+        MainManager.getInstance().getBulletManager().clearAll();
     }
 
     @Override

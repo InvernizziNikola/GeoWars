@@ -12,19 +12,10 @@ import java.util.List;
  * Created by nikola on 08/11/2016.
  */
 public class BulletManager implements GOInterface {
-    private static BulletManager _instance;
-
-    public static BulletManager GetInstance()
-    {
-        if(_instance == null)
-            _instance = new BulletManager();
-
-        return _instance;
-    }
 
     private List<Bullet> bullets;
 
-    private BulletManager () {
+    public BulletManager () {
         bullets = new LinkedList<Bullet>();
     }
 

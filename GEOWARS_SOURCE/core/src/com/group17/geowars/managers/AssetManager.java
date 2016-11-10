@@ -13,19 +13,10 @@ import java.util.List;
  * Created by nikola on 08/11/2016.
  */
 public class AssetManager {
-    private static AssetManager _instance;
-
-    public static AssetManager getInstance()
-    {
-        if(_instance == null)
-            _instance = new AssetManager();
-
-        return _instance;
-    }
 
     private Dictionary<String, Texture> textures;
 
-    private AssetManager () {
+    public AssetManager () {
         textures = new Hashtable<String, Texture>();
     }
     public Texture getTexture(String name)

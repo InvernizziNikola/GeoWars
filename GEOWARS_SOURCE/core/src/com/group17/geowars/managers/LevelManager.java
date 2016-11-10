@@ -13,23 +13,13 @@ import java.util.List;
  * Created by kevin on 9/11/2016.
  */
 public class LevelManager implements GOInterface {
-    private static LevelManager _instance;
-
-    public static LevelManager GetInstance()
-    {
-        if(_instance == null)
-            _instance = new LevelManager();
-
-        return _instance;
-    }
-
 
     private List<String> enemies;
     private List<Vector2> spawnLocations;
     private int NrOfEnemys;
 
 
-    private LevelManager () {
+    public LevelManager () {
         enemies = new LinkedList<String>();
         spawnLocations= new ArrayList<Vector2>();
         spawnLocations.add(new Vector2(400,400));
@@ -38,7 +28,7 @@ public class LevelManager implements GOInterface {
         spawnLocations.add(new Vector2(100,500));
         spawnLocations.add(new Vector2(500,400));
         spawnLocations.add(new Vector2(300,600));
-        NrOfEnemys =15;
+        NrOfEnemys = 100;
 
         enemies.add("tank");
         enemies.add("something_else");

@@ -6,6 +6,7 @@ import com.group17.geowars.gameobjects.Geom;
 import com.group17.geowars.gameobjects.Ship;
 import com.group17.geowars.managers.BulletManager;
 import com.group17.geowars.managers.EnemyManager;
+import com.group17.geowars.managers.MainManager;
 import com.group17.geowars.playerobjects.Player;
 
 import java.util.ArrayList;
@@ -40,21 +41,23 @@ public class GameWorld
         for(int i = 0; i < players.size(); i++)
             players.get(i).update();
 
-        BulletManager.GetInstance().update();
-        EnemyManager.GetInstance().update();
+        MainManager.getInstance().getBulletManager().update();
+        MainManager.getInstance().getEnemyManager().update();
     }
 
     public void render()
     {
-        BulletManager.GetInstance().render(batch);
+        MainManager.getInstance().getBulletManager().render(batch);
 
         for(int i = 0; i < geoms.size(); i++)
             geoms.get(i).render(batch);
 
+
+        MainManager.getInstance().getEnemyManager().render(batch);
+
+
         for(int i = 0; i < players.size(); i++)
             players.get(i).render(batch);
-
-        EnemyManager.GetInstance().render(batch);
 
     }
 

@@ -11,16 +11,10 @@ import java.util.Set;
  */
 public class ControllerManager {
 
-    private static ControllerManager _instance;
-
-    public static ControllerManager GetInstance()
+    public void ControllerManager()
     {
-        if(_instance == null)
-            _instance = new ControllerManager();
 
-        return _instance;
     }
-
     private Set<Controller> controllers;
 
 }
