@@ -112,7 +112,7 @@ public class Ship extends GameObject implements GOInterface { //interface shoot?
                 handlePickedUp(b);
                 Managers.getGeomManager().removeGeom(b);
                 toRemove2 = true;
-                break;
+                
             }
         }
         geomList.removeAll(toRemove);
