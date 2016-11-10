@@ -7,6 +7,7 @@ package com.group17.geowars.gameobjects;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.group17.geowars.managers.Managers;
@@ -27,6 +28,7 @@ public class Ship extends GameObject implements GOInterface { //interface shoot?
     private int level;
     private int score;
     private int multiplier;
+    BitmapFont font;
 
     private String type;
     private Sprite sprite;
@@ -38,9 +40,9 @@ public class Ship extends GameObject implements GOInterface { //interface shoot?
     public Ship(Vector2 pos, String type)
     {
         super(pos);
-
+        font = new BitmapFont();
         texture = Managers.getAssetManager().getTexture("Speler_2");
-
+        score=0;
         this.type = type;
         dead = false;
         sprite = new Sprite(texture, texture.getWidth(), texture.getHeight());
@@ -64,6 +66,7 @@ public class Ship extends GameObject implements GOInterface { //interface shoot?
         sprite.setRotation(lookDir.angle());
         sprite.setPosition(position.x - 25, position.y - 25);
         sprite.draw(batch);
+        font.draw(batch, "nikola: "+score+" multieplier= "+multiplier+"    level= "+level, 10, 20);
     }
 
     public void shoot()
@@ -112,7 +115,7 @@ public class Ship extends GameObject implements GOInterface { //interface shoot?
                 handlePickedUp(b);
                 Managers.getGeomManager().removeGeom(b);
                 toRemove2 = true;
-                
+
             }
         }
         geomList.removeAll(toRemove);
