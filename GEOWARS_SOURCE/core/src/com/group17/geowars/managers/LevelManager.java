@@ -16,7 +16,6 @@ public class LevelManager implements GOInterface {
 
     private List<String> enemies;
     private List<Vector2> spawnLocations;
-    private int NrOfEnemys;
     private List<Integer> waveList;
     private Integer currentwave;
 
@@ -88,7 +87,4 @@ public class LevelManager implements GOInterface {
 
     }
 
-    public int getNrOfEnemys() {
-        return NrOfEnemys;
-    }
 }
