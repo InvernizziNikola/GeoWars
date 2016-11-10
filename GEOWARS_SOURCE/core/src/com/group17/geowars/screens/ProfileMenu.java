@@ -24,6 +24,7 @@ public class ProfileMenu implements Screen, hasStage {
     private SpriteBatch batch;
     private Stage stage;
     private Skin skin;
+    private BitmapFont font;
 
     public ProfileMenu(){create();}
 

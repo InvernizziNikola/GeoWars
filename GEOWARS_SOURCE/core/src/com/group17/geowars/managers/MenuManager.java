@@ -4,10 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.group17.geowars.screens.MainMenu;
-import com.group17.geowars.screens.PlayMenu;
-import com.group17.geowars.screens.ProfileMenu;
-import com.group17.geowars.screens.hasStage;
+import com.group17.geowars.screens.*;
 
 import java.util.Dictionary;
 import java.util.Hashtable;
@@ -20,6 +17,7 @@ public class MenuManager {
     private MainMenu mainMenu;
     private PlayMenu playMenu;
     private ProfileMenu profileMenu;
+    private HighScore highscore;
 
 
     private Screen showScreen;
@@ -39,6 +37,7 @@ public class MenuManager {
         menuList.put("mainmenu", mainMenu = new MainMenu());
         menuList.put("playmenu", playMenu = new PlayMenu());
         menuList.put("profilemenu", profileMenu = new ProfileMenu());
+        menuList.put("highScore", highscore = new HighScore());
         setScreen(mainMenu);
     }
 

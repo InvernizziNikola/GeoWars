@@ -1,6 +1,7 @@
 package com.group17.geowars;
 
 import com.badlogic.gdx.ApplicationAdapter;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.group17.geowars.managers.Managers;
@@ -20,8 +21,10 @@ public class GeoWars4 extends ApplicationAdapter{
 
 		Managers.update();
 
+
 		batch.begin();
 		Managers.render(batch);
+		Managers.getMenuManager().render(Gdx.graphics.getDeltaTime());
 		batch.end();
 	}
 }

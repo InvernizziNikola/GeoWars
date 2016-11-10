@@ -126,6 +126,16 @@ public class MainMenu implements Screen, hasStage{
         leaderBordButton.setHeight(50);
         stage.addActor(leaderBordButton);
 
+        leaderBordButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor)
+            {
+                System.out.println("CLICKED: " + actor);
+                Screen newtMenu = Managers.getMenuManager().getScreen("highScore");
+                Managers.getMenuManager().setScreen(newtMenu);
+            }
+        });
+
         final TextButton shopButton = new TextButton("SHOP", textButtonStyle);
         shopButton.setPosition(300, 210);
         shopButton.setWidth(150);

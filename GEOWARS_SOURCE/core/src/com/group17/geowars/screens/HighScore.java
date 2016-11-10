@@ -18,7 +18,7 @@ import com.group17.geowars.managers.Managers;
 
 import java.util.ArrayList;
 
-public class HighScore {
+public class HighScore implements Screen, hasStage{
 
 
     private Stage stage;
@@ -181,6 +181,11 @@ public class HighScore {
         stage.addActor(table);
     }
 
+    @Override
+    public void show() {
+
+    }
+
     public void render(float delta) {
         Gdx.gl.glClearColor(0, 0, 0, 0);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -192,5 +197,34 @@ public class HighScore {
 
     }
 
+    @Override
+    public void resize(int width, int height) {
 
+    }
+
+    @Override
+    public void pause() {
+
+    }
+
+    @Override
+    public void resume() {
+
+    }
+
+    @Override
+    public void hide() {
+
+    }
+
+    @Override
+    public void dispose() {
+
+    }
+
+
+    @Override
+    public Stage getStage() {
+        return stage;
+    }
 }
