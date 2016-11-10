@@ -19,75 +19,43 @@ import com.group17.geowars.managers.Managers;
 /**
  * Created by michield on 10/11/2016.
  */
-public class PlayMenu implements Screen, hasStage {
+public class ProfileMenu implements Screen, hasStage {
 
     private SpriteBatch batch;
     private Stage stage;
     private Skin skin;
 
-    public PlayMenu(){
-        create();
-    }
+    public ProfileMenu(){create();}
 
-
-    public void create() {
-
+    public void create(){
         batch = new SpriteBatch();
         stage = new Stage();
-
-        // A skin can be loaded via JSON or defined programmatically, either is fine. Using a skin is optional but strongly
-        // recommended solely for the convenience of getting a texture, region, etc as a drawable, tinted drawable, etc.
         skin = new Skin();
-        // Generate a 1x1 white texture and store it in the skin named "white".
-        Pixmap pixmap = new Pixmap(100, 100, Pixmap.Format.RGBA8888);
+
+        Pixmap pixmap = new Pixmap(100,100, Pixmap.Format.RGB888);
         pixmap.setColor(Color.WHITE);
         pixmap.fill();
 
         skin.add("white", new Texture(pixmap));
 
-        // Store the default libgdx font under the name "default".
         BitmapFont bfont = new BitmapFont();
 
         skin.add("default", bfont);
 
-        // Configure a TextButtonStyle and name it "default". Skin resources are stored by type, so this doesn't overwrite the font.
         final TextButtonStyle textButtonStyle = new TextButton.TextButtonStyle();
         textButtonStyle.up = skin.newDrawable("white", Color.WHITE);
         textButtonStyle.fontColor = Color.BLACK;
-
         textButtonStyle.font = skin.getFont("default");
-
         skin.add("default", textButtonStyle);
 
-        final TextButton campaignButton = new TextButton("CAMPAIGN",textButtonStyle);
-        campaignButton.setPosition(125,400);
-        campaignButton.setHeight(50);
-        campaignButton.setWidth(150);
-        stage.addActor(campaignButton);
-
-        final TextButton arcadeButton = new TextButton("ARCADE",textButtonStyle);
-        arcadeButton.setPosition(325,400);
-        arcadeButton.setHeight(50);
-        arcadeButton.setWidth(150);
-        stage.addActor(arcadeButton);
-        arcadeButton.addListener(new ChangeListener() {
-            @Override
-            public void changed(ChangeEvent event, Actor actor) {
-
-                System.out.println("CLICKED: " + actor);
-                //Screen nextMenu = Managers.getMenuManager().getScreen("playArcade");
-                //Managers.getMenuManager().setScreen(nextMenu);
-            }
-        });
-
-        final TextButton multiPlayerButton = new TextButton("CO-OP",textButtonStyle);
-        multiPlayerButton.setPosition(525,400);
-        multiPlayerButton.setHeight(50);
-        multiPlayerButton.setWidth(150);
-        stage.addActor(multiPlayerButton);
+        final TextButton clanButton = new TextButton("CLANS",textButtonStyle);
+        clanButton.setPosition(50,100);
+        clanButton.setHeight(50);
+        clanButton.setWidth(150);
+        stage.addActor(clanButton);
 
         final TextButton backButton = new TextButton("BACK", textButtonStyle);
-        backButton.setPosition(325, 250);
+        backButton.setPosition(640, 50);
         backButton.setHeight(50);
         backButton.setWidth(150);
         stage.addActor(backButton);
@@ -100,16 +68,14 @@ public class PlayMenu implements Screen, hasStage {
                 Managers.getMenuManager().setScreen(nextMenu);
             }
         });
+    }
+    @Override
+    public void show() {
 
     }
 
     @Override
-    public void show()
-    {
-
-    }
-
-    public void render (float delta) {
+    public void render(float delta) {
         Gdx.gl.glClearColor(0.2f, 0.2f, 0.2f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));

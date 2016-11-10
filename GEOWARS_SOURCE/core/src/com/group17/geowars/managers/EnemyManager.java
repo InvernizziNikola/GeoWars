@@ -4,6 +4,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.group17.geowars.gameobjects.Enemy;
 import com.group17.geowars.gameobjects.GOInterface;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
@@ -23,12 +24,21 @@ public class EnemyManager implements GOInterface {
 
     public void init()
     {
-        for (int i = Managers.getLevelManager().getNrOfEnemys(); i>0; i--) {
+        newEnemyList(0);
+      /*  for (int i = Managers.getLevelManager().getWaveList().get(0); i>0; i--) {
 
             enemies.add(new Enemy(Managers.getLevelManager().getEnemies().get(new Random().nextInt(Managers.getLevelManager().getEnemies().size()))
                     , new Vector2(new Random().nextInt(800),new Random().nextInt(600))));
-            // enemies.add(new Enemy(LevelManager.GetInstance().getEnemies().get(new Random().nextInt(LevelManager.GetInstance().getEnemies().size()))
-            //        , LevelManager.GetInstance().getSpawnLocations().get(new Random().nextInt(LevelManager.GetInstance().getEnemies().size()))));
+        }*/
+    }
+
+    public void newEnemyList(int currentWave)
+    {
+
+        for (int i = Managers.getLevelManager().getWaveList().get(currentWave); i>0; i--) {
+
+            enemies.add(new Enemy(Managers.getLevelManager().getEnemies().get(new Random().nextInt(Managers.getLevelManager().getEnemies().size()))
+                    , new Vector2(new Random().nextInt(800),new Random().nextInt(600))));
         }
     }
 
@@ -47,6 +57,19 @@ public class EnemyManager implements GOInterface {
 
     @Override
     public void render(Batch batch) {
+        if(enemies.size()==0)
+        {
+            int currentWave =Managers.getLevelManager().getCurrentwave();
+            if (currentWave<Managers.getLevelManager().getWaveList().size()) {
+                Managers.getLevelManager().setCurrentwave(currentWave+1);
+                newEnemyList(currentWave);
+            }
+            else {
+                System.out.println("done");
+                Managers.getLevelManager().getWaveList().add(new Random().nextInt(600));
+            }
+
+        }
         for (Enemy e: enemies) {
             e.render(batch);
 

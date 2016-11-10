@@ -17,11 +17,15 @@ public class LevelManager implements GOInterface {
     private List<String> enemies;
     private List<Vector2> spawnLocations;
     private int NrOfEnemys;
+    private List<Integer> waveList;
+    private Integer currentwave;
 
 
     public LevelManager () {
         enemies = new LinkedList<String>();
         spawnLocations= new ArrayList<Vector2>();
+        waveList = new ArrayList<Integer>();
+        currentwave=1;
     }
 
 
@@ -33,8 +37,9 @@ public class LevelManager implements GOInterface {
         spawnLocations.add(new Vector2(100,500));
         spawnLocations.add(new Vector2(500,400));
         spawnLocations.add(new Vector2(300,600));
-        NrOfEnemys = 200;
-
+        waveList.add(5);
+        waveList.add(200);
+        waveList.add(500);
         enemies.add("tank");
         enemies.add("something_else");
         enemies.add("fighter");
@@ -59,10 +64,22 @@ public class LevelManager implements GOInterface {
     public List<Vector2> getSpawnLocations() {
         return spawnLocations;
     }
+    public List<Integer> getWaveList ()
+    {
+        return waveList;
+    }
 
+    public Integer getCurrentwave() {
+        return currentwave;
+    }
+
+    public void setCurrentwave(Integer currentwave) {
+        this.currentwave = currentwave;
+    }
 
     @Override
     public void render(Batch batch) {
+
 
     }
 
