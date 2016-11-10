@@ -1,13 +1,7 @@
 package com.group17.geowars;
 
 import com.badlogic.gdx.ApplicationAdapter;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.group17.geowars.database.*;
-import com.group17.geowars.screens.GameScreen;
-import com.group17.geowars.screens.Menu;
 
 public class GeoWarsEgon extends ApplicationAdapter {
 
@@ -20,11 +14,11 @@ public class GeoWarsEgon extends ApplicationAdapter {
 
 	}
 /*
-	public Menu mainmenu;
+	public HighScore mainmenu;
 
 	@Override
 	public void create () {
-		mainmenu = new Menu();
+		mainmenu = new HighScore();
 		mainmenu.create();
 	}
 
