@@ -84,17 +84,7 @@ public class Enemy extends GameObject implements GOInterface {
         List<Bullet> bulletList = Managers.getBulletManager().getBullets();
         List<Bullet> toRemove = new ArrayList<Bullet>();
 
-        for (Bullet b: bulletList) {
-            Vector2 distance = new Vector2(b.getPosition().x - getPosition().x, b.getPosition().y - getPosition().y);
-            if(distance.len() < 25)
-            {
-                toRemove.add(b);
-                handleDead();
-                Managers.getEnemyManager().removeEnemy(this);
-                toRemove2 = true;
-                break;
-            }
-        }
+
         bulletList.removeAll(toRemove);
 
         if(!toRemove2)

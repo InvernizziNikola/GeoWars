@@ -78,5 +78,8 @@ public class Profile {
         return level;
     }
 
-    
+    public void update()
+    {
+
+    }
 }

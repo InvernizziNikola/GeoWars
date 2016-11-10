@@ -2,6 +2,7 @@ package com.group17.geowars.managers;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.group17.geowars.playerobjects.Profile;
 
 
 /**
@@ -18,6 +19,12 @@ public class Managers
             _instance.init();
         }
         return _instance;
+    }
+
+    private ProfileManager profileManager;
+    public static ProfileManager getProfileManager(){
+
+        return getInstance().profileManager;
     }
 
     private AssetManager assetManager;
@@ -63,6 +70,12 @@ public class Managers
         return  getInstance().geomManager;
     }
 
+    private CollisionManager collisionManager;
+    public static CollisionManager getCollisionManager(){
+
+        return  getInstance().collisionManager;
+    }
+
     // playerManager
     // geomManager
 
@@ -76,11 +89,14 @@ public class Managers
         bulletManager = new BulletManager();
         enemyManager = new EnemyManager();
         geomManager = new GeomManager();
+        profileManager = new ProfileManager();
+        collisionManager = new CollisionManager();
         menuManager = new MenuManager();
     }
 
     public void init()
     {
+        profileManager.init();
         assetManager.init();
         controllerManager.init();
         levelManager.init();
@@ -89,21 +105,33 @@ public class Managers
         enemyManager.init();
         geomManager.init();
         menuManager.init();
+        collisionManager.init();
     }
     public static void render(Batch batch)
     {
+        //getAssetManager().render(batch);
+        getProfileManager().render(batch);
         getGeomManager().render(batch);
         getBulletManager().render(batch);
         getEnemyManager().render(batch);
         getLevelManager().render(batch);
+        getProfileManager().render(batch);
+        getCollisionManager().render(batch);
+        //getControllerManager().render(batch);
         //getMenuManager().render(Gdx.graphics.getDeltaTime());
     }
     public static void update()
     {
+
+        //getAssetManager().update();
+        //getControllerManager().update();
+        getProfileManager().update();
         getGeomManager().update();
         getBulletManager().update();
         getEnemyManager().update();
         getLevelManager().update();
+        getCollisionManager().update();
+        //getMenuManager().update();
     }
 
 }

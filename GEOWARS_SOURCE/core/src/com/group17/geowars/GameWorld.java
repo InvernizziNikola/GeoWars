@@ -27,28 +27,18 @@ public class GameWorld
     {
         this.batch = batch;
 
-        geoms = new ArrayList<Geom>();
-        ships = new ArrayList<Ship>();
-        players = new ArrayList<Player>();
         font = new BitmapFont();
     }
 
     public void update()
     {
         Managers.update();
-
-        for(int i = 0; i < players.size(); i++)
-            players.get(i).update();
     }
 
     public void render()
     {
-
         Managers.render(batch);
 
-        for(int i = 0; i < players.size(); i++) {
-            players.get(i).render(batch);
-        }
         font.draw(batch, "Wave"+Managers.getLevelManager().getCurrentwave(), 375, 590);
 
     }
