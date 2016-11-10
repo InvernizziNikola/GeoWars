@@ -8,6 +8,8 @@ import com.badlogic.gdx.math.Vector2;
 import com.group17.geowars.database.EnemyLoot;
 import com.group17.geowars.managers.Managers;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -45,6 +47,8 @@ public class Geom extends GameObject implements GOInterface
         return loot;
     }
 
+    public void handlePickedUp()
+    {}
 
     @Override
     public void render(Batch batch)
@@ -62,10 +66,32 @@ public class Geom extends GameObject implements GOInterface
     public void update()
     {
         // TODO MOVEMENT
-        // ROTATE
-        // move
+        boolean toRemove2 = false;
 
         angle += Gdx.graphics.getDeltaTime() * rotateSpeed * rotateDirection;
         angle = angle % 360;
+
+        List<Bullet> bulletList = Managers.getBulletManager().getBullets();
+        List<Bullet> toRemove = new ArrayList<Bullet>();
+
+        for (Bullet b: bulletList) {
+            Vector2 distance = new Vector2(b.getPosition().x - getPosition().x, b.getPosition().y - getPosition().y);
+            if(distance.len() < 25)
+            {
+                toRemove.add(b);
+                handlePickedUp();
+                Managers.getGeomManager().removeGeom(this);
+                toRemove2 = true;
+                break;
+            }
+        }
+        bulletList.removeAll(toRemove);
+
+
     }
+        // ROTATE
+        // move
+
+
+
 }
