@@ -96,7 +96,7 @@ public class Managers
         getBulletManager().render(batch);
         getEnemyManager().render(batch);
         getLevelManager().render(batch);
-        getMenuManager().render(Gdx.graphics.getDeltaTime());
+        //getMenuManager().render(Gdx.graphics.getDeltaTime());
     }
     public static void update()
     {

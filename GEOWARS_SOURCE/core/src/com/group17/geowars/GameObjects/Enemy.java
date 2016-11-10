@@ -25,15 +25,16 @@ public class Enemy extends GameObject implements GOInterface {
     private int EnemyType;
     private int hp;
     private int attack;
-    private boolean dead;
     private Sprite sprite;
     private Color color;
     private Vector2 direction;
 
+    public boolean destroy = false;
+
     public Enemy(String type,Vector2 spawnLocation) {
         super(new Vector2(0,0));
         position =spawnLocation;
-        dead = false;
+        destroy = false;
         texture = Managers.getAssetManager().getTexture(type+"_2");
         sprite = new Sprite(texture,texture.getWidth(),texture.getHeight());
         color =new Color(0,0,1,1);

@@ -16,6 +16,11 @@ public class Bullet extends GameObject implements GOInterface {
     Vector2 direction = new Vector2(0,0);
     float speed = 200;
 
+    public boolean destroy = false;
+
+    private boolean isFriendly = true;
+    public boolean isFriendly(){ return isFriendly; }
+
     public Bullet(Vector2 pos, Vector2 dir) {
         super(pos);
         direction = dir;
@@ -31,7 +36,7 @@ public class Bullet extends GameObject implements GOInterface {
     public void render(Batch batch)
     {
         // TODO DRAW IMAGE CORRRECTLY
-        sprite.setColor(new Color(0.5f,0.5f,0.5f,0.5f));
+        sprite.setColor(new Color(0.1f,0.8f,0.8f,0.8f));
         sprite.setSize(20,20);
         sprite.setOrigin(10,10);
         //sprite.setRotation(difference.angle());
