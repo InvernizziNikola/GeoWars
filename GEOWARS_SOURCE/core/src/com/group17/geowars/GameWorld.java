@@ -8,7 +8,13 @@ import com.group17.geowars.gameobjects.Geom;
 import com.group17.geowars.gameobjects.Ship;
 import com.group17.geowars.managers.Managers;
 import com.group17.geowars.playerobjects.Player;
+import sun.audio.AudioPlayer;
+import sun.audio.AudioStream;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,6 +51,19 @@ public class GameWorld
         //Sound sound = Managers.getAssetManager().getSounds("test");
         //Sound sound = Gdx.audio.newSound(Gdx.files.internal("pacman_beginning.wav"));
         //sound.play();
+        try {
+            InputStream in = new FileInputStream("pacman_beginning.wav");
+            try {
+                AudioStream as = new AudioStream(in);
+                AudioPlayer.player.start(as);
+            } catch (IOException e) {
+                e.printStackTrace();
+
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
 
     }
 
