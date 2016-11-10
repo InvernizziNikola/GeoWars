@@ -43,11 +43,13 @@ public class GameWorld
 
     public void render()
     {
-        font.draw(batch, "Wave"+Managers.getLevelManager().getCurrentwave(), 375, 590);
+
         Managers.render(batch);
 
-        for(int i = 0; i < players.size(); i++)
+        for(int i = 0; i < players.size(); i++) {
             players.get(i).render(batch);
+        }
+        font.draw(batch, "Wave"+Managers.getLevelManager().getCurrentwave(), 375, 590);
 
     }
 
