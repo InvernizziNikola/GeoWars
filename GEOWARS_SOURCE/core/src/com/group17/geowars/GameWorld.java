@@ -32,23 +32,15 @@ public class GameWorld
 
     public void update()
     {
-        Managers.getGeomManager().update();
+        Managers.update();
 
         for(int i = 0; i < players.size(); i++)
             players.get(i).update();
-
-        Managers.getBulletManager().update();
-        Managers.getEnemyManager().update();
     }
 
     public void render()
     {
-        Managers.getBulletManager().render(batch);
-        Managers.getGeomManager().render(batch);
-
-
-        Managers.getEnemyManager().render(batch);
-
+        Managers.render(batch);
 
         for(int i = 0; i < players.size(); i++)
             players.get(i).render(batch);
