@@ -127,6 +127,16 @@ public class HighScore implements Screen, hasStage{
             }
         });
 
+        backButton.addListener(new ChangeListener() {
+
+            public void changed(ChangeEvent event, Actor actor) {
+                System.out.println("CLICKED: " + actor);
+                Screen nextMenu = Managers.getMenuManager().getScreen("mainmenu");
+                Managers.getMenuManager().setScreen(nextMenu);
+
+            }
+        });
+
 
     }
     public void HighScore(String GameMode) {
