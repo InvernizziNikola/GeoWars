@@ -1,6 +1,7 @@
 package com.group17.geowars.managers;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.math.Vector2;
 import com.group17.geowars.gameobjects.GOInterface;
 import com.group17.geowars.gameobjects.Geom;
 
@@ -13,10 +14,12 @@ import java.util.List;
 public class GeomManager implements GOInterface {
 
     private List<Geom> geomList;
+    private List<Geom> geomsToRemove;
 
     public GeomManager()
     {
         geomList = new ArrayList<Geom>();
+        geomsToRemove = new ArrayList<Geom>();
 
         // GET LOOTTABLE FROM DATABASE AND INSERT IN HASHTABLE
         // HACK
@@ -40,6 +43,21 @@ public class GeomManager implements GOInterface {
     @Override
     public void update() {
 
-        for (Geom aGeomList : geomList) aGeomList.update();
+        for (Geom aGeomList : geomList)
+        {aGeomList.update();}
+        geomList.removeAll(geomsToRemove);
+    }
+
+    public void removeGeom(Geom geom) {
+
+        geomsToRemove.add(geom);
+    }
+
+    public void removeGeomOnPos(Vector2 pos) {
+
+    }
+
+    public List<Geom> getGeomList() {
+        return geomList;
     }
 }

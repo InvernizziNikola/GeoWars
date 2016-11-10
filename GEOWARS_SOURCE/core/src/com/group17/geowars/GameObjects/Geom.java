@@ -8,6 +8,8 @@ import com.badlogic.gdx.math.Vector2;
 import com.group17.geowars.database.EnemyLoot;
 import com.group17.geowars.managers.Managers;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -62,10 +64,16 @@ public class Geom extends GameObject implements GOInterface
     public void update()
     {
         // TODO MOVEMENT
-        // ROTATE
-        // move
+
 
         angle += Gdx.graphics.getDeltaTime() * rotateSpeed * rotateDirection;
         angle = angle % 360;
+
+
     }
+        // ROTATE
+        // move
+
+
+
 }
