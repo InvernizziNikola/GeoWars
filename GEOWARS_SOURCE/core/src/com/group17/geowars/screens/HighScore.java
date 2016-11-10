@@ -127,6 +127,16 @@ public class HighScore implements Screen, hasStage{
             }
         });
 
+        backButton.addListener(new ChangeListener() {
+
+            public void changed(ChangeEvent event, Actor actor) {
+                System.out.println("CLICKED: " + actor);
+                Screen nextMenu = Managers.getMenuManager().getScreen("mainmenu");
+                Managers.getMenuManager().setScreen(nextMenu);
+
+            }
+        });
+
 
     }
     public void HighScore(String GameMode) {
@@ -167,14 +177,13 @@ public class HighScore implements Screen, hasStage{
         //DATABASE connectie arcade
         DBManager manager = new DBManager();
         ArrayList highScores = manager.DBselectTOP10Highscore(GameMode);
-        table.add(new Label("Name", style)).width(100);
-        table.add(new Label("Score", style)).width(100);
+        table.add(new Label("Name", style)).width(200);
+        table.add(new Label("Score", style)).width(200);
         table.row();
         Integer highScoreAmount = highScores.size();
-        highScoreAmount=highScoreAmount;
         for (int i = 0; i <highScoreAmount ; i++) {
-            table.add(new Label(highScores.get(i).toString(), style)).width(100);
-            table.add(new Label(highScores.get(i + 1).toString(), style)).width(100);
+            table.add(new Label(highScores.get(i).toString(), style)).width(200);
+            table.add(new Label(highScores.get(i + 1).toString(), style)).width(200);
             table.row();
             i++;
         }
