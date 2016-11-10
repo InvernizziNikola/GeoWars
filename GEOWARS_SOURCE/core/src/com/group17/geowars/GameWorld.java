@@ -28,6 +28,7 @@ public class GameWorld
     public List<Ship> ships;
     public List<Player> players;
     private BitmapFont font;
+    private boolean played;
 
     private Batch batch;
 
@@ -51,6 +52,8 @@ public class GameWorld
         //Sound sound = Managers.getAssetManager().getSounds("test");
         //Sound sound = Gdx.audio.newSound(Gdx.files.internal("pacman_beginning.wav"));
         //sound.play();
+        if (!played){
+            played= true;
         try {
             InputStream in = new FileInputStream("pacman_beginning.wav");
             try {
@@ -62,7 +65,7 @@ public class GameWorld
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-        }
+        }}
 
 
     }
