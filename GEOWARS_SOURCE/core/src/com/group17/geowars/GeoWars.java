@@ -2,22 +2,26 @@ package com.group17.geowars;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
+import com.group17.geowars.managers.Managers;
 import com.group17.geowars.screens.GameScreen;
 
 public class GeoWars extends ApplicationAdapter {
 	private SpriteBatch batch;
-	private GameScreen screen;
+	//private GameScreen screen;
 
 	@Override
 	public void create () {
 
 		batch = new SpriteBatch();
 
-		screen = new GameScreen(batch);
+		//screen = new GameScreen();
+		Screen beginScreen = Managers.getMenuManager().getScreen("mainmenu");
+		Managers.getMenuManager().setScreen(beginScreen);
 	}
 
 
@@ -29,9 +33,9 @@ public class GeoWars extends ApplicationAdapter {
 						GL20.GL_DEPTH_BUFFER_BIT |
 						(Gdx.graphics.getBufferFormat().coverageSampling?GL20.GL_COVERAGE_BUFFER_BIT_NV:0));
 		System.out.print("");
-		batch.begin();
-		screen.render();
-		batch.end();
+
+		Managers.update();
+		Managers.render(batch);
 	}
 	
 	@Override

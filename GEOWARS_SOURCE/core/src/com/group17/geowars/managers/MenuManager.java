@@ -18,7 +18,7 @@ public class MenuManager {
     private PlayMenu playMenu;
     private ProfileMenu profileMenu;
     private HighScore highscore;
-
+    private GameScreen gameScreen;
 
     private Screen showScreen;
 
@@ -38,6 +38,7 @@ public class MenuManager {
         menuList.put("playmenu", playMenu = new PlayMenu());
         menuList.put("profilemenu", profileMenu = new ProfileMenu());
         menuList.put("highScore", highscore = new HighScore());
+        menuList.put("game", gameScreen = new GameScreen());
         setScreen(mainMenu);
     }
 

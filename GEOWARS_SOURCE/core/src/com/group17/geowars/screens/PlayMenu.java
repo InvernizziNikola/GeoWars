@@ -2,8 +2,6 @@ package com.group17.geowars.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
-import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Pixmap;
@@ -78,10 +76,8 @@ public class PlayMenu implements Screen, hasStage {
             public void changed(ChangeEvent event, Actor actor) {
 
                 System.out.println("CLICKED: " + actor);
-                GeoWars config = new GeoWars();
-                config.create();
-                config.render();
-                stage.dispose();
+                Screen nextMenu = Managers.getMenuManager().getScreen("game");
+                Managers.getMenuManager().setScreen(nextMenu);
             }
         });
 

@@ -22,7 +22,7 @@ public class GeoWars2 extends ApplicationAdapter {
 	public void create () {
 		batch = new SpriteBatch();
 
-		screen = new GameScreen(batch);
+		screen = new GameScreen();
 	}
 
 	@Override

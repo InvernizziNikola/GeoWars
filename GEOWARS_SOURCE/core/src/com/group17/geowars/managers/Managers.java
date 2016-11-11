@@ -109,6 +109,7 @@ public class Managers
     }
     public static void render(Batch batch)
     {
+        batch.begin();
         //getAssetManager().render(batch);
         getProfileManager().render(batch);
         getGeomManager().render(batch);
@@ -118,7 +119,8 @@ public class Managers
         getProfileManager().render(batch);
         getCollisionManager().render(batch);
         //getControllerManager().render(batch);
-        //getMenuManager().render(Gdx.graphics.getDeltaTime());
+        batch.end();
+        getMenuManager().render(Gdx.graphics.getDeltaTime());
     }
     public static void update()
     {
