@@ -30,7 +30,8 @@ public class Enemy extends GameObject implements GOInterface {
     private Sprite sprite;
     private Color color;
     private Vector2 direction;
-
+    private boolean insidePlayingField = false;
+    private float offset = 200;
     public boolean destroy = false;
 
     public Enemy(String type,Vector2 spawnLocation) {
@@ -83,27 +84,36 @@ public class Enemy extends GameObject implements GOInterface {
     @Override
     public void update() {
 
-        /*
-        if (position.x < 0 || position.x > Gdx.graphics.getWidth())
-            direction.x *= -1;
-        if (position.y < 0 || position.y > Gdx.graphics.getHeight())
-            direction.y *= -1;
-        */
-        //List<Profile> profiles = new ArrayList<Profile>();
-        //Vector2 closestPlayer = new Vector2(99999999,9999999); // TODO
-        /*
-        for (Profile p: profiles) {
-            Vector2 playerPos = p.getPlayer().getShip().getPosition();
-            if(new Vector2(playerPos.x - getPosition().x,
-                    playerPos.y - getPosition().y).len() < closestPlayer.len())
-            {
-                closestPlayer = playerPos;
-            }
+
+        if(!insidePlayingField) {
+            if (position.x < -offset || position.x > Gdx.graphics.getWidth() + offset)
+                direction.x *= -1;
+            if (position.y < -offset || position.y > Gdx.graphics.getHeight() + offset)
+                direction.y *= -1;
         }
-        */
+        
+        if(insidePlayingField
+                && position.x > 0
+                && position.x < Gdx.graphics.getWidth()
+                && position.y > 0
+                && position.y < Gdx.graphics.getHeight())
+        {
+            offset = 0;
+        }
+
 
         Vector2 target = Managers.getProfileManager().getProfiles().get(0).getPlayer().getShip().getPosition(); //closestPlayer;
-        position.mulAdd(new Vector2(target.x - getPosition().x, target.y - getPosition().y).nor(),
-                        50 * Gdx.graphics.getDeltaTime());
+        Vector2 dist = new Vector2(target.x - getPosition().x, target.y - getPosition().y);
+
+        if (dist.len() < 300)
+        {
+            position.mulAdd(dist.nor(),
+                    50 * Gdx.graphics.getDeltaTime());
+
+        }else
+        {
+            position.mulAdd(direction.nor(),
+                    50 * Gdx.graphics.getDeltaTime());
+        }
     }
 }
