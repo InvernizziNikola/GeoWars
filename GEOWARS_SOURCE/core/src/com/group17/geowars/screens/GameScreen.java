@@ -39,7 +39,6 @@ public class GameScreen extends ScreenAdapter implements hasStage {
 
     public void render()
     {
-        System.out.println("hhehek");
         world.update();
         world.render();
     }

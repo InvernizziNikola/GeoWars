@@ -11,6 +11,8 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.group17.geowars.managers.Managers;
+import com.group17.geowars.playerobjects.Profile;
+import com.sun.xml.internal.ws.dump.LoggingDumpTube;
 
 
 import java.util.ArrayList;
@@ -81,12 +83,27 @@ public class Enemy extends GameObject implements GOInterface {
     @Override
     public void update() {
 
+        /*
         if (position.x < 0 || position.x > Gdx.graphics.getWidth())
             direction.x *= -1;
         if (position.y < 0 || position.y > Gdx.graphics.getHeight())
             direction.y *= -1;
+        */
+        //List<Profile> profiles = new ArrayList<Profile>();
+        //Vector2 closestPlayer = new Vector2(99999999,9999999); // TODO
+        /*
+        for (Profile p: profiles) {
+            Vector2 playerPos = p.getPlayer().getShip().getPosition();
+            if(new Vector2(playerPos.x - getPosition().x,
+                    playerPos.y - getPosition().y).len() < closestPlayer.len())
+            {
+                closestPlayer = playerPos;
+            }
+        }
+        */
 
-        position.mulAdd(direction, 50 * Gdx.graphics.getDeltaTime());
-
+        Vector2 target = Managers.getProfileManager().getProfiles().get(0).getPlayer().getShip().getPosition(); //closestPlayer;
+        position.mulAdd(new Vector2(target.x - getPosition().x, target.y - getPosition().y).nor(),
+                        50 * Gdx.graphics.getDeltaTime());
     }
 }

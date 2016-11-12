@@ -109,8 +109,8 @@ public class Ship extends GameObject implements GOInterface { //interface shoot?
     public void update()
     {
         timer += Gdx.graphics.getDeltaTime();
-        if(timer > 0.05f) {
-            timer %= 0.05f;
+        if(timer > 0.1f) {
+            timer %= 0.1f;
             canShoot = true;
         }
 
