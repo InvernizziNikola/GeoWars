@@ -16,7 +16,7 @@ public class EnemyManager implements GOInterface {
 
     private List<Enemy> enemies;
     private List<Enemy> toRemove;
-
+    private int nrOfEnemys; //HACK
     public EnemyManager () {
         enemies = new LinkedList<Enemy>();
         toRemove = new LinkedList<Enemy>();
@@ -25,6 +25,7 @@ public class EnemyManager implements GOInterface {
     public void init()
     {
         newEnemyList(0);
+        nrOfEnemys=20;
 
     }
 
@@ -59,10 +60,12 @@ public class EnemyManager implements GOInterface {
             if (currentWave<Managers.getLevelManager().getWaveList().size()) {
                 Managers.getLevelManager().setCurrentwave(currentWave+1);
                 newEnemyList(currentWave);
+
             }
             else {
-                System.out.println("done");
-                Managers.getLevelManager().getWaveList().add(new Random().nextInt(400));
+                nrOfEnemys= nrOfEnemys+(currentWave*10);
+                System.out.println(nrOfEnemys);
+                Managers.getLevelManager().getWaveList().add(nrOfEnemys);
             }
 
         }

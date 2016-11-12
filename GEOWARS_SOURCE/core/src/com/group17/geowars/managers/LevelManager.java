@@ -22,6 +22,7 @@ public class LevelManager implements GOInterface {
     private BitmapFont font;
 
 
+
     public LevelManager () {
         enemies = new LinkedList<String>();
         spawnLocations= new ArrayList<Vector2>();
@@ -40,9 +41,7 @@ public class LevelManager implements GOInterface {
         spawnLocations.add(new Vector2(850,700));
         spawnLocations.add(new Vector2(900,740));
         spawnLocations.add(new Vector2(-70,400));
-        waveList.add(20);
-        waveList.add(200);
-        waveList.add(500);
+        waveList.add(10);
         enemies.add("tank");
         enemies.add("something_else");
         enemies.add("fighter");
