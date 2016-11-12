@@ -85,20 +85,20 @@ public class Enemy extends GameObject implements GOInterface {
     public void update() {
 
 
+        if (position.x < -offset || position.x > Gdx.graphics.getWidth() + offset)
+            direction.x *= -1;
+        if (position.y < -offset || position.y > Gdx.graphics.getHeight() + offset)
+            direction.y *= -1;
+
+
         if(!insidePlayingField) {
-            if (position.x < -offset || position.x > Gdx.graphics.getWidth() + offset)
-                direction.x *= -1;
-            if (position.y < -offset || position.y > Gdx.graphics.getHeight() + offset)
-                direction.y *= -1;
-        }
-        
-        if(insidePlayingField
-                && position.x > 0
-                && position.x < Gdx.graphics.getWidth()
-                && position.y > 0
-                && position.y < Gdx.graphics.getHeight())
-        {
-            offset = 0;
+            if (position.x > 0
+                    && position.x < Gdx.graphics.getWidth()
+                    && position.y > 0
+                    && position.y < Gdx.graphics.getHeight()) {
+                insidePlayingField = true;
+                offset = 0;
+            }
         }
 
 
