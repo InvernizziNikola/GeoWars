@@ -30,7 +30,7 @@ public class Account {
         this.playerId = playerId;
         //get data from profile id #databank
         //profile = getProfile();
-        ships = setShips();  
+        ships = setShips();
         drones = SetDrones();
         level = setLevel();
     }
@@ -51,7 +51,7 @@ public class Account {
 
         s.add(new Ship(startPos, "tank"));
         s.add(new Ship(startPos, "fighter"));
-        
+
         return s;
     }
 
@@ -65,7 +65,7 @@ public class Account {
     private int setLevel() {//#TODO: VIA DATABANK
            return 1;
     }
-    
+
     public List<Ship> getShips() {
         return ships;
     }

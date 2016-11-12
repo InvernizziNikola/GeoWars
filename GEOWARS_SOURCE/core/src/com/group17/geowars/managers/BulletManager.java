@@ -48,6 +48,8 @@ public class BulletManager implements GOInterface {
         }
 
         bullets.removeAll(toRemove);
+
+        System.out.println(bullets.size());
     }
 
     public void clearAll() {

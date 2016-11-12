@@ -25,7 +25,7 @@ public class Bullet extends GameObject implements GOInterface {
         super(pos);
         direction = dir;
 
-        texture = Managers.getAssetManager().getTexture("thief_2");
+        texture = Managers.getAssetManager().getTexture("bullet");
 
         sprite = new Sprite(texture, texture.getWidth(), texture.getHeight());
     }
@@ -46,12 +46,11 @@ public class Bullet extends GameObject implements GOInterface {
     @Override
     public void update()
     {
-        if(position.x < 0 || position.x > Gdx.graphics.getWidth())
-        {
-            direction.x = -1;
-        }
-            if(position.y < 0 || position.y > Gdx.graphics.getHeight()) {
-            direction.y *= -1;
+        if(position.x < -10 ||
+                position.x > Gdx.graphics.getWidth() +10 ||
+                position.y < -10 ||
+                position.y > Gdx.graphics.getHeight()+10) {
+            Managers.getBulletManager().remove(this);
         }
 
         position.mulAdd(direction,speed * Gdx.graphics.getDeltaTime());
