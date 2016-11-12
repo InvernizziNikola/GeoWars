@@ -6,7 +6,9 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
+import com.group17.geowars.gameobjects.PowerUp;
 import com.group17.geowars.managers.Managers;
 import com.group17.geowars.screens.GameScreen;
 
@@ -36,8 +38,9 @@ public class GeoWars extends ApplicationAdapter {
 
 		Managers.update();
 		Managers.render(batch);
+
 	}
-	
+
 	@Override
 	public void dispose () {
 		batch.dispose();

@@ -59,9 +59,6 @@ public class GeomManager implements GOInterface {
         g.destroy = true;
     }
 
-    public void removeGeomOnPos(Vector2 pos) {
-
-    }
 
     public List<Geom> getGeomList() {
         return geomList;

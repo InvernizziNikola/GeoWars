@@ -2,7 +2,9 @@ package com.group17.geowars;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.math.Vector2;
 import com.group17.geowars.gameobjects.Geom;
+import com.group17.geowars.gameobjects.PowerUp;
 import com.group17.geowars.gameobjects.Ship;
 import com.group17.geowars.managers.Managers;
 import com.group17.geowars.playerobjects.Profile;
@@ -22,13 +24,12 @@ import java.util.List;
 public class GameWorld
 {
     private boolean played;
-
     private Batch batch;
 
     public GameWorld(Batch batch)
     {
-
         this.batch = batch;
+        Managers.getpowerUpManager().addPowerUp(new PowerUp("shield",new Vector2(400,400)));
 
 
 
@@ -52,6 +53,7 @@ public class GameWorld
 
     public void update()
     {
+
         Managers.update();
     }
 
@@ -61,8 +63,6 @@ public class GameWorld
         //Sound sound = Managers.getAssetManager().getSounds("test");
         //Sound sound = Gdx.audio.newSound(Gdx.files.internal("pacman_beginning.wav"));
         //sound.play();
-
-
 
     }
 

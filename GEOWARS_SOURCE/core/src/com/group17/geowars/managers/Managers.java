@@ -75,6 +75,14 @@ public class Managers
         return  getInstance().collisionManager;
     }
 
+
+    //PowerUpManager
+    private PowerUpManager powerUpManager;
+    public static PowerUpManager getpowerUpManager(){
+
+        return  getInstance().powerUpManager;
+    }
+
     // playerManager
     // geomManager
 
@@ -91,6 +99,7 @@ public class Managers
         accountManager = new AccountManager();
         collisionManager = new CollisionManager();
         menuManager = new MenuManager();
+        powerUpManager=new PowerUpManager();
     }
 
     public void init()
@@ -105,6 +114,7 @@ public class Managers
         geomManager.init();
         menuManager.init();
         collisionManager.init();
+        powerUpManager.init();
     }
     public static void render(Batch batch)
     {
@@ -117,6 +127,7 @@ public class Managers
         getLevelManager().render(batch);
         getAccountManager().render(batch);
         getCollisionManager().render(batch);
+        getpowerUpManager().render(batch);
         //getControllerManager().render(batch);
         batch.end();
         getMenuManager().render(Gdx.graphics.getDeltaTime());
@@ -132,6 +143,7 @@ public class Managers
         getEnemyManager().update();
         getLevelManager().update();
         getCollisionManager().update();
+        getpowerUpManager().update();
         //getMenuManager().update();
     }
 
