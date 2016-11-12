@@ -18,8 +18,10 @@ import java.util.*;
  */
 public class Account {
     private Profile profile;
+
     private List<Ship> ships;
     private List<Drone> drones;
+
     private String playerId;
     private int level;
 
@@ -31,8 +33,6 @@ public class Account {
         ships = setShips();  
         drones = SetDrones();
         level = setLevel();
-
-
     }
 
     public void setPlayer(Drone dr , Ship sp)//#TODO: VIA DATABANK
@@ -48,8 +48,10 @@ public class Account {
     private List<Ship> setShips( ) {//#TODO: VIA DATABANK
         List<Ship> s = new ArrayList();
         Vector2 startPos = new Vector2(Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2);
+
         s.add(new Ship(startPos, "tank"));
         s.add(new Ship(startPos, "fighter"));
+        
         return s;
     }
 
