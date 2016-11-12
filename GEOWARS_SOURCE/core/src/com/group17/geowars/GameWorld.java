@@ -21,19 +21,16 @@ import java.util.List;
 
 public class GameWorld
 {
-    public List<Geom> geoms;
-    public List<Ship> ships;
-    public List<Profile> profiles;
-    private BitmapFont font;
     private boolean played;
 
     private Batch batch;
 
     public GameWorld(Batch batch)
     {
+
         this.batch = batch;
 
-        font = new BitmapFont();
+
 
         if (!played){
             played= true;
@@ -61,8 +58,6 @@ public class GameWorld
     public void render()
     {
         Managers.render(batch);
-
-        font.draw(batch, "Wave"+Managers.getLevelManager().getCurrentwave(), 375, 590);
         //Sound sound = Managers.getAssetManager().getSounds("test");
         //Sound sound = Gdx.audio.newSound(Gdx.files.internal("pacman_beginning.wav"));
         //sound.play();

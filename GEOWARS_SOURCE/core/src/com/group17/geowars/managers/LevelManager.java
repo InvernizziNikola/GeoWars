@@ -1,6 +1,7 @@
 package com.group17.geowars.managers;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.math.Vector2;
 import com.group17.geowars.gameobjects.Enemy;
 import com.group17.geowars.gameobjects.GOInterface;
@@ -18,6 +19,7 @@ public class LevelManager implements GOInterface {
     private List<Vector2> spawnLocations;
     private List<Integer> waveList;
     private Integer currentwave;
+    private BitmapFont font;
 
 
     public LevelManager () {
@@ -31,6 +33,7 @@ public class LevelManager implements GOInterface {
 
     public void init()
     {
+        font = new BitmapFont();
         spawnLocations.add(new Vector2(700,-20));
         spawnLocations.add(new Vector2(-100,500));
         spawnLocations.add(new Vector2(940,-100));
@@ -79,7 +82,7 @@ public class LevelManager implements GOInterface {
 
     @Override
     public void render(Batch batch) {
-
+        font.draw(batch, "Wave"+Managers.getLevelManager().getCurrentwave(), 375, 590);
 
     }
 

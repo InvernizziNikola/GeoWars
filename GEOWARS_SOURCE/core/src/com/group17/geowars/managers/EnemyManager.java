@@ -35,9 +35,6 @@ public class EnemyManager implements GOInterface {
             List<Vector2> spawnlist = Managers.getLevelManager().getSpawnLocations();
             enemies.add(new Enemy(Managers.getLevelManager().getEnemies().get(new Random().nextInt(Managers.getLevelManager().getEnemies().size()))
                     ,  spawnlist.get(new Random().nextInt(spawnlist.size()-1))));
-
-              //      , new Vector2(new Random().nextInt(800),new Random().nextInt(600))));
-            //spawnLocations
         }
     }
 
@@ -65,7 +62,7 @@ public class EnemyManager implements GOInterface {
             }
             else {
                 System.out.println("done");
-                Managers.getLevelManager().getWaveList().add(new Random().nextInt(600));
+                Managers.getLevelManager().getWaveList().add(new Random().nextInt(400));
             }
 
         }
