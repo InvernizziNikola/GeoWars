@@ -31,12 +31,12 @@ public class LevelManager implements GOInterface {
 
     public void init()
     {
-        spawnLocations.add(new Vector2(400,400));
-        spawnLocations.add(new Vector2(111,222));
-        spawnLocations.add(new Vector2(400,333));
-        spawnLocations.add(new Vector2(100,500));
-        spawnLocations.add(new Vector2(500,400));
-        spawnLocations.add(new Vector2(300,600));
+        spawnLocations.add(new Vector2(-100,-20));
+        spawnLocations.add(new Vector2(-50,-50));
+        spawnLocations.add(new Vector2(950,-100));
+        spawnLocations.add(new Vector2(850,700));
+        spawnLocations.add(new Vector2(900,750));
+        spawnLocations.add(new Vector2(-20,-50));
         waveList.add(20);
         waveList.add(200);
         waveList.add(500);

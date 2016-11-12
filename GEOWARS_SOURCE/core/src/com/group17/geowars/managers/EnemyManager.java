@@ -32,9 +32,12 @@ public class EnemyManager implements GOInterface {
     {
 
         for (int i = Managers.getLevelManager().getWaveList().get(currentWave); i>0; i--) {
-
+            List<Vector2> spawnlist = Managers.getLevelManager().getSpawnLocations();
             enemies.add(new Enemy(Managers.getLevelManager().getEnemies().get(new Random().nextInt(Managers.getLevelManager().getEnemies().size()))
-                    , new Vector2(new Random().nextInt(800),new Random().nextInt(600))));
+                    ,  spawnlist.get(new Random().nextInt(spawnlist.size()-1))));
+
+              //      , new Vector2(new Random().nextInt(800),new Random().nextInt(600))));
+            //spawnLocations
         }
     }
 
