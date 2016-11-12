@@ -1,32 +1,20 @@
 package com.group17.geowars.playerobjects;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.controllers.Controller;
-import com.badlogic.gdx.controllers.ControllerListener;
-import com.badlogic.gdx.controllers.PovDirection;
-import com.badlogic.gdx.controllers.mappings.Ouya;
-import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.math.Vector3;
-import com.group17.geowars.database.EnemyLoot;
-import com.group17.geowars.database.XBOX360KeyMapping;
-import com.group17.geowars.playerobjects.Player;
-
-import java.util.Dictionary;
-import java.util.Hashtable;
 
 /**
  * Created by kevin on 9/11/2016.
  */
 public class PlayerInput {
     private Controller controller;
-    private Player player;
+    private Profile profile;
 
 private boolean fired = false;
-    public PlayerInput(Controller controller, Player player)
+    public PlayerInput(Controller controller, Profile profile)
     {
         this.controller = controller;
-        this.player = player;
+        this.profile = profile;
         System.out.println("on!!");
         //constructor empty ?
     }
@@ -44,7 +32,7 @@ private boolean fired = false;
         if(controller.getButton(0) && !fired)
         {
             fired = true;
-            player.getShip().nuke();
+            profile.getShip().nuke();
 
         }
         else if(!controller.getButton(0) && fired)
@@ -69,7 +57,7 @@ private boolean fired = false;
         if(dir.len() < 0.2f)
             dir = new Vector2(0,0);
 
-        player.getShip().setMoveDirection(dir.nor());
+        profile.getShip().setMoveDirection(dir.nor());
     }
     public void handleShootJoystick()
     {
@@ -87,6 +75,6 @@ private boolean fired = false;
         if(dir.len() < 0.2f)
             dir = new Vector2(0,0);
 
-        player.getShip().setShootDirection(dir.nor());
+        profile.getShip().setShootDirection(dir.nor());
     }
 }

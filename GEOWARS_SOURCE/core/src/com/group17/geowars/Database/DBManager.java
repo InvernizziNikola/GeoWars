@@ -118,7 +118,7 @@ public class DBManager {
     public boolean DBupdateProfileCredits(Integer CreditsAmount,String playername) {
         boolean succes = false;
         try {
-            String SQLstring = "UPDATE Profile SET credits='" + CreditsAmount + "' where name= '" + playername + "';";
+            String SQLstring = "UPDATE Account SET credits='" + CreditsAmount + "' where name= '" + playername + "';";
             resultselect = DBconnect(SQLstring, false);
             succes = true;
         } catch (Exception e) {
@@ -129,7 +129,7 @@ public class DBManager {
     public boolean DBupdateProfileLvl(Integer ProfileLvl,String playername) {
         boolean succes = false;
         try {
-            String SQLstring = "UPDATE Profile SET profileLvl='" + ProfileLvl + "' where name= '" + playername + "';";
+            String SQLstring = "UPDATE Account SET profileLvl='" + ProfileLvl + "' where name= '" + playername + "';";
             resultselect = DBconnect(SQLstring, false);
             succes = true;
         } catch (Exception e) {
@@ -184,7 +184,7 @@ public class DBManager {
         return succes;
     }
     public boolean DBInsertProfile(String name,Integer credits,Integer ShipLvl,Integer profileLvl) {
-        String SQLstring = "INSERT INTO Profile(name,profileLvl,credits) VALUES ('" + name + "','"+profileLvl+ "','"+credits+ "');";
+        String SQLstring = "INSERT INTO Account(name,profileLvl,credits) VALUES ('" + name + "','"+profileLvl+ "','"+credits+ "');";
         boolean succes = false;
         try {
             resultselect = DBconnect(SQLstring, false);
@@ -207,7 +207,7 @@ public class DBManager {
     }
     public boolean DBInsertShipsInProfile(String nameProfile, String nameShip) {
         boolean succes = false;
-        String SQLstring = "select IDProfile FROM Profile WHERE name='"+nameProfile+"' Limit 1;";
+        String SQLstring = "select IDProfile FROM Account WHERE name='"+nameProfile+"' Limit 1;";
 
         try {
             SpelersId = DBconnect(SQLstring, true);

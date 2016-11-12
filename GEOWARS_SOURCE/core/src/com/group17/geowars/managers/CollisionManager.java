@@ -5,18 +5,13 @@ import com.badlogic.gdx.math.Vector2;
 import com.group17.geowars.gameobjects.Bullet;
 import com.group17.geowars.gameobjects.Enemy;
 import com.group17.geowars.gameobjects.Geom;
-import com.group17.geowars.playerobjects.Profile;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.group17.geowars.playerobjects.Account;
 
 /**
  * Created by nikola on 10/11/2016.
  */
 public class CollisionManager
 {
-
-    private boolean playerHit;
 
     public CollisionManager()
     {
@@ -34,15 +29,15 @@ public class CollisionManager
     {
         for(Bullet b: Managers.getBulletManager().getBullets()){
             if(!b.isFriendly()) {
-                for (Profile p : Managers.getProfileManager().getProfiles()) {
+                for (Account p : Managers.getAccountManager().getAccounts()) {
 
-                    Vector2 playerPos = p.getPlayer().getShip().getPosition();
+                    Vector2 playerPos = p.getProfile().getShip().getPosition();
                     Vector2 distance = new Vector2(b.getPosition().x - playerPos.x, b.getPosition().y - playerPos.y);
 
                     if(distance.len() < 25) {
 
                         Managers.getBulletManager().remove(b);
-                        System.out.println("Player hit by enemy bullet");
+                        System.out.println("Profile hit by enemy bullet");
                     }
                 }
             }
@@ -60,15 +55,26 @@ public class CollisionManager
                 }
             }
         }
-        for (Profile p : Managers.getProfileManager().getProfiles()) {
-            for (Geom g : Managers.getGeomManager().getGeomList()) {
+        for (Account p : Managers.getAccountManager().getAccounts()) {
+            Vector2 playerPos = p.getProfile().getShip().getPosition();
 
-                Vector2 playerPos = p.getPlayer().getShip().getPosition();
+            for (Geom g : Managers.getGeomManager().getGeomList()) {
                 Vector2 distance = new Vector2(playerPos.x - g.getPosition().x, playerPos.y - g.getPosition().y);
                 if (distance.len() < 25 && !g.destroy) {
 
-                    p.getPlayer().getShip().handlePickedUp(g);
+                    p.getProfile().getShip().handlePickedUp(g);
                     Managers.getGeomManager().removeGeom(g);
+                }
+            }
+
+            for(Enemy e: Managers.getEnemyManager().getEnemies())
+            {
+                Vector2 distance = new Vector2(playerPos.x - e.getPosition().x, playerPos.y - e.getPosition().y);
+                if (distance.len() < 25) {
+
+                    p.getProfile().getShip().setDead();
+                    //Screen mainmenu = Managers.getMenuManager().getScreen("mainmenu");
+                    //Managers.getMenuManager().setScreen(mainmenu);
                 }
             }
         }

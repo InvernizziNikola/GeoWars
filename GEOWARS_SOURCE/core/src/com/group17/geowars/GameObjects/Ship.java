@@ -97,6 +97,8 @@ public class Ship extends GameObject implements GOInterface { //interface shoot?
     {
         // TODO DRAW IMAGE CORRRECTLY
         sprite.setColor(new Color(0.8f, 0.8f,0,1));
+        if(dead)
+            sprite.setColor(new Color(1,0,0,1));
         sprite.setSize(50, 50);
         sprite.setOrigin(25, 25);
         sprite.setRotation(lookDir.angle());
@@ -150,5 +152,10 @@ public class Ship extends GameObject implements GOInterface { //interface shoot?
     public void setShootDirection(Vector2 dir) {
         shootDir = dir;
     }
+    public void setDead()
+    {
+        dead = true;
+    }
+
 }
 

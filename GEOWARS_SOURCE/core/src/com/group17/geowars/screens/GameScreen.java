@@ -4,12 +4,10 @@ import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.controllers.Controllers;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.group17.geowars.gameobjects.Geom;
 import com.group17.geowars.GameWorld;
 import com.group17.geowars.managers.Managers;
-import com.group17.geowars.playerobjects.Player;
+import com.group17.geowars.playerobjects.Account;
 import com.group17.geowars.playerobjects.Profile;
 
 /**
@@ -27,13 +25,13 @@ public class GameScreen extends ScreenAdapter implements hasStage {
         world = new GameWorld(batch);
         batch.end();
 
-        Profile profile = new Profile("YEEEY");
-        profile.setPlayer(profile.getDrones().get(0), profile.getShips().get(0));
+        Account account = new Account("YEEEY");
+        account.setPlayer(account.getDrones().get(0), account.getShips().get(0));
 
-        Managers.getProfileManager().addProfile(profile);
+        Managers.getAccountManager().addAccount(account);
 
-        Player player = profile.getPlayer();
-        player.setController(Controllers.getControllers().first());
+        Profile profile = account.getProfile();
+        profile.setController(Controllers.getControllers().first());
 
     }
 

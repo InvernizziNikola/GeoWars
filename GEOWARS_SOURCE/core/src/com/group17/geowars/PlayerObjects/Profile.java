@@ -5,81 +5,82 @@
  */
 package com.group17.geowars.playerobjects;
 
-import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.controllers.Controller;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.group17.geowars.gameobjects.Drone;
+import com.group17.geowars.gameobjects.GOInterface;
 import com.group17.geowars.gameobjects.Ship;
-
-import java.util.*;
 
 /**
  *
  * @author kevin
  */
-public class Profile {
-    private Player player;
-    private List<Ship> ships;
-    private List<Drone> drones;
-    private String playerId;
-    private int level;
+public class Profile implements GOInterface {
+    private String name;
+    private Ship ship;
+    private Drone drone;
+    private Controller controller;// nodig ?
+    private PlayerInput playerInput;
 
-    public Profile(String playerId)
+    public Profile(String naam , Drone dr , Ship sp)
     {
-        this.playerId = playerId;
-        //get data from player id #databank
-        //player = getPlayer();
-        ships = setShips();  
-        drones = SetDrones();
-        level = setLevel();
-
+       name =naam;
+        drone=dr;
+        ship=sp;
 
     }
 
-    public void setPlayer(Drone dr , Ship sp)//#TODO: VIA DATABANK
-    {
-        //Player player = new Player("playerId");
-         player = new Player("nikoala",dr,sp);
-
-    }
-    public Player getPlayer() {
-       return player;
+    public void setShip(Ship ship) {
+        this.ship = ship;
     }
 
-    private List<Ship> setShips( ) {//#TODO: VIA DATABANK
-        List<Ship> s = new ArrayList();
-        s.add(new Ship(new Vector2(0,0), "tank"));
-        s.add(new Ship(new Vector2(0,0), "fighter"));
-        return s;
-    }
-
-    private List<Drone> SetDrones() {//#TODO: VIA DATABANK
-        List<Drone> d = new ArrayList();
-        d.add(new Drone("support"));
-        d.add(new Drone("defence"));
-        return d;
-    }
-
-    private int setLevel() {//#TODO: VIA DATABANK
-           return 1;
+    public void setDrone(Drone drone) {
+        this.drone = drone;
     }
     
-    public List<Ship> getShips() {
-        return ships;
+    public String getStats(){
+        return "name= "+ name+
+                "\n   drone= "+drone.getType()+
+                "\n   ship=  "+ship.getType();
     }
 
-    public List<Drone> getDrones() {
-        return drones;
+    public Ship getShip() {
+        return ship;
     }
 
-    public String getPlayerId() {
-        return playerId;
+    public String getName() {
+        return name;
     }
 
-    public int getLevel() {
-        return level;
+    public Drone getDrone() {
+        return drone;
     }
 
+    public void setController(Controller controller) {
+        this.controller = controller;
+        playerInput = new PlayerInput(controller,this);
+        //controller.addListener(playerInput);
+        Gdx.app.log("controller: ", controller.getName());
+    }
+
+    public Controller getController() {
+        return controller;
+    }
+
+    @Override
+    public void render(Batch batch)
+    {
+        ship.render(batch);
+    }
+
+    @Override
     public void update()
     {
+        playerInput.update();
+        ship.update();
+
+
 
     }
 }

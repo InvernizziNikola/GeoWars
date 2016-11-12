@@ -47,9 +47,12 @@ public class Bullet extends GameObject implements GOInterface {
     public void update()
     {
         if(position.x < 0 || position.x > Gdx.graphics.getWidth())
-            direction.x *= -1;
-        if(position.y < 0 || position.y > Gdx.graphics.getHeight())
+        {
+            direction.x = -1;
+        }
+            if(position.y < 0 || position.y > Gdx.graphics.getHeight()) {
             direction.y *= -1;
+        }
 
         position.mulAdd(direction,speed * Gdx.graphics.getDeltaTime());
     }

@@ -2,7 +2,6 @@ package com.group17.geowars.managers;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.group17.geowars.playerobjects.Profile;
 
 
 /**
@@ -21,10 +20,10 @@ public class Managers
         return _instance;
     }
 
-    private ProfileManager profileManager;
-    public static ProfileManager getProfileManager(){
+    private AccountManager accountManager;
+    public static AccountManager getAccountManager(){
 
-        return getInstance().profileManager;
+        return getInstance().accountManager;
     }
 
     private AssetManager assetManager;
@@ -89,14 +88,14 @@ public class Managers
         bulletManager = new BulletManager();
         enemyManager = new EnemyManager();
         geomManager = new GeomManager();
-        profileManager = new ProfileManager();
+        accountManager = new AccountManager();
         collisionManager = new CollisionManager();
         menuManager = new MenuManager();
     }
 
     public void init()
     {
-        profileManager.init();
+        accountManager.init();
         assetManager.init();
         controllerManager.init();
         levelManager.init();
@@ -111,12 +110,12 @@ public class Managers
     {
         batch.begin();
         //getAssetManager().render(batch);
-        getProfileManager().render(batch);
+        getAccountManager().render(batch);
         getGeomManager().render(batch);
         getBulletManager().render(batch);
         getEnemyManager().render(batch);
         getLevelManager().render(batch);
-        getProfileManager().render(batch);
+        getAccountManager().render(batch);
         getCollisionManager().render(batch);
         //getControllerManager().render(batch);
         batch.end();
@@ -127,7 +126,7 @@ public class Managers
 
         //getAssetManager().update();
         //getControllerManager().update();
-        getProfileManager().update();
+        getAccountManager().update();
         getGeomManager().update();
         getBulletManager().update();
         getEnemyManager().update();
