@@ -84,6 +84,11 @@ public class Ship extends GameObject implements GOInterface { //interface shoot?
         score +=(geom.getLoot().getScorePoints())*multiplier;
     }
 
+    public void handlePickedUp(PowerUp pow)
+    {
+     Managers.getEnemyManager().clearAll();
+    }
+
     public void nuke()
     {
         Managers.getBulletManager().clearAll();

@@ -48,7 +48,7 @@ public class PowerUpManager implements GOInterface {
         toRemove.clear();
     }
 
-    public void removeGeom(PowerUp g) {
+    public void removePowerUp(PowerUp g) {
 
         toRemove.add(g);
         g.destroy = true;
