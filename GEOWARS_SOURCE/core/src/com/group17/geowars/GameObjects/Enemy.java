@@ -54,6 +54,11 @@ public class Enemy extends GameObject implements GOInterface {
         int lootId = 1;
         Geom g = new Geom( lootId,position);
         Managers.getGeomManager().addGeom(g);
+        int i = new Random().nextInt(100);
+        if(i>98) {
+            PowerUp p = new PowerUp("nuke", position);
+            Managers.getpowerUpManager().addPowerUp(p);
+        }
     }
 
     public Sprite getSprite()
