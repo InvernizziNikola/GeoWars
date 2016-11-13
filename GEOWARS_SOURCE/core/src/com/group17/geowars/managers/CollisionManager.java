@@ -1,5 +1,6 @@
 package com.group17.geowars.managers;
 
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Vector2;
 import com.group17.geowars.gameobjects.Bullet;
@@ -7,6 +8,7 @@ import com.group17.geowars.gameobjects.Enemy;
 import com.group17.geowars.gameobjects.Geom;
 import com.group17.geowars.gameobjects.PowerUp;
 import com.group17.geowars.playerobjects.Account;
+import com.group17.geowars.utils.GAMESTATE;
 
 /**
  * Created by nikola on 10/11/2016.
@@ -83,8 +85,12 @@ public class CollisionManager
                 if (distance.len() < 25) {
 
                     p.getProfile().getShip().setDead();
-                    //Screen mainmenu = Managers.getMenuManager().getScreen("mainmenu");
-                    //Managers.getMenuManager().setScreen(mainmenu);
+
+                    Managers.getGameManager().gameState = GAMESTATE.MENU;
+                    Managers.getGameManager().resetGame();
+
+                    Screen mainmenu = Managers.getMenuManager().getScreen("mainmenu");
+                    Managers.getMenuManager().setScreen(mainmenu);
                 }
             }
         }

@@ -29,9 +29,6 @@ public class GameWorld
     public GameWorld(Batch batch)
     {
         this.batch = batch;
-        Managers.getpowerUpManager().addPowerUp(new PowerUp("shield",new Vector2(400,400)));
-
-
 
         if (!played){
             played= true;

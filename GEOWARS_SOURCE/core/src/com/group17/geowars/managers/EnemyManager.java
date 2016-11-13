@@ -54,9 +54,25 @@ public class EnemyManager implements GOInterface {
 
     @Override
     public void render(Batch batch) {
+
+        for (Enemy e: enemies) {
+            e.render(batch);
+
+        }
+    }
+
+    public void reset()
+    {
+        enemies.clear();
+        toRemove.clear();
+    }
+
+    @Override
+    public void update() {
+
         if(enemies.size()==0)
         {
-            int currentWave =Managers.getLevelManager().getCurrentwave();
+            int currentWave = Managers.getLevelManager().getCurrentwave();
             if (currentWave<Managers.getLevelManager().getWaveList().size()) {
                 Managers.getLevelManager().setCurrentwave(currentWave+1);
                 newEnemyList(currentWave);
@@ -72,14 +88,7 @@ public class EnemyManager implements GOInterface {
             }
 
         }
-        for (Enemy e: enemies) {
-            e.render(batch);
 
-        }
-    }
-
-    @Override
-    public void update() {
         for (Enemy e: enemies) {
             e.update();
         }

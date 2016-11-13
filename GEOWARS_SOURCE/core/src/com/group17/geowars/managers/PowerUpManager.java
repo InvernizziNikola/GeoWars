@@ -54,6 +54,11 @@ public class PowerUpManager implements GOInterface {
         g.destroy = true;
     }
 
+    public void reset()
+    {
+        powerUpList.clear();
+        toRemove.clear();
+    }
     public List<PowerUp> getPowerUpList() {
         return powerUpList;
     }

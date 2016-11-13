@@ -1,5 +1,4 @@
 package com.group17.geowars.screens;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
@@ -14,7 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
-import com.group17.geowars.GeoWars;
+import com.group17.geowars.utils.GAMESTATE;
 import com.group17.geowars.managers.Managers;
 
 /**
@@ -76,6 +75,7 @@ public class PlayMenu implements Screen, hasStage {
             public void changed(ChangeEvent event, Actor actor) {
 
                 System.out.println("CLICKED: " + actor);
+                Managers.getGameManager().gameState = GAMESTATE.GAMEPLAYING;
                 Screen nextMenu = Managers.getMenuManager().getScreen("game");
                 Managers.getMenuManager().setScreen(nextMenu);
             }

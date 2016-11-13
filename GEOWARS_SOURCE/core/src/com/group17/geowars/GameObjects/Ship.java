@@ -94,9 +94,6 @@ public class Ship extends GameObject implements GOInterface { //interface shoot?
         Managers.getBulletManager().clearAll();
     }
 
-
-
-
     @Override
     public void render(Batch batch)
     {
@@ -160,6 +157,14 @@ public class Ship extends GameObject implements GOInterface { //interface shoot?
     public void setDead()
     {
         dead = true;
+    }
+
+    public void reset()
+    {
+        position = new Vector2(Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2);
+        score = 0;
+        multiplier = 0;
+        level = 0;
     }
 
 }

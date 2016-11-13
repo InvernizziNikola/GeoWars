@@ -1,7 +1,9 @@
 package com.group17.geowars.managers;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.group17.geowars.utils.GAMESTATE;
 
 
 /**
@@ -18,6 +20,11 @@ public class Managers
             _instance.init();
         }
         return _instance;
+    }
+    private GameManager gameManager;
+    public static GameManager getGameManager(){
+
+        return getInstance().gameManager;
     }
 
     private AccountManager accountManager;
@@ -100,6 +107,7 @@ public class Managers
         collisionManager = new CollisionManager();
         menuManager = new MenuManager();
         powerUpManager=new PowerUpManager();
+        gameManager = new GameManager();
     }
 
     public void init()
@@ -115,20 +123,28 @@ public class Managers
         menuManager.init();
         collisionManager.init();
         powerUpManager.init();
+        gameManager.init();
     }
     public static void render(Batch batch)
     {
-        batch.begin();
-        //getAssetManager().render(batch);
-        getAccountManager().render(batch);
-        getGeomManager().render(batch);
-        getBulletManager().render(batch);
-        getEnemyManager().render(batch);
-        getLevelManager().render(batch);
-        getAccountManager().render(batch);
-        getCollisionManager().render(batch);
-        getpowerUpManager().render(batch);
+        // still to implement
+        // or doesnt have renderer
         //getControllerManager().render(batch);
+        //getAssetManager().render(batch);
+
+        batch.begin();
+
+        if(getGameManager().gameState == GAMESTATE.GAMEPLAYING) {
+            getAccountManager().render(batch);
+            getGeomManager().render(batch);
+            getBulletManager().render(batch);
+            getEnemyManager().render(batch);
+            getLevelManager().render(batch);
+            getAccountManager().render(batch);
+            getCollisionManager().render(batch);
+            getpowerUpManager().render(batch);
+        }
+
         batch.end();
         getMenuManager().render(Gdx.graphics.getDeltaTime());
     }
@@ -137,14 +153,17 @@ public class Managers
 
         //getAssetManager().update();
         //getControllerManager().update();
-        getAccountManager().update();
-        getGeomManager().update();
-        getBulletManager().update();
-        getEnemyManager().update();
-        getLevelManager().update();
-        getCollisionManager().update();
-        getpowerUpManager().update();
         //getMenuManager().update();
+
+        if(getGameManager().gameState == GAMESTATE.GAMEPLAYING) {
+            getAccountManager().update();
+            getGeomManager().update();
+            getBulletManager().update();
+            getEnemyManager().update();
+            getLevelManager().update();
+            getCollisionManager().update();
+            getpowerUpManager().update();
+        }
     }
 
 }

@@ -44,4 +44,12 @@ public class AccountManager {
             p.getProfile().render(batch);
         }
     }
+    public void reset()
+    {
+        // TODO
+
+        for (Account p: accounts) {
+            p.getProfile().reset();
+        }
+    }
 }

@@ -30,7 +30,10 @@ public class LevelManager implements GOInterface {
         currentwave=1;
     }
 
-    
+    public void reset()
+    {
+        currentwave = 0;
+    }
 
     public void init()
     {

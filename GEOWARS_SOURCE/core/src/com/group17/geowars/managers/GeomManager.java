@@ -54,6 +54,12 @@ public class GeomManager implements GOInterface {
         toRemove.clear();
     }
 
+    public void reset()
+    {
+        geomList.clear();
+        toRemove.clear();
+    }
+
     public void removeGeom(Geom g) {
 
         toRemove.add(g);
