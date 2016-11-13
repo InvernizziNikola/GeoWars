@@ -1,6 +1,7 @@
 package com.group17.geowars.screens;
 
 import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.controllers.Controller;
 import com.badlogic.gdx.controllers.Controllers;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -31,7 +32,11 @@ public class GameScreen extends ScreenAdapter implements hasStage {
         Managers.getAccountManager().addAccount(account);
 
         Profile profile = account.getProfile();
-        profile.setController(Controllers.getControllers().first());
+        Controller controller = null;
+        if(Controllers.getControllers().size > 0)
+            controller = Controllers.getControllers().first();
+
+        profile.setController(controller);
 
     }
 

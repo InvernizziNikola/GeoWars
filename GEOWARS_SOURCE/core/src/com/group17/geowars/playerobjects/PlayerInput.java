@@ -1,5 +1,7 @@
 package com.group17.geowars.playerobjects;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.controllers.Controller;
 import com.badlogic.gdx.math.Vector2;
 
@@ -22,18 +24,64 @@ private boolean fired = false;
 
     public void update()
     {
+        if(controller != null)
+            handleControllerInput();
+        else
+            handleKeyboardMouseInput();
+    }
+    public void handleKeyboardMouseInput()
+    {
+        handleKeyboardMovement();
+        handleMouseShooting();
+    }
+    public void handleKeyboardMovement()
+    {
+
+        Vector2 dir = new Vector2(0,0);
+
+        if(Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+            dir.x += -1;
+        }
+        if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+            dir.x += 1;
+        }
+        if(Gdx.input.isKeyPressed(Input.Keys.UP)) {
+            dir.y += 1;
+        }
+        if(Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
+            dir.y += -1;
+        }
+
+        profile.getShip().setMoveDirection(dir.nor());
+    }
+    public void handleMouseShooting()
+    {
+        Vector2 dir = new Vector2(0,0);
+
+        if(Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
+
+            Vector2 shipPos = profile.getShip().getPosition();
+            Vector2 mousePos = new Vector2(Gdx.input.getX(), -Gdx.input.getY() + 600);
+
+
+            dir = new Vector2(mousePos.x - shipPos.x, mousePos.y - shipPos.y);
+        }
+
+        profile.getShip().setShootDirection(dir.nor());
+    }
+    public void handleControllerInput()
+    {
+
         handleMovementJoystick();
         handleShootJoystick();
         handleButtonInput();
     }
-
     public void handleButtonInput()
     {
         if(controller.getButton(0) && !fired)
         {
             fired = true;
             profile.getShip().nuke();
-
         }
         else if(!controller.getButton(0) && fired)
         {

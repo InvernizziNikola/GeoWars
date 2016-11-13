@@ -25,7 +25,7 @@ public class Profile implements GOInterface {
 
     public Profile(String naam , Drone dr , Ship sp)
     {
-       name =naam;
+        name =naam;
         drone=dr;
         ship=sp;
 
@@ -59,9 +59,9 @@ public class Profile implements GOInterface {
 
     public void setController(Controller controller) {
         this.controller = controller;
-        playerInput = new PlayerInput(controller,this);
+        playerInput = new PlayerInput(controller, this);
         //controller.addListener(playerInput);
-        Gdx.app.log("controller: ", controller.getName());
+        //Gdx.app.log("controller: ", controller.getName());
     }
 
     public Controller getController() {
