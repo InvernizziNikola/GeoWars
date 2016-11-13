@@ -55,7 +55,7 @@ public class Enemy extends GameObject implements GOInterface {
         Geom g = new Geom( lootId,position);
         Managers.getGeomManager().addGeom(g);
         int i = new Random().nextInt(100);
-        if(i>98) {
+        if(i>0) {//TODO:moet naar 98
             PowerUp p = new PowerUp("nuke", position);
             Managers.getpowerUpManager().addPowerUp(p);
         }
@@ -107,7 +107,7 @@ public class Enemy extends GameObject implements GOInterface {
 
         Vector2 dist = new Vector2(target.x - getPosition().x, target.y - getPosition().y);
 
-        if (dist.len() < 800 || !insidePlayingField)
+        if (dist.len() < 200 || !insidePlayingField)
         {
             lookAt = dist.nor();
 
