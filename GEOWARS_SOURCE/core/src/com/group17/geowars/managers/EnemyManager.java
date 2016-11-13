@@ -64,6 +64,9 @@ public class EnemyManager implements GOInterface {
             }
             else {
                 nrOfEnemys= nrOfEnemys+(currentWave*10);
+                if (nrOfEnemys>1000){
+                    nrOfEnemys=1000;
+                }
                 System.out.println(nrOfEnemys);
                 Managers.getLevelManager().getWaveList().add(nrOfEnemys);
             }
