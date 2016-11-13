@@ -40,7 +40,7 @@ public class PowerUp extends GameObject implements GOInterface {
         sprite.setColor(color);
         sprite.setSize(30, 30);
         sprite.setOrigin(15,15);
-        sprite.setPosition(position.x-25,position.y-25);
+        sprite.setPosition(position.x-15,position.y-15);
         sprite.draw(batch);
     }
 
