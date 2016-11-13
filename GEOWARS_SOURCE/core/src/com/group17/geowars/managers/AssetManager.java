@@ -4,25 +4,23 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.group17.geowars.gameobjects.Bullet;
+import javafx.util.Pair;
 
 import java.io.File;
-import java.util.Dictionary;
-import java.util.Hashtable;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by nikola on 08/11/2016.
  */
 public class AssetManager {
 
-    private Dictionary<String, Texture> textures;
-    private Dictionary<String, Sound> sounds;
+    private Map<String, Texture> textures;
+    private Map<String, Sound> sounds;
 
     public AssetManager () {
 
-        textures = new Hashtable<String, Texture>();
-        sounds= new Hashtable<String, Sound> ();
+        textures = new HashMap<String, Texture>();
+        sounds= new HashMap<String, Sound> ();
     }
 
     public void init()
@@ -76,6 +74,13 @@ public class AssetManager {
             sound = Gdx.audio.newSound(Gdx.files.internal("error.wav"));
             sounds.put(name, sound);
             return sound;
+        }
+    }
+    public void dispose()
+    {
+        for(Texture t : textures.values())
+        {
+            t.dispose();
         }
     }
 }

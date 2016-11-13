@@ -82,6 +82,7 @@ public class EnemyManager implements GOInterface {
         }
 
         enemies.removeAll(toRemove);
+        toRemove.clear();
     }
 
     public void remove(Enemy enemy) {
