@@ -30,6 +30,10 @@ public class Enemy extends GameObject implements GOInterface {
     private float offset = 200;
     public boolean destroy = false;
     private Vector2 lookAt = new Vector2(0,0);
+
+    private Vector2 target = new Vector2(0,0);
+
+
     public Enemy(String type,Vector2 spawnLocation) {
         super(new Vector2(0,0));
         position = new Vector2(spawnLocation);
@@ -85,9 +89,6 @@ public class Enemy extends GameObject implements GOInterface {
     @Override
     public void update() {
 
-
-        Vector2 target = Managers.getAccountManager().getAccounts().get(0).getProfile().getShip().getPosition(); //closestPlayer;
-
         if(!insidePlayingField) {
             target = new Vector2(Gdx.graphics.getWidth() /2, Gdx.graphics.getHeight() / 2);
             if (position.x > 1
@@ -96,6 +97,7 @@ public class Enemy extends GameObject implements GOInterface {
                     && position.y < Gdx.graphics.getHeight() - 1) {
                 insidePlayingField = true;
                 offset = -0;
+                target = Managers.getAccountManager().getAccounts().get(0).getProfile().getShip().getPosition();
             }
         }
         if(insidePlayingField) {
