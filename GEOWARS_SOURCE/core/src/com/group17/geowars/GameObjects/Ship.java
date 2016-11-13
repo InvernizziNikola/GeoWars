@@ -116,12 +116,12 @@ public class Ship extends GameObject implements GOInterface { //interface shoot?
             canShoot = true;
         }
 
-        if(shootDir.len() > 0.1f)
+        if(shootDir.len() > 0.01f)
         {
             shoot();
             lookDir = shootDir;
         }
-        else if (moveDir.len() > 0.1f)
+        else if (moveDir.len() > 0.01f)
         {
             lookDir = moveDir;
         }

@@ -102,7 +102,7 @@ public class Enemy extends GameObject implements GOInterface {
 
         Vector2 dist = new Vector2(target.x - getPosition().x, target.y - getPosition().y);
 
-        if (dist.len() < 200 || !insidePlayingField)
+        if (dist.len() < 800 || !insidePlayingField)
         {
             lookAt = dist.nor();
 
