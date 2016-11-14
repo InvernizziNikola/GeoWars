@@ -17,7 +17,6 @@ private boolean fired = false;
     {
         this.controller = controller;
         this.profile = profile;
-        System.out.println("on!!");
         //constructor empty ?
     }
 

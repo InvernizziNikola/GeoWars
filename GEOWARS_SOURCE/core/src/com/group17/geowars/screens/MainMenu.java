@@ -2,6 +2,7 @@ package com.group17.geowars.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.controllers.Controller;
 import com.badlogic.gdx.controllers.Controllers;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
@@ -12,6 +13,8 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.Event;
+import com.badlogic.gdx.scenes.scene2d.EventListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -31,7 +34,12 @@ public class MainMenu implements Screen, hasStage{
     private int buttonSelected = 0;
     private TextButton quitButton;
     private TextButton playButton;
+    private TextButton leaderboardButton;
+    private TextButton profileButton;
+    private TextButton shopButton;
+    private TextButton optionButton;
     private boolean pressed = false;
+
 
     public MainMenu(){
         create();
@@ -101,9 +109,13 @@ public class MainMenu implements Screen, hasStage{
         playButton.setHeight(50);
         stage.addActor(playButton);
 
+
         playButton.addListener(new ChangeListener() {
 
             public void changed(ChangeEvent event, Actor actor) {
+
+
+                playButton.setChecked(false);
 
                 System.out.println("CLICKED: " + actor);
                 Screen nextMenu = Managers.getMenuManager().getScreen("playmenu");
@@ -111,7 +123,7 @@ public class MainMenu implements Screen, hasStage{
             }
         });
 
-        final TextButton profileButton = new TextButton("PROFILE", textButtonStyle);
+        profileButton = new TextButton("PROFILE", textButtonStyle);
         profileButton.setPosition(300, 390);
         profileButton.setWidth(150);
         profileButton.setHeight(50);
@@ -127,19 +139,19 @@ public class MainMenu implements Screen, hasStage{
             }
         });
 
-        final TextButton optionButton = new TextButton("OPTIONS", textButtonStyle);
+        optionButton = new TextButton("OPTIONS", textButtonStyle);
         optionButton.setPosition(300, 330);
         optionButton.setWidth(150);
         optionButton.setHeight(50);
         stage.addActor(optionButton);
 
-        final TextButton leaderBordButton = new TextButton("LEADERBORDS", textButtonStyle);
-        leaderBordButton.setPosition(300, 270);
-        leaderBordButton.setWidth(150);
-        leaderBordButton.setHeight(50);
-        stage.addActor(leaderBordButton);
+        leaderboardButton = new TextButton("LEADERBORDS", textButtonStyle);
+        leaderboardButton.setPosition(300, 270);
+        leaderboardButton.setWidth(150);
+        leaderboardButton.setHeight(50);
+        stage.addActor(leaderboardButton);
 
-        leaderBordButton.addListener(new ChangeListener() {
+        leaderboardButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor)
             {
@@ -149,7 +161,7 @@ public class MainMenu implements Screen, hasStage{
             }
         });
 
-        final TextButton shopButton = new TextButton("SHOP", textButtonStyle);
+        shopButton = new TextButton("SHOP", textButtonStyle);
         shopButton.setPosition(300, 210);
         shopButton.setWidth(150);
         shopButton.setHeight(50);
@@ -168,32 +180,71 @@ public class MainMenu implements Screen, hasStage{
         stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
         stage.draw();
 
-        if(Controllers.getControllers().first().getButton(3))
+/*
+        Controller c = Controllers.getControllers().first();
+        if(c.getButton(3) && !pressed)
         {
 
-            System.out.println("up");
-            buttonSelected = 0;
+            buttonSelected++;
+
+            if(buttonSelected > 5)
+                buttonSelected = 0;
+            pressed = true;
         }
-        if(Controllers.getControllers().first().getButton(0))
+        if(c.getButton(0) && !pressed)
         {
-            buttonSelected = 1;
-            System.out.println("DOWN");
+            buttonSelected--;
+            if(buttonSelected < 0)
+                buttonSelected = 5;
+            pressed = true;
+        }
+        if(!c.getButton(0) && !c.getButton(3) && pressed)
+        {
+            pressed = false;
         }
 
+        if(c.getButton(1) || c.getButton(2))
+        {
+            playButton.setChecked(true);
+        }
+        */
+
+        /*
+
+        leaderboardButton.setStyle(textButtonStyle);
+        optionButton.setStyle(textButtonStyle);
+        shopButton.setStyle(textButtonStyle);
+        profileButton.setStyle(textButtonStyle);
+        quitButton.setStyle(textButtonStyle);
+        playButton.setStyle(textButtonStyle);
         switch (buttonSelected)
         {
             case 0:{
-                quitButton.setStyle(textButtonStyle);
                 playButton.setStyle(selectedButtonStyle);
                 break;
             }
             case 1:{
+                profileButton.setStyle(selectedButtonStyle);
+                break;
+            }
+            case 2:{
+                optionButton.setStyle(selectedButtonStyle);
+                break;
+            }
+            case 3:{
+                leaderboardButton.setStyle(selectedButtonStyle);
+                break;
+            }
+            case 4:{
+                shopButton.setStyle(selectedButtonStyle);
+                break;
+            }
+            case 5:{
                 quitButton.setStyle(selectedButtonStyle);
-                playButton.setStyle(textButtonStyle);
                 break;
             }
         }
-
+        */
         //Table.drawDebug(stage);
     }
 
