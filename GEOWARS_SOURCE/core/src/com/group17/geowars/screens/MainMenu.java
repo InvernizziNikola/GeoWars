@@ -2,10 +2,12 @@ package com.group17.geowars.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.controllers.Controllers;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -25,7 +27,11 @@ public class MainMenu implements Screen, hasStage{
     private SpriteBatch batch;
     private BitmapFont title;
     private TextButton.TextButtonStyle textButtonStyle;
-
+    private TextButton.TextButtonStyle selectedButtonStyle;
+    private int buttonSelected = 0;
+    private TextButton quitButton;
+    private TextButton playButton;
+    private boolean pressed = false;
 
     public MainMenu(){
         create();
@@ -56,14 +62,21 @@ public class MainMenu implements Screen, hasStage{
         // Configure a TextButtonStyle and name it "default". Skin resources are stored by type, so this doesn't overwrite the font.
         textButtonStyle = new TextButton.TextButtonStyle();
         textButtonStyle.up = skin.newDrawable("white", Color.WHITE);
+        textButtonStyle.down = skin.newDrawable("white", Color.BLACK);
         textButtonStyle.fontColor = Color.BLACK;
 
         textButtonStyle.font = skin.getFont("default");
 
+        selectedButtonStyle = new TextButton.TextButtonStyle();
+        selectedButtonStyle.up = skin.newDrawable("white", Color.GRAY);
+        selectedButtonStyle.fontColor = Color.BLACK;
+
+        selectedButtonStyle.font = skin.getFont("default");
+
         skin.add("default", textButtonStyle);
 
         // Create a button with the "default" TextButtonStyle. A 3rd parameter can be used to specify a name other than "default".
-        final TextButton quitButton=new TextButton("QUIT GAME",textButtonStyle);
+        quitButton=new TextButton("QUIT GAME",textButtonStyle);
         quitButton.setPosition(300, 90);
         quitButton.setWidth(150);
         quitButton.setHeight(50);
@@ -82,7 +95,7 @@ public class MainMenu implements Screen, hasStage{
             }
         });
 
-        final TextButton playButton = new TextButton("PLAY", textButtonStyle);
+        playButton = new TextButton("PLAY", textButtonStyle);
         playButton.setPosition(300,450);
         playButton.setWidth(150);
         playButton.setHeight(50);
@@ -154,6 +167,32 @@ public class MainMenu implements Screen, hasStage{
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
         stage.draw();
+
+        if(Controllers.getControllers().first().getButton(3))
+        {
+
+            System.out.println("up");
+            buttonSelected = 0;
+        }
+        if(Controllers.getControllers().first().getButton(0))
+        {
+            buttonSelected = 1;
+            System.out.println("DOWN");
+        }
+
+        switch (buttonSelected)
+        {
+            case 0:{
+                quitButton.setStyle(textButtonStyle);
+                playButton.setStyle(selectedButtonStyle);
+                break;
+            }
+            case 1:{
+                quitButton.setStyle(selectedButtonStyle);
+                playButton.setStyle(textButtonStyle);
+                break;
+            }
+        }
 
         //Table.drawDebug(stage);
     }

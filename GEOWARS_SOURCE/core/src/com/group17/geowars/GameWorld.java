@@ -8,8 +8,6 @@ import com.group17.geowars.gameobjects.PowerUp;
 import com.group17.geowars.gameobjects.Ship;
 import com.group17.geowars.managers.Managers;
 import com.group17.geowars.playerobjects.Profile;
-import sun.audio.AudioPlayer;
-import sun.audio.AudioStream;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -23,14 +21,14 @@ import java.util.List;
 
 public class GameWorld
 {
-    private boolean played;
+    //private boolean played;
     private Batch batch;
 
     public GameWorld(Batch batch)
     {
         this.batch = batch;
 
-        if (!played){
+        /*if (!played){
             played= true;
             try {
                 InputStream in = new FileInputStream("pacman_beginning.wav");
@@ -45,7 +43,7 @@ public class GameWorld
                 e.printStackTrace();
             }
         }
-
+*/
     }
 
     public void update()

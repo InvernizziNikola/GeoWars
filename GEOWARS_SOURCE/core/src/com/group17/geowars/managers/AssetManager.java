@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.group17.geowars.gameobjects.Bullet;
 import javafx.util.Pair;
 
-import java.io.File;
+import java.io.*;
 import java.util.*;
 
 /**
@@ -44,12 +44,12 @@ public class AssetManager {
         if(texture != null)
             return texture;
 
-        File f = new File(name+".png");
-        if(f.exists()) {
+
+        try{
             texture = new Texture(name + ".png");
             textures.put(name, texture);
             return texture;
-        }else
+        }catch (Exception e)
         {
             texture = new Texture("error.png");
             textures.put(name, texture);

@@ -9,3 +9,13 @@ sourceSets.main.java.srcDirs = [ "src/" ]
 eclipse.project {
     name = appName + "-core"
 }
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+}
+
+
+dependencies {
+    compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.13'
+}

@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.group17.geowars.database.EnemyLoot;
 import com.group17.geowars.managers.Managers;
@@ -22,6 +23,9 @@ public class Geom extends GameObject implements GOInterface
     private float angle = 0;
     private float rotateDirection = 1;
 
+    private float speed = 0;
+    private float maxSpeed = 100;
+    private Vector2 dir = new Vector2(0,0);
 
     public boolean destroy = false;
 
@@ -68,6 +72,28 @@ public class Geom extends GameObject implements GOInterface
     {
         // TODO MOVEMENT
 
+
+
+
+        Vector2 playerPos = Managers.getAccountManager().getAccounts().get(0).getProfile().getShip().getPosition();
+
+        Vector2 dist = new Vector2(playerPos.x - position.x, playerPos.y - position.y);
+
+        if (dist.len() < 120)
+        {
+            dir = new Vector2(dist).nor();
+
+            speed = MathUtils.lerp(speed, maxSpeed, Gdx.graphics.getDeltaTime()*20);
+
+            position = new Vector2(position.x + dir.x * speed * Gdx.graphics.getDeltaTime(),
+                    position.y + dir.y * speed * Gdx.graphics.getDeltaTime());
+        }else
+        {
+            speed = MathUtils.lerp(speed, 0, Gdx.graphics.getDeltaTime());
+
+            position = new Vector2(position.x + dir.x * speed * Gdx.graphics.getDeltaTime(),
+                    position.y + dir.y * speed * Gdx.graphics.getDeltaTime());
+        }
 
         angle += Gdx.graphics.getDeltaTime() * rotateSpeed * rotateDirection;
         angle = angle % 360;

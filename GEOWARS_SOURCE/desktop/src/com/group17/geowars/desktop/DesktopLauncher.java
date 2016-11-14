@@ -7,8 +7,14 @@ import com.group17.geowars.GeoWars;
 public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
+		/*config.width = 1920;
+		config.height = 1080;
+		config.fullscreen = true;
+		*/
+
 		config.width = 800;
 		config.height = 600;
+		config.fullscreen = false;
 		new LwjglApplication(new GeoWars(), config);
 	}
 }
