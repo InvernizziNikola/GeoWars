@@ -98,6 +98,7 @@ public class Ship extends GameObject implements GOInterface { //interface shoot?
         sprite.setRotation(lookDir.angle());
         sprite.setPosition(position.x - 25, position.y - 25);
         sprite.draw(batch);
+
         font.draw(batch, "speler: score "+score+" multieplier= "+multiplier+"    level= "+level, 10, 20);
     }
 
