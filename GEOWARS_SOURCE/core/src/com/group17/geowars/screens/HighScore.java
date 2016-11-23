@@ -24,6 +24,8 @@ public class HighScore extends MenuScreen{
     private Skin skin1;
     private BitmapFont title;
     private Table table;
+    private ArrayList highScores;
+    private String GameModeString;
 
 
 
@@ -125,9 +127,18 @@ public class HighScore extends MenuScreen{
         String name = "egoon";
         Integer score = 5000;
 
-        //DATABASE connectie arcade
-        DBManager manager = new DBManager();
-        ArrayList highScores = manager.DBselectTOP10Highscore(GameMode);
+        GameModeString = GameMode;
+       // Thread t1 = new Thread(new Runnable() {
+         //   public void run() {
+                //DATABASE connectie arcade
+                DBManager manager = new DBManager();
+                highScores = manager.DBselectTOP10Highscore(GameModeString);
+         //   }
+        //});
+        //t1.start();
+        System.out.println(highScores);
+
+
         table.add(new Label("Name", style)).width(200);
         table.add(new Label("Score", style)).width(200);
         table.row();
