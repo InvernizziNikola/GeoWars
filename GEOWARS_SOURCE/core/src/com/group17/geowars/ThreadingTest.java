@@ -14,15 +14,23 @@ public class ThreadingTest implements Runnable {
 
     public void run() {
         System.out.println("Running " +  threadName );
-        try {
-            for(int i = 4; i > 0; i--) {
-                Thread.sleep(50);
-                System.out.println("Thread: " + threadName + ", " + i);
-                // Let the thread sleep for a while.
+            if (threadName=="Thread 1"){
+                System.out.println("dit is threads 1");
+                Integer temp1 = 0;
+                while (1!=2){
+
+                    System.out.println("thread1 "+temp1);
+                }
+
+            }else if (threadName=="Thread 2"){
+                System.out.println("dit is threads 2");
+                Integer temp2 = 0;
+                while (1!=2){
+                    temp2+= 1;
+                    System.out.println("thread2 "+temp2);
+                }
             }
-        }catch (InterruptedException e) {
-            System.out.println("Thread " +  threadName + " interrupted.");
-        }
+
         System.out.println("Thread " +  threadName + " exiting.");
     }
 
