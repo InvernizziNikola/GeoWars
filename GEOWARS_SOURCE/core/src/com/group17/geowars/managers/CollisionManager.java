@@ -8,6 +8,7 @@ import com.group17.geowars.gameobjects.Enemy;
 import com.group17.geowars.gameobjects.Geom;
 import com.group17.geowars.gameobjects.PowerUp;
 import com.group17.geowars.playerobjects.Account;
+import com.group17.geowars.screens.MenuScreen;
 import com.group17.geowars.utils.GAMESTATE;
 
 /**
@@ -31,7 +32,7 @@ public class CollisionManager
     public void update()
     {
         for(Bullet b: Managers.getBulletManager().getBullets()){
-            if(!b.isFriendly()) {
+            if(!b.isFriendly() && !b.destroy) {
                 for (Account p : Managers.getAccountManager().getAccounts()) {
 
                     Vector2 playerPos = p.getPlayer().getShip().getPosition();
@@ -89,7 +90,7 @@ public class CollisionManager
                     Managers.getGameManager().gameState = GAMESTATE.MENU;
                     Managers.getGameManager().resetGame();
 
-                    Screen mainmenu = Managers.getMenuManager().getScreen("mainmenu");
+                    MenuScreen mainmenu = Managers.getMenuManager().getScreen("mainmenu");
                     Managers.getMenuManager().setScreen(mainmenu);
                 }
             }
