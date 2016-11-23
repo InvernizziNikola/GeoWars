@@ -45,7 +45,11 @@ public class MenuScreen implements Screen {
     public void render(float delta) {
 
 
+
         Controller c = Controllers.getControllers().first();
+        if(c == null)
+            return ;
+        
         if(c.getButton(0) && !pressed)
         {
             selectedButton++;
@@ -84,6 +88,7 @@ public class MenuScreen implements Screen {
                 button.getValue().setStyle(styleDefault);
             }
         }
+
     }
     protected TextButton newButton(String name, int x, int y, int width, int height)
     {
