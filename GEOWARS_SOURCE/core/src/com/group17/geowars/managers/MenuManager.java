@@ -83,9 +83,9 @@ public class MenuManager {
     public void createMenus(){
 
         menuList.put("mainmenu", mainMenu = new MainMenu());
-        //menuList.put("playmenu", new PlayMenu());
-        //menuList.put("profilemenu", new HighScore());
-        //menuList.put("game", new GameScreen());
+        menuList.put("playmenu", new PlayMenu());
+        menuList.put("profilemenu", new HighScore());
+        menuList.put("game", new GameScreen());
         setScreen(mainMenu);
     }
 
@@ -94,7 +94,7 @@ public class MenuManager {
         showScreen.render(deltaTime);
     }
 
-    public Screen getScreen(String name)
+    public MenuScreen getScreen(String name)
     {
         MenuScreen screen = menuList.get(name);
         if(screen == null) {

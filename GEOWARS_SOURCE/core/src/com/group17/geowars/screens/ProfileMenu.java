@@ -1,66 +1,34 @@
 package com.group17.geowars.screens;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Pixmap;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
-import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
-import com.group17.geowars.managers.Managers;
 
 /**
  * Created by michield on 10/11/2016.
  */
-public class ProfileMenu implements Screen, hasStage {
+public class ProfileMenu extends MenuScreen {
 
-    private SpriteBatch batch;
-    private Stage stage;
-    private Skin skin;
-    private BitmapFont font;
-
-    public ProfileMenu(){create();}
+    public ProfileMenu()
+    {
+        super();
+        create();
+    }
 
     public void create(){
-        batch = new SpriteBatch();
-        stage = new Stage();
-        skin = new Skin();
+        Gdx.input.setInputProcessor(stage);
 
-        Pixmap pixmap = new Pixmap(100,100, Pixmap.Format.RGB888);
-        pixmap.setColor(Color.WHITE);
-        pixmap.fill();
+        TextButton clanButton = newButton("CLANS",50,100,150,50);
+        /*clanButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
 
-        skin.add("white", new Texture(pixmap));
+            }
+        });*/
 
-        BitmapFont bfont = new BitmapFont();
-
-        skin.add("default", bfont);
-
-        final TextButtonStyle textButtonStyle = new TextButton.TextButtonStyle();
-        textButtonStyle.up = skin.newDrawable("white", Color.WHITE);
-        textButtonStyle.fontColor = Color.BLACK;
-        textButtonStyle.font = skin.getFont("default");
-        skin.add("default", textButtonStyle);
-
-        final TextButton clanButton = new TextButton("CLANS",textButtonStyle);
-        clanButton.setPosition(50,100);
-        clanButton.setHeight(50);
-        clanButton.setWidth(150);
-        stage.addActor(clanButton);
-
-        final TextButton backButton = new TextButton("BACK", textButtonStyle);
-        backButton.setPosition(640, 50);
-        backButton.setHeight(50);
-        backButton.setWidth(150);
-        stage.addActor(backButton);
-        backButton.addListener(new ChangeListener() {
+        TextButton backButton = newButton("BACK",640,50,150,50);
+        /*backButton.addListener(new ChangeListener() {
 
             public void changed(ChangeEvent event, Actor actor) {
 
@@ -68,7 +36,7 @@ public class ProfileMenu implements Screen, hasStage {
                 Screen nextMenu = Managers.getMenuManager().getScreen("mainmenu");
                 Managers.getMenuManager().setScreen(nextMenu);
             }
-        });
+        });*/
     }
     @Override
     public void show() {

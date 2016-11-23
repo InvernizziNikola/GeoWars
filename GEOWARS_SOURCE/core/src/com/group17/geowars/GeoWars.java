@@ -11,8 +11,9 @@ import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.group17.geowars.gameobjects.PowerUp;
 import com.group17.geowars.managers.Managers;
 import com.group17.geowars.screens.GameScreen;
+import com.group17.geowars.screens.MenuScreen;
 
-public class GeoWars extends ApplicationAdapter {
+public class GeoWars extends ApplicationAdapter{
 	private SpriteBatch batch;
 	//private GameScreen screen;
 
@@ -22,7 +23,7 @@ public class GeoWars extends ApplicationAdapter {
 		batch = new SpriteBatch();
 
 		//screen = new GameScreen();
-		Screen beginScreen = Managers.getMenuManager().getScreen("mainmenu");
+		MenuScreen beginScreen = Managers.getMenuManager().getScreen("mainmenu");
 		Managers.getMenuManager().setScreen(beginScreen);
 	}
 

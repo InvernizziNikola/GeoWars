@@ -5,7 +5,6 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton.*;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.group17.geowars.managers.Managers;
@@ -13,7 +12,7 @@ import com.group17.geowars.managers.Managers;
 /**
  * Created by michield on 10/11/2016.
  */
-public class MainMenu extends MenuScreen{
+public class MainMenu extends MenuScreen implements Screen{
 
     public MainMenu()
     {
@@ -28,7 +27,7 @@ public class MainMenu extends MenuScreen{
             @Override
             public void changed(ChangeEvent event, Actor actor)
             {
-                Screen nextMenu = Managers.getMenuManager().getScreen("playmenu");
+                MenuScreen nextMenu = Managers.getMenuManager().getScreen("playmenu");
                 Managers.getMenuManager().setScreen(nextMenu);
             }
         });
@@ -38,7 +37,7 @@ public class MainMenu extends MenuScreen{
             @Override
             public void changed(ChangeEvent event, Actor actor)
             {
-                Screen nextMenu = Managers.getMenuManager().getScreen("profilemenu");
+                MenuScreen nextMenu = Managers.getMenuManager().getScreen("profilemenu");
                 Managers.getMenuManager().setScreen(nextMenu);
             }
         });
@@ -48,7 +47,7 @@ public class MainMenu extends MenuScreen{
             @Override
             public void changed(ChangeEvent event, Actor actor)
             {
-                Screen nextMenu = Managers.getMenuManager().getScreen("options");
+                MenuScreen nextMenu = Managers.getMenuManager().getScreen("options");
                 Managers.getMenuManager().setScreen(nextMenu);
             }
         });
@@ -58,7 +57,7 @@ public class MainMenu extends MenuScreen{
             @Override
             public void changed(ChangeEvent event, Actor actor)
             {
-                Screen nextMenu = Managers.getMenuManager().getScreen("highScore");
+                MenuScreen nextMenu = Managers.getMenuManager().getScreen("highScore");
                 Managers.getMenuManager().setScreen(nextMenu);
             }
         });
@@ -68,7 +67,7 @@ public class MainMenu extends MenuScreen{
             @Override
             public void changed(ChangeEvent event, Actor actor)
             {
-                Screen nextMenu = Managers.getMenuManager().getScreen("shop");
+                MenuScreen nextMenu = Managers.getMenuManager().getScreen("shop");
                 Managers.getMenuManager().setScreen(nextMenu);
             }
         });

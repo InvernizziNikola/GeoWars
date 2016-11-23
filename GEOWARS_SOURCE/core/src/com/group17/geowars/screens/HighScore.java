@@ -18,7 +18,7 @@ import com.group17.geowars.managers.Managers;
 
 import java.util.ArrayList;
 
-public class HighScore implements Screen, hasStage{
+public class HighScore extends MenuScreen{
 
 
     private Stage stage;
@@ -26,17 +26,8 @@ public class HighScore implements Screen, hasStage{
     private Skin skin;
     private Skin skin1;
     private BitmapFont title;
-    private TextButton quitButton;
-    private TextButton shopButton;
-    private TextButton playButton;
-    private TextButton optionButton;
-    private TextButton leaderBordButton;
-    private TextButton profileButton;
-    private TextButtonStyle textButtonStyle;
-    private Label.LabelStyle labelStyle;
-    private TextButton backButton;
     private Table table;
-    private Label label1;
+
 
 
     public HighScore() {
@@ -44,41 +35,10 @@ public class HighScore implements Screen, hasStage{
     }
 
     public void Buttons(){
-        // A skin can be loaded via JSON or defined programmatically, either is fine. Using a skin is optional but strongly
-        // recommended solely for the convenience of getting a texture, region, etc as a drawable, tinted drawable, etc.
-        skin = new Skin();
-        // Generate a 1x1 white texture and store it in the skin named "white".
-        Pixmap pixmap = new Pixmap(100, 100, Pixmap.Format.RGBA8888);
-        pixmap.setColor(Color.WHITE);
-        pixmap.fill();
 
-        skin.add("white", new Texture(pixmap));
+        TextButton campaignButton = newButton("CAMPAIGN",152,400,150,50);
 
-        // Store the default libgdx font under the name "default".
-        BitmapFont bfont = new BitmapFont();
-
-        skin.add("default", bfont);
-
-        // Configure a TextButtonStyle and name it "default". Skin resources are stored by type, so this doesn't overwrite the font.
-        final TextButtonStyle textButtonStyle = new TextButton.TextButtonStyle();
-        textButtonStyle.up = skin.newDrawable("white", Color.WHITE);
-        textButtonStyle.fontColor = Color.BLACK;
-
-        textButtonStyle.font = skin.getFont("default");
-
-        skin.add("default", textButtonStyle);
-
-        final TextButton campaignButton = new TextButton("CAMPAIGN",textButtonStyle);
-        campaignButton.setPosition(125,400);
-        campaignButton.setHeight(50);
-        campaignButton.setWidth(150);
-        stage.addActor(campaignButton);
-
-        final TextButton arcadeButton = new TextButton("ARCADE",textButtonStyle);
-        arcadeButton.setPosition(325,400);
-        arcadeButton.setHeight(50);
-        arcadeButton.setWidth(150);
-        stage.addActor(arcadeButton);
+        TextButton arcadeButton = newButton("ARCADE",325,400,150,50);
         arcadeButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -89,17 +49,11 @@ public class HighScore implements Screen, hasStage{
             }
         });
 
-        final TextButton multiPlayerButton = new TextButton("CO-OP",textButtonStyle);
-        multiPlayerButton.setPosition(525,400);
-        multiPlayerButton.setHeight(50);
-        multiPlayerButton.setWidth(150);
-        stage.addActor(multiPlayerButton);
+        TextButton multiPlayerButton = newButton("CO-OP",525,400,150,50);
 
-        final TextButton backButton = new TextButton("BACK", textButtonStyle);
-        backButton.setPosition(325, 100);
-        backButton.setHeight(50);
-        backButton.setWidth(150);
-        stage.addActor(backButton);
+
+        TextButton backButton = newButton("BACK", 325,100,150,50);
+
         /*--------------EVENT HANDLER--------------------------*/
         campaignButton.addListener(new ChangeListener() {
 
@@ -127,7 +81,7 @@ public class HighScore implements Screen, hasStage{
             }
         });
 
-        backButton.addListener(new ChangeListener() {
+        /*backButton.addListener(new ChangeListener() {
 
             public void changed(ChangeEvent event, Actor actor) {
                 System.out.println("CLICKED: " + actor);
@@ -135,7 +89,7 @@ public class HighScore implements Screen, hasStage{
                 Managers.getMenuManager().setScreen(nextMenu);
 
             }
-        });
+        });*/
 
 
     }

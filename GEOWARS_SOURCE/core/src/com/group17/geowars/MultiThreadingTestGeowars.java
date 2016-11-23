@@ -6,6 +6,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.group17.geowars.managers.Managers;
+import com.group17.geowars.screens.MenuScreen;
 
 public class MultiThreadingTestGeowars extends ApplicationAdapter {
 	private SpriteBatch batch;
@@ -17,7 +18,7 @@ public class MultiThreadingTestGeowars extends ApplicationAdapter {
 		batch = new SpriteBatch();
 
 		//screen = new GameScreen();
-		Screen beginScreen = Managers.getMenuManager().getScreen("mainmenu");
+		MenuScreen beginScreen = Managers.getMenuManager().getScreen("mainmenu");
 		Managers.getMenuManager().setScreen(beginScreen);
 
 
