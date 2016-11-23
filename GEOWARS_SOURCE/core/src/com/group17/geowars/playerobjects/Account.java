@@ -57,8 +57,11 @@ public class Account {
 
     private List<Drone> SetDrones() {//#TODO: VIA DATABANK
         List<Drone> d = new ArrayList();
-        d.add(new Drone("support"));
-        d.add(new Drone("defence"));
+
+        Vector2 startPos = new Vector2(Gdx.graphics.getWidth()/2 + 30, Gdx.graphics.getHeight()/2 + 30);
+
+        d.add(new Drone(startPos, "support"));
+        d.add(new Drone(startPos, "defence"));
         return d;
     }
 

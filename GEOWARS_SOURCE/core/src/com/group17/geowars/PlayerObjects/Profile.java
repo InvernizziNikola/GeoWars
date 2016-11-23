@@ -26,9 +26,9 @@ public class Profile implements GOInterface {
 
     public Profile(String naam , Drone dr , Ship sp)
     {
-        name =naam;
-        drone=dr;
-        ship=sp;
+        name = naam;
+        drone = dr;
+        ship = sp;
 
     }
     public void reset()
@@ -75,6 +75,7 @@ public class Profile implements GOInterface {
     @Override
     public void render(Batch batch)
     {
+        drone.render(batch);
         ship.render(batch);
     }
 
@@ -82,6 +83,7 @@ public class Profile implements GOInterface {
     public void update()
     {
         playerInput.update();
+        drone.update();
         ship.update();
 
 
