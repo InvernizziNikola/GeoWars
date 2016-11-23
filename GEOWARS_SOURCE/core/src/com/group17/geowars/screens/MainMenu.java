@@ -13,8 +13,7 @@ import com.group17.geowars.managers.Managers;
 /**
  * Created by michield on 10/11/2016.
  */
-public class MainMenu extends MenuScreen implements hasStage{
-    private Stage stage;
+public class MainMenu extends MenuScreen{
 
     public MainMenu()
     {
@@ -22,9 +21,7 @@ public class MainMenu extends MenuScreen implements hasStage{
         create();
     }
     public void create(){
-        stage = new Stage();
         Gdx.input.setInputProcessor(stage);
-
 
         TextButton playButton = newButton("PLAY", 300, 450, 150, 50);
         playButton.addListener(new ChangeListener() {
@@ -91,18 +88,7 @@ public class MainMenu extends MenuScreen implements hasStage{
             menuButtons.get(selectedButton).setStyle(styleSelected);
     }
 
-    public TextButton newButton(String name, int x, int y, int width, int height)
-    {
-        TextButton tempButton = new TextButton(name, styleDefault);
-        tempButton.setPosition(x, y);
-        tempButton.setWidth(width);
-        tempButton.setHeight(height);
 
-        menuButtons.put(menuButtons.size(), tempButton);
-        stage.addActor(tempButton);
-
-        return tempButton;
-    }
 
     @Override
     public void show() {

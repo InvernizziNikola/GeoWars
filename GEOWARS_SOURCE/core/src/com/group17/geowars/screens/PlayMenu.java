@@ -19,7 +19,7 @@ import com.group17.geowars.managers.Managers;
 /**
  * Created by michield on 10/11/2016.
  */
-public class PlayMenu implements Screen, hasStage {
+public class PlayMenu implements Screen {
 
     private SpriteBatch batch;
     private Stage stage;

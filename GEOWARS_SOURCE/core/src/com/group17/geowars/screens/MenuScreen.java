@@ -3,6 +3,7 @@ package com.group17.geowars.screens;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.controllers.Controller;
 import com.badlogic.gdx.controllers.Controllers;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.group17.geowars.managers.Managers;
 
@@ -20,17 +21,25 @@ public class MenuScreen implements Screen {
     protected boolean pressed = false;
     protected TextButton.TextButtonStyle styleDefault;
     protected TextButton.TextButtonStyle styleSelected;
+    protected Stage stage;
 
     public MenuScreen()
     {
+        stage = new Stage();
         styleDefault = Managers.getMenuManager().getDefaultStyle();
         styleSelected = Managers.getMenuManager().getSelectedStyle();
+    }
+
+    public Stage getStage()
+    {
+        return stage;
     }
 
     @Override
     public void show() {
 
     }
+
 
     @Override
     public void render(float delta) {
@@ -74,6 +83,18 @@ public class MenuScreen implements Screen {
                 button.getValue().setStyle(styleDefault);
             }
         }
+    }
+    protected TextButton newButton(String name, int x, int y, int width, int height)
+    {
+        TextButton tempButton = new TextButton(name, styleDefault);
+        tempButton.setPosition(x, y);
+        tempButton.setWidth(width);
+        tempButton.setHeight(height);
+
+        menuButtons.put(menuButtons.size(), tempButton);
+        stage.addActor(tempButton);
+
+        return tempButton;
     }
 
     @Override

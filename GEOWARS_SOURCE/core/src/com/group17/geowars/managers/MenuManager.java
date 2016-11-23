@@ -22,12 +22,8 @@ import java.util.Hashtable;
  */
 public class MenuManager {
     private MainMenu mainMenu;
-    private PlayMenu playMenu;
-    private ProfileMenu profileMenu;
-    private HighScore highscore;
-    private GameScreen gameScreen;
 
-    private Screen showScreen;
+    private MenuScreen showScreen;
 
     private TextButtonStyle defaultStyle;
     public TextButtonStyle getDefaultStyle()
@@ -41,18 +37,15 @@ public class MenuManager {
     }
 
     private Skin skin;
-    private Dictionary<String, Screen> menuList;
+    private Dictionary<String, MenuScreen> menuList;
 
     public MenuManager(){
-        menuList = new Hashtable<String, Screen>();
+        menuList = new Hashtable<String, MenuScreen>();
 
     }
 
     public void init()
     {
-
-
-
         createStyles();
         createMenus();
     }
@@ -90,18 +83,10 @@ public class MenuManager {
     public void createMenus(){
 
         menuList.put("mainmenu", mainMenu = new MainMenu());
-        menuList.put("playmenu", playMenu = new PlayMenu());
-        menuList.put("profilemenu", profileMenu = new ProfileMenu());
-        menuList.put("highScore", highscore = new HighScore());
-        menuList.put("game", gameScreen = new GameScreen());
+        //menuList.put("playmenu", new PlayMenu());
+        //menuList.put("profilemenu", new HighScore());
+        //menuList.put("game", new GameScreen());
         setScreen(mainMenu);
-
-
-
-
-
-
-
     }
 
 
@@ -111,7 +96,7 @@ public class MenuManager {
 
     public Screen getScreen(String name)
     {
-        Screen screen = menuList.get(name);
+        MenuScreen screen = menuList.get(name);
         if(screen == null) {
             System.out.println("SHOULDNT HAPPEN");
             return mainMenu;
@@ -119,7 +104,7 @@ public class MenuManager {
         return screen;
     }
 
-    public void setScreen(Screen screen){
+    public void setScreen(MenuScreen screen){
 
         if(screen == null) {
             System.out.println("SHOULDNT HAPPEN!!EVAR!");
@@ -128,7 +113,7 @@ public class MenuManager {
         else {
             showScreen = screen;
         }
-        Gdx.input.setInputProcessor(((hasStage)showScreen).getStage());
+        Gdx.input.setInputProcessor(showScreen.getStage());
     }
 
 }
