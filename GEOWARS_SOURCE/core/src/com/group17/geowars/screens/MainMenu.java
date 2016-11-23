@@ -57,7 +57,7 @@ public class MainMenu extends MenuScreen implements Screen{
             @Override
             public void changed(ChangeEvent event, Actor actor)
             {
-                MenuScreen nextMenu = Managers.getMenuManager().getScreen("highScore");
+                MenuScreen nextMenu = Managers.getMenuManager().getScreen("highscore");
                 Managers.getMenuManager().setScreen(nextMenu);
             }
         });
