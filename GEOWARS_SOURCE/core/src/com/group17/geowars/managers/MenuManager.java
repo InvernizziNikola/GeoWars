@@ -81,7 +81,7 @@ public class MenuManager {
 
         menuList.put("mainmenu", mainMenu = new MainMenu());
         menuList.put("playmenu", new PlayMenu());
-        menuList.put("profilemenu", new HighScore());
+        menuList.put("highscore", new HighScore());
         menuList.put("game", new GameScreen());
         setScreen(mainMenu);
     }
