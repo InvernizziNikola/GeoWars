@@ -1,7 +1,6 @@
 package com.group17.geowars.screens;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Pixmap;
@@ -11,10 +10,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.group17.geowars.database.DBManager;
-import com.group17.geowars.managers.Managers;
 
 import java.util.ArrayList;
 
@@ -31,7 +28,7 @@ public class HighScore extends MenuScreen{
 
 
     public HighScore() {
-        HighScore("arcade");
+        showHighscores("arcade");
     }
 
     public void Buttons(){
@@ -60,7 +57,7 @@ public class HighScore extends MenuScreen{
             public void changed(ChangeEvent event, Actor actor) {
 
                 System.out.println("CLICKED: " + actor);
-                HighScore("campaign");
+                showHighscores("campaign");
             }
         });
         multiPlayerButton.addListener(new ChangeListener() {
@@ -68,7 +65,7 @@ public class HighScore extends MenuScreen{
             public void changed(ChangeEvent event, Actor actor) {
 
                 System.out.println("CLICKED: " + actor);
-                HighScore("coop");
+                showHighscores("coop");
             }
         });
         arcadeButton.addListener(new ChangeListener() {
@@ -77,7 +74,7 @@ public class HighScore extends MenuScreen{
                 stage.clear();
 
                 System.out.println("CLICKED: " + actor);
-                HighScore("arcade");
+                showHighscores("arcade");
             }
         });
 
@@ -93,7 +90,7 @@ public class HighScore extends MenuScreen{
 
 
     }
-    public void HighScore(String GameMode) {
+    public void showHighscores(String GameMode) {
 
 /*    BitmapFont font = new BitmapFont();
         Label.LabelStyle style = new Label.LabelStyle();
@@ -134,12 +131,14 @@ public class HighScore extends MenuScreen{
         table.add(new Label("Name", style)).width(200);
         table.add(new Label("Score", style)).width(200);
         table.row();
-        Integer highScoreAmount = highScores.size();
-        for (int i = 0; i <highScoreAmount ; i++) {
-            table.add(new Label(highScores.get(i).toString(), style)).width(200);
-            table.add(new Label(highScores.get(i + 1).toString(), style)).width(200);
-            table.row();
-            i++;
+        if(highScores != null) {
+            Integer highScoreAmount = highScores.size();
+            for (int i = 0; i < highScoreAmount; i++) {
+                table.add(new Label(highScores.get(i).toString(), style)).width(200);
+                table.add(new Label(highScores.get(i + 1).toString(), style)).width(200);
+                table.row();
+                i++;
+            }
         }
         stage.addActor(table);
     }

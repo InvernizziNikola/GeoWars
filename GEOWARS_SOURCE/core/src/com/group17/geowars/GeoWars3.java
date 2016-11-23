@@ -12,7 +12,7 @@ public class GeoWars3 extends ApplicationAdapter{
 	@Override
 	public void create () {
 		mainmenu = new HighScore();
-		mainmenu.HighScore("arcade");
+		mainmenu.showHighscores("arcade");
 
 	}
 

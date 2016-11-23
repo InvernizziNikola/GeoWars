@@ -13,6 +13,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.group17.geowars.managers.Managers;
+import com.group17.geowars.playerobjects.Account;
 import com.group17.geowars.playerobjects.Player;
 
 /**
@@ -26,9 +27,9 @@ public class Drone extends GameObject{
     private String type;
     private Sprite sprite;
     private Texture texture;
-    private Player player;
+    private Account player;
 
-    public Drone(Vector2 pos, String type, Player player)
+    public Drone(Vector2 pos, String type, Account player)
     {
         super(pos);
         this.player = player;
@@ -59,7 +60,7 @@ public class Drone extends GameObject{
 
     public void update() {
 
-        Vector2 shipPos = player.getShip().getPosition();
+        Vector2 shipPos = player.getPlayer().getShip().getPosition();
         Vector2 dist = new Vector2(shipPos.x - getPosition().x, shipPos.y - getPosition().y);
 
         if(dist.len() > 100)

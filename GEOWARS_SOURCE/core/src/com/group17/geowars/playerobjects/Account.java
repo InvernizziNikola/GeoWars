@@ -60,8 +60,8 @@ public class Account {
 
         Vector2 startPos = new Vector2(Gdx.graphics.getWidth()/2 + 30, Gdx.graphics.getHeight()/2 + 30);
 
-        d.add(new Drone(startPos, "support", player));
-        d.add(new Drone(startPos, "defence", player));
+        d.add(new Drone(startPos, "support", this));
+        d.add(new Drone(startPos, "defence", this));
         return d;
     }
 

@@ -14,11 +14,11 @@ public class GeoWarsEgon extends ApplicationAdapter {
 
 	}
 /*
-	public HighScore mainmenu;
+	public showHighscores mainmenu;
 
 	@Override
 	public void create () {
-		mainmenu = new HighScore();
+		mainmenu = new showHighscores();
 		mainmenu.create();
 	}
 

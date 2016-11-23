@@ -14,7 +14,7 @@ import com.group17.geowars.playerobjects.Player;
 /**
  * Created by nikola on 08/11/2016.
  */
-public class GameScreen extends ScreenAdapter implements hasStage {
+public class GameScreen extends MenuScreen {
 
     private GameWorld world;
     private Batch batch;
@@ -46,8 +46,4 @@ public class GameScreen extends ScreenAdapter implements hasStage {
         world.render();
     }
 
-    @Override
-    public Stage getStage() {
-        return null;
-    }
 }

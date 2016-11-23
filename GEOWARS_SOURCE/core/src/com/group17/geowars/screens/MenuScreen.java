@@ -68,7 +68,8 @@ public class MenuScreen implements Screen {
 
         if(c.getButton(1) || c.getButton(2))
         {
-            menuButtons.get(selectedButton).setChecked(true);
+            if(menuButtons.size() > 0)
+                menuButtons.get(selectedButton).setChecked(true);
         }
 
 
