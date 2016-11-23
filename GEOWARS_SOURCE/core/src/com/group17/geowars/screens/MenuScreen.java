@@ -46,10 +46,10 @@ public class MenuScreen implements Screen {
 
 
 
-        Controller c = Controllers.getControllers().first();
-        if(c == null)
+        if(Controllers.getControllers().size < 1)
             return ;
-        
+
+        Controller c = Controllers.getControllers().first();
         if(c.getButton(0) && !pressed)
         {
             selectedButton++;
