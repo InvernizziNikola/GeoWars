@@ -1,19 +1,7 @@
 package com.group17.geowars;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.math.Vector2;
-import com.group17.geowars.gameobjects.Geom;
-import com.group17.geowars.gameobjects.PowerUp;
-import com.group17.geowars.gameobjects.Ship;
 import com.group17.geowars.managers.Managers;
-import com.group17.geowars.playerobjects.Profile;
-
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.List;
 
 /**
  * Created by nikola on 08/11/2016.

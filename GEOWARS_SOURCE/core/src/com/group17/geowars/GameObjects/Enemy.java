@@ -97,7 +97,7 @@ public class Enemy extends GameObject implements GOInterface {
                     && position.y < Gdx.graphics.getHeight() - 1) {
                 insidePlayingField = true;
                 offset = -0;
-                target = Managers.getAccountManager().getAccounts().get(0).getProfile().getShip().getPosition();
+                target = Managers.getAccountManager().getAccounts().get(0).getPlayer().getShip().getPosition();
             }
         }
         if(insidePlayingField) {

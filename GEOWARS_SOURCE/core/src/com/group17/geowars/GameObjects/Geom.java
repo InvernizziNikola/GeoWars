@@ -9,8 +9,6 @@ import com.badlogic.gdx.math.Vector2;
 import com.group17.geowars.database.EnemyLoot;
 import com.group17.geowars.managers.Managers;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 /**
@@ -75,7 +73,7 @@ public class Geom extends GameObject implements GOInterface
 
 
 
-        Vector2 playerPos = Managers.getAccountManager().getAccounts().get(0).getProfile().getShip().getPosition();
+        Vector2 playerPos = Managers.getAccountManager().getAccounts().get(0).getPlayer().getShip().getPosition();
 
         Vector2 dist = new Vector2(playerPos.x - position.x, playerPos.y - position.y);
 

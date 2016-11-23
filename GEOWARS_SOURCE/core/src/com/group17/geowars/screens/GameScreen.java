@@ -9,7 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.group17.geowars.GameWorld;
 import com.group17.geowars.managers.Managers;
 import com.group17.geowars.playerobjects.Account;
-import com.group17.geowars.playerobjects.Profile;
+import com.group17.geowars.playerobjects.Player;
 
 /**
  * Created by nikola on 08/11/2016.
@@ -31,12 +31,12 @@ public class GameScreen extends ScreenAdapter implements hasStage {
 
         Managers.getAccountManager().addAccount(account);
 
-        Profile profile = account.getProfile();
+        Player player = account.getPlayer();
         Controller controller = null;
         if(Controllers.getControllers().size > 0)
             controller = Controllers.getControllers().first();
 
-        profile.setController(controller);
+        player.setController(controller);
 
     }
 

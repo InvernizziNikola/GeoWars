@@ -84,7 +84,7 @@ public class LevelManager implements GOInterface {
 
     @Override
     public void render(Batch batch) {
-        font.draw(batch, "Wave"+Managers.getLevelManager().getCurrentwave(), 375, 590);
+        font.draw(batch, "Wave "+Managers.getLevelManager().getCurrentwave(), 375, 590);
 
     }
 

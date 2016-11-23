@@ -10,13 +10,13 @@ import com.badlogic.gdx.math.Vector2;
  */
 public class PlayerInput {
     private Controller controller;
-    private Profile profile;
+    private Player player;
 
 private boolean fired = false;
-    public PlayerInput(Controller controller, Profile profile)
+    public PlayerInput(Controller controller, Player player)
     {
         this.controller = controller;
-        this.profile = profile;
+        this.player = player;
         //constructor empty ?
     }
 
@@ -51,7 +51,7 @@ private boolean fired = false;
             dir.y += -1;
         }
 
-        profile.getShip().setMoveDirection(dir.nor());
+        player.getShip().setMoveDirection(dir.nor());
     }
     public void handleMouseShooting()
     {
@@ -59,14 +59,14 @@ private boolean fired = false;
 
         if(Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
 
-            Vector2 shipPos = profile.getShip().getPosition();
+            Vector2 shipPos = player.getShip().getPosition();
             Vector2 mousePos = new Vector2(Gdx.input.getX(), -Gdx.input.getY() + 600);
 
 
             dir = new Vector2(mousePos.x - shipPos.x, mousePos.y - shipPos.y);
         }
 
-        profile.getShip().setShootDirection(dir.nor());
+        player.getShip().setShootDirection(dir.nor());
     }
     public void handleControllerInput()
     {
@@ -80,7 +80,7 @@ private boolean fired = false;
         if(controller.getButton(0) && !fired)
         {
             fired = true;
-            profile.getShip().nuke();
+            player.getShip().nuke();
         }
         else if(!controller.getButton(0) && fired)
         {
@@ -104,7 +104,7 @@ private boolean fired = false;
         if(dir.len() < 0.2f)
             dir = new Vector2(0,0);
 
-        profile.getShip().setMoveDirection(dir.nor());
+        player.getShip().setMoveDirection(dir.nor());
     }
     public void handleShootJoystick()
     {
@@ -122,6 +122,6 @@ private boolean fired = false;
         if(dir.len() < 0.2f)
             dir = new Vector2(0,0);
 
-        profile.getShip().setShootDirection(dir.nor());
+        player.getShip().setShootDirection(dir.nor());
     }
 }

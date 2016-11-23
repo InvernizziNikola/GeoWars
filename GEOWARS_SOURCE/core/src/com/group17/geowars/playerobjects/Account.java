@@ -17,7 +17,7 @@ import java.util.*;
  * @author kevin
  */
 public class Account {
-    private Profile profile;
+    private Player player;
 
     private List<Ship> ships;
     private List<Drone> drones;
@@ -28,8 +28,8 @@ public class Account {
     public Account(String playerId)
     {
         this.playerId = playerId;
-        //get data from profile id #databank
-        //profile = getProfile();
+        //get data from player id #databank
+        //player = getPlayer();
         ships = setShips();
         drones = SetDrones();
         level = setLevel();
@@ -37,12 +37,12 @@ public class Account {
 
     public void setPlayer(Drone dr , Ship sp)//#TODO: VIA DATABANK
     {
-        //Profile profile = new Profile("playerId");
-         profile = new Profile("nikoala",dr,sp);
+        //Player player = new Player("playerId");
+         player = new Player("nikoala",dr,sp);
 
     }
-    public Profile getProfile() {
-       return profile;
+    public Player getPlayer() {
+       return player;
     }
 
     private List<Ship> setShips( ) {//#TODO: VIA DATABANK
@@ -60,8 +60,8 @@ public class Account {
 
         Vector2 startPos = new Vector2(Gdx.graphics.getWidth()/2 + 30, Gdx.graphics.getHeight()/2 + 30);
 
-        d.add(new Drone(startPos, "support"));
-        d.add(new Drone(startPos, "defence"));
+        d.add(new Drone(startPos, "support", player));
+        d.add(new Drone(startPos, "defence", player));
         return d;
     }
 

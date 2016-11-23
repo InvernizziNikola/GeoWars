@@ -34,13 +34,13 @@ public class CollisionManager
             if(!b.isFriendly()) {
                 for (Account p : Managers.getAccountManager().getAccounts()) {
 
-                    Vector2 playerPos = p.getProfile().getShip().getPosition();
+                    Vector2 playerPos = p.getPlayer().getShip().getPosition();
                     Vector2 distance = new Vector2(b.getPosition().x - playerPos.x, b.getPosition().y - playerPos.y);
 
                     if(distance.len() < 25) {
 
                         Managers.getBulletManager().remove(b);
-                        System.out.println("Profile hit by enemy bullet");
+                        System.out.println("Player hit by enemy bullet");
                     }
                 }
             }
@@ -59,13 +59,13 @@ public class CollisionManager
             }
         }
         for (Account p : Managers.getAccountManager().getAccounts()) {
-            Vector2 playerPos = p.getProfile().getShip().getPosition();
+            Vector2 playerPos = p.getPlayer().getShip().getPosition();
 
             for (Geom g : Managers.getGeomManager().getGeomList()) {
                 Vector2 distance = new Vector2(playerPos.x - g.getPosition().x, playerPos.y - g.getPosition().y);
                 if (distance.len() < 25 && !g.destroy) {
 
-                    p.getProfile().getShip().handlePickedUp(g);
+                    p.getPlayer().getShip().handlePickedUp(g);
                     Managers.getGeomManager().removeGeom(g);
                 }
             }
@@ -74,7 +74,7 @@ public class CollisionManager
                 Vector2 distance = new Vector2(playerPos.x - g.getPosition().x, playerPos.y - g.getPosition().y);
                 if (distance.len() < 25 && !g.destroy) {
 
-                    p.getProfile().getShip().handlePickedUp(g);
+                    p.getPlayer().getShip().handlePickedUp(g);
                     Managers.getpowerUpManager().removePowerUp(g);
                 }
             }
@@ -84,7 +84,7 @@ public class CollisionManager
                 Vector2 distance = new Vector2(playerPos.x - e.getPosition().x, playerPos.y - e.getPosition().y);
                 if (distance.len() < 25) {
 
-                    p.getProfile().getShip().setDead();
+                    p.getPlayer().getShip().setDead();
 
                     Managers.getGameManager().gameState = GAMESTATE.MENU;
                     Managers.getGameManager().resetGame();

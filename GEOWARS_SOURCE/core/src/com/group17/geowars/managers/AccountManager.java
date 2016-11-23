@@ -35,13 +35,13 @@ public class AccountManager {
     public void update()
     {
         for (Account p: accounts) {
-            p.getProfile().update();
+            p.getPlayer().update();
         }
     }
     public void render(Batch batch)
     {
         for (Account p: accounts) {
-            p.getProfile().render(batch);
+            p.getPlayer().render(batch);
         }
     }
     public void reset()
@@ -49,7 +49,7 @@ public class AccountManager {
         // TODO
 
         for (Account p: accounts) {
-            p.getProfile().reset();
+            p.getPlayer().reset();
         }
     }
 }

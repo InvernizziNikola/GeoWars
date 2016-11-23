@@ -17,14 +17,14 @@ import com.group17.geowars.gameobjects.Ship;
  *
  * @author kevin
  */
-public class Profile implements GOInterface {
+public class Player implements GOInterface {
     private String name;
     private Ship ship;
     private Drone drone;
     private Controller controller;// nodig ?
     private PlayerInput playerInput;
 
-    public Profile(String naam , Drone dr , Ship sp)
+    public Player(String naam , Drone dr , Ship sp)
     {
         name = naam;
         drone = dr;
