@@ -74,7 +74,6 @@ public class PlayMenu implements Screen, hasStage {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
 
-                System.out.println("CLICKED: " + actor);
                 Managers.getGameManager().gameState = GAMESTATE.GAMEPLAYING;
                 Screen nextMenu = Managers.getMenuManager().getScreen("game");
                 Managers.getMenuManager().setScreen(nextMenu);

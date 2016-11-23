@@ -24,13 +24,6 @@ public class GeoWars extends ApplicationAdapter {
 		//screen = new GameScreen();
 		Screen beginScreen = Managers.getMenuManager().getScreen("mainmenu");
 		Managers.getMenuManager().setScreen(beginScreen);
-
-
-
-		ThreadingTest test = new ThreadingTest("Thread 1");
-		test.start();
-		ThreadingTest test2 = new ThreadingTest("Thread 2");
-		test2.start();
 	}
 
 
