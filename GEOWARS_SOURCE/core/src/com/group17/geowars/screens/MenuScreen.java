@@ -7,6 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.group17.geowars.managers.Managers;
 import com.group17.geowars.utils.MenuGrid;
+import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -18,7 +19,8 @@ public class MenuScreen implements Screen {
 
 
     protected Map<MenuGrid, TextButton> menuButtons = new HashMap<MenuGrid, TextButton>();
-    protected int selectedButton = 0;
+    protected int selectedButtonX = 0;
+    protected int selectedButtonY = 0;
     protected boolean pressed = false;
     protected TextButton.TextButtonStyle styleDefault;
     protected TextButton.TextButtonStyle styleSelected;
@@ -51,17 +53,17 @@ public class MenuScreen implements Screen {
         Controller c = Controllers.getControllers().first();
         if(c.getButton(0) && !pressed)
         {
-            selectedButton++;
+            selectedButtonY++;
 
-            if(selectedButton > menuButtons.size()-1)
-                selectedButton = 0;
+            if(selectedButtonY > menuButtons.size()-1)
+                selectedButtonY = 0;
             pressed = true;
         }
         if(c.getButton(3) && !pressed)
         {
-            selectedButton--;
-            if(selectedButton < 0)
-                selectedButton = menuButtons.size()-1;
+            selectedButtonY--;
+            if(selectedButtonY < 0)
+                selectedButtonY = menuButtons.size()-1;
             pressed = true;
         }
         if(!c.getButton(0) && !c.getButton(3) && pressed)
@@ -71,14 +73,24 @@ public class MenuScreen implements Screen {
 
         if(c.getButton(1) || c.getButton(2))
         {
-            if(menuButtons.size() > 0)
-                menuButtons.get(selectedButton).setChecked(true);
+            pressButton(new MenuGrid(selectedButtonX, selectedButtonY));
         }
 
+        selectButton(new MenuGrid(selectedButtonX, selectedButtonY));
+    }
+    public void pressButton(MenuGrid menugrid)
+    {
+        TextButton tempButton = getButton(menugrid);
+        if(tempButton != null){
+            tempButton.setChecked(true);
+        }
+    }
 
+    public void selectButton(MenuGrid menuGrid)
+    {
         for(Map.Entry<MenuGrid, TextButton> button : menuButtons.entrySet())
         {
-            if(button.getKey() == selectedButton)
+            if(button.getKey().equals(new MenuGrid(selectedButtonX, selectedButtonY)))
             {
                 button.getValue().setStyle(styleSelected);
             }
@@ -87,17 +99,38 @@ public class MenuScreen implements Screen {
                 button.getValue().setStyle(styleDefault);
             }
         }
-
     }
-    protected TextButton newButton(String name, int x, int y, int width, int height)
-    {
-        TextButton tempButton = new TextButton(name, styleDefault);
-        tempButton.setPosition(x, y);
-        tempButton.setWidth(width);
-        tempButton.setHeight(height);
 
-        menuButtons.put(menuButtons.size(), tempButton);
-        stage.addActor(tempButton);
+    public TextButton getButton(MenuGrid menuGrid)
+    {
+        for(Map.Entry<MenuGrid, TextButton> button : menuButtons.entrySet())
+        {
+            if(button.getKey().equals(new MenuGrid(selectedButtonX, selectedButtonY)))
+            {
+                return button.getValue();
+            }
+        }
+        return null;
+    }
+
+
+
+    protected TextButton newButton(String name, int x, int y, int width, int height, MenuGrid position)
+    {
+        TextButton tempButton = null;
+        try{
+            tempButton = new TextButton(name, styleDefault);
+            tempButton.setPosition(x, y);
+            tempButton.setWidth(width);
+            tempButton.setHeight(height);
+
+            menuButtons.put(position, tempButton);
+            stage.addActor(tempButton);
+        }
+        catch (Exception e)
+        {
+            System.out.println("Error creating new button(" + name + ") at position: " + position);
+        }
 
         return tempButton;
     }

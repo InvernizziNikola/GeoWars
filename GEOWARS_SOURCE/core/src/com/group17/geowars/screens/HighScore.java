@@ -12,6 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.group17.geowars.database.DBManager;
+import com.group17.geowars.utils.MenuGrid;
 
 import java.util.ArrayList;
 
@@ -35,9 +36,9 @@ public class HighScore extends MenuScreen{
 
     public void Buttons(){
 
-        TextButton campaignButton = newButton("CAMPAIGN",152,400,150,50);
+        TextButton campaignButton = newButton("CAMPAIGN",152,400,150,50, new MenuGrid(0, 0));
 
-        TextButton arcadeButton = newButton("ARCADE",325,400,150,50);
+        TextButton arcadeButton = newButton("ARCADE",325,400,150,50, new MenuGrid(1, 0));
         arcadeButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -48,10 +49,10 @@ public class HighScore extends MenuScreen{
             }
         });
 
-        TextButton multiPlayerButton = newButton("CO-OP",525,400,150,50);
+        TextButton multiPlayerButton = newButton("CO-OP",525,400,150,50, new MenuGrid(2, 0));
 
 
-        TextButton backButton = newButton("BACK", 325,100,150,50);
+        TextButton backButton = newButton("BACK", 325,100,150,50, new MenuGrid(0, 1));
 
         /*--------------EVENT HANDLER--------------------------*/
         campaignButton.addListener(new ChangeListener() {

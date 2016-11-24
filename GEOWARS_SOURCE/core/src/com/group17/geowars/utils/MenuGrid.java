@@ -13,6 +13,20 @@ public class MenuGrid {
         this.y = y;
     }
 
+
+    public boolean equals(MenuGrid o)
+    {
+        if(this.x == o.x && this.y == o.y)
+            return true;
+
+        return  false;
+    }
+
+    public String toString()
+    {
+        return "(" + x + ", " + y + ")";
+    }
+
     public int getX() {
         return x;
     }

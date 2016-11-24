@@ -8,6 +8,9 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.group17.geowars.managers.Managers;
+import com.group17.geowars.utils.MenuGrid;
+
+import java.util.Map;
 
 /**
  * Created by michield on 10/11/2016.
@@ -22,17 +25,18 @@ public class MainMenu extends MenuScreen implements Screen{
     public void create(){
         Gdx.input.setInputProcessor(stage);
 
-        TextButton playButton = newButton("PLAY", 300, 450, 150, 50);
+        final TextButton playButton = newButton("PLAY", 300, 450, 150, 50, new MenuGrid(0, 0));
         playButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor)
             {
+                playButton.setChecked(false);
                 MenuScreen nextMenu = Managers.getMenuManager().getScreen("playmenu");
                 Managers.getMenuManager().setScreen(nextMenu);
             }
         });
 
-        TextButton profileButton = newButton("PROFILE", 300, 390, 150, 50);
+        TextButton profileButton = newButton("PROFILE", 300, 390, 150, 50, new MenuGrid(0, 1));
         profileButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor)
@@ -42,7 +46,7 @@ public class MainMenu extends MenuScreen implements Screen{
             }
         });
 
-        TextButton optionsButton = newButton("OPTIONS", 300, 330, 150, 50);
+        TextButton optionsButton = newButton("OPTIONS", 300, 330, 150, 50, new MenuGrid(0, 2));
         optionsButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor)
@@ -52,7 +56,7 @@ public class MainMenu extends MenuScreen implements Screen{
             }
         });
 
-        TextButton leaderboardButton = newButton("LEADERBOARDS", 300, 270, 150, 50);
+        TextButton leaderboardButton = newButton("LEADERBOARDS", 300, 270, 150, 50, new MenuGrid(0, 3));
         leaderboardButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor)
@@ -62,7 +66,7 @@ public class MainMenu extends MenuScreen implements Screen{
             }
         });
 
-        TextButton shopButton = newButton("SHOP", 300, 210, 150, 50);
+        TextButton shopButton = newButton("SHOP", 300, 210, 150, 50, new MenuGrid(0, 4));
         shopButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor)
@@ -73,7 +77,7 @@ public class MainMenu extends MenuScreen implements Screen{
         });
 
 
-        TextButton quitButton = newButton("QUIT GAME", 300, 90, 150, 50);
+        TextButton quitButton = newButton("QUIT GAME", 300, 90, 150, 50, new MenuGrid(0, 5));
         quitButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor)
@@ -83,8 +87,9 @@ public class MainMenu extends MenuScreen implements Screen{
         });
 
 
-        if(menuButtons.size() >= 0) // todo check if controller is connected
-            menuButtons.get(selectedButton).setStyle(styleSelected);
+        TextButton startButton = getButton(new MenuGrid(0,0));
+        if(startButton != null)
+            startButton.setStyle(styleSelected);
     }
 
 

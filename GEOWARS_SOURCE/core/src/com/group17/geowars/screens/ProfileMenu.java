@@ -7,6 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.group17.geowars.managers.Managers;
+import com.group17.geowars.utils.MenuGrid;
 
 import javax.swing.event.ChangeEvent;
 
@@ -24,7 +25,7 @@ public class ProfileMenu extends MenuScreen {
     public void create(){
         Gdx.input.setInputProcessor(stage);
 
-        TextButton clanButton = newButton("CLANS",50,100,150,50);
+        TextButton clanButton = newButton("CLANS",50,100,150,50, new MenuGrid(0, 0));
         clanButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -32,7 +33,7 @@ public class ProfileMenu extends MenuScreen {
             }
         });
 
-        TextButton backButton = newButton("BACK",640,50,150,50);
+        TextButton backButton = newButton("BACK",640,50,150,50, new MenuGrid(1, 0));
         backButton.addListener(new ChangeListener() {
 
             public void changed(ChangeEvent event, Actor actor) {
