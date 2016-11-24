@@ -22,6 +22,10 @@ public class Geom extends GameObject implements GOInterface
     private float rotateDirection = 1;
 
     private float speed = 0;
+    private float maxScale = 1.2f;
+    private float minScale = 0.8f;
+    private float scale = 1;
+    private float scaleSpeed = 1;
     private float maxSpeed = 100;
     private Vector2 dir = new Vector2(0,0);
 
@@ -58,10 +62,11 @@ public class Geom extends GameObject implements GOInterface
     {
         // TODO DRAW IMAGE CORRRECTLY
         sprite.setColor(new Color(0.8f, 0.8f,0,0.6f));
-        sprite.setSize(50, 50);
-        sprite.setOrigin(25,25);
+
+        sprite.setSize(50 * scale, 50 * scale);
+        sprite.setOrigin(25 * scale,25 * scale);
         sprite.setRotation(angle);
-        sprite.setPosition(position.x - 25, position.y - 25);
+        sprite.setPosition(position.x - 25*scale, position.y - 25*scale);
         sprite.draw(batch);
     }
 
@@ -79,6 +84,8 @@ public class Geom extends GameObject implements GOInterface
 
         if (dist.len() < 120)
         {
+            scale = MathUtils.lerp(scale, (maxScale+minScale) / 2, Math.abs(scaleSpeed) * Gdx.graphics.getDeltaTime());
+
             dir = new Vector2(dist).nor();
 
             speed = MathUtils.lerp(speed, maxSpeed, Gdx.graphics.getDeltaTime()*20);
@@ -87,6 +94,18 @@ public class Geom extends GameObject implements GOInterface
                     position.y + dir.y * speed * Gdx.graphics.getDeltaTime());
         }else
         {
+            scale += scaleSpeed * Gdx.graphics.getDeltaTime();
+            if(scale < minScale)
+            {
+                scale = minScale;
+                scaleSpeed *= -1;
+            }
+            else if(scale > maxScale)
+            {
+                scale = maxScale;
+                scaleSpeed *= -1;
+            }
+
             speed = MathUtils.lerp(speed, 0, Gdx.graphics.getDeltaTime());
 
             position = new Vector2(position.x + dir.x * speed * Gdx.graphics.getDeltaTime(),

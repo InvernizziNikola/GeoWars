@@ -16,6 +16,8 @@ import com.group17.geowars.managers.Managers;
 import com.group17.geowars.playerobjects.Account;
 import com.group17.geowars.playerobjects.Player;
 
+import java.util.Random;
+
 /**
  *
  * @author kevin
@@ -28,6 +30,7 @@ public class Drone extends GameObject{
     private Sprite sprite;
     private Texture texture;
     private Account player;
+    private Vector2 dir = new Vector2(0,0);
 
     public Drone(Vector2 pos, String type, Account player)
     {
@@ -62,11 +65,15 @@ public class Drone extends GameObject{
 
         Vector2 shipPos = player.getPlayer().getShip().getPosition();
         Vector2 dist = new Vector2(shipPos.x - getPosition().x, shipPos.y - getPosition().y);
+        Vector2 pos = new Vector2(position.x, position.y);
+
 
         if(dist.len() > 100)
         {
-            Vector2 pos = new Vector2(position.x, position.y);
-            setPosition(pos.lerp(shipPos, Gdx.graphics.getDeltaTime() * 50));
+            setPosition(pos.lerp(shipPos, Gdx.graphics.getDeltaTime()));
+        }
+        else{
+            setPosition(pos.lerp(new Vector2(position.x + new Random().nextInt(100) - 50, position.y + new Random().nextInt(100) - 50), Gdx.graphics.getDeltaTime()));
         }
     }
 }

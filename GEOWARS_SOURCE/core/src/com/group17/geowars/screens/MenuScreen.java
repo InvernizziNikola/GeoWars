@@ -6,6 +6,7 @@ import com.badlogic.gdx.controllers.Controllers;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.group17.geowars.managers.Managers;
+import com.group17.geowars.utils.MenuGrid;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -16,7 +17,7 @@ import java.util.Map;
 public class MenuScreen implements Screen {
 
 
-    protected Map<Integer, TextButton> menuButtons = new HashMap<Integer, TextButton>();
+    protected Map<MenuGrid, TextButton> menuButtons = new HashMap<MenuGrid, TextButton>();
     protected int selectedButton = 0;
     protected boolean pressed = false;
     protected TextButton.TextButtonStyle styleDefault;
@@ -43,8 +44,6 @@ public class MenuScreen implements Screen {
 
     @Override
     public void render(float delta) {
-
-
 
         if(Controllers.getControllers().size < 1)
             return ;
@@ -77,7 +76,7 @@ public class MenuScreen implements Screen {
         }
 
 
-        for(Map.Entry<Integer, TextButton> button : menuButtons.entrySet())
+        for(Map.Entry<MenuGrid, TextButton> button : menuButtons.entrySet())
         {
             if(button.getKey() == selectedButton)
             {
