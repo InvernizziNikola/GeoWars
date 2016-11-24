@@ -2,8 +2,13 @@ package com.group17.geowars.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.group17.geowars.managers.Managers;
+
+import javax.swing.event.ChangeEvent;
 
 /**
  * Created by michield on 10/11/2016.
@@ -20,23 +25,23 @@ public class ProfileMenu extends MenuScreen {
         Gdx.input.setInputProcessor(stage);
 
         TextButton clanButton = newButton("CLANS",50,100,150,50);
-        /*clanButton.addListener(new ChangeListener() {
+        clanButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
 
             }
-        });*/
+        });
 
         TextButton backButton = newButton("BACK",640,50,150,50);
-        /*backButton.addListener(new ChangeListener() {
+        backButton.addListener(new ChangeListener() {
 
             public void changed(ChangeEvent event, Actor actor) {
 
                 System.out.println("CLICKED: " + actor);
-                Screen nextMenu = Managers.getMenuManager().getScreen("mainmenu");
+                MenuScreen nextMenu = Managers.getMenuManager().getScreen("mainmenu");
                 Managers.getMenuManager().setScreen(nextMenu);
             }
-        });*/
+        });
     }
     @Override
     public void show() {
