@@ -137,7 +137,7 @@ public class Ship extends GameObject implements GOInterface { //interface shoot?
 
     private void Move()
     {
-        position.mulAdd(moveDir, 200 * Gdx.graphics.getDeltaTime());
+        position.mulAdd(moveDir, 450 * Gdx.graphics.getDeltaTime());
     }
 
     public void setMoveDirection(Vector2 dir)

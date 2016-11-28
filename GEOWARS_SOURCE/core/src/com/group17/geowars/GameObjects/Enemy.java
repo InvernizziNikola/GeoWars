@@ -117,7 +117,6 @@ public class Enemy extends GameObject implements GOInterface {
         {
             lookAt = direction.nor();
         }
-        position.mulAdd(lookAt.nor(),
-                50 * Gdx.graphics.getDeltaTime());
+        position.mulAdd(lookAt.nor(), 125 * Gdx.graphics.getDeltaTime());
     }
 }

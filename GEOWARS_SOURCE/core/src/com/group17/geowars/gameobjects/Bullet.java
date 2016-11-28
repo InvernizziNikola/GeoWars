@@ -14,7 +14,7 @@ import com.group17.geowars.managers.Managers;
 public class Bullet extends GameObject implements GOInterface {
 
     Vector2 direction = new Vector2(0,0);
-    float speed = 400;
+    float speed = 550;
 
     public boolean destroy = false;
 
@@ -23,7 +23,8 @@ public class Bullet extends GameObject implements GOInterface {
 
     public Bullet(Vector2 pos, Vector2 dir) {
         super(pos);
-        direction = dir;
+        // normalize just incase
+        direction = dir.nor();
 
         texture = Managers.getAssetManager().getTexture("bullet");
 

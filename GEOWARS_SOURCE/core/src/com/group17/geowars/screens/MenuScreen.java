@@ -5,9 +5,9 @@ import com.badlogic.gdx.controllers.Controller;
 import com.badlogic.gdx.controllers.Controllers;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.group17.geowars.database.XBOX360KeyMapping;
 import com.group17.geowars.managers.Managers;
 import com.group17.geowars.utils.MenuGrid;
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -70,7 +70,22 @@ public class MenuScreen implements Screen {
         {
             pressed = false;
         }
-
+        if(c.getPov(0) == XBOX360KeyMapping.BUTTON_DPAD_DOWN)
+        {
+            System.out.println("down");
+        }
+        if(c.getPov(0) == XBOX360KeyMapping.BUTTON_DPAD_LEFT)
+        {
+            System.out.println("left");
+        }
+        if(c.getPov(0) == XBOX360KeyMapping.BUTTON_DPAD_RIGHT)
+        {
+            System.out.println("right");
+        }
+        if(c.getPov(0) == XBOX360KeyMapping.BUTTON_DPAD_UP)
+        {
+            System.out.println("up");
+        }
         if(c.getButton(1) || c.getButton(2))
         {
             pressButton(new MenuGrid(selectedButtonX, selectedButtonY));
@@ -164,4 +179,5 @@ public class MenuScreen implements Screen {
     public void dispose() {
 
     }
+
 }
