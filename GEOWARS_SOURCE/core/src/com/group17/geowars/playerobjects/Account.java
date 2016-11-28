@@ -85,6 +85,11 @@ public class Account {
         return level;
     }
 
+    public void reset()
+    {
+        player.reset();
+
+    }
     public void update()
     {
 

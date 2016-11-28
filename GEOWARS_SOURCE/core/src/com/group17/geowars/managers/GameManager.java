@@ -28,5 +28,6 @@ public class GameManager {
         Managers.getEnemyManager().reset();
         Managers.getGeomManager().reset();
         Managers.getLevelManager().reset();
+
     }
 }

@@ -48,8 +48,8 @@ public class AccountManager {
     {
         // TODO
 
-        for (Account p: accounts) {
-            p.getPlayer().reset();
+        for (Account a: accounts) {
+            a.reset();
         }
     }
 }

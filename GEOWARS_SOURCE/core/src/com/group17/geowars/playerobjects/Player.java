@@ -31,10 +31,6 @@ public class Player implements GOInterface {
         ship = sp;
 
     }
-    public void reset()
-    {
-        getShip().reset();
-    }
     public void setShip(Ship ship) {
         this.ship = ship;
     }
@@ -85,8 +81,10 @@ public class Player implements GOInterface {
         playerInput.update();
         drone.update();
         ship.update();
-
-
-
+    }
+    public void reset()
+    {
+        ship.reset();
+        drone.reset();
     }
 }

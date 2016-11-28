@@ -55,7 +55,11 @@ public class Drone extends GameObject{
         sprite.setPosition(position.x - 10, position.y - 10);
         sprite.draw(batch);
     }
+    public void reset()
+    {
+        target = null;
 
+    }
     public void update() {
 
         Vector2 shipPos = player.getPlayer().getShip().getPosition();
