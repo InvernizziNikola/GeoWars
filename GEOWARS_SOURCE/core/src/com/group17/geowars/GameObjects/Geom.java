@@ -26,7 +26,7 @@ public class Geom extends GameObject implements GOInterface
     private float minScale = 0.8f;
     private float scale = 1;
     private float scaleSpeed = 1;
-    private float maxSpeed = 100;
+    private float maxSpeed = 200;
     private Vector2 dir = new Vector2(0,0);
 
     public boolean destroy = false;
@@ -74,10 +74,6 @@ public class Geom extends GameObject implements GOInterface
     public void update()
     {
         // TODO MOVEMENT
-
-
-
-
         Vector2 playerPos = Managers.getAccountManager().getAccounts().get(0).getPlayer().getShip().getPosition();
 
         Vector2 dist = new Vector2(playerPos.x - position.x, playerPos.y - position.y);

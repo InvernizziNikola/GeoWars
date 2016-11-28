@@ -1,12 +1,15 @@
 package com.group17.geowars.managers;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g3d.particles.influencers.ColorInfluencer;
+import com.badlogic.gdx.math.Vector2;
 import com.group17.geowars.gameobjects.GOInterface;
 import com.group17.geowars.gameobjects.Geom;
 import com.group17.geowars.gameobjects.PowerUp;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by kevin on 12/11/2016.
@@ -61,5 +64,31 @@ public class PowerUpManager implements GOInterface {
     }
     public List<PowerUp> getPowerUpList() {
         return powerUpList;
+    }
+
+    public PowerUp GetRandomPowerup()
+    {
+        Random r = new Random();
+
+        switch(r.nextInt(3))
+        {
+            case 0:
+            {
+                break;
+            }
+            case 1:
+            {
+                break;
+            }
+            case 2:
+            {
+                break;
+            }
+            case 3:
+            {
+                break;
+            }
+        }
+        return new PowerUp("test", new Vector2(300,300));
     }
 }

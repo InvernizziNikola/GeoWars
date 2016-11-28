@@ -6,6 +6,7 @@
 package com.group17.geowars.gameobjects;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -29,6 +30,7 @@ public class Ship extends GameObject implements GOInterface { //interface shoot?
     private BitmapFont font;
     private String type;
     private Sprite sprite;
+    private Sprite shield;
 
     private boolean canShoot = true;
     private float timer = 0;
@@ -43,11 +45,15 @@ public class Ship extends GameObject implements GOInterface { //interface shoot?
 
 
         font = new BitmapFont();
-        texture = Managers.getAssetManager().getTexture("Speler_2");
         score=0;
         this.type = type;
         dead = false;
+
+        texture = Managers.getAssetManager().getTexture("Speler_2");
         sprite = new Sprite(texture, texture.getWidth(), texture.getHeight());
+
+        Texture texture2 = Managers.getAssetManager().getTexture("shield");
+        shield = new Sprite(texture2, texture.getWidth(), texture.getHeight());
     }
 
     public String getType() {
@@ -91,15 +97,25 @@ public class Ship extends GameObject implements GOInterface { //interface shoot?
     {
         // TODO DRAW IMAGE CORRRECTLY
         sprite.setColor(new Color(0.8f, 0.8f,0,1));
-        if(dead)
-            sprite.setColor(new Color(1,0,0,1));
         sprite.setSize(50, 50);
         sprite.setOrigin(25, 25);
         sprite.setRotation(lookDir.angle());
         sprite.setPosition(position.x - 25, position.y - 25);
         sprite.draw(batch);
 
-        font.draw(batch, "speler: score "+score+" multieplier= "+multiplier+"    level= "+level, 10, 20);
+
+        shield.setColor(new Color(0.1f, 0.8f,0,0.5f));
+        shield.setSize(80  , 80);
+        shield.setOrigin(40, 40);
+        shield.setPosition(position.x - 40, position.y - 40);
+        shield.draw(batch);
+
+
+
+
+
+
+        font.draw(batch, "speler: score "+score+" multiplier= "+multiplier+"    level= "+level, 10, 20);
     }
 
     @Override

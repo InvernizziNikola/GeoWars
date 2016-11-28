@@ -12,13 +12,8 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.group17.geowars.managers.BulletManager;
 import com.group17.geowars.managers.Managers;
 import com.group17.geowars.playerobjects.Account;
-import com.group17.geowars.playerobjects.Player;
-
-import java.util.Random;
 
 
 public class Drone extends GameObject{
