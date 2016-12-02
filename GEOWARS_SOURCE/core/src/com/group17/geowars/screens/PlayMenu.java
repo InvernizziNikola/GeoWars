@@ -29,7 +29,6 @@ public class PlayMenu extends MenuScreen {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 campaignButton.setChecked(false);
-                //moet nog een action komen
             }
         });
         final TextButton arcadeButton = newButton("ARCADE",325,400,150,50, new MenuGrid(1, 0));
@@ -44,23 +43,25 @@ public class PlayMenu extends MenuScreen {
             }
         });
 
-        TextButton multiPlayerButton = newButton("CO-OP",525,400,150,50, new MenuGrid(2, 0));
-        /*multiPlayerButton.addListener(new ChangeListener() {
+        final TextButton multiPlayerButton = newButton("CO-OP",525,400,150,50, new MenuGrid(2, 0));
+        multiPlayerButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
+                multiPlayerButton.setChecked(false);
 
             }
-        });*/
+        });
 
-        TextButton backButton = newButton("BACK",325,250,150,50, new MenuGrid(0, 1));
+        final TextButton backButton = newButton("BACK",325,250,150,50, new MenuGrid(1, 1));
         backButton.addListener(new ChangeListener() {
 
             public void changed(ChangeEvent event, Actor actor) {
+
+                backButton.setChecked(false);
                 MenuScreen nextMenu = Managers.getMenuManager().getScreen("mainmenu");
                 Managers.getMenuManager().setScreen(nextMenu);
             }
         });
-
     }
 
     @Override

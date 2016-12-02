@@ -6,6 +6,7 @@ import com.badlogic.gdx.controllers.Controller;
 import com.badlogic.gdx.controllers.Controllers;
 import com.badlogic.gdx.controllers.PovDirection;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -24,9 +25,8 @@ public class MenuScreen implements Screen {
 
 
     protected Map<MenuGrid, TextButton> menuButtons = new HashMap<MenuGrid, TextButton>();
-    protected int selectedButtonX = 0;
-    protected int selectedButtonY = 0;
-    protected boolean pressed = false;
+    protected MenuGrid selectedButton = new MenuGrid(0, 0);
+    protected boolean pressed = true;
     protected TextButton.TextButtonStyle styleDefault;
     protected TextButton.TextButtonStyle styleSelected;
     protected Stage stage;
@@ -58,75 +58,97 @@ public class MenuScreen implements Screen {
 
         Controller c = Controllers.getControllers().first();
 
-        if(c.getPov(0) == PovDirection.center && pressed)
+        if(c.getPov(0) == PovDirection.center && pressed && !c.getButton(1) && !c.getButton(2) && !c.getButton(3) && !c.getButton(0))
         {
             pressed = false;
         }
         if(c.getPov(0) == XBOX360KeyMapping.BUTTON_DPAD_UP && !pressed)
         {
-            if(menuButtons.get(new MenuGrid(selectedButtonX, selectedButtonY - 1)) != null)
-            {
-                selectedButtonY--;
-            }
             pressed = true;
+            MenuGrid temp = new MenuGrid(selectedButton.X(), selectedButton.Y() - 1);
+            lookForButtonOnRow(temp);
         }
-        if(c.getPov(0) == XBOX360KeyMapping.BUTTON_DPAD_LEFT && !pressed)
+        else if(c.getPov(0) == XBOX360KeyMapping.BUTTON_DPAD_LEFT && !pressed)
         {
-            if(menuButtons.get(new MenuGrid(selectedButtonX - 1, selectedButtonY)) != null)
-            {
-                selectedButtonX--;
-            }
             pressed = true;
+            MenuGrid temp = new MenuGrid(selectedButton.X() - 1, selectedButton.Y());
+            lookForButtonOnColumn(temp);
         }
-        if(c.getPov(0) == XBOX360KeyMapping.BUTTON_DPAD_RIGHT && !pressed)
+        else if(c.getPov(0) == XBOX360KeyMapping.BUTTON_DPAD_RIGHT && !pressed)
         {
-            if(menuButtons.get(new MenuGrid(selectedButtonX + 1, selectedButtonY)) != null)
-            {
-                selectedButtonX++;
-            }
             pressed = true;
+            MenuGrid temp = new MenuGrid(selectedButton.X() + 1, selectedButton.Y());
+            lookForButtonOnColumn(temp);
         }
-        if(c.getPov(0) == XBOX360KeyMapping.BUTTON_DPAD_DOWN && !pressed)
+        else if(c.getPov(0) == XBOX360KeyMapping.BUTTON_DPAD_DOWN && !pressed)
         {
-            if(menuButtons.get(new MenuGrid(selectedButtonX, selectedButtonY + 1)) != null)
-            {
-                selectedButtonY++;
-            }
             pressed = true;
+            MenuGrid temp = new MenuGrid(selectedButton.X(), selectedButton.Y() + 1);
+            lookForButtonOnRow(temp);
         }
-        if(c.getButton(1) || c.getButton(2) || c.getButton(3) || c.getButton(4))
+        if((c.getButton(1) || c.getButton(2) || c.getButton(3) || c.getButton(0)) && !pressed)
         {
-            pressButton(new MenuGrid(selectedButtonX, selectedButtonY));
+            pressed = true;
+            pressButton(selectedButton);
         }
 
         deSelectButtons();
-        menuButtons.get(new MenuGrid(selectedButtonX, selectedButtonY)).setStyle(styleSelected);
+        setSelectedButton();
     }
 
-    public void getClosestButtonOnRow(MenuGrid preferedMG)
+    public void setSelectedButton()
     {
-        int preferedX = preferedMG.X();
-        int preferedY = preferedMG.Y();
+        if(menuButtons.get(selectedButton) != null)
+            menuButtons.get(selectedButton).setStyle(styleSelected);
+    }
 
-        Button closestB = null;
-        MenuGrid closest = null;
+    public void lookForButtonOnRow(MenuGrid preferredMG)
+    {
+        int preferredX = preferredMG.X();
+        int preferredY = preferredMG.Y();
 
-        for(Map.Entry<MenuGrid, TextButton> button : menuButtons.entrySet())
-        {
-            if(button.getKey().Y() == preferedY)
-            {
-                if(closest == null)
-                    closestB = button.getValue();
+        int diffx = 0;
+
+        MenuGrid newMG = null;
+
+        for(Map.Entry<MenuGrid, TextButton> button : menuButtons.entrySet()) {
+            if (button.getKey().Y() == preferredY) {
+                if (newMG == null || diffx > Math.abs(button.getKey().X() - preferredX)) {
+                    diffx = Math.abs(button.getKey().X() - preferredX);
+                    newMG = button.getKey();
+                }
             }
         }
+        if(newMG != null)
+        {
+            selectedButton = newMG;
+        }
     }
-    public void getClosestButtonOnColumn(MenuGrid menugrid)
+    public void lookForButtonOnColumn(MenuGrid preferredMG)
     {
+        int preferredX = preferredMG.X();
+        int preferredY = preferredMG.Y();
 
+        MenuGrid newMG = null;
+
+        int diffy = 0;
+        for(Map.Entry<MenuGrid, TextButton> button : menuButtons.entrySet()) {
+            if (button.getKey().X() == preferredX) {
+                if (newMG == null || diffy > Math.abs(button.getKey().Y() - preferredY)) {
+                    diffy = Math.abs(button.getKey().Y() - preferredY);
+                    newMG = button.getKey();
+                }
+            }
+        }
+        if(newMG != null)
+        {
+            selectedButton = newMG;
+        }
     }
 
     public void pressButton(MenuGrid menugrid)
     {
+        pressed = true;
         TextButton tempButton = menuButtons.get(menugrid);
         if(tempButton != null){
             tempButton.setChecked(true);
