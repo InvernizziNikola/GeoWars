@@ -24,18 +24,20 @@ public class PlayMenu extends MenuScreen {
     public void create() {
         Gdx.input.setInputProcessor(stage);
 
-        TextButton campaignButton = newButton("CAMPAIGN", 125,400,150,50, new MenuGrid(0, 0));
-        /*campaignButton.addListener(new ChangeListener() {
+        final TextButton campaignButton = newButton("CAMPAIGN", 125,400,150,50, new MenuGrid(0, 0));
+        campaignButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
+                campaignButton.setChecked(false);
                 //moet nog een action komen
             }
-        });*/
-        TextButton arcadeButton = newButton("ARCADE",325,400,150,50, new MenuGrid(1, 0));
+        });
+        final TextButton arcadeButton = newButton("ARCADE",325,400,150,50, new MenuGrid(1, 0));
         arcadeButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
 
+                arcadeButton.setChecked(false);
                 Managers.getGameManager().gameState = GAMESTATE.GAMEPLAYING;
                 MenuScreen nextMenu = Managers.getMenuManager().getScreen("game");
                 Managers.getMenuManager().setScreen(nextMenu);
@@ -59,10 +61,6 @@ public class PlayMenu extends MenuScreen {
             }
         });
 
-
-        TextButton startButton = getButton(new MenuGrid(0,0));
-        if(startButton != null)
-            startButton.setStyle(styleSelected);
     }
 
     @Override
@@ -70,12 +68,14 @@ public class PlayMenu extends MenuScreen {
     {
 
     }
-
-    public void render (float delta) {
-        Gdx.gl.glClearColor(0.2f, 0.2f, 0.2f, 1);
+    @SuppressWarnings("Duplicates")
+    public void render (float deltaTime) {
+        Gdx.gl.glClearColor(0.2f, 0.2f, 0.2f, 0);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
         stage.draw();
+
+        super.render(deltaTime);
     }
 
     @Override

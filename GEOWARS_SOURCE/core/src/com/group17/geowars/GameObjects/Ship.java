@@ -111,10 +111,6 @@ public class Ship extends GameObject implements GOInterface { //interface shoot?
         shield.draw(batch);
 
 
-
-
-
-
         font.draw(batch, "speler: score "+score+" multiplier= "+multiplier+"    level= "+level, 10, 20);
     }
 

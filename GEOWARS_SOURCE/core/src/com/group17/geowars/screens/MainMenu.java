@@ -36,60 +36,61 @@ public class MainMenu extends MenuScreen implements Screen{
             }
         });
 
-        TextButton profileButton = newButton("PROFILE", 300, 390, 150, 50, new MenuGrid(0, 1));
+        final TextButton profileButton = newButton("PROFILE", 300, 390, 150, 50, new MenuGrid(0, 1));
         profileButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor)
             {
+                profileButton.setChecked(false);
                 MenuScreen nextMenu = Managers.getMenuManager().getScreen("profilemenu");
                 Managers.getMenuManager().setScreen(nextMenu);
             }
         });
 
-        TextButton optionsButton = newButton("OPTIONS", 300, 330, 150, 50, new MenuGrid(0, 2));
+        final TextButton optionsButton = newButton("OPTIONS", 300, 330, 150, 50, new MenuGrid(0, 2));
         optionsButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor)
             {
+                optionsButton.setChecked(false);
                 MenuScreen nextMenu = Managers.getMenuManager().getScreen("options");
                 Managers.getMenuManager().setScreen(nextMenu);
             }
         });
 
-        TextButton leaderboardButton = newButton("LEADERBOARDS", 300, 270, 150, 50, new MenuGrid(0, 3));
+        final TextButton leaderboardButton = newButton("LEADERBOARDS", 300, 270, 150, 50, new MenuGrid(0, 3));
         leaderboardButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor)
             {
+                leaderboardButton.setChecked(false);
                 MenuScreen nextMenu = Managers.getMenuManager().getScreen("highscore");
                 Managers.getMenuManager().setScreen(nextMenu);
             }
         });
 
-        TextButton shopButton = newButton("SHOP", 300, 210, 150, 50, new MenuGrid(0, 4));
+        final TextButton shopButton = newButton("SHOP", 300, 210, 150, 50, new MenuGrid(0, 4));
         shopButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor)
             {
+                shopButton.setChecked(false);
                 MenuScreen nextMenu = Managers.getMenuManager().getScreen("shop");
                 Managers.getMenuManager().setScreen(nextMenu);
             }
         });
 
 
-        TextButton quitButton = newButton("QUIT GAME", 300, 90, 150, 50, new MenuGrid(0, 5));
+        final TextButton quitButton = newButton("QUIT GAME", 300, 90, 150, 50, new MenuGrid(0, 5));
         quitButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor)
             {
+                quitButton.setChecked(false);
                 Gdx.app.exit();
             }
         });
 
-
-        TextButton startButton = getButton(new MenuGrid(0,0));
-        if(startButton != null)
-            startButton.setStyle(styleSelected);
     }
 
 
@@ -99,12 +100,13 @@ public class MainMenu extends MenuScreen implements Screen{
 
     }
 
+    @SuppressWarnings("Duplicates")
     public void render (float deltaTime) {
-        Gdx.gl.glClearColor(0.2f, 0.2f, 0.2f, 1);
+
+        Gdx.gl.glClearColor(0.2f, 0.2f, 0.2f, 0);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
         stage.draw();
-
         super.render(deltaTime);
     }
 

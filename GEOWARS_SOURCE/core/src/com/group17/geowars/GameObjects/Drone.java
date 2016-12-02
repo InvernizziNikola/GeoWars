@@ -27,6 +27,10 @@ public class Drone extends GameObject{
     private Account player;
     private Enemy target = null;
 
+
+    private boolean canShoot = true;
+    private float timer = 0;
+
     public Drone(Vector2 pos, String type, Account player)
     {
         super(pos);
@@ -60,7 +64,20 @@ public class Drone extends GameObject{
         target = null;
 
     }
+    public void shoot(Vector2 dir)
+    {
+        if(canShoot) {
+            Managers.getBulletManager().addBullet(new Bullet(position.cpy(), dir));
+            canShoot = false;
+        }
+    }
     public void update() {
+
+        timer += Gdx.graphics.getDeltaTime();
+        if(timer > 0.1f) {
+            timer %= 0.1f;
+            canShoot = true;
+        }
 
         Vector2 shipPos = player.getPlayer().getShip().getPosition();
         Vector2 dist = new Vector2(shipPos.x - getPosition().x, shipPos.y - getPosition().y);
@@ -99,7 +116,7 @@ public class Drone extends GameObject{
             else
             {
                 Vector2 dir = new Vector2(target.getPosition().x - position.x, target.getPosition().y - position.y).nor();
-                Managers.getBulletManager().addBullet(new Bullet(position.cpy(), dir));
+                shoot(dir);
             }
         }
 
