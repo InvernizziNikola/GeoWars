@@ -31,6 +31,7 @@ public class HighScore extends MenuScreen{
 
 
     public HighScore() {
+        super();
         showHighscores("arcade");
     }
 

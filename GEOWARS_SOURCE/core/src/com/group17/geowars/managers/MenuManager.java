@@ -84,6 +84,9 @@ public class MenuManager {
         menuList.put("profilemenu", new ProfileMenu());
         menuList.put("highscore", new HighScore());
         menuList.put("game", new GameScreen());
+        menuList.put("endgamemenu",new EndGameMenu());
+        //menuList.put("clanmenu", new ClanMenu()); TODO create ClanMenu
+        //menuList.put("upgrademenu", new UpgradeMEnu()); TODO create UpgradeMenu
         setScreen(mainMenu);
     }
 
