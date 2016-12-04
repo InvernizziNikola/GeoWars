@@ -43,13 +43,13 @@ public class UpgradeMenu extends MenuScreen{
         });
 
         final TextButton assaultButton = newButton("ASSAULT",135,490,130,40,new MenuGrid(1,0));
-        assaultButton.addListener(new ChangeListener() {
+        /*assaultButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 assaultButton.setChecked(false);
                 assaultText();
             }
-        });
+        });*/
         final TextButton jetButton = newButton("JET", 265,490,133,40,new MenuGrid(2,0));
 
         final TextButton supportButton = newButton("SUPPORT",402,490,133,40, new MenuGrid(3,0));
