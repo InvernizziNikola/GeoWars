@@ -13,7 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.group17.geowars.database.DBManager;
 import com.group17.geowars.utils.MenuGrid;
-
+import com.group17.geowars.managers.Managers;
 import java.util.ArrayList;
 
 public class HighScore extends MenuScreen{
@@ -44,8 +44,8 @@ public class HighScore extends MenuScreen{
             public void changed(ChangeEvent event, Actor actor) {
 
                 System.out.println("CLICKED: " + actor);
-                //Screen nextMenu = Managers.getMenuManager().getScreen("playArcade");
-                //Managers.getMenuManager().setScreen(nextMenu);
+                MenuScreen nextMenu = Managers.getMenuManager().getScreen("playArcade");
+                Managers.getMenuManager().setScreen(nextMenu);
             }
         });
 
@@ -81,15 +81,15 @@ public class HighScore extends MenuScreen{
             }
         });
 
-        /*backButton.addListener(new ChangeListener() {
+        backButton.addListener(new ChangeListener() {
 
             public void changed(ChangeEvent event, Actor actor) {
                 System.out.println("CLICKED: " + actor);
-                Screen nextMenu = Managers.getMenuManager().getScreen("mainmenu");
+                MenuScreen nextMenu = Managers.getMenuManager().getScreen("mainmenu");
                 Managers.getMenuManager().setScreen(nextMenu);
 
             }
-        });*/
+        });
 
 
     }
