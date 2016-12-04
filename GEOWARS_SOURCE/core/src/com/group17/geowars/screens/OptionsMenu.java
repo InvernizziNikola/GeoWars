@@ -7,7 +7,7 @@ import com.group17.geowars.utils.MenuGrid;
 /**
  * Created by michield on 23/11/2016.
  */
-public class OptionsMenu extends MenuScreen {
+public class OptionsMenu extends MenuScreen implements hasStage {
 
     public OptionsMenu()
     {

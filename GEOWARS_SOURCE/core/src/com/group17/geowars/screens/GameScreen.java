@@ -43,6 +43,7 @@ public class GameScreen extends MenuScreen {
 
     public void render()
     {
+        super.render(Gdx.graphics.getDeltaTime());
         world.update();
         world.render();
     }

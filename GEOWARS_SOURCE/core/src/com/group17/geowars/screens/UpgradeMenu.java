@@ -16,9 +16,11 @@ import com.group17.geowars.utils.MenuGrid;
 /**
  * Created by michiel on 4/12/2016.
  */
-public class UpgradeMenu extends MenuScreen{
+public class UpgradeMenu extends MenuScreen implements hasStage{
     private BitmapFont text;
     private Batch batch;
+
+    private int show = 0;
 
     public UpgradeMenu()
     {
@@ -38,7 +40,7 @@ public class UpgradeMenu extends MenuScreen{
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 tankButton.setChecked(false);
-                tankText();
+                show = 0;
             }
         });
 
@@ -47,7 +49,7 @@ public class UpgradeMenu extends MenuScreen{
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 assaultButton.setChecked(false);
-                assaultText();
+                show = 1;
             }
         });*/
         final TextButton jetButton = newButton("JET", 265,490,133,40,new MenuGrid(2,0));
@@ -103,7 +105,6 @@ public class UpgradeMenu extends MenuScreen{
 
     public void showText(int width)
     {
-
         text.draw(batch,"SHIP", (width)/2-15,570);
         text.draw(batch, "DRONE",width+(width/2-30),570);
     }
@@ -115,46 +116,23 @@ public class UpgradeMenu extends MenuScreen{
     }
 
 
-    @SuppressWarnings("Duplicates")
     @Override
     public void render(float delta) {
-        Gdx.gl.glClearColor(0.2f, 0.2f, 0.2f, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        batch.begin();
-        tankText();
-        batch.end();
-        stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
-        stage.draw();
         super.render(delta);
-    }
-
-    @Override
-    public void resize(int width, int height) {
-
-    }
-
-    @Override
-    public void pause() {
-
-    }
-
-    @Override
-    public void resume() {
-
-    }
-
-    @Override
-    public void hide() {
-
-    }
-
-    @Override
-    public void dispose() {
-
-    }
-
-    @Override
-    public Stage getStage() {
-        return stage;
+        batch.begin();
+        switch (show)
+        {
+            case 0:
+            {
+                tankText();
+                break;
+            }
+            case 1:
+            {
+                assaultText();
+                break;
+            }
+        }
+        batch.end();
     }
 }

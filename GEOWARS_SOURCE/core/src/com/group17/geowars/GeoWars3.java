@@ -2,16 +2,16 @@ package com.group17.geowars;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
-import com.group17.geowars.screens.HighScore;
+import com.group17.geowars.screens.HighScoreMenu;
 
 public class GeoWars3 extends ApplicationAdapter{
 
 
-	public HighScore mainmenu;
+	public HighScoreMenu mainmenu;
 
 	@Override
 	public void create () {
-		mainmenu = new HighScore();
+		mainmenu = new HighScoreMenu();
 		mainmenu.showHighscores("arcade");
 
 	}

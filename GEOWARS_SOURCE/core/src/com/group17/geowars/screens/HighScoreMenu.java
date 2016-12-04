@@ -16,10 +16,8 @@ import com.group17.geowars.utils.MenuGrid;
 import com.group17.geowars.managers.Managers;
 import java.util.ArrayList;
 
-public class HighScore extends MenuScreen{
+public class HighScoreMenu extends MenuScreen implements hasStage{
 
-
-    private Stage stage;
     private SpriteBatch batch;
     private Skin skin;
     private Skin skin1;
@@ -30,69 +28,53 @@ public class HighScore extends MenuScreen{
 
 
 
-    public HighScore() {
+    public HighScoreMenu() {
         super();
+        create();
+    }
+    public void create()
+    {
+        Gdx.input.setInputProcessor(stage);
         showHighscores("arcade");
     }
-
     public void Buttons(){
 
-        TextButton campaignButton = newButton("CAMPAIGN",152,400,150,50, new MenuGrid(0, 0));
+        final TextButton campaignButton = newButton("CAMPAIGN",152,400,150,50, new MenuGrid(0, 0));
 
-        TextButton arcadeButton = newButton("ARCADE",325,400,150,50, new MenuGrid(1, 0));
-        arcadeButton.addListener(new ChangeListener() {
-            @Override
-            public void changed(ChangeEvent event, Actor actor) {
+        final TextButton arcadeButton = newButton("ARCADE",325,400,150,50, new MenuGrid(1, 0));
 
-                System.out.println("CLICKED: " + actor);
-                MenuScreen nextMenu = Managers.getMenuManager().getScreen("playArcade");
-                Managers.getMenuManager().setScreen(nextMenu);
-            }
-        });
+        final TextButton multiPlayerButton = newButton("CO-OP",525,400,150,50, new MenuGrid(2, 0));
 
-        TextButton multiPlayerButton = newButton("CO-OP",525,400,150,50, new MenuGrid(2, 0));
-
-
-        TextButton backButton = newButton("BACK", 325,100,150,50, new MenuGrid(0, 1));
+        final TextButton backButton = newButton("BACK", 325,100,150,50, new MenuGrid(0, 1));
 
         /*--------------EVENT HANDLER--------------------------*/
         campaignButton.addListener(new ChangeListener() {
-
             public void changed(ChangeEvent event, Actor actor) {
-
-                System.out.println("CLICKED: " + actor);
+                campaignButton.setChecked(false);
                 showHighscores("campaign");
             }
         });
         multiPlayerButton.addListener(new ChangeListener() {
-
             public void changed(ChangeEvent event, Actor actor) {
-
-                System.out.println("CLICKED: " + actor);
+                campaignButton.setChecked(false);
                 showHighscores("coop");
             }
         });
         arcadeButton.addListener(new ChangeListener() {
-
             public void changed(ChangeEvent event, Actor actor) {
-                stage.clear();
-
-                System.out.println("CLICKED: " + actor);
+                arcadeButton.setChecked(false);
                 showHighscores("arcade");
             }
         });
 
         backButton.addListener(new ChangeListener() {
-
             public void changed(ChangeEvent event, Actor actor) {
-                System.out.println("CLICKED: " + actor);
+                backButton.setChecked(false);
                 MenuScreen nextMenu = Managers.getMenuManager().getScreen("mainmenu");
                 Managers.getMenuManager().setScreen(nextMenu);
 
             }
         });
-
-
     }
     public void showHighscores(String GameMode) {
 
@@ -106,18 +88,17 @@ public class HighScore extends MenuScreen{
         batch = new SpriteBatch();
         title = new BitmapFont();
         title.setColor(Color.WHITE);
-        stage = new Stage();
         stage.clear();
+        Buttons();
         Gdx.input.setInputProcessor(stage);
         skin = new Skin();
         skin1 = new Skin();
-        Buttons();
+        //Buttons();
         Pixmap pixmap = new Pixmap(200, 50, Pixmap.Format.RGBA8888);
         pixmap.setColor(Color.WHITE);
         pixmap.fill();
 
         skin.add("white", new Texture(pixmap));
-
 
         BitmapFont font = new BitmapFont();
         Label.LabelStyle style = new Label.LabelStyle();
@@ -162,44 +143,10 @@ public class HighScore extends MenuScreen{
     }
 
     public void render(float delta) {
-        Gdx.gl.glClearColor(0, 0, 0, 0);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        super.render(delta);
+
         batch.begin();
         title.draw(batch, "GEOMETRYWARS", 325, 550);
         batch.end();
-        stage.draw();
-
-
-    }
-
-    @Override
-    public void resize(int width, int height) {
-
-    }
-
-    @Override
-    public void pause() {
-
-    }
-
-    @Override
-    public void resume() {
-
-    }
-
-    @Override
-    public void hide() {
-
-    }
-
-    @Override
-    public void dispose() {
-
-    }
-
-
-    @Override
-    public Stage getStage() {
-        return stage;
     }
 }

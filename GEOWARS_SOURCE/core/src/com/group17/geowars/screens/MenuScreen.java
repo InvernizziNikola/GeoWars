@@ -1,10 +1,12 @@
 package com.group17.geowars.screens;
 
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.controllers.Controller;
 import com.badlogic.gdx.controllers.Controllers;
 import com.badlogic.gdx.controllers.PovDirection;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.group17.geowars.database.XBOX360KeyMapping;
@@ -33,62 +35,49 @@ public class MenuScreen implements Screen {
         styleSelected = Managers.getMenuManager().getSelectedStyle();
     }
 
-    public Stage getStage()
-    {
-        return stage;
-    }
-
-    @Override
-    public void show() {
-
-    }
-
-
     @Override
     public void render(float delta)
     {
 
-        if(Controllers.getControllers().size < 1 || menuButtons.size() == 0)
-            return ;
+        if(Controllers.getControllers().size > 1 && menuButtons.size() > 0) {
 
-        Controller c = Controllers.getControllers().first();
+            Controller c = Controllers.getControllers().first();
 
-        if(c.getPov(0) == PovDirection.center && pressed && !c.getButton(1) && !c.getButton(2) && !c.getButton(3) && !c.getButton(0))
-        {
-            pressed = false;
-        }
-        if(c.getPov(0) == XBOX360KeyMapping.BUTTON_DPAD_UP && !pressed)
-        {
-            pressed = true;
-            MenuGrid temp = new MenuGrid(selectedButton.X(), selectedButton.Y() - 1);
-            lookForButtonOnRow(temp);
-        }
-        else if(c.getPov(0) == XBOX360KeyMapping.BUTTON_DPAD_LEFT && !pressed)
-        {
-            pressed = true;
-            MenuGrid temp = new MenuGrid(selectedButton.X() - 1, selectedButton.Y());
-            lookForButtonOnColumn(temp);
-        }
-        else if(c.getPov(0) == XBOX360KeyMapping.BUTTON_DPAD_RIGHT && !pressed)
-        {
-            pressed = true;
-            MenuGrid temp = new MenuGrid(selectedButton.X() + 1, selectedButton.Y());
-            lookForButtonOnColumn(temp);
-        }
-        else if(c.getPov(0) == XBOX360KeyMapping.BUTTON_DPAD_DOWN && !pressed)
-        {
-            pressed = true;
-            MenuGrid temp = new MenuGrid(selectedButton.X(), selectedButton.Y() + 1);
-            lookForButtonOnRow(temp);
-        }
-        if((c.getButton(1) || c.getButton(2) || c.getButton(3) || c.getButton(0)) && !pressed)
-        {
-            pressed = true;
-            pressButton(selectedButton);
+            if (c.getPov(0) == PovDirection.center && pressed && !c.getButton(1) && !c.getButton(2) && !c.getButton(3) && !c.getButton(0)) {
+                pressed = false;
+            }
+            if (c.getPov(0) == XBOX360KeyMapping.BUTTON_DPAD_UP && !pressed) {
+                pressed = true;
+                MenuGrid temp = new MenuGrid(selectedButton.X(), selectedButton.Y() - 1);
+                lookForButtonOnRow(temp);
+            } else if (c.getPov(0) == XBOX360KeyMapping.BUTTON_DPAD_LEFT && !pressed) {
+                pressed = true;
+                MenuGrid temp = new MenuGrid(selectedButton.X() - 1, selectedButton.Y());
+                lookForButtonOnColumn(temp);
+            } else if (c.getPov(0) == XBOX360KeyMapping.BUTTON_DPAD_RIGHT && !pressed) {
+                pressed = true;
+                MenuGrid temp = new MenuGrid(selectedButton.X() + 1, selectedButton.Y());
+                lookForButtonOnColumn(temp);
+            } else if (c.getPov(0) == XBOX360KeyMapping.BUTTON_DPAD_DOWN && !pressed) {
+                pressed = true;
+                MenuGrid temp = new MenuGrid(selectedButton.X(), selectedButton.Y() + 1);
+                lookForButtonOnRow(temp);
+            }
+            if ((c.getButton(1) || c.getButton(2) || c.getButton(3) || c.getButton(0)) && !pressed) {
+                pressed = true;
+                pressButton(selectedButton);
+            }
+
+            deSelectButtons();
+            setSelectedButton();
         }
 
-        deSelectButtons();
-        setSelectedButton();
+        if(this instanceof hasStage) {
+            Gdx.gl.glClearColor(0.2f, 0.2f, 0.2f, 0);
+            Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+            stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
+            stage.draw();
+        }
     }
 
     public void setSelectedButton()
@@ -159,8 +148,6 @@ public class MenuScreen implements Screen {
         }
     }
 
-
-
     protected TextButton newButton(String name, int x, int y, int width, int height, MenuGrid position)
     {
         TextButton tempButton = null;
@@ -181,13 +168,17 @@ public class MenuScreen implements Screen {
         return tempButton;
     }
 
+    public Stage getStage() {
+        return stage;
+    }
+
     @Override
-    public void resize(int width, int height) {
+    public void show() {
 
     }
 
-    public void SetActive()
-    {
+    @Override
+    public void resize(int width, int height) {
 
     }
 
@@ -210,5 +201,4 @@ public class MenuScreen implements Screen {
     public void dispose() {
 
     }
-
 }

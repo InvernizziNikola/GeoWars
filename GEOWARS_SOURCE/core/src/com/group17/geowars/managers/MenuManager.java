@@ -82,7 +82,7 @@ public class MenuManager {
         menuList.put("mainmenu", mainMenu = new MainMenu());
         menuList.put("playmenu", new PlayMenu());
         menuList.put("profilemenu", new ProfileMenu());
-        menuList.put("highscore", new HighScore());
+        menuList.put("highscore", new HighScoreMenu());
         menuList.put("game", new GameScreen());
         menuList.put("endgamemenu",new EndGameMenu());
         //menuList.put("clanmenu", new ClanMenu()); TODO create ClanMenu

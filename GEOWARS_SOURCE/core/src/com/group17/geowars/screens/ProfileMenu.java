@@ -17,7 +17,7 @@ import com.group17.geowars.utils.MenuGrid;
 /**
  * Created by michield on 10/11/2016.
  */
-public class ProfileMenu extends MenuScreen {
+public class ProfileMenu extends MenuScreen implements hasStage {
     private BitmapFont text;
     private Batch batch;
     public ProfileMenu()
@@ -83,50 +83,13 @@ public class ProfileMenu extends MenuScreen {
     }
 
     @Override
-    public void show() {
-
-    }
-
-    @SuppressWarnings("Duplicates")
-    @Override
     public void render(float delta) {
-        Gdx.gl.glClearColor(0.2f, 0.2f, 0.2f, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
         batch.begin();
         showText();
         batch.end();
-        stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
-        stage.draw();
+
         super.render(delta);
     }
 
-    @Override
-    public void resize(int width, int height) {
-
-    }
-
-    @Override
-    public void pause() {
-
-    }
-
-    @Override
-    public void resume() {
-
-    }
-
-    @Override
-    public void hide() {
-
-    }
-
-    @Override
-    public void dispose() {
-
-    }
-
-    @Override
-    public Stage getStage() {
-        return stage;
-    }
 }

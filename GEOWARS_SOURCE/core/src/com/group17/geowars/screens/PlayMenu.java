@@ -13,7 +13,7 @@ import com.group17.geowars.utils.MenuGrid;
 /**
  * Created by michield on 10/11/2016.
  */
-public class PlayMenu extends MenuScreen {
+public class PlayMenu extends MenuScreen implements hasStage{
 
     public PlayMenu()
     {
@@ -65,48 +65,8 @@ public class PlayMenu extends MenuScreen {
         });
     }
 
-    @Override
-    public void show()
-    {
 
-    }
-    @SuppressWarnings("Duplicates")
     public void render (float deltaTime) {
-        Gdx.gl.glClearColor(0.2f, 0.2f, 0.2f, 0);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
-        stage.draw();
-
         super.render(deltaTime);
-    }
-
-    @Override
-    public void resize(int width, int height) {
-
-    }
-
-    @Override
-    public void pause() {
-
-    }
-
-    @Override
-    public void resume() {
-
-    }
-
-    @Override
-    public void hide() {
-
-    }
-
-    @Override
-    public void dispose() {
-
-    }
-
-    @Override
-    public Stage getStage() {
-        return stage;
     }
 }
