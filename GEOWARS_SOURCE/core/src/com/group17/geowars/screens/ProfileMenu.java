@@ -29,6 +29,9 @@ public class ProfileMenu extends MenuScreen implements hasStage {
     public void create(){
         Gdx.input.setInputProcessor(stage);
         batch = new SpriteBatch();
+        text = new BitmapFont();
+        text.setColor(Color.WHITE);
+
         final TextButton clanButton = newButton("CLANS",50,150,150,50, new MenuGrid(0, 0));
         clanButton.addListener(new ChangeListener() {
             @Override
@@ -59,11 +62,6 @@ public class ProfileMenu extends MenuScreen implements hasStage {
                 Managers.getMenuManager().setScreen(nextMenu);
             }
         });
-        text = new BitmapFont();
-        text.setColor(Color.WHITE);
-
-
-
 
     }
 
@@ -78,18 +76,18 @@ public class ProfileMenu extends MenuScreen implements hasStage {
         text.draw(batch, "HOURS PLAYED: ",50,325);
         text.draw(batch,"LEVEL: ",50,300);
         text.draw(batch, "CURRENT SHIP & DRONE",Gdx.graphics.getWidth()/2+100,425);
-        text.draw(batch,"CURRENT SHIP",Gdx.graphics.getWidth()/2+200,375);
-        text.draw(batch,"CURRENT DRONE", Gdx.graphics.getWidth()/2+200,300);
+        text.draw(batch,"CURRENT SHIP",Gdx.graphics.getWidth()/2+200,375);//TODO need to be changed to current ship
+        text.draw(batch,"CURRENT DRONE", Gdx.graphics.getWidth()/2+200,300);//TODO need to be changed to current drone
     }
 
     @Override
     public void render(float delta) {
-
+        super.render(delta);
         batch.begin();
         showText();
         batch.end();
 
-        super.render(delta);
+
     }
 
 }
