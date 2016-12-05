@@ -20,6 +20,10 @@ import java.util.Map;
  */
 public class MenuScreen implements Screen {
 
+    // TODO CREATE A LINKEDBUTTON ( EXTEND FROM BUTTON )
+    // THIS LINKEDBUTTON WILL CONTAIN A MAX OF $ OTHER BUTTON TO WHICH IT IS LINKED
+    // UP, DOWN, LEFT AND RIGHT. THIS WAY WE CAN 100% DECIDE TO WHICH BUTTON THE
+    // SELECTOR GOES WHEN A KEY ON THE DPAD IS PRESSED
 
     protected Map<MenuGrid, TextButton> menuButtons = new HashMap<MenuGrid, TextButton>();
     protected MenuGrid selectedButton = new MenuGrid(0, 0);
