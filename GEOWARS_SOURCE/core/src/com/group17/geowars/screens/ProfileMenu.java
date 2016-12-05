@@ -84,12 +84,11 @@ public class ProfileMenu extends MenuScreen implements hasStage {
 
     @Override
     public void render(float delta) {
-
+        super.render(delta);
         batch.begin();
         showText();
         batch.end();
 
-        super.render(delta);
     }
 
 }
