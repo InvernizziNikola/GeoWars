@@ -20,9 +20,6 @@ import java.util.Map;
  */
 public class MenuScreen implements Screen {
 
-    // TODO LINKEDBUTTONS
-    // each button has a max of 4 button linked to it (up, down, left and right)
-    // this way we can make it 100% correct where the selector goes when moving around with controller
 
     protected Map<MenuGrid, TextButton> menuButtons = new HashMap<MenuGrid, TextButton>();
     protected MenuGrid selectedButton = new MenuGrid(0, 0);
@@ -42,7 +39,7 @@ public class MenuScreen implements Screen {
     public void render(float delta)
     {
 
-        if(Controllers.getControllers().size > 0 && menuButtons.size() > 0) {
+        if(Controllers.getControllers().size > 1 && menuButtons.size() > 0) {
 
             Controller c = Controllers.getControllers().first();
 
