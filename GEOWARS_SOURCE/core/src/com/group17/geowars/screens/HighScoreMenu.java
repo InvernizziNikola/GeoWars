@@ -25,6 +25,7 @@ public class HighScoreMenu extends MenuScreen implements hasStage{
     private Table table;
     private ArrayList highScores;
     private String GameModeString;
+    private boolean runones =true;
 
 
 
@@ -111,20 +112,42 @@ public class HighScoreMenu extends MenuScreen implements hasStage{
         Integer score = 5000;
 
         GameModeString = GameMode;
-       // Thread t1 = new Thread(new Runnable() {
-         //   public void run() {
+        final Thread t1 = new Thread(new Runnable() {
+            public void run() {
                 //DATABASE connectie arcade
                 DBManager manager = new DBManager();
+
                 highScores = manager.DBselectTOP10Highscore(GameModeString);
-         //   }
-        //});
-        //t1.start();
+                Gdx.app.postRunnable(new Runnable() {
+                    @Override
+                    public void run() {
+                        // process the result, e.g. add it to an Array<Result> field of the ApplicationListener.
+
+                        if(runones){
+                            runones = false;
+                            
+                            showHighscores(GameModeString);}
+                        MenuScreen nextMenu = Managers.getMenuManager().currentScreen();
+                        Managers.getMenuManager().setScreen(nextMenu);
+
+
+                    }
+                });
+
+
+
+            }
+        });
+        t1.start();
+
+
         System.out.println(highScores);
 
 
         table.add(new Label("Name", style)).width(200);
         table.add(new Label("Score", style)).width(200);
         table.row();
+
         if(highScores != null) {
             Integer highScoreAmount = highScores.size();
             for (int i = 0; i < highScoreAmount; i++) {
@@ -134,6 +157,7 @@ public class HighScoreMenu extends MenuScreen implements hasStage{
                 i++;
             }
         }
+
         stage.addActor(table);
     }
 
