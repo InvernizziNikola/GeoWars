@@ -43,9 +43,7 @@ public class UpgradeMenu extends MenuScreen implements hasStage{
         tankButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                tankButton.setChecked(false);
-                deSelectButtons();
-                tankButton.setStyle(Managers.getMenuManager().getSelectedStyle());
+                selectButton(tankButton);
                 showShip = 0;
             }
         });
@@ -54,9 +52,7 @@ public class UpgradeMenu extends MenuScreen implements hasStage{
         assaultButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                assaultButton.setChecked(false);
-                deSelectButtons();
-                assaultButton.setStyle(Managers.getMenuManager().getSelectedStyle());
+                selectButton(assaultButton);
                 showShip = 1;
             }
         });
@@ -65,9 +61,7 @@ public class UpgradeMenu extends MenuScreen implements hasStage{
         jetButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                jetButton.setChecked(false);
-                deSelectButtons();
-                jetButton.setStyle(Managers.getMenuManager().getSelectedStyle());
+                selectButton(jetButton);
                 showShip = 2;
             }
         });
@@ -76,9 +70,7 @@ public class UpgradeMenu extends MenuScreen implements hasStage{
         supportButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                supportButton.setChecked(false);
-                deSelectButtons();
-                supportButton.setStyle(Managers.getMenuManager().getSelectedStyle());
+                selectButton(supportButton);
                 showDrone = 0;
             }
         });
@@ -87,9 +79,7 @@ public class UpgradeMenu extends MenuScreen implements hasStage{
         attackButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                attackButton.setChecked(false);
-                deSelectButtons();
-                attackButton.setStyle(Managers.getMenuManager().getSelectedStyle());
+                selectButton(attackButton);
                 showDrone = 1;
             }
         });
@@ -98,9 +88,7 @@ public class UpgradeMenu extends MenuScreen implements hasStage{
         defendButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                defendButton.setChecked(false);
-                deSelectButtons();
-                defendButton.setStyle(Managers.getMenuManager().getSelectedStyle());
+                selectButton(defendButton);
                 showDrone = 2;
             }
         });
@@ -109,7 +97,7 @@ public class UpgradeMenu extends MenuScreen implements hasStage{
         shipSkillTreeButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                shipSkillTreeButton.setChecked(false);
+                selectButton(shipSkillTreeButton);
                 showShipStats = 0;
             }
         });
@@ -118,7 +106,7 @@ public class UpgradeMenu extends MenuScreen implements hasStage{
         shipStatsButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                shipStatsButton.setChecked(false);
+                selectButton(shipStatsButton);
                 showShipStats = 1;
             }
         });
@@ -127,7 +115,7 @@ public class UpgradeMenu extends MenuScreen implements hasStage{
         droneSkillTreeButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                droneSkillTreeButton.setChecked(false);
+                selectButton(droneSkillTreeButton);
                 showDroneStats = 0;
             }
         });
@@ -136,7 +124,7 @@ public class UpgradeMenu extends MenuScreen implements hasStage{
         droneStatsButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                droneStatsButton.setChecked(false);
+                selectButton(droneStatsButton);
                 showDroneStats = 1;
             }
         });
@@ -152,6 +140,12 @@ public class UpgradeMenu extends MenuScreen implements hasStage{
         });
     }
 
+    public void selectButton(TextButton txtB)
+    {
+        txtB.setChecked(false);
+        deSelectButtons();
+        txtB.setStyle(Managers.getMenuManager().getSelectedStyle());
+    }
     public void tankText(int width)
     {
         text.draw(batch,"-TANK",width-(width/2)+50,420);
