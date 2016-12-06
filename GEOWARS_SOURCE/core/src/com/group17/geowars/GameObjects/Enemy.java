@@ -67,12 +67,12 @@ public class Enemy extends GameObject implements GOInterface {
             Managers.getpowerUpManager().addPowerUp(p);
         }
 
-
+/*
         pe = new ParticleEffect();
         pe.load(Gdx.files.internal("explosion.party"), Gdx.files.internal(""));
         pe.getEmitters().first().setPosition(position.x, position.y);
         pe.start();
-
+*/
     }
 
     public Sprite getSprite()
@@ -85,6 +85,16 @@ public class Enemy extends GameObject implements GOInterface {
     @Override
     public void render(Batch batch) {
 
+
+
+/*
+        if(pe != null) {
+
+            pe.update(Gdx.graphics.getDeltaTime());
+            pe.draw(batch);
+            return;
+        }
+*/
         sprite.setColor(color);
         sprite.setSize(50,50);
         sprite.setOrigin(25,25);
@@ -99,6 +109,8 @@ public class Enemy extends GameObject implements GOInterface {
     @Override
     public void update() {
 
+        if(pe != null)
+            return;
 
         if(!insidePlayingField) {
             target = new Vector2(Gdx.graphics.getWidth() /2, Gdx.graphics.getHeight() / 2);
