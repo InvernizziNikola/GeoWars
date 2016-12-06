@@ -42,8 +42,12 @@ public class MenuScreen implements Screen {
     @Override
     public void render(float delta)
     {
+        // TODO CREATE A LINKEDBUTTON ( EXTEND FROM BUTTON )
+        // THIS LINKEDBUTTON WILL CONTAIN A MAX OF $ OTHER BUTTON TO WHICH IT IS LINKED
+        // UP, DOWN, LEFT AND RIGHT. THIS WAY WE CAN 100% DECIDE TO WHICH BUTTON THE
+        // SELECTOR GOES WHEN A KEY ON THE DPAD IS PRESSED
 
-        if(Controllers.getControllers().size > 1 && menuButtons.size() > 0) {
+        if(Controllers.getControllers().size > 0 && menuButtons.size() > 0) {
 
             Controller c = Controllers.getControllers().first();
 
