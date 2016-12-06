@@ -41,6 +41,11 @@ public class MenuManager {
 
     }
 
+    public MenuScreen currentScreen()
+    {
+        return showScreen;
+    }
+
     public void init()
     {
         createStyles();

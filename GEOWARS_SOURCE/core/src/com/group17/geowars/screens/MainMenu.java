@@ -66,6 +66,7 @@ public class MainMenu extends MenuScreen implements hasStage{
                 leaderboardButton.setChecked(false);
                 MenuScreen nextMenu = Managers.getMenuManager().getScreen("highscore");
                 Managers.getMenuManager().setScreen(nextMenu);
+
             }
         });
 

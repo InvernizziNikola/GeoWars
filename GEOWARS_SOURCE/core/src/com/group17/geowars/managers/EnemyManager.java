@@ -1,10 +1,11 @@
 package com.group17.geowars.managers;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Vector2;
 import com.group17.geowars.gameobjects.Enemy;
 import com.group17.geowars.gameobjects.GOInterface;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
@@ -16,7 +17,9 @@ public class EnemyManager implements GOInterface {
 
     private List<Enemy> enemies;
     private List<Enemy> toRemove;
-    private int nrOfEnemys; //HACK
+    private int nrOfEnemys; // TODO HACK
+
+
     public EnemyManager () {
         enemies = new LinkedList<Enemy>();
         toRemove = new LinkedList<Enemy>();
@@ -57,7 +60,6 @@ public class EnemyManager implements GOInterface {
 
         for (Enemy e: enemies) {
             e.render(batch);
-
         }
     }
 

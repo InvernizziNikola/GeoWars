@@ -8,9 +8,11 @@ package com.group17.geowars.gameobjects;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.group17.geowars.managers.Managers;
+import com.badlogic.gdx.files.FileHandle;
 
 
 import java.util.Random;
@@ -30,7 +32,7 @@ public class Enemy extends GameObject implements GOInterface {
     private float offset = 200;
     public boolean destroy = false;
     private Vector2 lookAt = new Vector2(0,0);
-
+    private ParticleEffect pe;
     private Vector2 target = new Vector2(0,0);
 
 
@@ -45,6 +47,7 @@ public class Enemy extends GameObject implements GOInterface {
 
         Random rand = new Random();
         direction = new Vector2(rand.nextInt(100) - 50, rand.nextInt(100) - 50).nor();
+
     }
 
     public void dropPowerUp(int EnemyType)
@@ -63,6 +66,13 @@ public class Enemy extends GameObject implements GOInterface {
             PowerUp p = new PowerUp("nuke", position);
             Managers.getpowerUpManager().addPowerUp(p);
         }
+
+
+        pe = new ParticleEffect();
+        pe.load(Gdx.files.internal("explosion.party"), Gdx.files.internal(""));
+        pe.getEmitters().first().setPosition(position.x, position.y);
+        pe.start();
+
     }
 
     public Sprite getSprite()
@@ -88,6 +98,7 @@ public class Enemy extends GameObject implements GOInterface {
 
     @Override
     public void update() {
+
 
         if(!insidePlayingField) {
             target = new Vector2(Gdx.graphics.getWidth() /2, Gdx.graphics.getHeight() / 2);

@@ -39,6 +39,12 @@ public class MenuScreen implements Screen {
         styleSelected = Managers.getMenuManager().getSelectedStyle();
     }
 
+
+    public void setActive()
+    {
+
+    }
+
     @Override
     public void render(float delta)
     {
