@@ -44,6 +44,8 @@ public class UpgradeMenu extends MenuScreen implements hasStage{
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 tankButton.setChecked(false);
+                deSelectButtons();
+                tankButton.setStyle(Managers.getMenuManager().getSelectedStyle());
                 showShip = 0;
             }
         });
@@ -53,6 +55,8 @@ public class UpgradeMenu extends MenuScreen implements hasStage{
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 assaultButton.setChecked(false);
+                deSelectButtons();
+                assaultButton.setStyle(Managers.getMenuManager().getSelectedStyle());
                 showShip = 1;
             }
         });
@@ -62,6 +66,8 @@ public class UpgradeMenu extends MenuScreen implements hasStage{
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 jetButton.setChecked(false);
+                deSelectButtons();
+                jetButton.setStyle(Managers.getMenuManager().getSelectedStyle());
                 showShip = 2;
             }
         });
@@ -71,6 +77,8 @@ public class UpgradeMenu extends MenuScreen implements hasStage{
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 supportButton.setChecked(false);
+                deSelectButtons();
+                supportButton.setStyle(Managers.getMenuManager().getSelectedStyle());
                 showDrone = 0;
             }
         });
@@ -80,6 +88,8 @@ public class UpgradeMenu extends MenuScreen implements hasStage{
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 attackButton.setChecked(false);
+                deSelectButtons();
+                attackButton.setStyle(Managers.getMenuManager().getSelectedStyle());
                 showDrone = 1;
             }
         });
@@ -89,6 +99,8 @@ public class UpgradeMenu extends MenuScreen implements hasStage{
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 defendButton.setChecked(false);
+                deSelectButtons();
+                defendButton.setStyle(Managers.getMenuManager().getSelectedStyle());
                 showDrone = 2;
             }
         });

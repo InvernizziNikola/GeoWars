@@ -54,26 +54,28 @@ public class MenuScreen implements Screen {
             if (c.getPov(0) == PovDirection.center && pressed && !c.getButton(1) && !c.getButton(2) && !c.getButton(3) && !c.getButton(0)) {
                 pressed = false;
             }
-            if (c.getPov(0) == XBOX360KeyMapping.BUTTON_DPAD_UP && !pressed) {
-                pressed = true;
-                MenuGrid temp = new MenuGrid(selectedButton.X(), selectedButton.Y() - 1);
-                lookForButtonOnRow(temp);
-            } else if (c.getPov(0) == XBOX360KeyMapping.BUTTON_DPAD_LEFT && !pressed) {
-                pressed = true;
-                MenuGrid temp = new MenuGrid(selectedButton.X() - 1, selectedButton.Y());
-                lookForButtonOnColumn(temp);
-            } else if (c.getPov(0) == XBOX360KeyMapping.BUTTON_DPAD_RIGHT && !pressed) {
-                pressed = true;
-                MenuGrid temp = new MenuGrid(selectedButton.X() + 1, selectedButton.Y());
-                lookForButtonOnColumn(temp);
-            } else if (c.getPov(0) == XBOX360KeyMapping.BUTTON_DPAD_DOWN && !pressed) {
-                pressed = true;
-                MenuGrid temp = new MenuGrid(selectedButton.X(), selectedButton.Y() + 1);
-                lookForButtonOnRow(temp);
-            }
-            if ((c.getButton(1) || c.getButton(2) || c.getButton(3) || c.getButton(0)) && !pressed) {
-                pressed = true;
-                pressButton(selectedButton);
+            if(!pressed) {
+                if (c.getPov(0) == XBOX360KeyMapping.BUTTON_DPAD_UP) {
+                    pressed = true;
+                    MenuGrid temp = new MenuGrid(selectedButton.X(), selectedButton.Y() - 1);
+                    lookForButtonOnRow(temp);
+                } else if (c.getPov(0) == XBOX360KeyMapping.BUTTON_DPAD_LEFT) {
+                    pressed = true;
+                    MenuGrid temp = new MenuGrid(selectedButton.X() - 1, selectedButton.Y());
+                    lookForButtonOnColumn(temp);
+                } else if (c.getPov(0) == XBOX360KeyMapping.BUTTON_DPAD_RIGHT) {
+                    pressed = true;
+                    MenuGrid temp = new MenuGrid(selectedButton.X() + 1, selectedButton.Y());
+                    lookForButtonOnColumn(temp);
+                } else if (c.getPov(0) == XBOX360KeyMapping.BUTTON_DPAD_DOWN) {
+                    pressed = true;
+                    MenuGrid temp = new MenuGrid(selectedButton.X(), selectedButton.Y() + 1);
+                    lookForButtonOnRow(temp);
+                }
+                if ((c.getButton(1) || c.getButton(2) || c.getButton(3) || c.getButton(0))) {
+                    pressed = true;
+                    pressButton(selectedButton);
+                }
             }
 
             deSelectButtons();
