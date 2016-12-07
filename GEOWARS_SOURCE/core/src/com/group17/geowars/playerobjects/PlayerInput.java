@@ -12,9 +12,24 @@ public class PlayerInput {
     private Controller controller;
     private Player player;
 
+    private int axis0 = 0;
+    private int axis1 = 1;
+    private int axis2 = 2;
+    private int axis3 = 3;
+
 private boolean fired = false;
     public PlayerInput(Controller controller, Player player)
     {
+        if(controller != null) {
+            if (controller.getName().toLowerCase().contains("xbox") &&
+                    controller.getName().contains("360")) {
+                axis0 = 2;
+                axis1 = 3;
+                axis2 = 0;
+                axis3 = 1;
+            }
+        }
+
         this.controller = controller;
         this.player = player;
         //constructor empty ?
@@ -92,13 +107,13 @@ private boolean fired = false;
     {
         Vector2 dir = new Vector2(0,0);
 
-        if(controller.getAxis(2) > 0.1f || controller.getAxis(2) < -0.1f)
+        if(controller.getAxis(axis2) > 0.1f || controller.getAxis(axis2) < -0.1f)
         {
-            dir.y = -controller.getAxis(2);
+            dir.y = -controller.getAxis(axis2);
         }
-        if(controller.getAxis(3) > 0.1f || controller.getAxis(3) < -0.1f)
+        if(controller.getAxis(axis3) > 0.1f || controller.getAxis(axis3) < -0.1f)
         {
-            dir.x = controller.getAxis(3);
+            dir.x = controller.getAxis(axis3);
         }
 
         if(dir.len() < 0.2f)
@@ -110,13 +125,13 @@ private boolean fired = false;
     {
         Vector2 dir = new Vector2(0,0);
 
-        if(controller.getAxis(0) > 0.1f || controller.getAxis(0) < -0.1f)
+        if(controller.getAxis(axis0) > 0.1f || controller.getAxis(axis0) < -0.1f)
         {
-            dir.y = -controller.getAxis(0);
+            dir.y = -controller.getAxis(axis0);
         }
-        if(controller.getAxis(1) > 0.1f || controller.getAxis(1) < -0.1f)
+        if(controller.getAxis(axis1) > 0.1f || controller.getAxis(axis1) < -0.1f)
         {
-            dir.x = controller.getAxis(1);
+            dir.x = controller.getAxis(axis1);
         }
 
         if(dir.len() < 0.2f)

@@ -13,7 +13,7 @@ import com.group17.geowars.utils.MenuGrid;
 /**
  * Created by michield on 10/11/2016.
  */
-public class PlayMenu extends MenuScreen implements hasStage{
+public class PlayMenu extends MenuScreen implements hasStage, setActive{
 
     public PlayMenu()
     {
@@ -68,5 +68,10 @@ public class PlayMenu extends MenuScreen implements hasStage{
 
     public void render (float deltaTime) {
         super.render(deltaTime);
+    }
+
+    @Override
+    public void setActive() {
+        System.out.println("test2");
     }
 }

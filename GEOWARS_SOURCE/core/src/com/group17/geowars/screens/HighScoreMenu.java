@@ -2,31 +2,28 @@ package com.group17.geowars.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
-import com.group17.geowars.database.DBManager;
+import com.group17.geowars.utils.HighScoreThread;
 import com.group17.geowars.utils.MenuGrid;
 import com.group17.geowars.managers.Managers;
 import java.util.ArrayList;
 
-public class HighScoreMenu extends MenuScreen implements hasStage{
+public class HighScoreMenu extends MenuScreen implements hasStage, setActive{
 
     private SpriteBatch batch;
     private Skin skin;
     private Skin skin1;
-    private BitmapFont title;
+    private BitmapFont text;
     private Table table;
+    private HighScoreThread hsT;
     private ArrayList highScores;
-    private String GameModeString;
-    private boolean runones =true;
-
+    private boolean loading = false;
 
 
     public HighScoreMenu() {
@@ -36,7 +33,22 @@ public class HighScoreMenu extends MenuScreen implements hasStage{
     public void create()
     {
         Gdx.input.setInputProcessor(stage);
-        showHighscores("arcade");
+        text = new BitmapFont();
+        text.setColor(Color.WHITE);
+
+        batch = new SpriteBatch();
+
+        Buttons();
+    }
+
+    public void setActive()
+    {
+        getHighScore("arcade");
+    }
+
+    public void showLoading()
+    {
+        text.draw(batch, "Loading...", 350, 380);
     }
     public void Buttons(){
 
@@ -52,19 +64,19 @@ public class HighScoreMenu extends MenuScreen implements hasStage{
         campaignButton.addListener(new ChangeListener() {
             public void changed(ChangeEvent event, Actor actor) {
                 campaignButton.setChecked(false);
-                showHighscores("campaign");
+                getHighScore("campaign");
             }
         });
         multiPlayerButton.addListener(new ChangeListener() {
             public void changed(ChangeEvent event, Actor actor) {
                 campaignButton.setChecked(false);
-                showHighscores("coop");
+                getHighScore("coop");
             }
         });
         arcadeButton.addListener(new ChangeListener() {
             public void changed(ChangeEvent event, Actor actor) {
                 arcadeButton.setChecked(false);
-                showHighscores("arcade");
+                getHighScore("arcade");
             }
         });
 
@@ -77,24 +89,23 @@ public class HighScoreMenu extends MenuScreen implements hasStage{
             }
         });
     }
-    public void showHighscores(String GameMode) {
 
-/*    BitmapFont font = new BitmapFont();
-        Label.LabelStyle style = new Label.LabelStyle();
-        Label text;
-        style.font = font;
-        text = new Label("test",style);
-        text.setText("test");
-        text.setBounds(0,0,16,4);*/
-        batch = new SpriteBatch();
-        title = new BitmapFont();
-        title.setColor(Color.WHITE);
+    public void getHighScore(String gameMode)
+    {
+        if(loading)
+            return;
+
+        loading = true;
+        hsT = new HighScoreThread(gameMode);
+        hsT.start();
+    }
+    public void showHighscores() {
+
         stage.clear();
         Buttons();
-        Gdx.input.setInputProcessor(stage);
+
         skin = new Skin();
         skin1 = new Skin();
-        //Buttons();
         Pixmap pixmap = new Pixmap(200, 50, Pixmap.Format.RGBA8888);
         pixmap.setColor(Color.WHITE);
         pixmap.fill();
@@ -103,47 +114,10 @@ public class HighScoreMenu extends MenuScreen implements hasStage{
 
         BitmapFont font = new BitmapFont();
         Label.LabelStyle style = new Label.LabelStyle();
-        Label text;
         style.font = font;
 
         table = new Table();
         table.setFillParent(true);
-        String name = "egoon";
-        Integer score = 5000;
-
-        GameModeString = GameMode;
-        final Thread t1 = new Thread(new Runnable() {
-            public void run() {
-                //DATABASE connectie arcade
-                DBManager manager = new DBManager();
-
-                highScores = manager.DBselectTOP10Highscore(GameModeString);
-                Gdx.app.postRunnable(new Runnable() {
-                    @Override
-                    public void run() {
-                        // process the result, e.g. add it to an Array<Result> field of the ApplicationListener.
-
-                        if(runones){
-                            runones = false;
-                            
-                            showHighscores(GameModeString);}
-                        MenuScreen nextMenu = Managers.getMenuManager().currentScreen();
-                        Managers.getMenuManager().setScreen(nextMenu);
-
-
-                    }
-                });
-
-
-
-            }
-        });
-        t1.start();
-
-
-        System.out.println(highScores);
-
-
         table.add(new Label("Name", style)).width(200);
         table.add(new Label("Score", style)).width(200);
         table.row();
@@ -161,16 +135,28 @@ public class HighScoreMenu extends MenuScreen implements hasStage{
         stage.addActor(table);
     }
 
-    @Override
-    public void show() {
-
-    }
-
     public void render(float delta) {
+
         super.render(delta);
 
         batch.begin();
-        title.draw(batch, "GEOMETRYWARS", 325, 550);
+
+        if(hsT != null && hsT.finished())
+        {
+            highScores = hsT.getData();
+            hsT = null;
+
+            loading = false;
+            showHighscores();
+        }
+        if(hsT != null && !hsT.finished())
+        {
+            showLoading();
+        }
+
+
+
+        text.draw(batch, "GEOMETRYWARS", 325, 550);
         batch.end();
     }
 }

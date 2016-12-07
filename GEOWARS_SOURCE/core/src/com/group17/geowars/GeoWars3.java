@@ -12,9 +12,10 @@ public class GeoWars3 extends ApplicationAdapter{
 	@Override
 	public void create () {
 		mainmenu = new HighScoreMenu();
-		mainmenu.showHighscores("arcade");
+		//mainmenu.getHighScore("arcade");
 
 	}
+
 
 	@Override
 	public void render () {

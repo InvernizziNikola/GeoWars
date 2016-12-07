@@ -118,6 +118,8 @@ public class MenuManager {
         }
         else {
             showScreen = screen;
+            if(showScreen instanceof setActive)
+                ((setActive)showScreen).setActive();
         }
         Gdx.input.setInputProcessor(showScreen.getStage());
     }
