@@ -16,6 +16,7 @@ public class PlayerInput {
     private int axis1 = 1;
     private int axis2 = 2;
     private int axis3 = 3;
+    private int Keybinding=1;
 
 private boolean fired = false;
     public PlayerInput(Controller controller, Player player)
@@ -48,24 +49,69 @@ private boolean fired = false;
         handleKeyboardMovement();
         handleMouseShooting();
     }
+    public void setArrowkeys(){
+        //kijken hoe we deze moeten activeren
+        Keybinding = 1;
+
+    }
+    public void setAzerty(){
+        Keybinding = 2;
+    }
+    public void setQwerty(){
+        Keybinding = 3;
+    }
     public void handleKeyboardMovement()
     {
 
         Vector2 dir = new Vector2(0,0);
-
-        if(Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
-            dir.x += -1;
+        if(Keybinding==1) {
+           // System.out.println("keybinding : arrowkeys");
+            //arrowkeys
+            if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+                dir.x += -1;
+            }
+            if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+                dir.x += 1;
+            }
+            if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
+                dir.y += 1;
+            }
+            if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
+                dir.y += -1;
+            }
+        }else if (Keybinding ==2){
+            //azerty
+           // System.out.println("keybinding : azerty");
+            if (Gdx.input.isKeyPressed(Input.Keys.Q)) {
+                dir.x += -1;
+            }
+            if (Gdx.input.isKeyPressed(Input.Keys.D)) {
+                dir.x += 1;
+            }
+            if (Gdx.input.isKeyPressed(Input.Keys.Z)) {
+                dir.y += 1;
+            }
+            if (Gdx.input.isKeyPressed(Input.Keys.S)) {
+                dir.y += -1;
+            }
+        }else if (Keybinding==3){
+            //Qwerty
+            //System.out.println("keybinding : qwerty");
+            if (Gdx.input.isKeyPressed(Input.Keys.A)) {
+                dir.x += -1;
+            }
+            if (Gdx.input.isKeyPressed(Input.Keys.D)) {
+                dir.x += 1;
+            }
+            if (Gdx.input.isKeyPressed(Input.Keys.W)) {
+                dir.y += 1;
+            }
+            if (Gdx.input.isKeyPressed(Input.Keys.S)) {
+                dir.y += -1;
+            }
+        }else{
+            System.out.println("no keybinding selected!");
         }
-        if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-            dir.x += 1;
-        }
-        if(Gdx.input.isKeyPressed(Input.Keys.UP)) {
-            dir.y += 1;
-        }
-        if(Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
-            dir.y += -1;
-        }
-
         player.getShip().setMoveDirection(dir.nor());
     }
     public void handleMouseShooting()

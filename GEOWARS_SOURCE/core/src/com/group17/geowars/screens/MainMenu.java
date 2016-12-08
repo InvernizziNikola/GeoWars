@@ -53,7 +53,7 @@ public class MainMenu extends MenuScreen implements hasStage{
             public void changed(ChangeEvent event, Actor actor)
             {
                 optionsButton.setChecked(false);
-                MenuScreen nextMenu = Managers.getMenuManager().getScreen("options");
+                MenuScreen nextMenu = Managers.getMenuManager().getScreen("optionsmenu");
                 Managers.getMenuManager().setScreen(nextMenu);
             }
         });

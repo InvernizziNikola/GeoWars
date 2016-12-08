@@ -90,6 +90,7 @@ public class MenuManager {
         menuList.put("highscore", new HighScoreMenu());
         menuList.put("game", new GameScreen());
         menuList.put("endgamemenu",new EndGameMenu());
+        menuList.put("optionsmenu",new OptionsMenu());
         //menuList.put("clanmenu", new ClanMenu()); TODO create ClanMenu
         menuList.put("upgrademenu", new UpgradeMenu());
         setScreen(mainMenu);
