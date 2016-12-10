@@ -130,7 +130,7 @@ public class OptionsMenu extends MenuScreen implements hasStage {
     {
         Gdx.input.setInputProcessor(stage);
         Buttons();
-        TextButton controllerBindings = newButton("VIEW CONTROLLER BINDINGs",20,20,150,50, new MenuGrid(0,0));
+        TextButton controllerBindings = newButton("VIEW CONTROLLER BINDINGs",20,20,150,50, new MenuGrid(1,1));
     }
 
 }
