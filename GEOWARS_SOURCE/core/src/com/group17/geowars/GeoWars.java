@@ -19,7 +19,7 @@ public class GeoWars extends ApplicationAdapter{
 	public void create () {
 		camera = new OrthographicCamera();
 		viewport = new FitViewport(1920, 1080, camera);
-
+		viewport.apply(true);
 		MenuScreen beginScreen = Managers.getScreenManager().getScreen("mainmenu");
 		Managers.getScreenManager().setScreen(beginScreen);
 	}
