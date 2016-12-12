@@ -2,6 +2,7 @@ package com.group17.geowars.database;
 
 
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
+import com.sun.xml.internal.bind.v2.model.core.ID;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -53,7 +54,15 @@ public class DBManager {
         }
         return resultselect;
     }
-
+    public ArrayList DBselectSpawnLocation(Integer Wave){
+        try {
+            String SQLstring = "SELECT x,y FROM SpawnLocation where Wave='" + Wave + "';";
+            resultselect = DBconnect(SQLstring, true);
+        } catch (Exception e) {
+            System.out.println("Fout in select: " + e.getMessage());
+        }
+        return resultselect;
+    }
     public ArrayList DBselectDrone(String name) {
         try {
             String SQLstring = "SELECT name,image,hitpoints,hpinfinite,attack,speed,type FROM drone where name='" + name + "';";
