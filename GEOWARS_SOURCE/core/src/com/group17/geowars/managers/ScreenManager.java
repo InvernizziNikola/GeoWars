@@ -101,7 +101,11 @@ public class ScreenManager {
 
 
     public void render(){
-        showScreen.render(Gdx.graphics.getDeltaTime());
+
+        if(showScreen instanceof iGame)
+            ((iGame)showScreen).renderGame();
+        else
+            showScreen.render(Gdx.graphics.getDeltaTime());
     }
 
     public MenuScreen getScreen(String name)
