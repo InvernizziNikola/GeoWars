@@ -16,9 +16,9 @@ public class PlayerInput {
     private int axis1 = 1;
     private int axis2 = 2;
     private int axis3 = 3;
-    private int Keybinding=1;
+    private int Keybinding = 1;
+    private boolean fired = false;
 
-private boolean fired = false;
     public PlayerInput(Controller controller, Player player)
     {
         if(controller != null) {
@@ -36,7 +36,6 @@ private boolean fired = false;
         //constructor empty ?
     }
 
-
     public void update()
     {
         if(controller != null)
@@ -49,23 +48,20 @@ private boolean fired = false;
         handleKeyboardMovement();
         handleMouseShooting();
     }
-    public void setArrowkeys(){
-        //kijken hoe we deze moeten activeren
-        Keybinding = 1;
 
-    }
+    public void setArrowkeys(){Keybinding = 1; }
     public void setAzerty(){
         Keybinding = 2;
     }
     public void setQwerty(){
         Keybinding = 3;
     }
+
     public void handleKeyboardMovement()
     {
 
         Vector2 dir = new Vector2(0,0);
         if(Keybinding==1) {
-           // System.out.println("keybinding : arrowkeys");
             //arrowkeys
             if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
                 dir.x += -1;
@@ -81,7 +77,6 @@ private boolean fired = false;
             }
         }else if (Keybinding ==2){
             //azerty
-           // System.out.println("keybinding : azerty");
             if (Gdx.input.isKeyPressed(Input.Keys.Q)) {
                 dir.x += -1;
             }
@@ -96,7 +91,6 @@ private boolean fired = false;
             }
         }else if (Keybinding==3){
             //Qwerty
-            //System.out.println("keybinding : qwerty");
             if (Gdx.input.isKeyPressed(Input.Keys.A)) {
                 dir.x += -1;
             }

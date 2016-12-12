@@ -17,6 +17,7 @@ import com.group17.geowars.gameobjects.Ship;
  *
  * @author kevin
  */
+
 public class Player implements GOInterface {
     private String name;
     private Ship ship;
@@ -38,7 +39,12 @@ public class Player implements GOInterface {
     public void setDrone(Drone drone) {
         this.drone = drone;
     }
-    
+
+    public PlayerInput getPlayerInput()
+    {
+        return playerInput;
+    }
+
     public String getStats(){
         return "name= "+ name+
                 "\n   drone= "+drone.getType()+

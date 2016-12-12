@@ -10,6 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.group17.geowars.database.DBManager;
 import com.group17.geowars.managers.Managers;
+import com.group17.geowars.managers.MenuManager;
 import com.group17.geowars.playerobjects.PlayerInput;
 import com.group17.geowars.utils.MenuGrid;
 
@@ -44,26 +45,23 @@ public class OptionsMenu extends MenuScreen implements hasStage {
         arrowkeys.addListener(new ChangeListener() {
             public void changed(ChangeEvent event, Actor actor) {
                 arrowkeys.setChecked(false);
-                //not working
-                PlayerInput manager = new PlayerInput(null,null);
 
-                manager.setArrowkeys();
+                Managers.getAccountManager().getAccounts().get(0).getPlayer().getPlayerInput().setArrowkeys();
+
             }
         });
         qwerty.addListener(new ChangeListener() {
             public void changed(ChangeEvent event, Actor actor) {
                 qwerty.setChecked(false);
-                PlayerInput manager = new PlayerInput(null,null);
+                Managers.getAccountManager().getAccounts().get(0).getPlayer().getPlayerInput().setQwerty();
 
-                manager.setQwerty();
             }
         });
         azerty.addListener(new ChangeListener() {
             public void changed(ChangeEvent event, Actor actor) {
                 azerty.setChecked(false);
-                PlayerInput manager = new PlayerInput(null,null);
+                Managers.getAccountManager().getAccounts().get(0).getPlayer().getPlayerInput().setAzerty();
 
-                manager.setAzerty();
             }
         });
 
@@ -97,6 +95,7 @@ public class OptionsMenu extends MenuScreen implements hasStage {
         txtMovementRight = new TextField("->", txtStyle);
         txtMovementUp = new TextField("->", txtStyle);
         txtMovementDown = new TextField("->", txtStyle);
+
        // txtUsername.setMessageText("test");
         //add to stage
         table = new Table();
@@ -118,12 +117,7 @@ public class OptionsMenu extends MenuScreen implements hasStage {
         table.row();
 
 
-
-
-
         stage.addActor(table);
-
-
     }
 
     public void create()
