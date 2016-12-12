@@ -87,6 +87,7 @@ public class CollisionManager
 
                     p.getPlayer().getShip().setDead();
 
+                    Managers.getGameManager().setEndScore(p.getPlayer().getShip().getScore());
                     Managers.getGameManager().gameState = GAMESTATE.MENU;
                     Managers.getGameManager().resetGame();
 

@@ -39,6 +39,12 @@ public class Ship extends GameObject implements GOInterface { //interface shoot?
     private Vector2 moveDir = new Vector2(0,0);
     private Vector2 lookDir = new Vector2(0,0);
 
+
+    public int getScore()
+    {
+        return score;
+    }
+
     public Ship(Vector2 pos, String type)
     {
         super(pos);

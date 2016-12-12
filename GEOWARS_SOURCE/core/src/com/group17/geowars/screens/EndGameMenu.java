@@ -67,7 +67,7 @@ public class EndGameMenu extends MenuScreen implements hasStage{
 
     public void showText()
     {
-        text.draw(batch,"SCORE: ", 50, 475); // TODO score and higscore need to be added
+        text.draw(batch,"SCORE: " + Managers.getGameManager().getScore(), 50, 475); // TODO score and higscore need to be added
         text.draw(batch,"HIGH SCORE: ", 50,450);
         text.draw(batch,"UPGRADES",400,525); //TODO level buttons need to be added
         text.draw(batch,"GLASS CANON", 300,450);

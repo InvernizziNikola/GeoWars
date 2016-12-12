@@ -11,6 +11,17 @@ public class GameManager {
 
     public GAMESTATE gameState = GAMESTATE.MENU;
 
+    public int score = 0;
+
+
+    public void setEndScore(int score)
+    {
+        this.score = score;
+    }
+    public int getScore()
+    {
+        return score;
+    }
     public GameManager()
     {
 
@@ -28,6 +39,5 @@ public class GameManager {
         Managers.getEnemyManager().reset();
         Managers.getGeomManager().reset();
         Managers.getLevelManager().reset();
-
     }
 }
