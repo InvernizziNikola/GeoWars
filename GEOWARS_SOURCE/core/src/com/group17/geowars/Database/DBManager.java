@@ -2,7 +2,6 @@ package com.group17.geowars.database;
 
 
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
-import com.sun.xml.internal.bind.v2.model.core.ID;
 
 import java.sql.*;
 import java.util.ArrayList;
