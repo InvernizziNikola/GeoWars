@@ -15,6 +15,7 @@ import com.group17.geowars.playerobjects.PlayerInput;
 import com.group17.geowars.utils.MenuGrid;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 
 /**
  * Created by michield on 23/11/2016.
@@ -38,6 +39,8 @@ public class OptionsMenu extends MenuScreen implements hasStage {
         final TextButton qwertyButton = newButton("Qwerty", 325, 400, 150, 50, new MenuGrid(1, 0));
 
         final TextButton azertyButton = newButton("Azerty", 525, 400, 150, 50, new MenuGrid(2, 0));
+        final TextButton CostumButton = newButton("Costum", 152, 340, 150, 50, new MenuGrid(1, 2));
+        final TextButton ApplyButton = newButton("Apply", 325, 200, 150, 50, new MenuGrid(3, 0));
 
         final TextButton backButton = newButton("BACK", 325, 100, 150, 50, new MenuGrid(0, 1));
 
@@ -70,12 +73,29 @@ public class OptionsMenu extends MenuScreen implements hasStage {
 
             }
         });
+        CostumButton.addListener(new ChangeListener() {
+            public void changed(ChangeEvent event, Actor actor) {
+                arrowkeysButton.setChecked(false);
 
+               // Managers.getAccountManager().getAccounts().get(0).getPlayer().getPlayerInput().setArrowkeys();
+                SelectedKeyBinding = 4;
+                test();
+
+            }
+        });
+        ApplyButton.addListener(new ChangeListener() {
+            public void changed(ChangeEvent event, Actor actor) {
+                arrowkeysButton.setChecked(false);
+                //Managers.getAccountManager().getAccounts().get(0).getPlayer().getPlayerInput().setArrowkeys();
+                SelectedKeyBinding = 4;
+                test();
+            }
+        });
         backButton.addListener(new ChangeListener() {
             public void changed(ChangeEvent event, Actor actor) {
                 backButton.setChecked(false);
-                MenuScreen nextMenu = Managers.getMenuManager().getScreen("mainmenu");
-                Managers.getMenuManager().setScreen(nextMenu);
+                MenuScreen nextMenu = Managers.getScreenManager().getScreen("mainmenu");
+                Managers.getScreenManager().setScreen(nextMenu);
 
 
             }
@@ -102,6 +122,7 @@ public class OptionsMenu extends MenuScreen implements hasStage {
         style.font = font;
 
 
+
         //input fields
         if (SelectedKeyBinding == 1) {
             txtMovementLeft = new TextField("<-", txtStyle);
@@ -118,11 +139,19 @@ public class OptionsMenu extends MenuScreen implements hasStage {
             txtMovementRight = new TextField("D", txtStyle);
             txtMovementUp = new TextField("Z", txtStyle);
             txtMovementDown = new TextField("S", txtStyle);
+        }else if (SelectedKeyBinding == 4) {
+            txtMovementLeft = new TextField("", txtStyle);
+            txtMovementRight = new TextField("", txtStyle);
+            txtMovementUp = new TextField("", txtStyle);
+            txtMovementDown = new TextField("", txtStyle);
         } else {
             System.out.println("error: there is no keybinding selected!!!");
         }
+
         // txtUsername.setMessageText("test");
         //add to stage
+
+
         table = new Table();
         table.setFillParent(true);
         table.add(new Label("movement left", style)).width(200);
