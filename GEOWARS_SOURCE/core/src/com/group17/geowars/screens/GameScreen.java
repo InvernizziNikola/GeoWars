@@ -12,7 +12,7 @@ import com.group17.geowars.playerobjects.Player;
 /**
  * Created by nikola on 08/11/2016.
  */
-public class GameScreen extends MenuScreen {
+public class GameScreen extends MenuScreen implements iGame{
 
     //private GameWorld world;
     private Batch batch;
@@ -34,12 +34,11 @@ public class GameScreen extends MenuScreen {
         player.setController(controller);
     }
 
-    public void render()
+    public void renderGame()
     {
         super.render(Gdx.graphics.getDeltaTime());
-        //world.update();
-        //world.render();
 
+        System.out.println("GAMESCREEN");
         batch.begin();
         Managers.getGameManager().update();
         Managers.getGameManager().render(batch);
