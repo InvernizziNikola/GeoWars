@@ -14,11 +14,14 @@ public class GeoWars extends ApplicationAdapter{
 
 	public Viewport viewport;
 	static public Camera camera;
+	static public int WIDTH = 1920;
+	static public int HEIGHT = 1080;
 
 	@Override
 	public void create () {
+
 		camera = new OrthographicCamera();
-		viewport = new FitViewport(1920, 1080, camera);
+		viewport = new FitViewport(WIDTH, HEIGHT, camera);
 		viewport.apply(true);
 		MenuScreen beginScreen = Managers.getScreenManager().getScreen("mainmenu");
 		Managers.getScreenManager().setScreen(beginScreen);
@@ -42,6 +45,9 @@ public class GeoWars extends ApplicationAdapter{
 
 	@Override
 	public void resize(int width, int height) {
+		HEIGHT = height;
+		WIDTH = width;
+
 		viewport.update(width, height);
 		Managers.getScreenManager().resizeStages(width, height, false);
 	}
