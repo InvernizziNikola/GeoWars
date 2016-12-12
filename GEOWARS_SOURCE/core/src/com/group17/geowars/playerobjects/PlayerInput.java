@@ -4,6 +4,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.controllers.Controller;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.math.Vector3;
+import com.group17.geowars.GeoWars;
 
 /**
  * Created by kevin on 9/11/2016.
@@ -108,6 +110,7 @@ public class PlayerInput {
         }
         player.getShip().setMoveDirection(dir.nor());
     }
+
     public void handleMouseShooting()
     {
         Vector2 dir = new Vector2(0,0);
@@ -115,8 +118,9 @@ public class PlayerInput {
         if(Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
 
             Vector2 shipPos = player.getShip().getPosition();
-            Vector2 mousePos = new Vector2(Gdx.input.getX(), -Gdx.input.getY() + 600);
 
+            Vector3 mousePosV3 = GeoWars.camera.unproject(new Vector3(Gdx.input.getX(), -Gdx.input.getY() + 1080, 0));
+            Vector2 mousePos = new Vector2(mousePosV3.x, mousePosV3.y);
 
             dir = new Vector2(mousePos.x - shipPos.x, mousePos.y - shipPos.y);
         }
@@ -125,7 +129,6 @@ public class PlayerInput {
     }
     public void handleControllerInput()
     {
-
         handleMovementJoystick();
         handleShootJoystick();
         handleButtonInput();

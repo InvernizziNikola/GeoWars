@@ -10,5 +10,6 @@ public enum GAMESTATE
     GAMESTART,
     GAMEPLAYING,
     GAMENEWWAVE,
+    GAMEMENU,
     GAMEEND
 }

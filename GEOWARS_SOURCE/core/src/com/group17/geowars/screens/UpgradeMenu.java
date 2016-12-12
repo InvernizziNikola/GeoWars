@@ -134,8 +134,8 @@ public class UpgradeMenu extends MenuScreen implements hasStage{
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 confirmButton.setChecked(false);
-                MenuScreen nextMenu = Managers.getMenuManager().getScreen("profilemenu");
-                Managers.getMenuManager().setScreen(nextMenu);
+                MenuScreen nextMenu = Managers.getScreenManager().getScreen("profilemenu");
+                Managers.getScreenManager().setScreen(nextMenu);
             }
         });
     }
@@ -144,7 +144,7 @@ public class UpgradeMenu extends MenuScreen implements hasStage{
     {
         txtB.setChecked(false);
         deSelectButtons();
-        txtB.setStyle(Managers.getMenuManager().getSelectedStyle());
+        txtB.setStyle(Managers.getScreenManager().getSelectedStyle());
     }
     public void tankText(int width)
     {

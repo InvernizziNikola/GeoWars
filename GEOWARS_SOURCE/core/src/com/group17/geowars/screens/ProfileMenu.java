@@ -34,8 +34,8 @@ public class ProfileMenu extends MenuScreen implements hasStage {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 clanButton.setChecked(false);
-                MenuScreen nextMenu = Managers.getMenuManager().getScreen("clanmenu");
-                Managers.getMenuManager().setScreen(nextMenu);
+                MenuScreen nextMenu = Managers.getScreenManager().getScreen("clanmenu");
+                Managers.getScreenManager().setScreen(nextMenu);
             }
         });
 
@@ -45,8 +45,8 @@ public class ProfileMenu extends MenuScreen implements hasStage {
             public void changed(ChangeEvent event, Actor actor) {
                 backButton.setChecked(false);
                 System.out.println("CLICKED: " + actor);
-                MenuScreen nextMenu = Managers.getMenuManager().getScreen("mainmenu");
-                Managers.getMenuManager().setScreen(nextMenu);
+                MenuScreen nextMenu = Managers.getScreenManager().getScreen("mainmenu");
+                Managers.getScreenManager().setScreen(nextMenu);
             }
         });
 
@@ -55,8 +55,8 @@ public class ProfileMenu extends MenuScreen implements hasStage {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 upgradeButton.setChecked(false);
-                MenuScreen nextMenu = Managers.getMenuManager().getScreen("upgrademenu");
-                Managers.getMenuManager().setScreen(nextMenu);
+                MenuScreen nextMenu = Managers.getScreenManager().getScreen("upgrademenu");
+                Managers.getScreenManager().setScreen(nextMenu);
             }
         });
         text = new BitmapFont();

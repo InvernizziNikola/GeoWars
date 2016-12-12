@@ -1,6 +1,5 @@
 package com.group17.geowars.managers;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.group17.geowars.utils.GAMESTATE;
@@ -44,10 +43,10 @@ public class Managers
         return  getInstance().controllerManager;
     }
 
-    private MenuManager menuManager;
-    public static MenuManager getMenuManager(){
+    private ScreenManager screenManager;
+    public static ScreenManager getScreenManager(){
 
-        return  getInstance().menuManager;
+        return  getInstance().screenManager;
     }
 
     private LevelManager levelManager;
@@ -105,7 +104,7 @@ public class Managers
         geomManager = new GeomManager();
         accountManager = new AccountManager();
         collisionManager = new CollisionManager();
-        menuManager = new MenuManager();
+        screenManager = new ScreenManager();
         powerUpManager=new PowerUpManager();
         gameManager = new GameManager();
     }
@@ -120,50 +119,11 @@ public class Managers
         bulletManager.init();
         enemyManager.init();
         geomManager.init();
-        menuManager.init();
+        screenManager.init();
         collisionManager.init();
         powerUpManager.init();
         gameManager.init();
     }
-    public static void render(Batch batch)
-    {
-        // still to implement
-        // or doesnt have renderer
-        //getControllerManager().render(batch);
-        //getAssetManager().render(batch);
 
-        batch.begin();
-
-        if(getGameManager().gameState == GAMESTATE.GAMEPLAYING) {
-            getAccountManager().render(batch);
-            getGeomManager().render(batch);
-            getBulletManager().render(batch);
-            getEnemyManager().render(batch);
-            getLevelManager().render(batch);
-            getAccountManager().render(batch);
-            getCollisionManager().render(batch);
-            getpowerUpManager().render(batch);
-        }
-
-        batch.end();
-        getMenuManager().render(Gdx.graphics.getDeltaTime());
-    }
-    public static void update()
-    {
-
-        //getAssetManager().update();
-        //getControllerManager().update();
-        //getMenuManager().update();
-
-        if(getGameManager().gameState == GAMESTATE.GAMEPLAYING) {
-            getAccountManager().update();
-            getGeomManager().update();
-            getBulletManager().update();
-            getEnemyManager().update();
-            getLevelManager().update();
-            getCollisionManager().update();
-            getpowerUpManager().update();
-        }
-    }
 
 }

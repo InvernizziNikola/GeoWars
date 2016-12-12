@@ -9,6 +9,8 @@ import com.badlogic.gdx.controllers.PovDirection;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.group17.geowars.database.XBOX360KeyMapping;
 import com.group17.geowars.managers.Managers;
 import com.group17.geowars.utils.MenuGrid;
@@ -34,9 +36,9 @@ public class MenuScreen implements Screen {
 
     public MenuScreen()
     {
-        stage = new Stage();
-        styleDefault = Managers.getMenuManager().getDefaultStyle();
-        styleSelected = Managers.getMenuManager().getSelectedStyle();
+        stage = new Stage(new FitViewport(1920, 1080));
+        styleDefault = Managers.getScreenManager().getDefaultStyle();
+        styleSelected = Managers.getScreenManager().getSelectedStyle();
     }
 
     @Override
@@ -154,7 +156,6 @@ public class MenuScreen implements Screen {
         for(Map.Entry<MenuGrid, TextButton> button : menuButtons.entrySet())
         {
             button.getValue().setStyle(styleDefault);
-
         }
     }
 
@@ -189,7 +190,7 @@ public class MenuScreen implements Screen {
 
     @Override
     public void resize(int width, int height) {
-
+        stage.getViewport().update(width, height, true);
     }
 
     @Override

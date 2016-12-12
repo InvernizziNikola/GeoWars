@@ -1,5 +1,6 @@
 package com.group17.geowars.managers;
 
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.group17.geowars.utils.GAMESTATE;
 
 /**
@@ -29,6 +30,29 @@ public class GameManager {
     public void init()
     {
 
+    }
+
+    public void update()
+    {
+        Managers.getAccountManager().update();
+        Managers.getGeomManager().update();
+        Managers.getBulletManager().update();
+        Managers.getEnemyManager().update();
+        Managers.getLevelManager().update();
+        Managers.getCollisionManager().update();
+        Managers.getpowerUpManager().update();
+    }
+
+    public void render(Batch batch)
+    {
+        Managers.getAccountManager().render(batch);
+        Managers.getGeomManager().render(batch);
+        Managers.getBulletManager().render(batch);
+        Managers.getEnemyManager().render(batch);
+        Managers.getLevelManager().render(batch);
+        Managers.getAccountManager().render(batch);
+        Managers.getCollisionManager().render(batch);
+        Managers.getpowerUpManager().render(batch);
     }
 
     public void resetGame()

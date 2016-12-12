@@ -91,8 +91,8 @@ public class CollisionManager
                     Managers.getGameManager().gameState = GAMESTATE.MENU;
                     Managers.getGameManager().resetGame();
 
-                    MenuScreen mainmenu = Managers.getMenuManager().getScreen("endgamemenu");
-                    Managers.getMenuManager().setScreen(mainmenu);
+                    MenuScreen mainmenu = Managers.getScreenManager().getScreen("endgamemenu");
+                    Managers.getScreenManager().setScreen(mainmenu);
                 }
             }
         }

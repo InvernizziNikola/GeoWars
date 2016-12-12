@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -11,13 +12,14 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton.*;
 import com.group17.geowars.screens.*;
 
 import java.util.Dictionary;
+import java.util.Enumeration;
 import java.util.Hashtable;
 
 
 /**
  * Created by michield on 10/11/2016.
  */
-public class MenuManager {
+public class ScreenManager {
     private MainMenu mainMenu;
 
     private MenuScreen showScreen;
@@ -36,9 +38,9 @@ public class MenuManager {
     private Skin skin;
     private Dictionary<String, MenuScreen> menuList;
 
-    public MenuManager(){
-        menuList = new Hashtable<String, MenuScreen>();
+    public ScreenManager(){
 
+        menuList = new Hashtable<String, MenuScreen>();
     }
 
     public MenuScreen currentScreen()
@@ -97,8 +99,8 @@ public class MenuManager {
     }
 
 
-    public void render(float deltaTime){
-        showScreen.render(deltaTime);
+    public void render(){
+        showScreen.render(Gdx.graphics.getDeltaTime());
     }
 
     public MenuScreen getScreen(String name)
@@ -125,4 +127,13 @@ public class MenuManager {
         Gdx.input.setInputProcessor(showScreen.getStage());
     }
 
+    public void resizeStages(int width, int height, boolean center)
+    {
+
+        Enumeration<String> enumKey = menuList.keys();
+        while(enumKey.hasMoreElements()) {
+            String key = enumKey.nextElement();
+            menuList.get(key).getStage().getViewport().update(width, height, center);
+        }
+    }
 }

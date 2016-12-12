@@ -32,6 +32,7 @@ public class PlayMenu extends MenuScreen implements hasStage, setActive{
                 campaignButton.setChecked(false);
             }
         });
+
         final TextButton arcadeButton = newButton("ARCADE",325,400,150,50, new MenuGrid(1, 0));
         arcadeButton.addListener(new ChangeListener() {
             @Override
@@ -39,8 +40,8 @@ public class PlayMenu extends MenuScreen implements hasStage, setActive{
 
                 arcadeButton.setChecked(false);
                 Managers.getGameManager().gameState = GAMESTATE.GAMEPLAYING;
-                MenuScreen nextMenu = Managers.getMenuManager().getScreen("game");
-                Managers.getMenuManager().setScreen(nextMenu);
+                MenuScreen nextMenu = Managers.getScreenManager().getScreen("game");
+                Managers.getScreenManager().setScreen(nextMenu);
             }
         });
 
@@ -59,8 +60,8 @@ public class PlayMenu extends MenuScreen implements hasStage, setActive{
             public void changed(ChangeEvent event, Actor actor) {
 
                 backButton.setChecked(false);
-                MenuScreen nextMenu = Managers.getMenuManager().getScreen("mainmenu");
-                Managers.getMenuManager().setScreen(nextMenu);
+                MenuScreen nextMenu = Managers.getScreenManager().getScreen("mainmenu");
+                Managers.getScreenManager().setScreen(nextMenu);
             }
         });
     }

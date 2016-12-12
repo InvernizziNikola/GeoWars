@@ -83,8 +83,8 @@ public class HighScoreMenu extends MenuScreen implements hasStage, setActive{
         backButton.addListener(new ChangeListener() {
             public void changed(ChangeEvent event, Actor actor) {
                 backButton.setChecked(false);
-                MenuScreen nextMenu = Managers.getMenuManager().getScreen("mainmenu");
-                Managers.getMenuManager().setScreen(nextMenu);
+                MenuScreen nextMenu = Managers.getScreenManager().getScreen("mainmenu");
+                Managers.getScreenManager().setScreen(nextMenu);
 
             }
         });
