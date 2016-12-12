@@ -33,33 +33,33 @@ public class OptionsMenu extends MenuScreen implements hasStage {
 
     public void Buttons(){
 
-        final TextButton arrowkeys = newButton("Arrow keys",152,400,150,50, new MenuGrid(0, 0));
-        final TextButton qwerty = newButton("Qwerty",325,400,150,50, new MenuGrid(1, 0));
+        final TextButton arrowkeysButton = newButton("Arrow keys",152,400,150,50, new MenuGrid(0, 0));
+        final TextButton qwertyButton = newButton("Qwerty",325,400,150,50, new MenuGrid(1, 0));
 
-        final TextButton azerty = newButton("Azerty",525,400,150,50, new MenuGrid(2, 0));
+        final TextButton azertyButton = newButton("Azerty",525,400,150,50, new MenuGrid(2, 0));
 
         final TextButton backButton = newButton("BACK", 325,100,150,50, new MenuGrid(0, 1));
 
 
         /*--------------EVENT HANDLER--------------------------*/
-        arrowkeys.addListener(new ChangeListener() {
+        arrowkeysButton.addListener(new ChangeListener() {
             public void changed(ChangeEvent event, Actor actor) {
-                arrowkeys.setChecked(false);
+                arrowkeysButton.setChecked(false);
 
                 Managers.getAccountManager().getAccounts().get(0).getPlayer().getPlayerInput().setArrowkeys();
 
             }
         });
-        qwerty.addListener(new ChangeListener() {
+        qwertyButton.addListener(new ChangeListener() {
             public void changed(ChangeEvent event, Actor actor) {
-                qwerty.setChecked(false);
+                qwertyButton.setChecked(false);
                 Managers.getAccountManager().getAccounts().get(0).getPlayer().getPlayerInput().setQwerty();
 
             }
         });
-        azerty.addListener(new ChangeListener() {
+        azertyButton.addListener(new ChangeListener() {
             public void changed(ChangeEvent event, Actor actor) {
-                azerty.setChecked(false);
+                azertyButton.setChecked(false);
                 Managers.getAccountManager().getAccounts().get(0).getPlayer().getPlayerInput().setAzerty();
 
             }
