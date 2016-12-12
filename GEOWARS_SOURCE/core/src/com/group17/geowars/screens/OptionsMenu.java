@@ -22,45 +22,51 @@ import javax.swing.*;
 public class OptionsMenu extends MenuScreen implements hasStage {
     private BitmapFont text;
     private Skin skin;
-    private TextField txtMovementLeft,txtMovementRight,txtMovementUp,txtMovementDown, txtPassword;
+    private TextField txtMovementLeft, txtMovementRight, txtMovementUp, txtMovementDown;
+    private Integer SelectedKeyBinding = 1;
 
     private Table table;
-    public OptionsMenu()
-    {
+
+    public OptionsMenu() {
         super();
         create();
     }
 
-    public void Buttons(){
+    public void Buttons() {
 
-        final TextButton arrowkeys = newButton("Arrow keys",152,400,150,50, new MenuGrid(0, 0));
-        final TextButton qwerty = newButton("Qwerty",325,400,150,50, new MenuGrid(1, 0));
+        final TextButton arrowkeysButton = newButton("Arrow keys", 152, 400, 150, 50, new MenuGrid(0, 0));
+        final TextButton qwertyButton = newButton("Qwerty", 325, 400, 150, 50, new MenuGrid(1, 0));
 
-        final TextButton azerty = newButton("Azerty",525,400,150,50, new MenuGrid(2, 0));
+        final TextButton azertyButton = newButton("Azerty", 525, 400, 150, 50, new MenuGrid(2, 0));
 
-        final TextButton backButton = newButton("BACK", 325,100,150,50, new MenuGrid(0, 1));
+        final TextButton backButton = newButton("BACK", 325, 100, 150, 50, new MenuGrid(0, 1));
 
 
         /*--------------EVENT HANDLER--------------------------*/
-        arrowkeys.addListener(new ChangeListener() {
+        arrowkeysButton.addListener(new ChangeListener() {
             public void changed(ChangeEvent event, Actor actor) {
-                arrowkeys.setChecked(false);
+                arrowkeysButton.setChecked(false);
 
                 Managers.getAccountManager().getAccounts().get(0).getPlayer().getPlayerInput().setArrowkeys();
+                SelectedKeyBinding = 1;
+                test();
 
             }
         });
-        qwerty.addListener(new ChangeListener() {
+        qwertyButton.addListener(new ChangeListener() {
             public void changed(ChangeEvent event, Actor actor) {
-                qwerty.setChecked(false);
+                qwertyButton.setChecked(false);
                 Managers.getAccountManager().getAccounts().get(0).getPlayer().getPlayerInput().setQwerty();
-
+                SelectedKeyBinding = 2;
+                test();
             }
         });
-        azerty.addListener(new ChangeListener() {
+        azertyButton.addListener(new ChangeListener() {
             public void changed(ChangeEvent event, Actor actor) {
-                azerty.setChecked(false);
+                azertyButton.setChecked(false);
                 Managers.getAccountManager().getAccounts().get(0).getPlayer().getPlayerInput().setAzerty();
+                SelectedKeyBinding = 3;
+                test();
 
             }
         });
@@ -71,12 +77,18 @@ public class OptionsMenu extends MenuScreen implements hasStage {
                 MenuScreen nextMenu = Managers.getMenuManager().getScreen("mainmenu");
                 Managers.getMenuManager().setScreen(nextMenu);
 
+
             }
         });
-        test();
+        // TODO: 12/12/2016
+        TextButton controllerBindings = newButton("VIEW CONTROLLER BINDINGs", 20, 20, 150, 50, new MenuGrid(1, 1));
+
     }
-    public void test(){
+
+    public void test() {
         //skin and style
+        stage.clear();
+        Buttons();
         skin = new Skin();
         Pixmap pixmap = new Pixmap(200, 50, Pixmap.Format.RGBA8888);
         pixmap.setColor(Color.WHITE);
@@ -91,12 +103,25 @@ public class OptionsMenu extends MenuScreen implements hasStage {
 
 
         //input fields
-        txtMovementLeft = new TextField("<-", txtStyle);
-        txtMovementRight = new TextField("->", txtStyle);
-        txtMovementUp = new TextField("->", txtStyle);
-        txtMovementDown = new TextField("->", txtStyle);
-
-       // txtUsername.setMessageText("test");
+        if (SelectedKeyBinding == 1) {
+            txtMovementLeft = new TextField("<-", txtStyle);
+            txtMovementRight = new TextField("->", txtStyle);
+            txtMovementUp = new TextField("->", txtStyle);
+            txtMovementDown = new TextField("->", txtStyle);
+        } else if (SelectedKeyBinding == 2) {
+            txtMovementLeft = new TextField("D", txtStyle);
+            txtMovementRight = new TextField("A", txtStyle);
+            txtMovementUp = new TextField("W", txtStyle);
+            txtMovementDown = new TextField("S", txtStyle);
+        } else if (SelectedKeyBinding == 3) {
+            txtMovementLeft = new TextField("Q", txtStyle);
+            txtMovementRight = new TextField("D", txtStyle);
+            txtMovementUp = new TextField("Z", txtStyle);
+            txtMovementDown = new TextField("S", txtStyle);
+        } else {
+            System.out.println("error: there is no keybinding selected!!!");
+        }
+        // txtUsername.setMessageText("test");
         //add to stage
         table = new Table();
         table.setFillParent(true);
@@ -120,11 +145,10 @@ public class OptionsMenu extends MenuScreen implements hasStage {
         stage.addActor(table);
     }
 
-    public void create()
-    {
+    public void create() {
         Gdx.input.setInputProcessor(stage);
-        Buttons();
-        TextButton controllerBindings = newButton("VIEW CONTROLLER BINDINGs",20,20,150,50, new MenuGrid(1,1));
+        test();
+        
     }
 
 }

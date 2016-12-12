@@ -89,12 +89,13 @@ public class ScreenManager {
         menuList.put("mainmenu", mainMenu = new MainMenu());
         menuList.put("playmenu", new PlayMenu());
         menuList.put("profilemenu", new ProfileMenu());
-        menuList.put("highscore", new HighScoreMenu());
+        menuList.put("highscoremenu", new HighScoreMenu());
         menuList.put("game", new GameScreen());
         menuList.put("endgamemenu",new EndGameMenu());
         menuList.put("optionsmenu",new OptionsMenu());
         //menuList.put("clanmenu", new ClanMenu()); TODO create ClanMenu
         menuList.put("upgrademenu", new UpgradeMenu());
+        menuList.put("shopmenu", new ShopMenu());
         setScreen(mainMenu);
     }
 
