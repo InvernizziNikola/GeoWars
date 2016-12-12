@@ -18,7 +18,6 @@ public class GameScreen extends MenuScreen implements iGame{
     private Batch batch;
     public GameScreen()
     {
-
         batch = new SpriteBatch();
 
         Account account = new Account("YEEEY");
@@ -38,7 +37,6 @@ public class GameScreen extends MenuScreen implements iGame{
     {
         super.render(Gdx.graphics.getDeltaTime());
 
-        System.out.println("GAMESCREEN");
         batch.begin();
         Managers.getGameManager().update();
         Managers.getGameManager().render(batch);

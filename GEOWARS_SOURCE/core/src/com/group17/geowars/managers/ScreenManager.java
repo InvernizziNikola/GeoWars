@@ -101,7 +101,6 @@ public class ScreenManager {
 
 
     public void render(){
-
         if(showScreen instanceof iGame)
             ((iGame)showScreen).renderGame();
         else
@@ -112,7 +111,7 @@ public class ScreenManager {
     {
         MenuScreen screen = menuList.get(name);
         if(screen == null) {
-            System.out.println("SHOULDNT HAPPEN");
+            System.out.println("SHOULDNT HAPPEN!");
             return mainMenu;
         }
         return screen;
@@ -134,7 +133,6 @@ public class ScreenManager {
 
     public void resizeStages(int width, int height, boolean center)
     {
-
         Enumeration<String> enumKey = menuList.keys();
         while(enumKey.hasMoreElements()) {
             String key = enumKey.nextElement();

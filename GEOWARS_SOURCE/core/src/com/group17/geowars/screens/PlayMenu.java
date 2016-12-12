@@ -73,6 +73,6 @@ public class PlayMenu extends MenuScreen implements hasStage, setActive{
 
     @Override
     public void setActive() {
-        System.out.println("test2");
+        System.out.println("SetActive");
     }
 }
