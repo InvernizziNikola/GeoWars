@@ -64,7 +64,7 @@ public class MainMenu extends MenuScreen implements hasStage{
             public void changed(ChangeEvent event, Actor actor)
             {
                 leaderboardButton.setChecked(false);
-                MenuScreen nextMenu = Managers.getMenuManager().getScreen("highscore");
+                MenuScreen nextMenu = Managers.getMenuManager().getScreen("highscoremenu");
                 Managers.getMenuManager().setScreen(nextMenu);
 
             }
@@ -76,7 +76,7 @@ public class MainMenu extends MenuScreen implements hasStage{
             public void changed(ChangeEvent event, Actor actor)
             {
                 shopButton.setChecked(false);
-                MenuScreen nextMenu = Managers.getMenuManager().getScreen("shop");
+                MenuScreen nextMenu = Managers.getMenuManager().getScreen("shopmenu");
                 Managers.getMenuManager().setScreen(nextMenu);
             }
         });

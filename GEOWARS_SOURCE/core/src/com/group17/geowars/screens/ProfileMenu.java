@@ -29,6 +29,9 @@ public class ProfileMenu extends MenuScreen implements hasStage {
     public void create(){
         Gdx.input.setInputProcessor(stage);
         batch = new SpriteBatch();
+        text = new BitmapFont();
+        text.setColor(Color.WHITE);
+
         final TextButton clanButton = newButton("CLANS",50,150,150,50, new MenuGrid(0, 0));
         clanButton.addListener(new ChangeListener() {
             @Override
@@ -59,27 +62,23 @@ public class ProfileMenu extends MenuScreen implements hasStage {
                 Managers.getMenuManager().setScreen(nextMenu);
             }
         });
-        text = new BitmapFont();
-        text.setColor(Color.WHITE);
-
-
-
 
     }
 
     public void showText()
     {
-        text.draw(batch, "GEOMETRYWARS",Gdx.graphics.getWidth()/2-70,550);
+        int width = Gdx.graphics.getWidth()/2;
+        text.draw(batch, "GEOMETRYWARS",width-70,550);
         //TODO values need to be inserted
-        text.draw(batch, "USERNAME",Gdx.graphics.getWidth()/2-50,500);
+        text.draw(batch, "USERNAME",width-50,500);
         text.draw(batch, "HIGHSCORE ARCADE: ",50,400);
         text.draw(batch,"CAMPAIGN COMPLETION: %",50,375);
         text.draw(batch, "GAMES PLAYED: ",50,350);
         text.draw(batch, "HOURS PLAYED: ",50,325);
         text.draw(batch,"LEVEL: ",50,300);
-        text.draw(batch, "CURRENT SHIP & DRONE",Gdx.graphics.getWidth()/2+100,425);
-        text.draw(batch,"CURRENT SHIP",Gdx.graphics.getWidth()/2+200,375);
-        text.draw(batch,"CURRENT DRONE", Gdx.graphics.getWidth()/2+200,300);
+        text.draw(batch, "CURRENT SHIP & DRONE",width+100,425);
+        text.draw(batch,"CURRENT SHIP",width+200,375);
+        text.draw(batch,"CURRENT DRONE", width+200,300);
     }
 
     @Override
