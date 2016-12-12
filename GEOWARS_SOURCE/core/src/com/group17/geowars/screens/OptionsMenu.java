@@ -72,7 +72,7 @@ public class OptionsMenu extends MenuScreen implements hasStage {
         });
         CostumButton.addListener(new ChangeListener() {
             public void changed(ChangeEvent event, Actor actor) {
-                arrowkeysButton.setChecked(false);
+                CostumButton.setChecked(false);
 
                // Managers.getAccountManager().getAccounts().get(0).getPlayer().getPlayerInput().setArrowkeys();
                 SelectedKeyBinding = 4;
@@ -82,9 +82,14 @@ public class OptionsMenu extends MenuScreen implements hasStage {
         });
         ApplyButton.addListener(new ChangeListener() {
             public void changed(ChangeEvent event, Actor actor) {
-                arrowkeysButton.setChecked(false);
-                //Managers.getAccountManager().getAccounts().get(0).getPlayer().getPlayerInput().setArrowkeys();
+                ApplyButton.setChecked(false);
+
                 SelectedKeyBinding = 4;
+                String keyleft=txtMovementLeft.getText();
+                String keyright=txtMovementRight.getText();
+                String keyup=txtMovementUp.getText();
+                String keydown=txtMovementDown.getText();
+                Managers.getAccountManager().getAccounts().get(0).getPlayer().getPlayerInput().setCostum(keyleft,keyright,keyup,keydown);
                 test();
             }
         });
