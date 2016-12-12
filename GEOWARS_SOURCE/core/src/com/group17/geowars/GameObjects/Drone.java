@@ -74,8 +74,8 @@ public class Drone extends GameObject{
     public void update() {
 
         timer += Gdx.graphics.getDeltaTime();
-        if(timer > 0.1f) {
-            timer %= 0.1f;
+        if(timer > 0.2f) {
+            timer %= 0.2f;
             canShoot = true;
         }
 

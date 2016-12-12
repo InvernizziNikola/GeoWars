@@ -43,7 +43,7 @@ public class GeoWars extends ApplicationAdapter{
 	@Override
 	public void resize(int width, int height) {
 		viewport.update(width, height);
-		Managers.getScreenManager().resizeStages(width, height, true);
+		Managers.getScreenManager().resizeStages(width, height, false);
 	}
 
 }
