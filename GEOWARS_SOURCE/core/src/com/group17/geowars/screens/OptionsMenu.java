@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.group17.geowars.GeoWars;
 import com.group17.geowars.managers.Managers;
 import com.group17.geowars.utils.MenuGrid;
 
@@ -22,6 +23,8 @@ public class OptionsMenu extends MenuScreen implements hasStage {
     private Skin skin;
     private TextField txtMovementLeft, txtMovementRight, txtMovementUp, txtMovementDown;
     private Integer SelectedKeyBinding = 1;
+    private int width = GeoWars.WIDTH;
+    private int height = GeoWars.HEIGHT;
 
     private Table table;
 
@@ -32,14 +35,13 @@ public class OptionsMenu extends MenuScreen implements hasStage {
 
     public void Buttons() {
 
-        final TextButton arrowkeysButton = newButton("Arrow keys", 152, 400, 150, 50, new MenuGrid(0, 0));
-        final TextButton qwertyButton = newButton("Qwerty", 325, 400, 150, 50, new MenuGrid(1, 0));
-
-        final TextButton azertyButton = newButton("Azerty", 525, 400, 150, 50, new MenuGrid(2, 0));
-        final TextButton CostumButton = newButton("Costum", 152, 340, 150, 50, new MenuGrid(1, 2));
-        final TextButton ApplyButton = newButton("Apply", 325, 200, 150, 50, new MenuGrid(3, 0));
-
-        final TextButton backButton = newButton("BACK", 325, 100, 150, 50, new MenuGrid(0, 1));
+        final TextButton arrowkeysButton = newButton("ARROW KEYS", (width/2)-width/4, height-height/3, 150, 50, new MenuGrid(0, 0));
+        final TextButton qwertyButton = newButton("QWERTY", width/2-75, height-height/3, 150, 50, new MenuGrid(1, 0));
+        final TextButton azertyButton = newButton("AZERTY", (width/2)+width/6, height-height/3, 150, 50, new MenuGrid(2, 0));
+        final TextButton CustomButton = newButton("CUSTOM", (width/2)-width/4, height-height/3-100, 150, 50, new MenuGrid(1, 2));
+        TextButton controllerBindings = newButton("VIEW CONTROLLER BINDINGS", width/2-width/4, height/4, 250, 50, new MenuGrid(1, 1));//TODO add action
+        final TextButton ApplyButton = newButton("APPLY", width/2-75, height/4, 150, 50, new MenuGrid(3, 0));
+        final TextButton backButton = newButton("BACK", width/2-75, height/6, 150, 50, new MenuGrid(0, 1));
 
 
         /*--------------EVENT HANDLER--------------------------*/
@@ -70,9 +72,9 @@ public class OptionsMenu extends MenuScreen implements hasStage {
 
             }
         });
-        CostumButton.addListener(new ChangeListener() {
+        CustomButton.addListener(new ChangeListener() {
             public void changed(ChangeEvent event, Actor actor) {
-                CostumButton.setChecked(false);
+                CustomButton.setChecked(false);
 
                // Managers.getAccountManager().getAccounts().get(0).getPlayer().getPlayerInput().setArrowkeys();
                 SelectedKeyBinding = 4;
@@ -89,7 +91,7 @@ public class OptionsMenu extends MenuScreen implements hasStage {
                 String keyright=txtMovementRight.getText();
                 String keyup=txtMovementUp.getText();
                 String keydown=txtMovementDown.getText();
-                Managers.getAccountManager().getAccounts().get(0).getPlayer().getPlayerInput().setCostum(keyleft,keyright,keyup,keydown);
+                Managers.getAccountManager().getAccounts().get(0).getPlayer().getPlayerInput().setCustom(keyleft,keyright,keyup,keydown);
                 test();
             }
         });
@@ -102,8 +104,8 @@ public class OptionsMenu extends MenuScreen implements hasStage {
 
             }
         });
-        // TODO: 12/12/2016
-        TextButton controllerBindings = newButton("VIEW CONTROLLER BINDINGs", 20, 20, 150, 50, new MenuGrid(1, 1));
+
+
 
     }
 

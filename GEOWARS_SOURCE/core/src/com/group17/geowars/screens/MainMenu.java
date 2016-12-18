@@ -7,6 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.group17.geowars.GeoWars;
 import com.group17.geowars.managers.Managers;
 import com.group17.geowars.utils.MenuGrid;
 
@@ -17,6 +18,8 @@ import java.util.Map;
  */
 public class MainMenu extends MenuScreen implements hasStage{
 
+    private int width = GeoWars.WIDTH;
+    private int height = GeoWars.HEIGHT;
     public MainMenu()
     {
         super();
@@ -25,7 +28,7 @@ public class MainMenu extends MenuScreen implements hasStage{
     public void create() {
         Gdx.input.setInputProcessor(stage);
 
-        final TextButton playButton = newButton("PLAY", 300, 450, 150, 50, new MenuGrid(0, 0));
+        final TextButton playButton = newButton("PLAY", width/2-75, height/2+150, 150, 50, new MenuGrid(0, 0));
         playButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -35,7 +38,7 @@ public class MainMenu extends MenuScreen implements hasStage{
             }
         });
 
-        final TextButton profileButton = newButton("PROFILE", 300, 390, 150, 50, new MenuGrid(0, 1));
+        final TextButton profileButton = newButton("PROFILE", width/2-75, height/2+50, 150, 50, new MenuGrid(0, 1));
         profileButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -45,7 +48,7 @@ public class MainMenu extends MenuScreen implements hasStage{
             }
         });
 
-        final TextButton optionsButton = newButton("OPTIONS", 300, 330, 150, 50, new MenuGrid(0, 2));
+        final TextButton optionsButton = newButton("OPTIONS", width/2-75, height/2-50, 150, 50, new MenuGrid(0, 2));
         optionsButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -55,18 +58,18 @@ public class MainMenu extends MenuScreen implements hasStage{
             }
         });
 
-        final TextButton leaderboardButton = newButton("LEADERBOARDS", 300, 270, 150, 50, new MenuGrid(0, 3));
+        final TextButton leaderboardButton = newButton("LEADERBOARDS", width/2-75, height/2-150, 150, 50, new MenuGrid(0, 3));
         leaderboardButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 leaderboardButton.setChecked(false);
-                MenuScreen nextMenu = Managers.getScreenManager().getScreen("highscore");
+                MenuScreen nextMenu = Managers.getScreenManager().getScreen("highscoremenu");
                 Managers.getScreenManager().setScreen(nextMenu);
 
             }
         });
 
-        final TextButton shopButton = newButton("SHOP", 300, 210, 150, 50, new MenuGrid(0, 4));
+        final TextButton shopButton = newButton("SHOP", width/2-75, height/2-250, 150, 50, new MenuGrid(0, 4));
         shopButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -77,7 +80,7 @@ public class MainMenu extends MenuScreen implements hasStage{
         });
 
 
-        final TextButton quitButton = newButton("QUIT GAME", 300, 90, 150, 50, new MenuGrid(0, 5));
+        final TextButton quitButton = newButton("QUIT GAME", width/2-75, height-height+90, 150, 50, new MenuGrid(0, 5));
         quitButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {

@@ -10,6 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.group17.geowars.GeoWars;
 import com.group17.geowars.managers.Managers;
 import com.group17.geowars.utils.MenuGrid;
 
@@ -20,6 +21,8 @@ import com.group17.geowars.utils.MenuGrid;
 public class ProfileMenu extends MenuScreen implements hasStage {
     private BitmapFont text;
     private Batch batch;
+    private int width = GeoWars.WIDTH;
+    private int height = GeoWars.HEIGHT;
     public ProfileMenu()
     {
         super();
@@ -32,7 +35,7 @@ public class ProfileMenu extends MenuScreen implements hasStage {
         text = new BitmapFont();
         text.setColor(Color.WHITE);
 
-        final TextButton clanButton = newButton("CLANS",50,150,150,50, new MenuGrid(0, 0));
+        final TextButton clanButton = newButton("CLANS",width/10,height/3,150,50, new MenuGrid(0, 0));
         clanButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -42,7 +45,7 @@ public class ProfileMenu extends MenuScreen implements hasStage {
             }
         });
 
-        final TextButton backButton = newButton("BACK",640,50,150,50, new MenuGrid(1, 1));
+        final TextButton backButton = newButton("BACK",width/2-75,height/10,150,50, new MenuGrid(1, 1));
         backButton.addListener(new ChangeListener() {
 
             public void changed(ChangeEvent event, Actor actor) {
@@ -53,7 +56,7 @@ public class ProfileMenu extends MenuScreen implements hasStage {
             }
         });
 
-        final TextButton upgradeButton = newButton("CHANGE/UPGRADE",550,150,150,50,new MenuGrid(1,0));
+        final TextButton upgradeButton = newButton("CHANGE/UPGRADE",width-width/3,height/3,150,50,new MenuGrid(1,0));
         upgradeButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -67,18 +70,18 @@ public class ProfileMenu extends MenuScreen implements hasStage {
 
     public void showText()
     {
-        int width = Gdx.graphics.getWidth()/2;
-        text.draw(batch, "GEOMETRYWARS",width-70,550);
+
+        text.draw(batch, "GEOMETRYWARS",width/2-70,height-height/10);
         //TODO values need to be inserted
-        text.draw(batch, "USERNAME",width-50,500);
-        text.draw(batch, "HIGHSCORE ARCADE: ",50,400);
-        text.draw(batch,"CAMPAIGN COMPLETION: %",50,375);
-        text.draw(batch, "GAMES PLAYED: ",50,350);
-        text.draw(batch, "HOURS PLAYED: ",50,325);
-        text.draw(batch,"LEVEL: ",50,300);
-        text.draw(batch, "CURRENT SHIP & DRONE",width+100,425);
-        text.draw(batch,"CURRENT SHIP",width+200,375);
-        text.draw(batch,"CURRENT DRONE", width+200,300);
+        text.draw(batch, "USERNAME",width/2-50,height-height/6);
+        text.draw(batch, "HIGHSCORE ARCADE: ",width/10,height-height/3);
+        text.draw(batch,"CAMPAIGN COMPLETION: %",width/10,height-height/3-50);
+        text.draw(batch, "GAMES PLAYED: ",width/10,height-height/3-100);
+        text.draw(batch, "HOURS PLAYED: ",width/10,height/2+25);
+        text.draw(batch,"LEVEL: ",width/10,height/2-25);
+        text.draw(batch, "CURRENT SHIP & DRONE",width-width/3,height-height/3);
+        text.draw(batch,"CURRENT SHIP",width-width/6,height-height/3-100);
+        text.draw(batch,"CURRENT DRONE", width-width/6,height/2-25);
     }
 
     @Override

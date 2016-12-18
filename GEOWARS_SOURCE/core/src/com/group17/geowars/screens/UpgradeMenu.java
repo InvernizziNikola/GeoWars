@@ -10,6 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.group17.geowars.GeoWars;
 import com.group17.geowars.managers.Managers;
 import com.group17.geowars.utils.MenuGrid;
 
@@ -24,7 +25,7 @@ public class UpgradeMenu extends MenuScreen implements hasStage{
     private int showDrone = 0;
     private int showShipStats = 0;
     private int showDroneStats = 0;
-    private int width = Gdx.graphics.getWidth()/2;
+    private int width = GeoWars.WIDTH/2;
 
     public UpgradeMenu()
     {

@@ -65,7 +65,7 @@ public class PlayerInput {
     public void setQwerty(){
         Keybinding = 3;
     }
-    public void setCostum(String keyleft,String keyright,String keyup,String keydown){
+    public void setCustom(String keyleft,String keyright,String keyup,String keydown){
         Keybinding = 4;
         KeyLeft=keyleft.toUpperCase();
         KeyRight=keyright.toUpperCase();

@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.group17.geowars.GeoWars;
 import com.group17.geowars.utils.HighScoreThread;
 import com.group17.geowars.utils.MenuGrid;
 import com.group17.geowars.managers.Managers;
@@ -24,6 +25,8 @@ public class HighScoreMenu extends MenuScreen implements hasStage, setActive{
     private HighScoreThread hsT;
     private ArrayList highScores;
     private boolean loading = false;
+    private int width = GeoWars.WIDTH;
+    private int height = GeoWars.HEIGHT;
 
 
     public HighScoreMenu() {
@@ -52,13 +55,13 @@ public class HighScoreMenu extends MenuScreen implements hasStage, setActive{
     }
     public void Buttons(){
 
-        final TextButton campaignButton = newButton("CAMPAIGN",152,400,150,50, new MenuGrid(0, 0));
+        final TextButton campaignButton = newButton("CAMPAIGN",width/2-width/5,height-height/3,150,50, new MenuGrid(0, 0));
 
-        final TextButton arcadeButton = newButton("ARCADE",325,400,150,50, new MenuGrid(1, 0));
+        final TextButton arcadeButton = newButton("ARCADE",width/2-75,height-height/3,150,50, new MenuGrid(1, 0));
 
-        final TextButton multiPlayerButton = newButton("CO-OP",525,400,150,50, new MenuGrid(2, 0));
+        final TextButton multiPlayerButton = newButton("CO-OP",width/2+width/8,height-height/3,150,50, new MenuGrid(2, 0));
 
-        final TextButton backButton = newButton("BACK", 325,100,150,50, new MenuGrid(0, 1));
+        final TextButton backButton = newButton("BACK", width/2-75,height/5,150,50, new MenuGrid(0, 1));
 
         /*--------------EVENT HANDLER--------------------------*/
         campaignButton.addListener(new ChangeListener() {
@@ -103,7 +106,7 @@ public class HighScoreMenu extends MenuScreen implements hasStage, setActive{
 
         stage.clear();
         Buttons();
-
+        //TODO change width
         skin = new Skin();
         skin1 = new Skin();
         Pixmap pixmap = new Pixmap(200, 50, Pixmap.Format.RGBA8888);
@@ -156,7 +159,7 @@ public class HighScoreMenu extends MenuScreen implements hasStage, setActive{
 
 
 
-        text.draw(batch, "GEOMETRYWARS", 325, 550);
+        text.draw(batch, "GEOMETRYWARS", width/2-70, height-height/6);
         batch.end();
     }
 }
