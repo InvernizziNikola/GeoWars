@@ -30,6 +30,7 @@ public class ShopMenuScreen extends MenuScreen implements iHasStage,iSetActive {
     private int height = GeoWars.HEIGHT;
     private ShopThread ShopThread;
     private ArrayList ShipData;
+    private ArrayList DroneData;
     public ShopMenuScreen()
     {
         super();
@@ -97,13 +98,13 @@ public class ShopMenuScreen extends MenuScreen implements iHasStage,iSetActive {
 
     @Override
     public void setActive() {
-      getShipData();
+        getAllData();
     }
     public void showLoading()
     {
         text.draw(batch, "Loading...", 350, 380);
     }
-    public void getShipData()
+    public void getAllData()
     {
         if(loading)
             return;
@@ -120,7 +121,8 @@ public class ShopMenuScreen extends MenuScreen implements iHasStage,iSetActive {
         batch.begin();
         if(ShopThread != null && ShopThread.finished())
         {
-            ShipData = ShopThread.getData();
+            ShipData = ShopThread.getShipData();
+            DroneData = ShopThread.getDronesData();
             ShopThread = null;
 
             loading = false;

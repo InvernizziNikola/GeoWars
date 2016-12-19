@@ -99,6 +99,15 @@ public class DBManager {
         }
         return resultselect;
     }
+    public ArrayList DBselectAllDrones() {
+        try {
+            String SQLstring = "SELECT name,image,hitpoints,hpinfinite,attack,speed,type FROM Drone;";
+            resultselect = DBconnect(SQLstring, true);
+        } catch (Exception e) {
+            System.out.println("Fout in select: " + e.getMessage());
+        }
+        return resultselect;
+    }
     public ArrayList DBselectPowerUp(String name) {
         try {
             String SQLstring = "SELECT name,type,amount,description FROM PowerUp where name='" + name + "';";

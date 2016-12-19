@@ -25,8 +25,8 @@ import java.util.ArrayList;
 public class ShopThread implements Runnable {
 
 
-    private ArrayList data = null;
-    private String Shipname = "";
+    private ArrayList dataShips = null;
+    private ArrayList dataDrones = null;
     private Thread t;
 
     public ShopThread()
@@ -45,22 +45,29 @@ public class ShopThread implements Runnable {
     @Override
     public void run() {
         DBManager manager = new DBManager();
-        data = manager.DBselectAllShips();
+        dataShips = manager.DBselectAllShips();
+        dataDrones = manager.DBselectAllDrones();
 
 
 
     }
 
-    public ArrayList getData()
+    public ArrayList getShipData()
     {
 
 
-        return data;
+        return dataShips;
+    }
+    public ArrayList getDronesData()
+    {
+
+
+        return dataDrones;
     }
 
     public boolean finished()
     {
-        if(data != null)
+        if(dataDrones != null && dataShips !=null)
             return true;
         return false;
     }
