@@ -108,6 +108,15 @@ public class DBManager {
         }
         return resultselect;
     }
+    public ArrayList DBselectWaveData(Integer WaveNumber) {
+        try {
+            String SQLstring = "SELECT * FROM Waves WHERE WaveNumber = "+WaveNumber+";";
+            resultselect = DBconnect(SQLstring, true);
+        } catch (Exception e) {
+            System.out.println("Fout in select: " + e.getMessage());
+        }
+        return resultselect;
+    }
     public ArrayList DBselectPowerUp(String name) {
         try {
             String SQLstring = "SELECT name,type,amount,description FROM PowerUp where name='" + name + "';";
