@@ -302,8 +302,6 @@ public class UpgradeMenuScreen extends MenuScreen implements iHasStage,iSetActiv
 
     @Override
     public void setActive() {
-
-        System.out.println("test");
         getAllData();
     }
     public void showLoading()
