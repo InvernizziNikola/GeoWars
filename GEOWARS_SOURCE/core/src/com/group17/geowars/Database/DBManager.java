@@ -92,7 +92,7 @@ public class DBManager {
     }
     public ArrayList DBselectAllShips() {
         try {
-            String SQLstring = "SELECT name,image,hitpoints,attack,speed,type,price FROM Ship;";
+            String SQLstring = "SELECT name,hitpoints,attack,speed,price FROM Ship;";
             resultselect = DBconnect(SQLstring, true);
         } catch (Exception e) {
             System.out.println("Fout in select: " + e.getMessage());
@@ -101,7 +101,7 @@ public class DBManager {
     }
     public ArrayList DBselectAllDrones() {
         try {
-            String SQLstring = "SELECT name,image,hitpoints,hpinfinite,attack,speed,type,price FROM Drone;";
+            String SQLstring = "SELECT name,hitpoints,hpinfinite,attack,speed,price FROM Drone;";
             resultselect = DBconnect(SQLstring, true);
         } catch (Exception e) {
             System.out.println("Fout in select: " + e.getMessage());
