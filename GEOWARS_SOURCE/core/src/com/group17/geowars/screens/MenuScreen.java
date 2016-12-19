@@ -168,10 +168,7 @@ public class MenuScreen implements Screen {
             tempButton.setPosition(x, y);
             tempButton.setWidth(width);
             tempButton.setHeight(height);
-
-
-
-            tempButton.getListeners().clear();
+            
             menuButtons.put(position, tempButton);
             stage.addActor(tempButton);
         }
