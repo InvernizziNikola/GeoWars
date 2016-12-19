@@ -35,9 +35,9 @@ public class OptionsMenuScreen extends MenuScreen implements iHasStage {
         final TextButton arrowkeysButton = newButton("ARROW KEYS", (width/2)-width/4, height-height/3, 150, 50, new MenuGrid(0, 0));
         final TextButton qwertyButton = newButton("QWERTY", width/2-75, height-height/3, 150, 50, new MenuGrid(1, 0));
         final TextButton azertyButton = newButton("AZERTY", (width/2)+width/6, height-height/3, 150, 50, new MenuGrid(2, 0));
-        final TextButton CustomButton = newButton("CUSTOM", (width/2)-width/4, height-height/3-100, 150, 50, new MenuGrid(1, 2));
+        //final TextButton CustomButton = newButton("CUSTOM", (width/2)-width/4, height-height/3-100, 150, 50, new MenuGrid(1, 2));
         TextButton controllerBindings = newButton("VIEW CONTROLLER BINDINGS", width/2-width/4, height/4, 250, 50, new MenuGrid(1, 1));//TODO add action
-        final TextButton ApplyButton = newButton("APPLY", width/2-75, height/4, 150, 50, new MenuGrid(3, 0));
+       // final TextButton ApplyButton = newButton("APPLY", width/2-75, height/4, 150, 50, new MenuGrid(3, 0));
         final TextButton backButton = newButton("BACK", width/2-75, height/6, 150, 50, new MenuGrid(0, 1));
 
 
@@ -69,6 +69,7 @@ public class OptionsMenuScreen extends MenuScreen implements iHasStage {
 
             }
         });
+        /*
         CustomButton.addListener(new ChangeListener() {
             public void changed(ChangeEvent event, Actor actor) {
                 CustomButton.setChecked(false);
@@ -91,7 +92,7 @@ public class OptionsMenuScreen extends MenuScreen implements iHasStage {
                 Managers.getAccountManager().getAccounts().get(0).getPlayer().getPlayerInput().setCustom(keyleft,keyright,keyup,keydown);
                 test();
             }
-        });
+        });*/
         backButton.addListener(new ChangeListener() {
             public void changed(ChangeEvent event, Actor actor) {
                 backButton.setChecked(false);
@@ -121,7 +122,7 @@ public class OptionsMenuScreen extends MenuScreen implements iHasStage {
         style.font = font;
 
 
-
+/*
         //input fields
         if (SelectedKeyBinding == 1) {
             txtMovementLeft = new TextField("<-", txtStyle);
@@ -171,6 +172,7 @@ public class OptionsMenuScreen extends MenuScreen implements iHasStage {
 
 
         stage.addActor(table);
+        */
     }
 
     public void create() {

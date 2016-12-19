@@ -121,20 +121,7 @@ public class PlayerInput {
             if (Gdx.input.isKeyPressed(Input.Keys.S)) {
                 dir.y += -1;
             }
-        }else if(Keybinding==4){
-            //Qwerty
-            if (Gdx.input.isKeyPressed(Input.Keys.valueOf(KeyLeft))) {
-                dir.x += -1;
-            }
-            if (Gdx.input.isKeyPressed(Input.Keys.valueOf(KeyRight))) {
-                dir.x += 1;
-            }
-            if (Gdx.input.isKeyPressed(Input.Keys.valueOf(KeyUp))) {
-                dir.y += 1;
-            }
-            if (Gdx.input.isKeyPressed(Input.Keys.valueOf(KeyDown))) {
-                dir.y += -1;
-            }
+
         }else{
             System.out.println("no keybinding selected!");
         }
