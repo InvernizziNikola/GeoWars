@@ -2,12 +2,10 @@ package com.group17.geowars.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.group17.geowars.managers.Managers;
@@ -16,11 +14,11 @@ import com.group17.geowars.utils.GAMESTATE;
 /**
  * Created by michiel on 4/12/2016.
  */
-public class EndGameMenu extends MenuScreen implements hasStage{
+public class EndGameMenuScreen extends MenuScreen implements iHasStage {
 
     private BitmapFont text;
     private Batch batch;
-    public EndGameMenu()
+    public EndGameMenuScreen()
     {
         super();
         create();

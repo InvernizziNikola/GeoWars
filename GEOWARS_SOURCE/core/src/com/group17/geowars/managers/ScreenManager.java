@@ -88,9 +88,9 @@ public class ScreenManager {
         menuList.put("mainmenu", mainMenuScreen = new MainMenuScreen());
         menuList.put("playmenu", new PlayMenuScreen());
         menuList.put("profilemenu", new ProfileMenuScreen());
-        menuList.put("highscoremenu", new HighScoreMenu());
+        menuList.put("highscoremenu", new HighScoreMenuScreen());
         menuList.put("game", new GameScreen());
-        menuList.put("endgamemenu",new EndGameMenu());
+        menuList.put("endgamemenu",new EndGameMenuScreen());
         menuList.put("optionsmenu",new OptionsMenuScreen());
         //menuList.put("clanmenu", new ClanMenu()); TODO create ClanMenu
         menuList.put("upgrademenu", new UpgradeMenuScreen());
@@ -124,8 +124,8 @@ public class ScreenManager {
         }
         else {
             showScreen = screen;
-            if(showScreen instanceof setActive)
-                ((setActive)showScreen).setActive();
+            if(showScreen instanceof iSetActive)
+                ((iSetActive)showScreen).setActive();
         }
         Gdx.input.setInputProcessor(showScreen.getStage());
     }

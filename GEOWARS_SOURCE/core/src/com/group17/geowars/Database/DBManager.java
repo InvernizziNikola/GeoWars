@@ -26,7 +26,7 @@ public class DBManager {
 
     public ArrayList DBselectHighscore(String Gamemode) {
         try {
-            String SQLstring = "SELECT nameProfile,score FROM HighScoreMenu where gamemode ='" + Gamemode + "'ORDER BY score DESC;";
+            String SQLstring = "SELECT nameProfile,score FROM HighScoreMenuScreen where gamemode ='" + Gamemode + "'ORDER BY score DESC;";
             resultselect = DBconnect(SQLstring, true);
         } catch (Exception e) {
             System.out.println("Fout in select: " + e.getMessage());

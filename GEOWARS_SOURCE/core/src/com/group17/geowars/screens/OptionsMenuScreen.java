@@ -12,13 +12,10 @@ import com.group17.geowars.GeoWars;
 import com.group17.geowars.managers.Managers;
 import com.group17.geowars.utils.MenuGrid;
 
-import javax.swing.*;
-import javax.swing.border.Border;
-
 /**
  * Created by michield on 23/11/2016.
  */
-public class OptionsMenuScreen extends MenuScreen implements hasStage {
+public class OptionsMenuScreen extends MenuScreen implements iHasStage {
     private BitmapFont text;
     private Skin skin;
     private TextField txtMovementLeft, txtMovementRight, txtMovementUp, txtMovementDown;

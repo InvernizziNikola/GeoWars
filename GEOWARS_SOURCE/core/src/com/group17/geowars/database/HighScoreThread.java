@@ -1,4 +1,4 @@
-package com.group17.geowars.utils;
+package com.group17.geowars.database;
 
 import com.badlogic.gdx.Gdx;
 import com.group17.geowars.database.DBManager;

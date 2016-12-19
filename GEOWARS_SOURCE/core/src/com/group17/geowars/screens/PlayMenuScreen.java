@@ -1,9 +1,7 @@
 package com.group17.geowars.screens;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.group17.geowars.GeoWars;
@@ -14,7 +12,7 @@ import com.group17.geowars.utils.MenuGrid;
 /**
  * Created by michield on 10/11/2016.
  */
-public class PlayMenuScreen extends MenuScreen implements hasStage, setActive{
+public class PlayMenuScreen extends MenuScreen implements iHasStage, iSetActive {
 
     private int width = GeoWars.WIDTH;
     private int height = GeoWars.HEIGHT;

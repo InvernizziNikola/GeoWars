@@ -15,7 +15,7 @@ import com.group17.geowars.utils.MenuGrid;
 /**
  * Created by michield on 12/12/2016.
  */
-public class ShopMenuScreen extends MenuScreen implements hasStage{
+public class ShopMenuScreen extends MenuScreen implements iHasStage {
 
     private BitmapFont text;
     private Batch batch;

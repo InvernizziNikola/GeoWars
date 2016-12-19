@@ -10,7 +10,6 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.viewport.FitViewport;
-import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.group17.geowars.GeoWars;
 import com.group17.geowars.database.XBOX360KeyMapping;
 import com.group17.geowars.managers.Managers;
@@ -85,7 +84,7 @@ public class MenuScreen implements Screen {
             setSelectedButton();
         }
 
-        if(this instanceof hasStage) {
+        if(this instanceof iHasStage) {
             Gdx.gl.glClearColor(0.2f, 0.2f, 0.2f, 0);
             Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
             stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
