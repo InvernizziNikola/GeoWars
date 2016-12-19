@@ -151,8 +151,6 @@ public class PlayerInput {
 
 
             Vector3 mousePosV3 = GeoWars.camera.unproject(new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0));
-            System.out.println(mousePosV3);
-            System.out.println(shipPos);
             Vector2 mousePos = new Vector2(mousePosV3.x, mousePosV3.y);
 
             dir = new Vector2(mousePos.x - shipPos.x, mousePos.y - shipPos.y);

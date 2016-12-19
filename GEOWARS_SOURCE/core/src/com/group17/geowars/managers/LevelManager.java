@@ -42,12 +42,12 @@ public class LevelManager implements GOInterface {
     public void init()
     {
         font = new BitmapFont();
-        spawnLocations.add(new Vector2(700,-20));
-        spawnLocations.add(new Vector2(-100,500));
-        spawnLocations.add(new Vector2(940,-100));
-        spawnLocations.add(new Vector2(850,700));
-        spawnLocations.add(new Vector2(900,740));
-        spawnLocations.add(new Vector2(-70,400));
+        spawnLocations.add(new Vector2(GeoWars.WIDTH-100,-GeoWars.HEIGHT-100));
+        spawnLocations.add(new Vector2(GeoWars.WIDTH-100,-GeoWars.HEIGHT-200));
+        spawnLocations.add(new Vector2(GeoWars.WIDTH-200,-GeoWars.HEIGHT-100));
+        spawnLocations.add(new Vector2(GeoWars.WIDTH-10,-GeoWars.HEIGHT-50));
+        spawnLocations.add(new Vector2(GeoWars.WIDTH-10,-GeoWars.HEIGHT-150));
+
         waveList.add(10);
         enemies.add("tank");
         enemies.add("something_else");
