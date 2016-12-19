@@ -18,7 +18,7 @@ import java.util.*;
  */
 public class Account {
     private Player player;
-
+    public String name;
     private List<Ship> ships;
     private List<Drone> drones;
 
@@ -27,6 +27,7 @@ public class Account {
 
     public Account(String playerId)
     {
+        name = "egon stinkt";
         this.playerId = playerId;
         //get data from player id #databank
         //player = getPlayer();
