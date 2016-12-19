@@ -26,8 +26,6 @@ import java.util.Random;
  * @author kevin
  */
 public abstract class Enemy extends GameObject implements GOInterface {
-    protected int hp;
-    protected int attack;
     protected Sprite sprite;
     protected Color color;
     protected Vector2 direction;
@@ -38,6 +36,7 @@ public abstract class Enemy extends GameObject implements GOInterface {
     protected ParticleEffect pe;
     protected Vector2 target = new Vector2(0,0);
     protected int speed =125;
+
 
 
 

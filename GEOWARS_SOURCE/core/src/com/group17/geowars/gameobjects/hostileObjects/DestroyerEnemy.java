@@ -50,8 +50,8 @@ public class DestroyerEnemy extends Enemy implements GOInterface {
                 direction.y *= -1;
         }
         timer += Gdx.graphics.getDeltaTime();
-        if (timer > 0.75f) {
-            timer %= 0.75f;
+        if (timer > 2.0f) {
+            timer %= 2.0f;
             canShoot = true;
         }
 
@@ -64,6 +64,7 @@ public class DestroyerEnemy extends Enemy implements GOInterface {
             if (dist.len() < 600) {
                 if(new Random().nextInt(2)<1) {//1/2 kans om te schieten
                     shoot();
+                    canShoot=false;
                 }
 
             }

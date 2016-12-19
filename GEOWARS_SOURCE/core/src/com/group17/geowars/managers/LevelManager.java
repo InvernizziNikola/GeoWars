@@ -94,7 +94,7 @@ public class LevelManager implements GOInterface {
     public void render(Batch batch) {
 
         sprite.draw(batch);
-        font.draw(batch, "Wave "+Managers.getLevelManager().getCurrentwave(), 375, 590);
+        font.draw(batch, "Wave "+Managers.getLevelManager().getCurrentwave(), GeoWars.WIDTH/2, GeoWars.HEIGHT-50);
     }
 
     @Override

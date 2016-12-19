@@ -12,7 +12,7 @@ import com.group17.geowars.managers.Managers;
 public class KamikazieEnemy  extends Enemy implements GOInterface {
 
     public KamikazieEnemy(Vector2 spawnLocation) {
-        super("something_else", spawnLocation);
+        super("fighter", spawnLocation);
         speed =100;
     }
 
