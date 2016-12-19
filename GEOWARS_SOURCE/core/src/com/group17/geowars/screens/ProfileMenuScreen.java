@@ -9,18 +9,26 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.group17.geowars.GeoWars;
+import com.group17.geowars.database.Threads.ProfileThread;
 import com.group17.geowars.managers.Managers;
 import com.group17.geowars.utils.MenuGrid;
+
+import java.util.ArrayList;
 
 
 /**
  * Created by michield on 10/11/2016.
  */
-public class ProfileMenuScreen extends MenuScreen implements iHasStage {
+public class ProfileMenuScreen extends MenuScreen implements iHasStage,iSetActive {
     private BitmapFont text;
     private Batch batch;
     private int width = GeoWars.WIDTH;
     private int height = GeoWars.HEIGHT;
+    private ProfileThread ProfileThread;
+    private ArrayList PlayerProfile;
+    private ArrayList PlayerHighscore;
+
+    private boolean loading = false;
     public ProfileMenuScreen()
     {
         super();
@@ -83,12 +91,46 @@ public class ProfileMenuScreen extends MenuScreen implements iHasStage {
     }
 
     @Override
-    public void render(float delta) {
+    public void setActive() {
+        getAllData();
+    }
+    public void showLoading()
+    {
+        text.draw(batch, "Loading...", 350, 380);
+    }
+    public void getAllData()
+    {
+        if(loading)
+            return;
+
+        loading = true;
+        //TODO playername ophalen
+        ProfileThread = new ProfileThread("egoon");
+        ProfileThread.start();
+    }
+    @Override
+    public void render(float delta)
+    {
+
         super.render(delta);
         batch.begin();
+        if(ProfileThread != null && ProfileThread.finished())
+        {
+            PlayerProfile = ProfileThread.getPlayerProfile();
+            PlayerHighscore = ProfileThread.getPlayerHighscore();
+            ProfileThread = null;
+
+            loading = false;
+            showText();
+            System.out.println(PlayerProfile);
+
+        }
+        if(ProfileThread != null && !ProfileThread.finished())
+        {
+            showLoading();
+        }
         showText();
         batch.end();
-
     }
 
 }

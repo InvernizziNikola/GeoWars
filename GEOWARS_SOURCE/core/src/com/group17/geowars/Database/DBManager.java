@@ -24,9 +24,9 @@ public class DBManager {
         return resultselect;
     }
 
-    public ArrayList DBselectHighscore(String Gamemode) {
+    public ArrayList DBselectPlayersHighscore(String Name) {
         try {
-            String SQLstring = "SELECT nameProfile,score FROM HighScoreMenuScreen where gamemode ='" + Gamemode + "'ORDER BY score DESC;";
+            String SQLstring = "SELECT nameProfile,score FROM HighScoreMenuScreen where name ='" + Name + "'ORDER BY score DESC LIMIT 1";
             resultselect = DBconnect(SQLstring, true);
         } catch (Exception e) {
             System.out.println("Fout in select: " + e.getMessage());
@@ -92,7 +92,7 @@ public class DBManager {
     }
     public ArrayList DBselectAllShips() {
         try {
-            String SQLstring = "SELECT name,image,hitpoints,attack,speed,type FROM Ship;";
+            String SQLstring = "SELECT name,image,hitpoints,attack,speed,type,price FROM Ship;";
             resultselect = DBconnect(SQLstring, true);
         } catch (Exception e) {
             System.out.println("Fout in select: " + e.getMessage());
@@ -101,7 +101,7 @@ public class DBManager {
     }
     public ArrayList DBselectAllDrones() {
         try {
-            String SQLstring = "SELECT name,image,hitpoints,hpinfinite,attack,speed,type FROM Drone;";
+            String SQLstring = "SELECT name,image,hitpoints,hpinfinite,attack,speed,type,price FROM Drone;";
             resultselect = DBconnect(SQLstring, true);
         } catch (Exception e) {
             System.out.println("Fout in select: " + e.getMessage());
@@ -111,6 +111,24 @@ public class DBManager {
     public ArrayList DBselectPowerUp(String name) {
         try {
             String SQLstring = "SELECT name,type,amount,description FROM PowerUp where name='" + name + "';";
+            resultselect = DBconnect(SQLstring, true);
+        } catch (Exception e) {
+            System.out.println("Fout in select: " + e.getMessage());
+        }
+        return resultselect;
+    }
+    public ArrayList DBselectProfile(String name) {
+        try {
+            String SQLstring = "SELECT profileLvl,HoursPlayed,GamesPlayed FROM Profile where name='" + name + "' limit 1;";
+            resultselect = DBconnect(SQLstring, true);
+        } catch (Exception e) {
+            System.out.println("Fout in select: " + e.getMessage());
+        }
+        return resultselect;
+    }
+    public ArrayList DBselectCampainLvl(String name) {
+        try {
+            String SQLstring = "SELECT CampaignLvl FROM CampaignProfile where name='" + name + "' limit 1;";
             resultselect = DBconnect(SQLstring, true);
         } catch (Exception e) {
             System.out.println("Fout in select: " + e.getMessage());
