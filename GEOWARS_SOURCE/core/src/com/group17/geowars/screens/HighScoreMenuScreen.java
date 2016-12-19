@@ -10,7 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.group17.geowars.GeoWars;
-import com.group17.geowars.database.HighScoreThread;
+import com.group17.geowars.database.HighScoreMenuThread;
 import com.group17.geowars.utils.MenuGrid;
 import com.group17.geowars.managers.Managers;
 import java.util.ArrayList;
@@ -22,7 +22,7 @@ public class HighScoreMenuScreen extends MenuScreen implements iHasStage, iSetAc
     private Skin skin1;
     private BitmapFont text;
     private Table table;
-    private HighScoreThread hsT;
+    private HighScoreMenuThread hsT;
     private ArrayList highScores;
     private boolean loading = false;
     private int width = GeoWars.WIDTH;
@@ -99,7 +99,7 @@ public class HighScoreMenuScreen extends MenuScreen implements iHasStage, iSetAc
             return;
 
         loading = true;
-        hsT = new HighScoreThread(gameMode);
+        hsT = new HighScoreMenuThread(gameMode);
         hsT.start();
     }
     public void showHighscores() {

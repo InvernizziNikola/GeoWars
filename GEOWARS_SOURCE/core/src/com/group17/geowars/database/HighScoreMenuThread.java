@@ -10,14 +10,14 @@ import java.util.ArrayList;
 /**
  * Created by nikola on 06/12/2016.
  */
-public class HighScoreThread implements Runnable {
+public class HighScoreMenuThread implements Runnable {
 
 
     private ArrayList data = null;
     private String gameMode = "";
     private Thread t;
 
-    public HighScoreThread(String gameMode)
+    public HighScoreMenuThread(String gameMode)
     {
         this.gameMode = gameMode;
     }
