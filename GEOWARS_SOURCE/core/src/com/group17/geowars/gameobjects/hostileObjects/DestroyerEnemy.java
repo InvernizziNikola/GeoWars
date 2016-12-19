@@ -12,12 +12,13 @@ import java.util.Random;
 /**
  * Created by kevin on 19/12/2016.
  */
-public class ShooterEnemy extends Enemy implements GOInterface {
+public class DestroyerEnemy extends Enemy implements GOInterface {
     private boolean canShoot = true;
     private float timer = 0;
 
-    public ShooterEnemy(Vector2 spawnLocation) {
-        super("fighter", new Vector2(0, 0));
+
+    public DestroyerEnemy (Vector2 spawnLocation) {
+        super("tank", spawnLocation);
     }
 
     public void shoot() {
@@ -56,16 +57,16 @@ public class ShooterEnemy extends Enemy implements GOInterface {
         Vector2 dist = new Vector2(target.x - getPosition().x, target.y - getPosition().y);
 
         //aggro
-        if (dist.len() < 500 || !insidePlayingField) {//TODO remove ISinPlayingField
+        if (dist.len() < 750 || !insidePlayingField) {//TODO remove ISinPlayingField
             lookAt = new Vector2(dist).nor();
 
-            if (dist.len() < 400) {
+            if (dist.len() < 600) {
                 if(new Random().nextInt(2)<1) {//1/2 kans om te schieten
                     shoot();
                 }
 
             }
-            if (dist.len() < 200) {//TODO Don't push out of the screen
+            if (dist.len() < 300 &&insidePlayingField) {//TODO Don't push out of the screen
                 lookAt = new Vector2(-lookAt.x,-lookAt.y);
 
             }

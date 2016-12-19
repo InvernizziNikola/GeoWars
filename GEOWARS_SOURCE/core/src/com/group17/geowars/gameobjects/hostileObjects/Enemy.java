@@ -52,6 +52,7 @@ public abstract class Enemy extends GameObject implements GOInterface {
         direction = new Vector2(rand.nextInt(100) - 50, rand.nextInt(100) - 50).nor();
 
     }
+
 /*
     public void dropPowerUp(int EnemyType)
     {

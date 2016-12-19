@@ -1,8 +1,10 @@
 package com.group17.geowars.managers;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Vector2;
+import com.group17.geowars.gameobjects.hostileObjects.DestroyerEnemy;
 import com.group17.geowars.gameobjects.hostileObjects.Enemy;
 import com.group17.geowars.gameobjects.GOInterface;
+import com.group17.geowars.gameobjects.hostileObjects.KamikazieEnemy;
 import com.group17.geowars.gameobjects.hostileObjects.ShooterEnemy;
 
 import java.util.LinkedList;
@@ -35,9 +37,23 @@ public class EnemyManager implements GOInterface {
     {
 
         for (int i = Managers.getLevelManager().getWaveList().get(currentWave); i>0; i--) {
+
             List<Vector2> spawnlist = Managers.getLevelManager().getSpawnLocations();
             //Managers.getLevelManager().getEnemies().get(new Random().nextInt(Managers.getLevelManager().getEnemies().size()))
-            enemies.add(new ShooterEnemy(spawnlist.get(new Random().nextInt(spawnlist.size()-1))));
+            int randomHackval =new Random().nextInt(3);
+            System.out.println(randomHackval);
+            if(randomHackval==0) {
+                enemies.add(new ShooterEnemy(spawnlist.get(new Random().nextInt(spawnlist.size() - 1))));
+            }
+            else {
+                if (randomHackval==1) {
+                    enemies.add(new KamikazieEnemy(spawnlist.get(new Random().nextInt(spawnlist.size() - 1))));
+                }
+                else
+                    {
+                        enemies.add(new DestroyerEnemy(spawnlist.get(new Random().nextInt(spawnlist.size() - 1))));
+                    }
+            }
         }
     }
 
