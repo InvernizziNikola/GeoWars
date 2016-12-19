@@ -1,8 +1,11 @@
 package com.group17.geowars.managers;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
+import com.group17.geowars.GeoWars;
 import com.group17.geowars.gameobjects.Enemy;
 import com.group17.geowars.gameobjects.GOInterface;
 
@@ -20,6 +23,8 @@ public class LevelManager implements GOInterface {
     private List<Integer> waveList;
     private Integer currentwave;
     private BitmapFont font;
+    private Texture texture;
+    private Sprite sprite;
 
 
 
@@ -48,6 +53,10 @@ public class LevelManager implements GOInterface {
         enemies.add("tank");
         enemies.add("something_else");
         enemies.add("fighter");
+
+        //backgound stuff
+        texture = Managers.getAssetManager().getTexture("test_background_geoWars");
+        sprite = new Sprite(texture, GeoWars.WIDTH, GeoWars.HEIGHT);
 
     }
     public void addEnemy(String enemy)
@@ -84,8 +93,9 @@ public class LevelManager implements GOInterface {
 
     @Override
     public void render(Batch batch) {
-        font.draw(batch, "Wave "+Managers.getLevelManager().getCurrentwave(), 375, 590);
 
+        sprite.draw(batch);
+        font.draw(batch, "Wave "+Managers.getLevelManager().getCurrentwave(), 375, 590);
     }
 
     @Override

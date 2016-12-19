@@ -45,11 +45,11 @@ public class GameManager {
 
     public void render(Batch batch)
     {
-        Managers.getAccountManager().render(batch);
+        Managers.getLevelManager().render(batch);
+       // Managers.getAccountManager().render(batch);
         Managers.getGeomManager().render(batch);
         Managers.getBulletManager().render(batch);
         Managers.getEnemyManager().render(batch);
-        Managers.getLevelManager().render(batch);
         Managers.getAccountManager().render(batch);
         Managers.getCollisionManager().render(batch);
         Managers.getpowerUpManager().render(batch);
