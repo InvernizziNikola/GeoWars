@@ -27,6 +27,8 @@ public class ProfileMenuScreen extends MenuScreen implements iHasStage,iSetActiv
     private ProfileThread ProfileThread;
     private ArrayList PlayerProfile;
     private ArrayList PlayerHighscore;
+    private ArrayList PlayerCampaignLvl;
+
 
     private boolean loading = false;
     public ProfileMenuScreen()
@@ -118,6 +120,7 @@ public class ProfileMenuScreen extends MenuScreen implements iHasStage,iSetActiv
         {
             PlayerProfile = ProfileThread.getPlayerProfile();
             PlayerHighscore = ProfileThread.getPlayerHighscore();
+            PlayerCampaignLvl = ProfileThread.getPlayersCampaignLvl();
             ProfileThread = null;
 
             loading = false;

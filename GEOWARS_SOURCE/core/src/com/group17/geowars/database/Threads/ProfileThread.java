@@ -25,6 +25,7 @@ public class ProfileThread implements Runnable {
 
     private ArrayList PlayerProfile = null;
     private ArrayList PlayerHighscore = null;
+    private ArrayList PlayerCampaignLvl = null;
     private String Name = "";
     private Thread t;
 
@@ -47,6 +48,7 @@ public class ProfileThread implements Runnable {
 
         PlayerProfile = manager.DBselectProfile(Name);
         PlayerHighscore = manager.DBselectPlayersHighscore(Name);
+        PlayerCampaignLvl = manager.DBselectCampainLvl(Name);
     }
 
     public ArrayList getPlayerProfile()
@@ -57,10 +59,14 @@ public class ProfileThread implements Runnable {
     {
         return PlayerHighscore;
     }
+    public ArrayList getPlayersCampaignLvl()
+    {
+        return PlayerCampaignLvl;
+    }
 
     public boolean finished()
     {
-        if(PlayerProfile != null)
+        if(PlayerProfile != null&&PlayerCampaignLvl != null&&PlayerHighscore != null)
             return true;
         return false;
     }
