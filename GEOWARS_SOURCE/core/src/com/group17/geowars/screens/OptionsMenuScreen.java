@@ -100,8 +100,6 @@ public class OptionsMenuScreen extends MenuScreen implements hasStage {
                 backButton.setChecked(false);
                 MenuScreen nextMenu = Managers.getScreenManager().getScreen("mainmenu");
                 Managers.getScreenManager().setScreen(nextMenu);
-
-
             }
         });
 
