@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Vector2;
 import com.group17.geowars.gameobjects.Enemy;
 import com.group17.geowars.gameobjects.GOInterface;
+import com.group17.geowars.gameobjects.ShooterEnemy;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -37,7 +38,7 @@ public class EnemyManager implements GOInterface {
 
         for (int i = Managers.getLevelManager().getWaveList().get(currentWave); i>0; i--) {
             List<Vector2> spawnlist = Managers.getLevelManager().getSpawnLocations();
-            enemies.add(new Enemy(Managers.getLevelManager().getEnemies().get(new Random().nextInt(Managers.getLevelManager().getEnemies().size()))
+            enemies.add(new ShooterEnemy(Managers.getLevelManager().getEnemies().get(new Random().nextInt(Managers.getLevelManager().getEnemies().size()))
                     ,  spawnlist.get(new Random().nextInt(spawnlist.size()-1))));
         }
     }
