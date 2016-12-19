@@ -9,13 +9,16 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.group17.geowars.GeoWars;
+import com.group17.geowars.database.Threads.ShopThread;
 import com.group17.geowars.managers.Managers;
 import com.group17.geowars.utils.MenuGrid;
+
+import java.util.ArrayList;
 
 /**
  * Created by michiel on 4/12/2016.
  */
-public class UpgradeMenuScreen extends MenuScreen implements iHasStage {
+public class UpgradeMenuScreen extends MenuScreen implements iHasStage,iSetActive {
     private BitmapFont text;
     private Batch batch;
 
@@ -24,6 +27,10 @@ public class UpgradeMenuScreen extends MenuScreen implements iHasStage {
     private int showShipStats = 0;
     private int showDroneStats = 0;
     private int width = GeoWars.WIDTH/2;
+    private ShopThread ShopThread;
+    private ArrayList ShipData;
+    private ArrayList DroneData;
+    private boolean loading = false;
 
     public UpgradeMenuScreen()
     {
@@ -294,11 +301,45 @@ public class UpgradeMenuScreen extends MenuScreen implements iHasStage {
 
 
     @Override
-    public void render(float delta) {
+    public void setActive() {
+
+        System.out.println("test");
+        getAllData();
+    }
+    public void showLoading()
+    {
+        text.draw(batch, "Loading...", 350, 380);
+    }
+    public void getAllData()
+    {
+        if(loading)
+            return;
+
+        loading = true;
+        ShopThread = new ShopThread();
+        ShopThread.start();
+    }
+    @Override
+    public void render(float delta)
+    {
+
         super.render(delta);
         batch.begin();
+        if(ShopThread != null && ShopThread.finished())
+        {
+            ShipData = ShopThread.getShipData();
+            DroneData = ShopThread.getDronesData();
+            ShopThread = null;
+
+            loading = false;
+            showText(width);
+            System.out.println(ShipData);
+        }
+        if(ShopThread != null && !ShopThread.finished())
+        {
+            showLoading();
+        }
         showText(width);
-        changeText();
         batch.end();
     }
 }
