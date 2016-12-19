@@ -23,7 +23,7 @@ public class MainMenuScreen extends MenuScreen implements iHasStage {
     public void create() {
         Gdx.input.setInputProcessor(stage);
 
-        final TextButton playButton = newButton("PLAY",width/2-75, height-height/4, 150, 50, new MenuGrid(0, 0));
+        final TextButton playButton = newButton("PLAY",GeoWars.WIDTH/2-100, GeoWars.HEIGHT-GeoWars.HEIGHT/4, 200, 75, new MenuGrid(0, 0));
         playButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -33,7 +33,7 @@ public class MainMenuScreen extends MenuScreen implements iHasStage {
             }
         });
 
-        final TextButton profileButton = newButton("PROFILE", width/2-75, height/2+height/8, 150, 50, new MenuGrid(0, 1));
+        final TextButton profileButton = newButton("PROFILE", GeoWars.WIDTH/2-100, GeoWars.HEIGHT/2+GeoWars.HEIGHT/8, 200, 75, new MenuGrid(0, 1));
         profileButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -43,7 +43,7 @@ public class MainMenuScreen extends MenuScreen implements iHasStage {
             }
         });
 
-        final TextButton optionsButton = newButton("OPTIONS", width/2-75, height/2, 150, 50, new MenuGrid(0, 2));
+        final TextButton optionsButton = newButton("OPTIONS", GeoWars.WIDTH/2-100, GeoWars.HEIGHT/2, 200, 75, new MenuGrid(0, 2));
         optionsButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -53,7 +53,7 @@ public class MainMenuScreen extends MenuScreen implements iHasStage {
             }
         });
 
-        final TextButton leaderboardButton = newButton("LEADERBOARDS", width/2-75, height/2-150, 150, 50, new MenuGrid(0, 3));
+        final TextButton leaderboardButton = newButton("LEADERBOARDS", GeoWars.WIDTH/2-100, GeoWars.HEIGHT/2-GeoWars.HEIGHT/8, 200, 75, new MenuGrid(0, 3));
         leaderboardButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -64,7 +64,7 @@ public class MainMenuScreen extends MenuScreen implements iHasStage {
             }
         });
 
-        final TextButton shopButton = newButton("SHOP", width/2-75, height/2-250, 150, 50, new MenuGrid(0, 4));
+        final TextButton shopButton = newButton("SHOP", GeoWars.WIDTH/2-100, GeoWars.HEIGHT/2-GeoWars.HEIGHT/4, 200, 75, new MenuGrid(0, 4));
         shopButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -75,7 +75,7 @@ public class MainMenuScreen extends MenuScreen implements iHasStage {
         });
 
 
-        final TextButton quitButton = newButton("QUIT GAME", width/2-75, height-height+90, 150, 50, new MenuGrid(0, 5));
+        final TextButton quitButton = newButton("QUIT GAME", GeoWars.WIDTH/2-100, GeoWars.HEIGHT-GeoWars.HEIGHT+90, 200, 75, new MenuGrid(0, 5));
         quitButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
