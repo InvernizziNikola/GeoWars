@@ -11,6 +11,8 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.group17.geowars.GeoWars;
+import com.group17.geowars.database.Threads.HighScoreMenuThread;
+import com.group17.geowars.database.Threads.SaveScoreToDBThread;
 import com.group17.geowars.managers.Managers;
 import com.group17.geowars.utils.MenuGrid;
 import com.group17.geowars.utils.GAMESTATE;
@@ -23,6 +25,10 @@ public class EndGameMenuScreen extends MenuScreen implements iHasStage{
     private Batch batch;
     private int width = GeoWars.WIDTH;
     private int height = GeoWars.HEIGHT;
+    private SaveScoreToDBThread SaveScoreThread;
+    private int Score = 0;
+    private String GameMode;
+    private String PlayerName;
     public EndGameMenuScreen()
     {
         super();
@@ -70,7 +76,8 @@ public class EndGameMenuScreen extends MenuScreen implements iHasStage{
 
     public void showText()
     {
-        text.draw(batch,"SCORE: " + Managers.getGameManager().getScore(), width/10, height/2+height/3); // TODO score and higscore need to be added
+        Score = Managers.getGameManager().getScore();
+        text.draw(batch,"SCORE: " + Score, width/10, height/2+height/3); // TODO score and higscore need to be added
         text.draw(batch,"HIGH SCORE: ", width/10,height/2+height/4);
         text.draw(batch,"UPGRADES",width/2+width/20,height/2+height/3); //TODO level buttons need to be added
         text.draw(batch,"GLASS CANON", 300,450);
@@ -78,8 +85,17 @@ public class EndGameMenuScreen extends MenuScreen implements iHasStage{
         text.draw(batch,"THICK SKIN",300,300);
         text.draw(batch,"EMP",300,225);
         text.draw(batch,"FAST BULLETS",300,150);
+        //TODO getGameMode
+        //TODO getPlayerName
+        GameMode = "Arcade";
+        PlayerName = "egoon";
+        setHighScore(PlayerName,Score,GameMode);
     }
-
+    public void setHighScore(String Playername,Integer Score,String Gamemode)
+    {
+        SaveScoreThread = new SaveScoreToDBThread(Playername,Score,Gamemode);
+        SaveScoreThread.start();
+    }
     @Override
     public void render(float delta) {
 

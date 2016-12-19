@@ -203,7 +203,7 @@ public class DBManager {
         return succes;
     }
     public boolean DBInsertHighscore(String nameProfile, Integer Score, String Gamemode) {
-        String SQLstring = "INSERT INTO Highscore (nameProfile,Score,gamemode) VALUES ('" + nameProfile + "','" + Score + "','" + Gamemode + "');";
+        String SQLstring = "INSERT INTO HighScore (nameProfile,Score,gamemode) VALUES ('" + nameProfile + "','" + Score + "','" + Gamemode + "');";
         boolean succes = false;
         try {
             resultselect = DBconnect(SQLstring, false);
