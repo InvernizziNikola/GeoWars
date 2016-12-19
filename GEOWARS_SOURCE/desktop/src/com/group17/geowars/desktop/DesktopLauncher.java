@@ -16,11 +16,7 @@ public class DesktopLauncher {
 		config.height = HEIGHT;
 		config.fullscreen = false;
 
-		/*
-		config.width = 800;
-		config.height = 600;
-		config.fullscreen = false;
-		*/
+
 		new LwjglApplication(new GeoWars(WIDTH, HEIGHT), config);
 	}
 }

@@ -21,7 +21,7 @@ public class GeoWars extends ApplicationAdapter{
 	public GeoWars(int width, int height)
 	{
 		WIDTH = width;
-		HEIGHT = width;
+		HEIGHT = height;
 	}
 	@Override
 	public void create () {
