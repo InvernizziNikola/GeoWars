@@ -17,7 +17,7 @@ public class ShooterEnemy extends Enemy implements GOInterface {
     private float timer = 0;
 
     public ShooterEnemy(Vector2 spawnLocation) {
-        super("fighter", new Vector2(0, 0));
+        super("fighter", spawnLocation);
     }
 
     public void shoot() {

@@ -11,7 +11,7 @@ import com.group17.geowars.managers.Managers;
 public class KamikazieEnemy  extends Enemy implements GOInterface {
 
     public KamikazieEnemy(Vector2 spawnLocation) {
-        super("something_else", new Vector2(0, 0));
+        super("something_else", spawnLocation);
     }
 
     @Override

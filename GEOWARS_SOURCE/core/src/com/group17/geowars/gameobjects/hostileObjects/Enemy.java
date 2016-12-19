@@ -40,7 +40,9 @@ public abstract class Enemy extends GameObject implements GOInterface {
 
 
     public Enemy(String type,Vector2 spawnLocation) {
+
         super(new Vector2(0,0));
+        System.out.println(spawnLocation);
         position = new Vector2(spawnLocation);
         destroy = false;
         texture = Managers.getAssetManager().getTexture(type+"_2");
