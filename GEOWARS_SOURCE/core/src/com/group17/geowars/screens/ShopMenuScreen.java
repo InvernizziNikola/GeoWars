@@ -31,6 +31,8 @@ public class ShopMenuScreen extends MenuScreen implements iHasStage,iSetActive {
     private ShopThread ShopThread;
     private ArrayList ShipData;
     private ArrayList DroneData;
+    private String assaultName = "";
+    private String assaultPrice = "";
     public ShopMenuScreen()
     {
         super();
@@ -67,15 +69,16 @@ public class ShopMenuScreen extends MenuScreen implements iHasStage,iSetActive {
         final TextButton buyDroneAttackButton = newButton("BUY",width-width/10,height/8,55,25,new MenuGrid(2,1));
     }
 
+
     public void showText()
     {
 
         text.draw(batch,"SHOP",width/2-20,height-height/8);
         text.draw(batch,"SHIP",width/12,height-height/6);
         text.draw(batch,"____",width/12,height-height/6-1);
-        text.draw(batch,"TANK",width/12,height-height/4);
+        text.draw(batch,assaultName,width/12,height-height/4);
         text.draw(batch,"PRICE",width/3,height-height/3);
-        text.draw(batch,"tankprice",width/3,height/2+height/12);
+        text.draw(batch,assaultPrice,width/3,height/2+height/12);
         text.draw(batch,"ASSAULT",width/2-width/9,height-height/4);
         text.draw(batch,"PRICE",width/2+width/9,height-height/3);
         text.draw(batch,"assaultprice",width/2+width/9,height/2+height/12);
@@ -124,8 +127,10 @@ public class ShopMenuScreen extends MenuScreen implements iHasStage,iSetActive {
             ShipData = ShopThread.getShipData();
             DroneData = ShopThread.getDronesData();
             ShopThread = null;
-
             loading = false;
+
+            assaultName = ShipData.get(0).toString();
+            assaultPrice = ShipData.get(6).toString();
             showText();
             System.out.println(ShipData);
         }
