@@ -68,11 +68,14 @@ public class ShooterEnemy extends Enemy implements GOInterface {
         if (dist.len() < 500 || !insidePlayingField) {//TODO remove ISinPlayingField
             lookAt = new Vector2(dist).nor();
 
+            if (dist.len() < 400) {
                 shoot();
 
             }
+            if (dist.len() < 300) {//TODO Don't push out of the screen
                 System.err.println(dist.len());
                 System.out.println("get back");
+                lookAt = new Vector2(-lookAt.x,-lookAt.y);
 
             }
 
