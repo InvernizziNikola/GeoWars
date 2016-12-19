@@ -21,7 +21,7 @@ import java.util.Random;
  *
  * @author kevin
  */
-public abstract class Enemy extends GameObject implements GOInterface  {
+public class Enemy extends GameObject implements GOInterface  {
     private int EnemyType;
     private int hp;
     private int attack;
