@@ -19,7 +19,7 @@ import com.group17.geowars.utils.GAMESTATE;
 /**
  * Created by michiel on 4/12/2016.
  */
-public class EndGameMenuScreen extends MenuScreen implements iHasStage,iSetActive{
+public class EndGameMenuScreen extends MenuScreen implements iHasStage, iSetActive{
 
     private BitmapFont text;
     private Batch batch;
@@ -95,7 +95,10 @@ public class EndGameMenuScreen extends MenuScreen implements iHasStage,iSetActiv
     }
     @Override
     public void setActive() {
-        System.out.println("test");
+        if(active)
+            return;
+        active = true;
+
         //TODO getGameMode
         //TODO getPlayerName
         GameMode = "Arcade";
@@ -105,6 +108,12 @@ public class EndGameMenuScreen extends MenuScreen implements iHasStage,iSetActiv
 
         setHighScore(PlayerName,Score,GameMode);
     }
+
+    @Override
+    public void setInActive() {
+        active = false;
+    }
+
     @Override
     public void render(float delta) {
 

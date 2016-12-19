@@ -18,7 +18,7 @@ import java.util.ArrayList;
 /**
  * Created by michiel on 4/12/2016.
  */
-public class UpgradeMenuScreen extends MenuScreen implements iHasStage,iSetActive {
+public class UpgradeMenuScreen extends MenuScreen implements iHasStage, iSetActive {
     private BitmapFont text;
     private Batch batch;
 
@@ -302,8 +302,17 @@ public class UpgradeMenuScreen extends MenuScreen implements iHasStage,iSetActiv
 
     @Override
     public void setActive() {
+        if(active)
+            return;;
+        active = true;
         getAllData();
     }
+
+    @Override
+    public void setInActive() {
+        active = false;
+    }
+
     public void showLoading()
     {
         text.draw(batch, "Loading...", 350, 380);

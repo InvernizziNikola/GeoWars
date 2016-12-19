@@ -20,7 +20,7 @@ import java.util.ArrayList;
 /**
  * Created by michield on 12/12/2016.
  */
-public class ShopMenuScreen extends MenuScreen implements iHasStage,iSetActive {
+public class ShopMenuScreen extends MenuScreen implements iHasStage, iSetActive {
 
     private boolean loading = false;
     private BitmapFont text;
@@ -101,8 +101,18 @@ public class ShopMenuScreen extends MenuScreen implements iHasStage,iSetActive {
 
     @Override
     public void setActive() {
+        if(active)
+            return;
+        active = true;
         getAllData();
     }
+
+    @Override
+    public void setInActive() {
+        active = false;
+
+    }
+
     public void showLoading()
     {
         text.draw(batch, "Loading...", 350, 380);

@@ -10,6 +10,8 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.EventListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.group17.geowars.GeoWars;
 import com.group17.geowars.database.XBOX360KeyMapping;
@@ -34,6 +36,8 @@ public class MenuScreen implements Screen {
     protected TextButton.TextButtonStyle styleDefault;
     protected TextButton.TextButtonStyle styleSelected;
     protected Stage stage;
+
+    protected boolean active = false;
 
     public MenuScreen()
     {
@@ -168,7 +172,7 @@ public class MenuScreen implements Screen {
             tempButton.setPosition(x, y);
             tempButton.setWidth(width);
             tempButton.setHeight(height);
-            
+
             menuButtons.put(position, tempButton);
             stage.addActor(tempButton);
         }

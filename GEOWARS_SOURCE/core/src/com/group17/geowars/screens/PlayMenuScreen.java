@@ -3,8 +3,10 @@ package com.group17.geowars.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.EventListener;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.group17.geowars.GeoWars;
 import com.group17.geowars.managers.Managers;
 import com.group17.geowars.utils.GAMESTATE;
@@ -49,20 +51,12 @@ public class PlayMenuScreen extends MenuScreen implements iHasStage, iSetActive 
 
         final TextButton multiPlayerButton = newButton("CO-OP",(width/2)+(width/6),height/2+50,150,50, new MenuGrid(2, 0));
 
-        for(EventListener el : multiPlayerButton.getListeners())
-            System.out.println(el);
         multiPlayerButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 multiPlayerButton.setChecked(false);
-
-                for(EventListener el : actor.getListeners())
-                    System.out.println(el);
             }
         });
-
-        for(EventListener el : multiPlayerButton.getListeners())
-            System.out.println(el);
 
         final TextButton backButton = newButton("BACK",(width/2)-75,(height/2)-(height/2)+(height/2)/4,150,50, new MenuGrid(1, 1));
         backButton.addListener(new ChangeListener() {
@@ -83,6 +77,13 @@ public class PlayMenuScreen extends MenuScreen implements iHasStage, iSetActive 
 
     @Override
     public void setActive() {
-        System.out.println("SetActive playmenuscreen");
+        if(active)
+            return;
+        active = true;
+    }
+
+    @Override
+    public void setInActive() {
+        active = false;
     }
 }

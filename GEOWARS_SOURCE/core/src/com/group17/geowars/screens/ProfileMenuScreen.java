@@ -19,7 +19,7 @@ import java.util.ArrayList;
 /**
  * Created by michield on 10/11/2016.
  */
-public class ProfileMenuScreen extends MenuScreen implements iHasStage,iSetActive {
+public class ProfileMenuScreen extends MenuScreen implements iHasStage, iSetActive {
     private BitmapFont text;
     private Batch batch;
     private int width = GeoWars.WIDTH;
@@ -94,8 +94,17 @@ public class ProfileMenuScreen extends MenuScreen implements iHasStage,iSetActiv
 
     @Override
     public void setActive() {
+        if(active)
+            return;
+        active = true;
         getAllData();
     }
+
+    @Override
+    public void setInActive() {
+        active = false;
+    }
+
     public void showLoading()
     {
         text.draw(batch, "Loading...", 350, 380);

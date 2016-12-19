@@ -123,9 +123,13 @@ public class ScreenManager {
             showScreen = mainMenuScreen;
         }
         else {
+            if(showScreen instanceof iSetActive){
+                ((iSetActive) showScreen).setInActive();
+            }
             showScreen = screen;
-            if(showScreen instanceof iSetActive)
-                ((iSetActive)showScreen).setActive();
+            if(showScreen instanceof iSetActive) {
+                ((iSetActive) showScreen).setActive();
+            }
         }
         Gdx.input.setInputProcessor(showScreen.getStage());
     }

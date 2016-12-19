@@ -46,7 +46,15 @@ public class HighScoreMenuScreen extends MenuScreen implements iHasStage, iSetAc
 
     public void setActive()
     {
+        if(active)
+            return;
+        active = true;
         getHighScore("arcade");
+    }
+
+    @Override
+    public void setInActive() {
+        active = false;
     }
 
     public void showLoading()

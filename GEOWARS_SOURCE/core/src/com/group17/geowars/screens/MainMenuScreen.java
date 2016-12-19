@@ -2,8 +2,10 @@ package com.group17.geowars.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.group17.geowars.GeoWars;
 import com.group17.geowars.managers.Managers;
 import com.group17.geowars.utils.MenuGrid;
@@ -11,10 +13,11 @@ import com.group17.geowars.utils.MenuGrid;
 /**
  * Created by michield on 10/11/2016.
  */
-public class MainMenuScreen extends MenuScreen implements iHasStage {
+public class MainMenuScreen extends MenuScreen implements iHasStage, iSetActive {
 
     private int width = GeoWars.WIDTH;
     private int height = GeoWars.HEIGHT;
+
     public MainMenuScreen()
     {
         super();
@@ -27,6 +30,7 @@ public class MainMenuScreen extends MenuScreen implements iHasStage {
         playButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
+
                 playButton.setChecked(false);
                 MenuScreen nextMenu = Managers.getScreenManager().getScreen("playmenu");
                 Managers.getScreenManager().setScreen(nextMenu);
@@ -88,5 +92,20 @@ public class MainMenuScreen extends MenuScreen implements iHasStage {
 
     public void render (float deltaTime) {
         super.render(deltaTime);
+    }
+
+    @Override
+    public void setActive() {
+
+        if(active)
+            return;
+        active = true;
+        // do something when activating
+
+    }
+
+    @Override
+    public void setInActive() {
+        active = false;
     }
 }

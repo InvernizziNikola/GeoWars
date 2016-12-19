@@ -5,4 +5,5 @@ package com.group17.geowars.screens;
  */
 public interface iSetActive {
     public void setActive();
+    public void setInActive();
 }
