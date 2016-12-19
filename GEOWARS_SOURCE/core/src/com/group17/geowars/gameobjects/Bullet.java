@@ -18,9 +18,10 @@ public class Bullet extends GameObject implements GOInterface {
 
     public boolean destroy = false;
     private Color color;
+    private int size;
 
     private boolean isFriendly = true;
-    public boolean isFriendly(){ return isFriendly; }
+
 
     public Bullet(Vector2 pos, Vector2 dir) {
         this(pos,dir,true);
@@ -29,7 +30,7 @@ public class Bullet extends GameObject implements GOInterface {
     public Bullet(Vector2 pos, Vector2 dir, boolean isFriendly) {
         super(pos);
         color=new Color(0.9f,0.1f,0.1f,0.9f);
-
+        size=15;
         this.isFriendly =isFriendly;
         // normalize just incase
         direction = dir.nor();
@@ -39,12 +40,18 @@ public class Bullet extends GameObject implements GOInterface {
         sprite = new Sprite(texture, texture.getWidth(), texture.getHeight());
     }
 
+    public boolean isFriendly(){ return isFriendly; }
+
+    public void setSize(int size) {
+        this.size = size;
+    }
+
     @Override
     public void render(Batch batch)
     {
         // TODO DRAW IMAGE CORRRECTLY
         sprite.setColor(color);
-        sprite.setSize(20,20);
+        sprite.setSize(size,size);
         sprite.setOrigin(10,10);
         sprite.setRotation(direction.angle() - 90);
         sprite.setPosition(position.x - 10, position.y - 10);

@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
 import com.group17.geowars.GeoWars;
 import com.group17.geowars.gameobjects.Bullet;
+import com.group17.geowars.gameobjects.ClusterBullet;
 import com.group17.geowars.gameobjects.GOInterface;
 import com.group17.geowars.managers.Managers;
 
@@ -24,7 +25,7 @@ public class DestroyerEnemy extends Enemy implements GOInterface {
 
     public void shoot() {
         if (canShoot) {
-            Managers.getBulletManager().addBullet(new Bullet(new Vector2(position), new Vector2(lookAt), false));
+            Managers.getBulletManager().addBullet(new ClusterBullet(new Vector2(position), new Vector2(lookAt)));
             canShoot = false;
         }
     }

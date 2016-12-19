@@ -3,6 +3,7 @@ package com.group17.geowars.managers;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.group17.geowars.gameobjects.Bullet;
+import com.group17.geowars.gameobjects.ClusterBullet;
 import com.group17.geowars.gameobjects.GOInterface;
 
 import java.util.LinkedList;
@@ -16,11 +17,12 @@ public class BulletManager implements GOInterface {
 
     private List<Bullet> bullets;
     private List<Bullet> toRemove;
-
+    private List<Bullet> toAdd;
     public BulletManager () {
 
         bullets = new LinkedList<Bullet>();
         toRemove = new LinkedList<Bullet>();
+        toAdd = new LinkedList<Bullet>();
     }
 
     public void init()
@@ -29,8 +31,7 @@ public class BulletManager implements GOInterface {
     }
     public void addBullet(Bullet bullet)
     {
-
-        bullets.add(bullet);
+        toAdd.add(bullet);
     }
 
     @Override
@@ -44,11 +45,18 @@ public class BulletManager implements GOInterface {
     @Override
     public void update() {
         for (Bullet b: bullets) {
+            if(b instanceof ClusterBullet) {
+                ((ClusterBullet) b).explode();
+                if(((ClusterBullet) b).isExploded()){toRemove.add(b);}
+
+            }
             b.update();
         }
 
         bullets.removeAll(toRemove);
         toRemove.clear();
+        bullets.addAll(toAdd);
+        toAdd.clear();
     }
 
     public void reset()
