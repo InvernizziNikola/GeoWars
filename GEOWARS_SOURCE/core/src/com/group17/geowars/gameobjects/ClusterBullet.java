@@ -31,13 +31,12 @@ public class ClusterBullet extends Bullet {
                 angle += 30;
 
                 Managers.getBulletManager().addBullet(new Bullet(new Vector2(position), new Vector2(dir), false));
-                System.out.println(dir);
             }
             exploded=true;
         }
         else{
             timer = new Random().nextInt(100);
-            System.out.println(timer);
+
 
         }
     }

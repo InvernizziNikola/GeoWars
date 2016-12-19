@@ -29,7 +29,7 @@ public class EnemyManager implements GOInterface {
     public void init()
     {
         newEnemyList(0);
-        nrOfEnemys=20;
+        nrOfEnemys=5;
 
     }
 
@@ -40,16 +40,18 @@ public class EnemyManager implements GOInterface {
 
             List<Vector2> spawnlist = Managers.getLevelManager().getSpawnLocations();
             //Managers.getLevelManager().getEnemies().get(new Random().nextInt(Managers.getLevelManager().getEnemies().size()))
-            int randomHackval =new Random().nextInt(3);
-            if(randomHackval==0) {
+            int randomHackval =new Random().nextInt(10);
+
+            if(randomHackval<=3) {
                 enemies.add(new ShooterEnemy(spawnlist.get(new Random().nextInt(spawnlist.size() - 1))));
             }
             else {
-                if (randomHackval==1) {
+                if (randomHackval>3&&randomHackval<=8) {
                     enemies.add(new KamikazieEnemy(spawnlist.get(new Random().nextInt(spawnlist.size() - 1))));
                 }
                 else
                     {
+                        System.out.println(randomHackval);
                         enemies.add(new DestroyerEnemy(spawnlist.get(new Random().nextInt(spawnlist.size() - 1))));
                     }
             }
@@ -95,7 +97,7 @@ public class EnemyManager implements GOInterface {
 
             }
             else {
-                nrOfEnemys= nrOfEnemys+(currentWave*10);
+                nrOfEnemys= nrOfEnemys+(currentWave*6);
                 if (nrOfEnemys>1000){
                     nrOfEnemys=1000;
                 }
