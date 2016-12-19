@@ -11,36 +11,26 @@ import java.util.Random;
  */
 public class ClusterBullet extends Bullet {
     private int timer;
-    private boolean exploded;
 
     public ClusterBullet(Vector2 pos, Vector2 dir) {
         super(pos, dir, false);
         setSize(30);
         timer = new Random().nextInt(100);
         speed=125;
-
     }
 
 
     public void explode() {
+        float angle = 0;
+        while (angle < 360) {
+            Vector2 dir = new Vector2(1, 1);
+            dir.rotate(angle);
 
+            angle += 30;
 
-            float angle = 00;
-            while (angle < 360) {
-                Vector2 dir = new Vector2(1, 1);
-                dir.rotate(angle);
-
-                angle += 30;
-
-                Managers.getBulletManager().addBullet(new Bullet(new Vector2(position), new Vector2(dir), false));
-            }
+            Managers.getBulletManager().addBullet(new Bullet(new Vector2(position), new Vector2(dir), false));
+        }
         Managers.getBulletManager().remove(this);
-
-
-    }
-
-    public boolean isExploded() {
-        return exploded;
     }
 
     @Override
@@ -51,10 +41,10 @@ public class ClusterBullet extends Bullet {
                 position.y < -10 ||
                 position.y > Gdx.graphics.getHeight()+10) {
             Managers.getBulletManager().remove(this);
+            return;
         }
 
         if (timer > 198) {
-            exploded=true;
             explode();
         }
         else{
