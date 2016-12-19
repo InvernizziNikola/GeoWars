@@ -14,7 +14,7 @@ import com.group17.geowars.managers.Managers;
 public class Bullet extends GameObject implements GOInterface {
 
     Vector2 direction = new Vector2(0,0);
-    float speed = 550;
+    public float speed;
 
     public boolean destroy = false;
     private Color color;
@@ -26,9 +26,11 @@ public class Bullet extends GameObject implements GOInterface {
     public Bullet(Vector2 pos, Vector2 dir) {
         this(pos,dir,true);
         color=new Color(0.1f,0.8f,0.8f,0.8f);
+        speed = 400;
     }
     public Bullet(Vector2 pos, Vector2 dir, boolean isFriendly) {
         super(pos);
+        speed = 200;
         color=new Color(0.9f,0.1f,0.1f,0.9f);
         size=15;
         this.isFriendly =isFriendly;

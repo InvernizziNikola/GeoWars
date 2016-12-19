@@ -45,11 +45,6 @@ public class BulletManager implements GOInterface {
     @Override
     public void update() {
         for (Bullet b: bullets) {
-            if(b instanceof ClusterBullet) {
-                ((ClusterBullet) b).explode();
-                if(((ClusterBullet) b).isExploded()){toRemove.add(b);}
-
-            }
             b.update();
         }
 
