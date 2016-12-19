@@ -19,7 +19,7 @@ import com.group17.geowars.utils.GAMESTATE;
 /**
  * Created by michiel on 4/12/2016.
  */
-public class EndGameMenuScreen extends MenuScreen implements iHasStage{
+public class EndGameMenuScreen extends MenuScreen implements iHasStage,iSetActive{
 
     private BitmapFont text;
     private Batch batch;
@@ -87,14 +87,20 @@ public class EndGameMenuScreen extends MenuScreen implements iHasStage{
         text.draw(batch,"FAST BULLETS",300,150);
         //TODO getGameMode
         //TODO getPlayerName
-        GameMode = "Arcade";
-        PlayerName = "egoon";
-        setHighScore(PlayerName,Score,GameMode);
+
     }
     public void setHighScore(String Playername,Integer Score,String Gamemode)
     {
         SaveScoreThread = new SaveScoreToDBThread(Playername,Score,Gamemode);
         SaveScoreThread.start();
+    }
+    @Override
+    public void setActive() {
+        System.out.println("test");
+        GameMode = "Arcade";
+        PlayerName = "egoon";
+
+        //setHighScore(PlayerName,Score,GameMode);
     }
     @Override
     public void render(float delta) {
