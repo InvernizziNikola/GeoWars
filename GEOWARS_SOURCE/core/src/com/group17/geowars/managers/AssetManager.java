@@ -17,7 +17,7 @@ public class AssetManager {
     private Map<String, Texture> textures;
     private Map<String, Sound> sounds;
 
-    public AssetManager () {
+    public AssetManager() {
 
         textures = new HashMap<String, Texture>();
         sounds= new HashMap<String, Sound> ();

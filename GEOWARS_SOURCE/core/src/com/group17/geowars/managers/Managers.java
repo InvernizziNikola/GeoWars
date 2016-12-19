@@ -1,13 +1,10 @@
 package com.group17.geowars.managers;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.g2d.Batch;
-import com.group17.geowars.utils.GAMESTATE;
-
 
 /**
  * Created by nikola on 09/11/2016.
  */
+
 public class Managers
 {
     private static Managers _instance;
