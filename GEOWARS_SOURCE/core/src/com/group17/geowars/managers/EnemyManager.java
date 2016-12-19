@@ -99,7 +99,7 @@ public class EnemyManager implements GOInterface {
     }
 
     public void remove(Enemy enemy) {
-        enemy.destroy = true;
+        enemy.destroy = true; //TODO to private
         toRemove.add(enemy);
     }
 }

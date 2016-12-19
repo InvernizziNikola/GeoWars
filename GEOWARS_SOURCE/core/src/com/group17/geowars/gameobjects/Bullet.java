@@ -22,7 +22,11 @@ public class Bullet extends GameObject implements GOInterface {
     public boolean isFriendly(){ return isFriendly; }
 
     public Bullet(Vector2 pos, Vector2 dir) {
+        this(pos,dir,true);
+    }
+    public Bullet(Vector2 pos, Vector2 dir, boolean isFriendly) {
         super(pos);
+        this.isFriendly =isFriendly;
         // normalize just incase
         direction = dir.nor();
 
