@@ -7,7 +7,6 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.group17.geowars.desktop.DesktopLauncher;
 import com.group17.geowars.managers.Managers;
 import com.group17.geowars.screens.MenuScreen;
 
