@@ -33,8 +33,9 @@ public class SaveScoreToDBThread implements Runnable {
 
     public SaveScoreToDBThread(String Playername,Integer Score,String gameMode)
     {
+        this.Score = Score;
         this.gameMode = gameMode;
-
+        this.Playername = Playername;
     }
 
     public void start()

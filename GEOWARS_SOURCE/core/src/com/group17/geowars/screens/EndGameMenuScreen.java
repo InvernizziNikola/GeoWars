@@ -85,8 +85,7 @@ public class EndGameMenuScreen extends MenuScreen implements iHasStage,iSetActiv
         text.draw(batch,"THICK SKIN",300,300);
         text.draw(batch,"EMP",300,225);
         text.draw(batch,"FAST BULLETS",300,150);
-        //TODO getGameMode
-        //TODO getPlayerName
+
 
     }
     public void setHighScore(String Playername,Integer Score,String Gamemode)
@@ -97,10 +96,14 @@ public class EndGameMenuScreen extends MenuScreen implements iHasStage,iSetActiv
     @Override
     public void setActive() {
         System.out.println("test");
+        //TODO getGameMode
+        //TODO getPlayerName
         GameMode = "Arcade";
         PlayerName = "egoon";
+        Score = Managers.getGameManager().getScore();
+        System.out.println(Score);
 
-        //setHighScore(PlayerName,Score,GameMode);
+        setHighScore(PlayerName,Score,GameMode);
     }
     @Override
     public void render(float delta) {
