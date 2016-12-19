@@ -23,7 +23,7 @@ public class MainMenuScreen extends MenuScreen implements iHasStage {
     public void create() {
         Gdx.input.setInputProcessor(stage);
 
-        final TextButton playButton = newButton("PLAY", /*width/2-75, height/2+150*/0, height-50, 150, 50, new MenuGrid(0, 0));
+        final TextButton playButton = newButton("PLAY",width/2-75, height-height/4, 150, 50, new MenuGrid(0, 0));
         playButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -33,7 +33,7 @@ public class MainMenuScreen extends MenuScreen implements iHasStage {
             }
         });
 
-        final TextButton profileButton = newButton("PROFILE", width/2-75, height/2+50, 150, 50, new MenuGrid(0, 1));
+        final TextButton profileButton = newButton("PROFILE", width/2-75, height/2+height/8, 150, 50, new MenuGrid(0, 1));
         profileButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -43,7 +43,7 @@ public class MainMenuScreen extends MenuScreen implements iHasStage {
             }
         });
 
-        final TextButton optionsButton = newButton("OPTIONS", width/2-75, height/2-50, 150, 50, new MenuGrid(0, 2));
+        final TextButton optionsButton = newButton("OPTIONS", width/2-75, height/2, 150, 50, new MenuGrid(0, 2));
         optionsButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
