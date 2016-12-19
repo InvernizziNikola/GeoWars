@@ -110,7 +110,8 @@ public class DBManager {
     }
     public ArrayList DBselectWaveData(Integer WaveNumber) {
         try {
-            String SQLstring = "SELECT * FROM Waves WHERE WaveNumber = "+WaveNumber+";";
+            String SQLstring = "SELECT Enemy.name,Waves.Amount " +
+                    "FROM Waves Join Enemy ON Waves.EnemyType=Enemy.IDEnemy WHERE WaveNumber = "+WaveNumber+";";
             resultselect = DBconnect(SQLstring, true);
         } catch (Exception e) {
             System.out.println("Fout in select: " + e.getMessage());
