@@ -1,9 +1,6 @@
 package com.group17.geowars.database.Threads;
 
-import com.badlogic.gdx.Gdx;
 import com.group17.geowars.database.DBManager;
-import com.group17.geowars.managers.Managers;
-import com.group17.geowars.screens.MenuScreen;
 
 import java.util.ArrayList;
 
@@ -14,25 +11,27 @@ import java.util.ArrayList;
 
 /*
 * -------------HOW TO GET THE ARRAYLIST-------------
-
-     private HighScoreMenuThread hsT;
-  public void getHighScore(String gameMode)
+*  public void getHighScore(String gameMode)
     {
+        if(loading)
+            return;
+
+        loading = true;
         hsT = new HighScoreMenuThread(gameMode);
         hsT.start();
     }
 *
 * */
-public class HighScoreMenuThread implements Runnable {
+public class ShopThread implements Runnable {
 
 
     private ArrayList data = null;
-    private String gameMode = "";
+    private String Shipname = "";
     private Thread t;
 
-    public HighScoreMenuThread(String gameMode)
+    public ShopThread(String Shipname)
     {
-        this.gameMode = gameMode;
+        this.Shipname = Shipname;
     }
 
     public void start()
@@ -46,12 +45,16 @@ public class HighScoreMenuThread implements Runnable {
     @Override
     public void run() {
         DBManager manager = new DBManager();
+        data = manager.DBselectShip(Shipname);
 
-        data = manager.DBselectTOP10Highscore(gameMode);
+
+
     }
 
     public ArrayList getData()
     {
+
+
         return data;
     }
 

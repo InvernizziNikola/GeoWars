@@ -83,7 +83,7 @@ public class DBManager {
     }
     public ArrayList DBselectShip(String name) {
         try {
-            String SQLstring = "SELECT name,image,hitpoints,attack,speed,type FROM enemy where name='" + name + "';";
+            String SQLstring = "SELECT name,image,hitpoints,attack,speed,type FROM Ship where name='" + name + "';";
             resultselect = DBconnect(SQLstring, true);
         } catch (Exception e) {
             System.out.println("Fout in select: " + e.getMessage());

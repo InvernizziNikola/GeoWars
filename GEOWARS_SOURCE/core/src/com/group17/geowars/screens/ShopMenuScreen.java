@@ -9,19 +9,27 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.group17.geowars.GeoWars;
+import com.group17.geowars.database.Threads.HighScoreMenuThread;
+import com.group17.geowars.database.Threads.ShopThread;
+import com.group17.geowars.gameobjects.playerObjects.Ship;
 import com.group17.geowars.managers.Managers;
 import com.group17.geowars.utils.MenuGrid;
+
+import java.util.ArrayList;
 
 /**
  * Created by michield on 12/12/2016.
  */
-public class ShopMenuScreen extends MenuScreen implements iHasStage {
+public class ShopMenuScreen extends MenuScreen implements iHasStage,iSetActive {
 
+    private boolean loading = false;
     private BitmapFont text;
     private Batch batch;
     private int width = GeoWars.WIDTH;
+   // TODO: switch for dynamic
     private int height = GeoWars.HEIGHT;
-
+    private ShopThread ShopThread;
+    private ArrayList ShipData;
     public ShopMenuScreen()
     {
         super();
@@ -84,13 +92,45 @@ public class ShopMenuScreen extends MenuScreen implements iHasStage {
         text.draw(batch,"ATTACK",width-width/3,height/2-height/8);
         text.draw(batch,"PRICE",width-width/10,height/2-height/5);
         text.draw(batch,"attackprice",width-width/10,height/5);
+
     }
 
     @Override
+    public void setActive() {
+      getShipData("fighter");
+    }
+    public void showLoading()
+    {
+        text.draw(batch, "Loading...", 350, 380);
+    }
+    public void getShipData(String ShipName)
+    {
+        if(loading)
+            return;
+
+        loading = true;
+        ShopThread = new ShopThread(ShipName);
+        ShopThread.start();
+    }
+    @Override
     public void render(float delta)
     {
+
         super.render(delta);
         batch.begin();
+        if(ShopThread != null && ShopThread.finished())
+        {
+            ShipData = ShopThread.getData();
+            ShopThread = null;
+
+            loading = false;
+            showText();
+            System.out.println(ShipData);
+        }
+        if(ShopThread != null && !ShopThread.finished())
+        {
+            showLoading();
+        }
         showText();
         batch.end();
     }
