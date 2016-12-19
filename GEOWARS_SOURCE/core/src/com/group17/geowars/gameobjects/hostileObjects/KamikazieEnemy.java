@@ -1,6 +1,7 @@
 package com.group17.geowars.gameobjects.hostileObjects;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector2;
 import com.group17.geowars.gameobjects.GOInterface;
 import com.group17.geowars.managers.Managers;
@@ -12,6 +13,7 @@ public class KamikazieEnemy  extends Enemy implements GOInterface {
 
     public KamikazieEnemy(Vector2 spawnLocation) {
         super("something_else", spawnLocation);
+        speed =100;
     }
 
     @Override
@@ -44,11 +46,16 @@ public class KamikazieEnemy  extends Enemy implements GOInterface {
         if (dist.len() < 500 || !insidePlayingField)
         {
             lookAt = dist.nor();
-
-        }else
+            if (dist.len()<300)
+            {
+                setColor(new Color(1,0,0,1));
+                speed=250;
+            }
+        }
+        else
         {
             lookAt = direction.nor();
         }
-        position.mulAdd(lookAt.nor(), 125 * Gdx.graphics.getDeltaTime());
+        position.mulAdd(lookAt.nor(), speed * Gdx.graphics.getDeltaTime());
     }
 }

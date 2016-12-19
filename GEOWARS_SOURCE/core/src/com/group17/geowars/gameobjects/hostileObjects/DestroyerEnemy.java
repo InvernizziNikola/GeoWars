@@ -19,6 +19,7 @@ public class DestroyerEnemy extends Enemy implements GOInterface {
 
     public DestroyerEnemy (Vector2 spawnLocation) {
         super("tank", spawnLocation);
+        speed=50;
     }
 
     public void shoot() {
@@ -76,6 +77,6 @@ public class DestroyerEnemy extends Enemy implements GOInterface {
 
 
         }
-        position.mulAdd(lookAt.nor(), 125 * Gdx.graphics.getDeltaTime());
+        position.mulAdd(lookAt.nor(), speed * Gdx.graphics.getDeltaTime());
     }
 }

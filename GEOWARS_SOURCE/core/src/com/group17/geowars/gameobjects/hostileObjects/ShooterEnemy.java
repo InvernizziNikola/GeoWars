@@ -18,6 +18,7 @@ public class ShooterEnemy extends Enemy implements GOInterface {
 
     public ShooterEnemy(Vector2 spawnLocation) {
         super("fighter", spawnLocation);
+        speed =125;
     }
 
     public void shoot() {
@@ -75,6 +76,6 @@ public class ShooterEnemy extends Enemy implements GOInterface {
 
 
         }
-        position.mulAdd(lookAt.nor(), 125 * Gdx.graphics.getDeltaTime());
+        position.mulAdd(lookAt.nor(), speed * Gdx.graphics.getDeltaTime());
     }
 }

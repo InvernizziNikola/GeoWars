@@ -37,9 +37,11 @@ public abstract class Enemy extends GameObject implements GOInterface {
     protected Vector2 lookAt = new Vector2(0,0);
     protected ParticleEffect pe;
     protected Vector2 target = new Vector2(0,0);
+    protected int speed =125;
 
 
-    public Enemy(String type,Vector2 spawnLocation) {
+
+    public Enemy(String type, Vector2 spawnLocation) {
 
         super(new Vector2(0,0));
         System.out.println(spawnLocation);
@@ -87,7 +89,9 @@ public abstract class Enemy extends GameObject implements GOInterface {
         return sprite;
     }
 
-
+    public void setColor(Color color) {
+        this.color = color;
+    }
 
     @Override
     public void render(Batch batch) {
@@ -148,6 +152,6 @@ public abstract class Enemy extends GameObject implements GOInterface {
         {
             lookAt = direction.nor();
         }
-        position.mulAdd(lookAt.nor(), 125 * Gdx.graphics.getDeltaTime());
+        position.mulAdd(lookAt.nor(), speed * Gdx.graphics.getDeltaTime());
     }
 }
