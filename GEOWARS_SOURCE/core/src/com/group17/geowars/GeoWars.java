@@ -11,15 +11,19 @@ import com.group17.geowars.desktop.DesktopLauncher;
 import com.group17.geowars.managers.Managers;
 import com.group17.geowars.screens.MenuScreen;
 
-import java.awt.*;
 
 public class GeoWars extends ApplicationAdapter{
 
 	public Viewport viewport;
 	static public Camera camera;
-	static public int WIDTH = DesktopLauncher.WIDTH;
-	static public int HEIGHT = DesktopLauncher.HEIGHT;
+	static public int WIDTH;
+	static public int HEIGHT;
 
+	public GeoWars(int width, int height)
+	{
+		WIDTH = width;
+		HEIGHT = width;
+	}
 	@Override
 	public void create () {
 
