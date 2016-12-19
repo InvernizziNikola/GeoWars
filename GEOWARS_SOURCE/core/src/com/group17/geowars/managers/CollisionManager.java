@@ -1,10 +1,9 @@
 package com.group17.geowars.managers;
 
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Vector2;
 import com.group17.geowars.gameobjects.Bullet;
-import com.group17.geowars.gameobjects.Enemy;
+import com.group17.geowars.gameobjects.hostileObjects.Enemy;
 import com.group17.geowars.gameobjects.Geom;
 import com.group17.geowars.gameobjects.PowerUp;
 import com.group17.geowars.playerobjects.Account;

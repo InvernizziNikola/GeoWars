@@ -7,8 +7,8 @@ package com.group17.geowars.playerobjects;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
-import com.group17.geowars.gameobjects.Drone;
-import com.group17.geowars.gameobjects.Ship;
+import com.group17.geowars.gameobjects.playerObjects.Drone;
+import com.group17.geowars.gameobjects.playerObjects.Ship;
 
 import java.util.*;
 

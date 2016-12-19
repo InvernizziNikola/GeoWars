@@ -1,11 +1,9 @@
 package com.group17.geowars.managers;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Vector2;
-import com.group17.geowars.gameobjects.Enemy;
+import com.group17.geowars.gameobjects.hostileObjects.Enemy;
 import com.group17.geowars.gameobjects.GOInterface;
-import com.group17.geowars.gameobjects.ShooterEnemy;
+import com.group17.geowars.gameobjects.hostileObjects.ShooterEnemy;
 
 import java.util.LinkedList;
 import java.util.List;

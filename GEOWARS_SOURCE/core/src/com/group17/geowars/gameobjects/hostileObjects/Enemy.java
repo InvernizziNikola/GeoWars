@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.group17.geowars.gameobjects;
+package com.group17.geowars.gameobjects.hostileObjects;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -11,6 +11,10 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
+import com.group17.geowars.gameobjects.GOInterface;
+import com.group17.geowars.gameobjects.GameObject;
+import com.group17.geowars.gameobjects.Geom;
+import com.group17.geowars.gameobjects.PowerUp;
 import com.group17.geowars.managers.Managers;
 import com.badlogic.gdx.files.FileHandle;
 
@@ -21,8 +25,7 @@ import java.util.Random;
  *
  * @author kevin
  */
-public abstract class Enemy extends GameObject implements GOInterface  {
-    private int EnemyType;
+public abstract class Enemy extends GameObject implements GOInterface {
     private int hp;
     private int attack;
     private Sprite sprite;

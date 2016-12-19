@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.group17.geowars.gameobjects;
+package com.group17.geowars.gameobjects.playerObjects;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -12,11 +12,14 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
+import com.group17.geowars.gameobjects.Bullet;
+import com.group17.geowars.gameobjects.hostileObjects.Enemy;
+import com.group17.geowars.gameobjects.GameObject;
 import com.group17.geowars.managers.Managers;
 import com.group17.geowars.playerobjects.Account;
 
 
-public class Drone extends GameObject{
+public class Drone extends GameObject {
     private int hp;
     private int attack;
     private int level;
