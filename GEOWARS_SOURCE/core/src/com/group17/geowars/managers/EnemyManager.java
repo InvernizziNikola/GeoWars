@@ -41,7 +41,6 @@ public class EnemyManager implements GOInterface {
             List<Vector2> spawnlist = Managers.getLevelManager().getSpawnLocations();
             //Managers.getLevelManager().getEnemies().get(new Random().nextInt(Managers.getLevelManager().getEnemies().size()))
             int randomHackval =new Random().nextInt(3);
-            System.out.println(randomHackval);
             if(randomHackval==0) {
                 enemies.add(new ShooterEnemy(spawnlist.get(new Random().nextInt(spawnlist.size() - 1))));
             }
