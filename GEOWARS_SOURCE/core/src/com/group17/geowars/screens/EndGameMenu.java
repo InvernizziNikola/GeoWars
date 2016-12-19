@@ -10,6 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.group17.geowars.GeoWars;
 import com.group17.geowars.managers.Managers;
 import com.group17.geowars.utils.MenuGrid;
 import com.group17.geowars.utils.GAMESTATE;
@@ -20,6 +21,8 @@ public class EndGameMenu extends MenuScreen implements hasStage{
 
     private BitmapFont text;
     private Batch batch;
+    private int width = GeoWars.WIDTH;
+    private int height = GeoWars.HEIGHT;
     public EndGameMenu()
     {
         super();
@@ -31,7 +34,7 @@ public class EndGameMenu extends MenuScreen implements hasStage{
         Gdx.input.setInputProcessor(stage);
         batch = new SpriteBatch();
 
-        final TextButton replayButton = newButton("REPLAY", 50,350,150,50, new MenuGrid(0,0));
+        final TextButton replayButton = newButton("REPLAY", width/10,height/2+height/8,150,50, new MenuGrid(0,0));
         replayButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -42,7 +45,7 @@ public class EndGameMenu extends MenuScreen implements hasStage{
             }
         });
 
-        final TextButton mainMenuButton = newButton("MAIN MENU",50,275,150,50, new MenuGrid(0,1));
+        final TextButton mainMenuButton = newButton("MAIN MENU",width/10,height/2,150,50, new MenuGrid(0,1));
         mainMenuButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -52,7 +55,7 @@ public class EndGameMenu extends MenuScreen implements hasStage{
             }
         });
 
-        final TextButton shareScoreButton = newButton("SHARE SCORE",50,200,150,50,new MenuGrid(0,2));
+        final TextButton shareScoreButton = newButton("SHARE SCORE",width/10,height/2-height/8,150,50,new MenuGrid(0,2));
         shareScoreButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -67,9 +70,9 @@ public class EndGameMenu extends MenuScreen implements hasStage{
 
     public void showText()
     {
-        text.draw(batch,"SCORE: " + Managers.getGameManager().getScore(), 50, 475); // TODO score and higscore need to be added
-        text.draw(batch,"HIGH SCORE: ", 50,450);
-        text.draw(batch,"UPGRADES",400,525); //TODO level buttons need to be added
+        text.draw(batch,"SCORE: " + Managers.getGameManager().getScore(), width/10, height/2+height/3); // TODO score and higscore need to be added
+        text.draw(batch,"HIGH SCORE: ", width/10,height/2+height/4);
+        text.draw(batch,"UPGRADES",width/2+width/20,height/2+height/3); //TODO level buttons need to be added
         text.draw(batch,"GLASS CANON", 300,450);
         text.draw(batch,"BIG BULLETS", 300,375);
         text.draw(batch,"THICK SKIN",300,300);
