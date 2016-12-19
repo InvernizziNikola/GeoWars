@@ -12,7 +12,7 @@ import com.group17.geowars.playerobjects.Player;
 /**
  * Created by nikola on 08/11/2016.
  */
-public class GameScreen extends MenuScreen implements iGame{
+public class GameScreen extends MenuScreen implements iGameScreen {
 
     //private GameWorld world;
     private Batch batch;

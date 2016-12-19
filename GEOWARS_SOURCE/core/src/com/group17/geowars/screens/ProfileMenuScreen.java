@@ -18,12 +18,12 @@ import com.group17.geowars.utils.MenuGrid;
 /**
  * Created by michield on 10/11/2016.
  */
-public class ProfileMenu extends MenuScreen implements hasStage {
+public class ProfileMenuScreen extends MenuScreen implements hasStage {
     private BitmapFont text;
     private Batch batch;
     private int width = GeoWars.WIDTH;
     private int height = GeoWars.HEIGHT;
-    public ProfileMenu()
+    public ProfileMenuScreen()
     {
         super();
         create();

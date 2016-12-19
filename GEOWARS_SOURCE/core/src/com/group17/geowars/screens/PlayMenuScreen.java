@@ -14,11 +14,11 @@ import com.group17.geowars.utils.MenuGrid;
 /**
  * Created by michield on 10/11/2016.
  */
-public class PlayMenu extends MenuScreen implements hasStage, setActive{
+public class PlayMenuScreen extends MenuScreen implements hasStage, setActive{
 
     private int width = GeoWars.WIDTH;
     private int height = GeoWars.HEIGHT;
-    public PlayMenu()
+    public PlayMenuScreen()
     {
         super();
         create();

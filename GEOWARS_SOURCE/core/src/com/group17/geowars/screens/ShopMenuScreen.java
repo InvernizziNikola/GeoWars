@@ -15,14 +15,14 @@ import com.group17.geowars.utils.MenuGrid;
 /**
  * Created by michield on 12/12/2016.
  */
-public class ShopMenu extends MenuScreen implements hasStage{
+public class ShopMenuScreen extends MenuScreen implements hasStage{
 
     private BitmapFont text;
     private Batch batch;
     private int width = GeoWars.WIDTH;
     private int height = GeoWars.HEIGHT;
 
-    public ShopMenu()
+    public ShopMenuScreen()
     {
         super();
         create();

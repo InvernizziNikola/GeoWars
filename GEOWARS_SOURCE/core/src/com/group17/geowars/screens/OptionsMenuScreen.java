@@ -18,7 +18,7 @@ import javax.swing.border.Border;
 /**
  * Created by michield on 23/11/2016.
  */
-public class OptionsMenu extends MenuScreen implements hasStage {
+public class OptionsMenuScreen extends MenuScreen implements hasStage {
     private BitmapFont text;
     private Skin skin;
     private TextField txtMovementLeft, txtMovementRight, txtMovementUp, txtMovementDown;
@@ -28,7 +28,7 @@ public class OptionsMenu extends MenuScreen implements hasStage {
 
     private Table table;
 
-    public OptionsMenu() {
+    public OptionsMenuScreen() {
         super();
         create();
     }

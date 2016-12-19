@@ -4,7 +4,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -20,7 +19,7 @@ import java.util.Hashtable;
  * Created by michield on 10/11/2016.
  */
 public class ScreenManager {
-    private MainMenu mainMenu;
+    private MainMenuScreen mainMenuScreen;
 
     private MenuScreen showScreen;
 
@@ -86,23 +85,23 @@ public class ScreenManager {
     }
     public void createMenus(){
 
-        menuList.put("mainmenu", mainMenu = new MainMenu());
-        menuList.put("playmenu", new PlayMenu());
-        menuList.put("profilemenu", new ProfileMenu());
+        menuList.put("mainmenu", mainMenuScreen = new MainMenuScreen());
+        menuList.put("playmenu", new PlayMenuScreen());
+        menuList.put("profilemenu", new ProfileMenuScreen());
         menuList.put("highscoremenu", new HighScoreMenu());
         menuList.put("game", new GameScreen());
         menuList.put("endgamemenu",new EndGameMenu());
-        menuList.put("optionsmenu",new OptionsMenu());
+        menuList.put("optionsmenu",new OptionsMenuScreen());
         //menuList.put("clanmenu", new ClanMenu()); TODO create ClanMenu
-        menuList.put("upgrademenu", new UpgradeMenu());
-        menuList.put("shopmenu", new ShopMenu());
-        setScreen(mainMenu);
+        menuList.put("upgrademenu", new UpgradeMenuScreen());
+        menuList.put("shopmenu", new ShopMenuScreen());
+        setScreen(mainMenuScreen);
     }
 
 
     public void render(){
-        if(showScreen instanceof iGame)
-            ((iGame)showScreen).renderGame();
+        if(showScreen instanceof iGameScreen)
+            ((iGameScreen)showScreen).renderGame();
         else
             showScreen.render(Gdx.graphics.getDeltaTime());
     }
@@ -112,7 +111,7 @@ public class ScreenManager {
         MenuScreen screen = menuList.get(name);
         if(screen == null) {
             System.out.println("SHOULDNT HAPPEN!");
-            return mainMenu;
+            return mainMenuScreen;
         }
         return screen;
     }
@@ -121,7 +120,7 @@ public class ScreenManager {
 
         if(screen == null) {
             System.out.println("SHOULDNT HAPPEN!!EVAR!");
-            showScreen = mainMenu;
+            showScreen = mainMenuScreen;
         }
         else {
             showScreen = screen;

@@ -16,11 +16,11 @@ import java.util.Map;
 /**
  * Created by michield on 10/11/2016.
  */
-public class MainMenu extends MenuScreen implements hasStage{
+public class MainMenuScreen extends MenuScreen implements hasStage{
 
     private int width = GeoWars.WIDTH;
     private int height = GeoWars.HEIGHT;
-    public MainMenu()
+    public MainMenuScreen()
     {
         super();
         create();

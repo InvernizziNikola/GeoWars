@@ -17,7 +17,7 @@ import com.group17.geowars.utils.MenuGrid;
 /**
  * Created by michiel on 4/12/2016.
  */
-public class UpgradeMenu extends MenuScreen implements hasStage{
+public class UpgradeMenuScreen extends MenuScreen implements hasStage{
     private BitmapFont text;
     private Batch batch;
 
@@ -27,7 +27,7 @@ public class UpgradeMenu extends MenuScreen implements hasStage{
     private int showDroneStats = 0;
     private int width = GeoWars.WIDTH/2;
 
-    public UpgradeMenu()
+    public UpgradeMenuScreen()
     {
         super();
         create();

@@ -11,6 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
+import com.group17.geowars.GeoWars;
 import com.group17.geowars.database.XBOX360KeyMapping;
 import com.group17.geowars.managers.Managers;
 import com.group17.geowars.utils.MenuGrid;
@@ -36,7 +37,7 @@ public class MenuScreen implements Screen {
 
     public MenuScreen()
     {
-        stage = new Stage(new FitViewport(1920, 1080));
+        stage = new Stage(new FitViewport(GeoWars.WIDTH, GeoWars.HEIGHT));
         styleDefault = Managers.getScreenManager().getDefaultStyle();
         styleSelected = Managers.getScreenManager().getSelectedStyle();
     }

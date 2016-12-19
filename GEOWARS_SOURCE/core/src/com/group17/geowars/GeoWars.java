@@ -14,8 +14,8 @@ public class GeoWars extends ApplicationAdapter{
 
 	public Viewport viewport;
 	static public Camera camera;
-	static public int WIDTH = 1920;
-	static public int HEIGHT = 1080;
+	static public int WIDTH = 1240;
+	static public int HEIGHT = 720;
 
 	@Override
 	public void create () {
