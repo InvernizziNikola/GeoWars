@@ -97,19 +97,19 @@ public class ShopMenuScreen extends MenuScreen implements iHasStage,iSetActive {
 
     @Override
     public void setActive() {
-      getShipData("fighter");
+      getShipData();
     }
     public void showLoading()
     {
         text.draw(batch, "Loading...", 350, 380);
     }
-    public void getShipData(String ShipName)
+    public void getShipData()
     {
         if(loading)
             return;
 
         loading = true;
-        ShopThread = new ShopThread(ShipName);
+        ShopThread = new ShopThread();
         ShopThread.start();
     }
     @Override

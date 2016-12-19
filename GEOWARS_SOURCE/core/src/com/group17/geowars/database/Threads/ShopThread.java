@@ -29,9 +29,9 @@ public class ShopThread implements Runnable {
     private String Shipname = "";
     private Thread t;
 
-    public ShopThread(String Shipname)
+    public ShopThread()
     {
-        this.Shipname = Shipname;
+
     }
 
     public void start()
@@ -45,7 +45,7 @@ public class ShopThread implements Runnable {
     @Override
     public void run() {
         DBManager manager = new DBManager();
-        data = manager.DBselectShip(Shipname);
+        data = manager.DBselectAllShips();
 
 
 
