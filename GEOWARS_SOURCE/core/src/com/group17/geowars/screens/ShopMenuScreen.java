@@ -9,9 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.group17.geowars.GeoWars;
-import com.group17.geowars.database.Threads.HighScoreMenuThread;
 import com.group17.geowars.database.Threads.ShopThread;
-import com.group17.geowars.gameobjects.playerObjects.Ship;
 import com.group17.geowars.managers.Managers;
 import com.group17.geowars.utils.MenuGrid;
 
@@ -26,13 +24,17 @@ public class ShopMenuScreen extends MenuScreen implements iHasStage, iSetActive 
     private BitmapFont text;
     private Batch batch;
     private int width = GeoWars.WIDTH;
-   // TODO: switch for dynamic
+    // TODO: switch for dynamic
     private int height = GeoWars.HEIGHT;
     private ShopThread ShopThread;
     private ArrayList ShipData;
     private ArrayList DroneData;
     private String assaultName = "";
     private String assaultPrice = "";
+    private String tankName = "";
+    private String tankPrice = "";
+    private String armoredShipName = "";
+    private String armoredShipPrice = "";
     public ShopMenuScreen()
     {
         super();
@@ -46,7 +48,7 @@ public class ShopMenuScreen extends MenuScreen implements iHasStage, iSetActive 
         text = new BitmapFont();
         text.setColor(Color.WHITE);
 
-        final TextButton backButton = newButton("BACK",width-width/10,20,150,50, new MenuGrid(0,2));
+        final TextButton backButton = newButton("BACK",width-width/6,20,150,50, new MenuGrid(0,2));
         backButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -79,12 +81,12 @@ public class ShopMenuScreen extends MenuScreen implements iHasStage, iSetActive 
         text.draw(batch,assaultName,width/12,height-height/4);
         text.draw(batch,"PRICE",width/3,height-height/3);
         text.draw(batch,assaultPrice,width/3,height/2+height/12);
-        text.draw(batch,"ASSAULT",width/2-width/9,height-height/4);
+        text.draw(batch,tankName,width/2-width/9,height-height/4);
         text.draw(batch,"PRICE",width/2+width/9,height-height/3);
-        text.draw(batch,"assaultprice",width/2+width/9,height/2+height/12);
-        text.draw(batch,"DEFENSE",width-width/3,height-height/4);
+        text.draw(batch,tankPrice,width/2+width/9,height/2+height/12);
+        text.draw(batch,armoredShipName,width-width/3,height-height/4);
         text.draw(batch,"PRICE",width-width/10,height-height/3);
-        text.draw(batch,"defenseprice", width-width/10,height/2+height/12);
+        text.draw(batch,armoredShipPrice, width-width/10,height/2+height/12);
         text.draw(batch,"DRONE",width/12,height/2-height/15);
         text.draw(batch,"_______",width/12,height/2-height/15-1);
         text.draw(batch,"DEFENCE",width/12,height/2-height/8);
@@ -108,11 +110,10 @@ public class ShopMenuScreen extends MenuScreen implements iHasStage, iSetActive 
     }
 
     @Override
-    public void setInActive() {
+    public void setInActive(){
         active = false;
 
     }
-
     public void showLoading()
     {
         text.draw(batch, "Loading...", 350, 380);
@@ -140,9 +141,13 @@ public class ShopMenuScreen extends MenuScreen implements iHasStage, iSetActive 
             loading = false;
 
             assaultName = ShipData.get(0).toString();
-            assaultPrice = ShipData.get(6).toString();
+            assaultPrice = ShipData.get(4).toString();
+            tankName = ShipData.get(5).toString();
+            tankPrice = ShipData.get(9).toString();
+            armoredShipName = ShipData.get(10).toString();
+            armoredShipPrice = ShipData.get(14).toString();
             showText();
-            System.out.println(ShipData);
+            System.out.println(DroneData);
         }
         if(ShopThread != null && !ShopThread.finished())
         {
