@@ -21,7 +21,7 @@ import java.util.Random;
  *
  * @author kevin
  */
-public class Enemy extends GameObject implements GOInterface {
+public abstract class Enemy extends GameObject implements GOInterface  {
     private int EnemyType;
     private int hp;
     private int attack;
@@ -49,13 +49,14 @@ public class Enemy extends GameObject implements GOInterface {
         direction = new Vector2(rand.nextInt(100) - 50, rand.nextInt(100) - 50).nor();
 
     }
-
+/*
     public void dropPowerUp(int EnemyType)
     {
         //String dropPosition = position;
         //PowerUp pow = new PowerUp(dropPosition);
         // pow naar game scherm doen
     }
+    */
     public void handleDead()
     {
         int lootId = 1;
