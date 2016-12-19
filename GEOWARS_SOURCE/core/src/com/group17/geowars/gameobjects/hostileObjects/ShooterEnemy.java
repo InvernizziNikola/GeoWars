@@ -10,7 +10,7 @@ public class ShooterEnemy extends Enemy {
     private int EnemyType;
     private int hp;
     private int attack;
-    public ShooterEnemy(String type,Vector2 spawnLocation)
+    public ShooterEnemy(Vector2 spawnLocation)
     {
         super("fighter",new Vector2(0,0));
     }
