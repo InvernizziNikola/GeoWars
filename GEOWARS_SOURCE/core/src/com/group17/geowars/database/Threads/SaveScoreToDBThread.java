@@ -30,6 +30,7 @@ public class SaveScoreToDBThread implements Runnable {
     private String Playername = "";
     private Integer Score=0;
     private Thread t;
+    private boolean Succes;
 
     public SaveScoreToDBThread(String Playername,Integer Score,String gameMode)
     {
@@ -48,7 +49,12 @@ public class SaveScoreToDBThread implements Runnable {
 
     @Override
     public void run() {
-        DBManager.getInstance().DBInsertHighscore(Playername,Score,gameMode);
+        Succes = DBManager.getInstance().DBInsertHighscore(Playername,Score,gameMode);
+        while (Succes=false){
+            System.out.println("still trying");
+            DBManager.getInstance().DBInsertHighscore(Playername,Score,gameMode);
+        }
+        System.out.println("DONE!");
                 //User user = w9DA.getInstance().getUser(login, password);
 
     }
@@ -60,8 +66,11 @@ public class SaveScoreToDBThread implements Runnable {
 
     public boolean finished()
     {
-        if(data != null)
+        if(data != null&&Succes) {
             return true;
+        }else{
+            run();
         return false;
+    }
     }
 }

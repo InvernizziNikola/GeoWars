@@ -144,7 +144,7 @@ public class LoginScreen extends MenuScreen implements iHasStage {
 
     public void showLoading()
     {
-        text.draw(batch, "Loading...", 350, 380);
+//        text.draw(batch, "Loading...", 350, 380);
     }
     public void setPlayername(){
        PlayerName = TxtUsername.getText();
