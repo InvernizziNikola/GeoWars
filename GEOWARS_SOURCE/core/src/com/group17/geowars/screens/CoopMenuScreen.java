@@ -24,20 +24,28 @@ public class CoopMenuScreen extends MenuScreen implements iHasStage, iSetActive 
     public void create() {
         Gdx.input.setInputProcessor(stage);
 
-        final TextButton startGameButton = newButton("START", GeoWars.WIDTH/2, GeoWars.HEIGHT / 5 ,250,50, new MenuGrid(0, 0));
+        final TextButton startGameButton = newButton("START", GeoWars.WIDTH/2, GeoWars.HEIGHT / 5 * 2 ,250,50, new MenuGrid(0, 0));
         startGameButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 startGameButton.setChecked(false);
-
             }
         });
-
+        final TextButton backButton = newButton("Back", GeoWars.WIDTH/2 - 125, GeoWars.HEIGHT / 5, 250 ,50, new MenuGrid(0, 1));
+        startGameButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                backButton.setChecked(false);
+                MenuScreen nextMenu = Managers.getScreenManager().getScreen("mainmenu");
+                Managers.getScreenManager().setScreen(nextMenu);
+            }
+        });
     }
 
 
     public void render (float deltaTime) {
         super.render(deltaTime);
+
     }
 
     @Override

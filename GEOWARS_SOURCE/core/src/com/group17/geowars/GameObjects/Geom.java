@@ -73,6 +73,7 @@ public class Geom extends GameObject implements GOInterface
     @Override
     public void update()
     {
+        /*
         // TODO MOVEMENT
 
         // geom movement code
@@ -113,7 +114,7 @@ public class Geom extends GameObject implements GOInterface
         angle += Gdx.graphics.getDeltaTime() * rotateSpeed * rotateDirection;
         angle = angle % 360;
 
-
+*/
     }
         // ROTATE
         // move
