@@ -13,6 +13,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.group17.geowars.GeoWars;
 import com.group17.geowars.gameobjects.*;
+import com.group17.geowars.gameobjects.PowerUps.PowerUp;
 import com.group17.geowars.managers.Managers;
 
 
@@ -92,6 +93,7 @@ public class Ship extends GameObject implements GOInterface { //interface shoot?
 
     public void handlePickedUp(PowerUp pow)
     {
+
      Managers.getEnemyManager().clearAll();
     }
 

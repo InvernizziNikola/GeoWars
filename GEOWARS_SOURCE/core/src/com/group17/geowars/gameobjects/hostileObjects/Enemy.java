@@ -13,8 +13,9 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.group17.geowars.GeoWars;
 import com.group17.geowars.gameobjects.*;
+import com.group17.geowars.gameobjects.PowerUps.PowerUp;
+import com.group17.geowars.gameobjects.PowerUps.PowerUp_Nuke;
 import com.group17.geowars.managers.Managers;
-import com.badlogic.gdx.files.FileHandle;
 
 
 import java.util.Random;
@@ -102,7 +103,7 @@ public abstract class Enemy extends GameObject implements GOInterface {
             int i = new Random().nextInt(100);
             //dropPowerUp
             if (i > 98) {
-                PowerUp p = new PowerUp("nuke", position);
+                PowerUp p = new PowerUp_Nuke(position);
                 Managers.getpowerUpManager().addPowerUp(p);
             }
             Managers.getEnemyManager().remove(e);

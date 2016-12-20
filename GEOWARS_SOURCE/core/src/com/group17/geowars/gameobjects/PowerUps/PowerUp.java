@@ -3,27 +3,29 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.group17.geowars.gameobjects;
+package com.group17.geowars.gameobjects.PowerUps;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
+import com.group17.geowars.gameobjects.GOInterface;
+import com.group17.geowars.gameobjects.GameObject;
 import com.group17.geowars.managers.Managers;
 
 /**
  *
  * @author kevin
  */
-public class PowerUp extends GameObject implements GOInterface {
+public abstract class PowerUp extends GameObject implements GOInterface {
     private Sprite sprite;
     private Color color;
     public boolean destroy = false;
 
-    public PowerUp(String type,Vector2 pos) {
+    public PowerUp(Vector2 pos) {
         super(pos);
-    color= new Color(0.8f, 0.8f,0,0.6f);
+        color= new Color(0.8f, 0.8f,0,0.6f);
         texture = Managers.getAssetManager().getTexture("powerup");
         sprite = new Sprite(texture, texture.getWidth(), texture.getHeight());
     }

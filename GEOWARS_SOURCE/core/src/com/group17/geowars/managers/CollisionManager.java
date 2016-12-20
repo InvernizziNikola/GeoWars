@@ -5,7 +5,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.group17.geowars.gameobjects.Bullet;
 import com.group17.geowars.gameobjects.hostileObjects.Enemy;
 import com.group17.geowars.gameobjects.Geom;
-import com.group17.geowars.gameobjects.PowerUp;
+import com.group17.geowars.gameobjects.PowerUps.PowerUp;
 import com.group17.geowars.playerobjects.Account;
 import com.group17.geowars.screens.MenuScreen;
 import com.group17.geowars.utils.GAMESTATE;
