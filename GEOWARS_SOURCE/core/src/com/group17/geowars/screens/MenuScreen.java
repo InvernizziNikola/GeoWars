@@ -7,6 +7,8 @@ import com.badlogic.gdx.controllers.Controller;
 import com.badlogic.gdx.controllers.Controllers;
 import com.badlogic.gdx.controllers.PovDirection;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.EventListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -36,6 +38,8 @@ public class MenuScreen implements Screen {
     protected TextButton.TextButtonStyle styleDefault;
     protected TextButton.TextButtonStyle styleSelected;
     protected Stage stage;
+    private Texture background;
+    private SpriteBatch batch;
 
     protected boolean active = false;
 
@@ -44,6 +48,8 @@ public class MenuScreen implements Screen {
         stage = new Stage(new FitViewport(GeoWars.WIDTH, GeoWars.HEIGHT));
         styleDefault = Managers.getScreenManager().getDefaultStyle();
         styleSelected = Managers.getScreenManager().getSelectedStyle();
+        batch = new SpriteBatch();
+        background = new Texture(Gdx.files.internal("../assets/menuBackground.png"));
     }
 
     @Override
@@ -92,8 +98,12 @@ public class MenuScreen implements Screen {
         if(this instanceof iHasStage) {
             Gdx.gl.glClearColor(0.2f, 0.2f, 0.2f, 0);
             Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+            batch.begin();
+            batch.draw(background,0,0);
+            batch.end();
             stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
             stage.draw();
+
         }
     }
 

@@ -36,9 +36,9 @@ public class OptionsMenuScreen extends MenuScreen implements iHasStage {
         final TextButton qwertyButton = newButton("QWERTY", width/2-75, height-height/3, 150, 50, new MenuGrid(1, 0));
         final TextButton azertyButton = newButton("AZERTY", (width/2)+width/6, height-height/3, 150, 50, new MenuGrid(2, 0));
         //final TextButton CustomButton = newButton("CUSTOM", (width/2)-width/4, height-height/3-100, 150, 50, new MenuGrid(1, 2));
-        TextButton controllerBindings = newButton("VIEW CONTROLLER BINDINGS", width/2-width/4, height/4, 250, 50, new MenuGrid(1, 1));//TODO add action
+        TextButton controllerBindings = newButton("VIEW CONTROLLER BINDINGS", width/2-125, height/4, 250, 50, new MenuGrid(0, 1));//TODO add action
        // final TextButton ApplyButton = newButton("APPLY", width/2-75, height/4, 150, 50, new MenuGrid(3, 0));
-        final TextButton backButton = newButton("BACK", width/2-75, height/6, 150, 50, new MenuGrid(0, 1));
+        final TextButton backButton = newButton("BACK", width/2-75, height/6, 150, 50, new MenuGrid(0, 2));
 
 
         /*--------------EVENT HANDLER--------------------------*/
