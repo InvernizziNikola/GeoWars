@@ -19,15 +19,13 @@ import com.group17.geowars.managers.Managers;
  * @author kevin
  */
 public abstract class PowerUp extends GameObject implements GOInterface {
-    private Sprite sprite;
-    private Color color;
-    public boolean destroy = false;
+    protected Sprite sprite;
+    protected Color color;
+    protected boolean destroy = false;
 
     public PowerUp(Vector2 pos) {
         super(pos);
-        color= new Color(0.8f, 0.8f,0,0.6f);
-        texture = Managers.getAssetManager().getTexture("powerup");
-        sprite = new Sprite(texture, texture.getWidth(), texture.getHeight());
+
     }
 
 
