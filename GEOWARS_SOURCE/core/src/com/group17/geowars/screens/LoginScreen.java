@@ -11,6 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.group17.geowars.GeoWars;
 import com.group17.geowars.database.DBManager;
+import com.group17.geowars.database.Threads.HighScoreMenuThread;
 import com.group17.geowars.database.Threads.LoginThread;
 import com.group17.geowars.managers.Managers;
 import com.group17.geowars.utils.MenuGrid;
@@ -24,13 +25,14 @@ public class LoginScreen extends MenuScreen implements iHasStage {
     private Integer SelectedKeyBinding = 1;
     private int width = GeoWars.WIDTH;
     private int height = GeoWars.HEIGHT;
-    private LoginThread LT;
     private Batch batch;
-    private boolean loading = true;
+    private boolean loading = false;
     private boolean loggedIn = false;
     private Label errorlable;
     private ArrayList Player;
     private String PlayerName;
+
+    private LoginThread LT;
 
     private Table table;
 
@@ -107,7 +109,14 @@ public class LoginScreen extends MenuScreen implements iHasStage {
 
                 loginButton.setChecked(false);
                 System.out.println("username: "+ TxtUsername.getText()+" Password: "+TxtPassword.getText());
-                getLogin(TxtUsername.getText(),TxtPassword.getText());
+                //getLogin(TxtUsername.getText(),TxtPassword.getText());
+                if(loading)
+                    return;
+
+                loading = true;
+                System.out.println("test");
+                LT = new LoginThread(TxtUsername.getText(),TxtPassword.getText());
+                LT.start();
 
 
             }
@@ -116,11 +125,27 @@ public class LoginScreen extends MenuScreen implements iHasStage {
         stage.addActor(table);
 
     }
-
     public void render(float deltaTime) {
         super.render(deltaTime);
+
+        if(LT != null && LT.finished())
+        {
+            loggedIn = LT.getLoggedIn();
+            LT = null;
+
+            loading = false;
+        }
+        if(LT != null && !LT.finished())
+        {
+            showLoading();
+        }
+
     }
 
+    public void showLoading()
+    {
+        text.draw(batch, "Loading...", 350, 380);
+    }
     public void setPlayername(){
        PlayerName = TxtUsername.getText();
         //TODO SET Username
