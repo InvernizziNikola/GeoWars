@@ -48,8 +48,9 @@ public class CollisionManager
             {
                 for (Enemy e : Managers.getEnemyManager().getEnemies()) {
                     Vector2 distance = new Vector2(b.getPosition().x - e.getPosition().x, b.getPosition().y - e.getPosition().y);
-                    if(distance.len() < 25 && !e.destroy &&!b.destroy)
+                    if(distance.len() < e.getSize()/2 && !e.destroy &&!b.destroy)
                     {
+                       // System.out.println(distance);
                         e.handleDead();
                         Managers.getEnemyManager().remove(e);
                         Managers.getBulletManager().remove(b);

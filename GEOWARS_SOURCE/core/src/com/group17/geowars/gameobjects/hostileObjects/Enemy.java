@@ -36,6 +36,8 @@ public abstract class Enemy extends GameObject implements GOInterface {
     protected ParticleEffect pe;
     protected Vector2 target = new Vector2(0,0);
     protected int speed =125;
+    protected int size;
+    protected int hp;
 
 
 
@@ -48,6 +50,8 @@ public abstract class Enemy extends GameObject implements GOInterface {
         texture = Managers.getAssetManager().getTexture(type+"_2");
         sprite = new Sprite(texture,texture.getWidth(),texture.getHeight());
         color =new Color(0,0,1,1);
+        size =50;
+        hp=1;
 
 
         Random rand = new Random();
@@ -105,15 +109,27 @@ public abstract class Enemy extends GameObject implements GOInterface {
         }
 */
         sprite.setColor(color);
-        sprite.setSize(50,50);
-        sprite.setOrigin(25,25);
+        sprite.setSize(size,size);
+        sprite.setOrigin(size/2,size/2);
         sprite.setRotation(lookAt.angle());
-        sprite.setPosition(position.x -25, position.y-25);
+        sprite.setPosition(position.x -size/2, position.y-size/2);
         sprite.draw(batch);
     }
 
+    public void setSize(int size) {
+        this.size = size;
+        sprite.setOrigin(size/2,size/2);
+    }
 
 
+    public int getSize() {
+        return size;
+    }
+
+    public Vector2 getOrigin()
+    {
+        return new Vector2(sprite.getOriginX(),sprite.getOriginY()) ;
+    }
 
     @Override
     public void update() {

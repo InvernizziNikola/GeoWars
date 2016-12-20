@@ -3,9 +3,7 @@ package com.group17.geowars.gameobjects.hostileObjects;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
 import com.group17.geowars.GeoWars;
-import com.group17.geowars.gameobjects.Bullet;
-import com.group17.geowars.gameobjects.ClusterBullet;
-import com.group17.geowars.gameobjects.GOInterface;
+import com.group17.geowars.gameobjects.*;
 import com.group17.geowars.managers.Managers;
 
 import java.util.Random;
@@ -18,17 +16,44 @@ public class DestroyerEnemy extends Enemy implements GOInterface {
     private float timer = 0;
 
 
+
     public DestroyerEnemy (Vector2 spawnLocation) {
         super("tank", spawnLocation);
         speed=50;
+        setSize(150);
+        System.out.println(getSize());
+
     }
 
     public void shoot() {
         if (canShoot) {
             Managers.getBulletManager().addBullet(new ClusterBullet(new Vector2(position), new Vector2(lookAt)));
             canShoot = false;
+            System.out.println(getOrigin());
         }
     }
+
+    @Override
+    public void handleDead()
+    {
+        
+        int lootId = 1;
+        Geom g = new Geom( lootId,position);
+        Managers.getGeomManager().addGeom(g);
+        int i = new Random().nextInt(100);
+        if(i>98) {
+            PowerUp p = new PowerUp("nuke", position);
+            Managers.getpowerUpManager().addPowerUp(p);
+        }
+
+/*
+        pe = new ParticleEffect();
+        pe.load(Gdx.files.internal("explosion.party"), Gdx.files.internal(""));
+        pe.getEmitters().first().setPosition(position.x, position.y);
+        pe.start();
+*/
+    }
+
 
     @Override
     public void update() {
