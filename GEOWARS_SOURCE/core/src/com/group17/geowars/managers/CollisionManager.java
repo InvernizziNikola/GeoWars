@@ -73,7 +73,7 @@ public class CollisionManager
 
             for (PowerUp g : Managers.getpowerUpManager().getPowerUpList()) {
                 Vector2 distance = new Vector2(playerPos.x - g.getPosition().x, playerPos.y - g.getPosition().y);
-                if (distance.len() < 25 && !g.destroy) {
+                if (distance.len() < 25 && !g.isDestroy()) {
 
                     p.getPlayer().getShip().handlePickedUp(g);
                     Managers.getpowerUpManager().removePowerUp(g);

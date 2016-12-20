@@ -21,7 +21,7 @@ import com.group17.geowars.managers.Managers;
 public abstract class PowerUp extends GameObject implements GOInterface {
     protected Sprite sprite;
     protected Color color;
-    protected boolean destroy = false;
+    private boolean destroy = false;
 
     public PowerUp(Vector2 pos) {
         super(pos);
@@ -34,6 +34,13 @@ public abstract class PowerUp extends GameObject implements GOInterface {
         return sprite;
     }
 
+    public boolean isDestroy() {
+        return destroy;
+    }
+
+    public void setDestroy(boolean destroy) {
+        this.destroy = destroy;
+    }
 
     @Override
     public void render(Batch batch) {

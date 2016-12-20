@@ -53,7 +53,7 @@ public class PowerUpManager implements GOInterface {
     public void removePowerUp(PowerUp g) {
 
         toRemove.add(g);
-        g.destroy = true;
+        g.setDestroy(true);
     }
 
     public void reset()
