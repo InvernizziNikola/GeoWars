@@ -12,6 +12,7 @@ import java.util.List;
 public class AccountManager {
 
 
+    private Account dummyAccount;
     private List<Account> accounts;
     public List<Account> getAccounts()
     {
@@ -23,6 +24,7 @@ public class AccountManager {
         accounts = new ArrayList<Account>();
     }
 
+
     public void addAccount(Account p)
     {
         accounts.add(p);
@@ -30,6 +32,20 @@ public class AccountManager {
 
     public void init()
     {
+        createDummyAccount();
+    }
+
+    public Account createDummyAccount()
+    {
+        dummyAccount = new Account("Guest");
+        if(Managers.getControllerManager().getControllers().size() > 0)
+            dummyAccount.setController(Managers.getControllerManager().getControllers().get(0));
+
+        return dummyAccount;
+    }
+    public Account getDummyAccount()
+    {
+        return dummyAccount;
     }
 
     public void update()

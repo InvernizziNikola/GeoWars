@@ -6,6 +6,7 @@
 package com.group17.geowars.playerobjects;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.controllers.Controller;
 import com.badlogic.gdx.math.Vector2;
 import com.group17.geowars.gameobjects.playerObjects.Drone;
 import com.group17.geowars.gameobjects.playerObjects.Ship;
@@ -17,13 +18,21 @@ import java.util.*;
  * @author kevin
  */
 public class Account {
+
     private Player player;
     public String name;
+
     private List<Ship> ships;
     private List<Drone> drones;
 
     private String playerId;
     private int level;
+
+    private Controller controller;
+
+    {
+        controller = c;
+    }
 
     public Account(String playerId)
     {

@@ -34,6 +34,7 @@ public class GameManager {
 
     public void update()
     {
+        Managers.getControllerManager().update();
         Managers.getAccountManager().update();
         Managers.getGeomManager().update();
         Managers.getBulletManager().update();

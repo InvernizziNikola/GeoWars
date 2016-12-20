@@ -87,7 +87,6 @@ public class Managers
     }
 
     // playerManager
-    // geomManager
 
 
     private Managers()
@@ -104,6 +103,7 @@ public class Managers
         screenManager = new ScreenManager();
         powerUpManager=new PowerUpManager();
         gameManager = new GameManager();
+
     }
 
     public void init()
@@ -121,6 +121,4 @@ public class Managers
         powerUpManager.init();
         gameManager.init();
     }
-
-
 }

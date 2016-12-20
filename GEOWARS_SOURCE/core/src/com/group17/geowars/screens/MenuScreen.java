@@ -60,9 +60,9 @@ public class MenuScreen implements Screen {
         // UP, DOWN, LEFT AND RIGHT. THIS WAY WE CAN 100% DECIDE TO WHICH BUTTON THE
         // SELECTOR GOES WHEN A KEY ON THE DPAD IS PRESSED
 
-        if(Controllers.getControllers().size > 0 && menuButtons.size() > 0) {
+        if(Managers.getControllerManager().getControllers().size() > 0 && menuButtons.size() > 0) {
 
-            Controller c = Controllers.getControllers().first();
+            Controller c = Managers.getControllerManager().getControllers().get(0);
 
             if (c.getPov(0) == PovDirection.center && pressed && !c.getButton(1) && !c.getButton(2) && !c.getButton(3) && !c.getButton(0)) {
                 pressed = false;

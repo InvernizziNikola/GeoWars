@@ -43,7 +43,6 @@ public class LoginScreen extends MenuScreen implements iHasStage {
 
        final TextButton backButton = newButton("continue", width/2-75, height/6, 150, 50, new MenuGrid(0, 1));
 
-
         /*--------------EVENT HANDLER--------------------------*/
 
         backButton.addListener(new ChangeListener() {
@@ -115,6 +114,11 @@ public class LoginScreen extends MenuScreen implements iHasStage {
         stage.addActor(table);
 
     }
+
+    public void render(float deltaTime) {
+        super.render(deltaTime);
+    }
+
     public void setPlayername(){
        PlayerName = TxtUsername.getText();
         //TODO SET Username
