@@ -11,10 +11,8 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
-import com.group17.geowars.gameobjects.GOInterface;
-import com.group17.geowars.gameobjects.GameObject;
-import com.group17.geowars.gameobjects.Geom;
-import com.group17.geowars.gameobjects.PowerUp;
+import com.group17.geowars.GeoWars;
+import com.group17.geowars.gameobjects.*;
 import com.group17.geowars.managers.Managers;
 import com.badlogic.gdx.files.FileHandle;
 
@@ -22,7 +20,6 @@ import com.badlogic.gdx.files.FileHandle;
 import java.util.Random;
 
 /**
- *
  * @author kevin
  */
 public abstract class Enemy extends GameObject implements GOInterface {
@@ -32,26 +29,26 @@ public abstract class Enemy extends GameObject implements GOInterface {
     protected boolean insidePlayingField = false;
     protected float offset = 200;
     public boolean destroy = false;
-    protected Vector2 lookAt = new Vector2(0,0);
+    protected Vector2 lookAt = new Vector2(0, 0);
     protected ParticleEffect pe;
-    protected Vector2 target = new Vector2(0,0);
-    protected int speed =125;
+    protected Vector2 target = new Vector2(0, 0);
+    protected int speed = 125;
     protected int size;
+    protected int maxHp;
     protected int hp;
-
-
 
 
     public Enemy(String type, Vector2 spawnLocation) {
 
-        super(new Vector2(0,0));
+        super(new Vector2(0, 0));
         position = new Vector2(spawnLocation);
         destroy = false;
-        texture = Managers.getAssetManager().getTexture(type+"_2");
-        sprite = new Sprite(texture,texture.getWidth(),texture.getHeight());
-        color =new Color(0,0,1,1);
-        size =50;
-        hp=1;
+        texture = Managers.getAssetManager().getTexture(type + "_2");
+        sprite = new Sprite(texture, texture.getWidth(), texture.getHeight());
+        color = new Color(0, 0, 1, 1);
+        size = 50;
+        hp = 1;
+        maxHp=1;
 
 
         Random rand = new Random();
@@ -59,35 +56,63 @@ public abstract class Enemy extends GameObject implements GOInterface {
 
     }
 
-/*
-    public void dropPowerUp(int EnemyType)
-    {
-        //String dropPosition = position;
-        //PowerUp pow = new PowerUp(dropPosition);
-        // pow naar game scherm doen
-    }
-    */
-    public void handleDead()
-    {
-        int lootId = 1;
-        Geom g = new Geom( lootId,position);
-        Managers.getGeomManager().addGeom(g);
-        int i = new Random().nextInt(100);
-        if(i>98) {
-            PowerUp p = new PowerUp("nuke", position);
-            Managers.getpowerUpManager().addPowerUp(p);
+    public void isInfield() {
+        if (!insidePlayingField) {
+            target = new Vector2(Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2);
+            if (position.x > 1
+                    && position.x < Gdx.graphics.getWidth() - 1
+                    && position.y > 1
+                    && position.y < Gdx.graphics.getHeight() - 1) {
+                insidePlayingField = true;
+                offset = -0;
+                target = Managers.getAccountManager().getAccounts().get(0).getPlayer().getShip().getPosition();
+            }
         }
+        if (insidePlayingField) {
+            if (position.x < -offset || position.x > GeoWars.ORIGINALWIDTH + offset)
+                direction.x *= -1;
+            if (position.y <= -offset || position.y > GeoWars.ORIGINALHEIGHT + offset)
+                direction.y *= -1;
+        }
+    }
 
+    /*
+        public void dropPowerUp(int EnemyType)
+        {
+            //String dropPosition = position;
+            //PowerUp pow = new PowerUp(dropPosition);
+            // pow naar game scherm doen
+        }
+        */
+    public void handleDead(Enemy e, Bullet b) {
+
+        float c =(float)hp/maxHp ;
+        System.out.println(c);
+        setColor(new Color((1-c),0,c,1));
+        //color = new Color(0, 0, 1, 1);
+        if(hp<1) {
+            int lootId = 1;
+            Geom g = new Geom(lootId, position);
+            Managers.getGeomManager().addGeom(g);
+            int i = new Random().nextInt(100);
+            //dropPowerUp
+            if (i > 98) {
+                PowerUp p = new PowerUp("nuke", position);
+                Managers.getpowerUpManager().addPowerUp(p);
+            }
+            Managers.getEnemyManager().remove(e);
+        }
+        Managers.getBulletManager().remove(b);
+        hp--;
 /*
         pe = new ParticleEffect();
         pe.load(Gdx.files.internal("explosion.party"), Gdx.files.internal(""));
         pe.getEmitters().first().setPosition(position.x, position.y);
         pe.start();
 */
-    }
+}
 
-    public Sprite getSprite()
-    {
+    public Sprite getSprite() {
         return sprite;
     }
 
@@ -109,16 +134,16 @@ public abstract class Enemy extends GameObject implements GOInterface {
         }
 */
         sprite.setColor(color);
-        sprite.setSize(size,size);
-        sprite.setOrigin(size/2,size/2);
+        sprite.setSize(size, size);
+        sprite.setOrigin(size / 2, size / 2);
         sprite.setRotation(lookAt.angle());
-        sprite.setPosition(position.x -size/2, position.y-size/2);
+        sprite.setPosition(position.x - size / 2, position.y - size / 2);
         sprite.draw(batch);
     }
 
     public void setSize(int size) {
         this.size = size;
-        sprite.setOrigin(size/2,size/2);
+        sprite.setOrigin(size / 2, size / 2);
     }
 
 
@@ -126,44 +151,25 @@ public abstract class Enemy extends GameObject implements GOInterface {
         return size;
     }
 
-    public Vector2 getOrigin()
-    {
-        return new Vector2(sprite.getOriginX(),sprite.getOriginY()) ;
+    public Vector2 getOrigin() {
+        return new Vector2(sprite.getOriginX(), sprite.getOriginY());
     }
 
     @Override
     public void update() {
 
-        if(pe != null)
-            return;
+//        if(pe != null)
+        //          return;
 
-        if(!insidePlayingField) {
-            target = new Vector2(Gdx.graphics.getWidth() /2, Gdx.graphics.getHeight() / 2);
-            if (position.x > 1
-                    && position.x < Gdx.graphics.getWidth() - 1
-                    && position.y > 1
-                    && position.y < Gdx.graphics.getHeight() - 1) {
-                insidePlayingField = true;
-                offset = -0;
-                target = Managers.getAccountManager().getAccounts().get(0).getPlayer().getShip().getPosition();
-            }
-        }
-        if(insidePlayingField) {
-            if (position.x < -offset || position.x > Gdx.graphics.getWidth() + offset)
-                direction.x *= -1;
-            if (position.y <= -offset || position.y > Gdx.graphics.getHeight() + offset)
-                direction.y *= -1;
-        }
+        isInfield();
 
         Vector2 dist = new Vector2(target.x - getPosition().x, target.y - getPosition().y);
 
         //aggro
-        if (dist.len() < 500 || !insidePlayingField)
-        {
+        if (dist.len() < 500 || !insidePlayingField) {
             lookAt = dist.nor();
 
-        }else
-        {
+        } else {
             lookAt = direction.nor();
         }
         position.mulAdd(lookAt.nor(), speed * Gdx.graphics.getDeltaTime());

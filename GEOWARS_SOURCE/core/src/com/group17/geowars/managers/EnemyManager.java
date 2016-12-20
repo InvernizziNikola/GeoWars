@@ -51,7 +51,6 @@ public class EnemyManager implements GOInterface {
                 }
                 else
                     {
-                        System.out.println(randomHackval);
                         enemies.add(new DestroyerEnemy(spawnlist.get(new Random().nextInt(spawnlist.size() - 1))));
                     }
             }

@@ -1,6 +1,7 @@
 package com.group17.geowars.gameobjects.hostileObjects;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector2;
 import com.group17.geowars.GeoWars;
 import com.group17.geowars.gameobjects.*;
@@ -17,64 +18,31 @@ public class DestroyerEnemy extends Enemy implements GOInterface {
 
 
 
+
     public DestroyerEnemy (Vector2 spawnLocation) {
         super("tank", spawnLocation);
         speed=50;
         setSize(150);
-        System.out.println(getSize());
-
+        hp =10;
+        maxHp=10;
     }
 
     public void shoot() {
         if (canShoot) {
             Managers.getBulletManager().addBullet(new ClusterBullet(new Vector2(position), new Vector2(lookAt)));
             canShoot = false;
-            System.out.println(getOrigin());
+
         }
     }
 
-    @Override
-    public void handleDead()
-    {
-        
-        int lootId = 1;
-        Geom g = new Geom( lootId,position);
-        Managers.getGeomManager().addGeom(g);
-        int i = new Random().nextInt(100);
-        if(i>98) {
-            PowerUp p = new PowerUp("nuke", position);
-            Managers.getpowerUpManager().addPowerUp(p);
-        }
-
-/*
-        pe = new ParticleEffect();
-        pe.load(Gdx.files.internal("explosion.party"), Gdx.files.internal(""));
-        pe.getEmitters().first().setPosition(position.x, position.y);
-        pe.start();
-*/
-    }
 
 
     @Override
     public void update() {
         //TODO spawn in field ( cant get out of field
-        if (!insidePlayingField) {
-            target = new Vector2(GeoWars.WIDTH / 2, GeoWars.HEIGHT / 2);
-            if (position.x > 1
-                    && position.x < Gdx.graphics.getWidth() - 1
-                    && position.y > 1
-                    && position.y < Gdx.graphics.getHeight() - 1) {
-                insidePlayingField = true;
-                offset = -0;
-                target = Managers.getAccountManager().getAccounts().get(0).getPlayer().getShip().getPosition();
-            }
-        }
-        if (insidePlayingField) {
-            if (position.x < -offset || position.x > GeoWars.WIDTH + offset)
-                direction.x *= -1;
-            if (position.y <= -offset || position.y > GeoWars.HEIGHT + offset)
-                direction.y *= -1;
-        }
+
+        isInfield();
+
         timer += Gdx.graphics.getDeltaTime();
         if (timer > 4.0f) {
             timer %= 4.0f;

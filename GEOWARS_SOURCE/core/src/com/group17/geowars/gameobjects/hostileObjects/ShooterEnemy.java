@@ -31,23 +31,8 @@ public class ShooterEnemy extends Enemy implements GOInterface {
     @Override
     public void update() {
         //TODO spawn in field ( cant get out of field
-        if (!insidePlayingField) {
-            target = new Vector2(GeoWars.WIDTH / 2, GeoWars.HEIGHT / 2);
-            if (position.x > 1
-                    && position.x < Gdx.graphics.getWidth() - 1
-                    && position.y > 1
-                    && position.y < Gdx.graphics.getHeight() - 1) {
-                insidePlayingField = true;
-                offset = -0;
-                target = Managers.getAccountManager().getAccounts().get(0).getPlayer().getShip().getPosition();
-            }
-        }
-        if (insidePlayingField) {
-            if (position.x < -offset || position.x > GeoWars.WIDTH + offset)
-                direction.x *= -1;
-            if (position.y <= -offset || position.y > GeoWars.HEIGHT + offset)
-                direction.y *= -1;
-        }
+        isInfield();
+
         timer += Gdx.graphics.getDeltaTime();
         if (timer > 1.0f) {
             timer %= 1.0f;

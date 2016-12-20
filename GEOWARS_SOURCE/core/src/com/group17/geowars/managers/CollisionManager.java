@@ -51,9 +51,9 @@ public class CollisionManager
                     if(distance.len() < e.getSize()/2 && !e.destroy &&!b.destroy)
                     {
                        // System.out.println(distance);
-                        e.handleDead();
-                        Managers.getEnemyManager().remove(e);
-                        Managers.getBulletManager().remove(b);
+                        e.handleDead(e,b);
+                      //  Managers.getEnemyManager().remove(e);
+                       // Managers.getBulletManager().remove(b);
                         break;
                     }
                 }
