@@ -124,15 +124,12 @@ public abstract class Enemy extends GameObject implements GOInterface {
     public void render(Batch batch) {
 
 
-
-/*
-        if(pe != null) {
+        /*if(pe != null) {
 
             pe.update(Gdx.graphics.getDeltaTime());
             pe.draw(batch);
             return;
-        }
-*/
+        }*/
         sprite.setColor(color);
         sprite.setSize(size, size);
         sprite.setOrigin(size / 2, size / 2);

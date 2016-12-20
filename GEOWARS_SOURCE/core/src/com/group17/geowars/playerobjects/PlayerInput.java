@@ -31,8 +31,9 @@ public class PlayerInput {
     public PlayerInput(Controller controller, Player player)
     {
         if(controller != null) {
-            if (controller.getName().toLowerCase().contains("xbox") &&
-                    controller.getName().contains("360")) {
+            if ((controller.getName().toLowerCase().contains("xbox") &&
+                    controller.getName().toLowerCase().contains("360")) ||
+                    controller.getName().toLowerCase().contains("one")  ) {
                 axis0 = 2;
                 axis1 = 3;
                 axis2 = 0;
@@ -153,6 +154,7 @@ public class PlayerInput {
     }
     public void handleButtonInput()
     {
+
         if(controller.getButton(0) && !fired)
         {
             fired = true;
