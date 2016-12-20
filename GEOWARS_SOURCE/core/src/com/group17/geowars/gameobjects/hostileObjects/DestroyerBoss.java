@@ -12,7 +12,8 @@ public class DestroyerBoss extends DestroyerEnemy {
 
     public DestroyerBoss(Vector2 spawnLocation) {
         super(spawnLocation);
-        maxHp=hp;
+        maxHp=100;
+        hp=100;
         size=250;
     }
 
