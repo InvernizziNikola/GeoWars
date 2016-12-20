@@ -63,7 +63,7 @@ public class DestroyerEnemy extends Enemy implements GOInterface {
             lookAt = new Vector2(dist).nor();
 
             if (dist.len() < 450) {
-                if(new Random().nextInt(2)<1) {//1/2 kans om te schieten
+                if(new Random().nextInt(3)<2) {//1/2 kans om te schieten
                     shoot();
                     canShoot=false;
                 }

@@ -61,7 +61,7 @@ public class ShooterEnemy extends Enemy implements GOInterface {
             lookAt = new Vector2(dist).nor();
 
             if (dist.len() < 400) {
-                if(new Random().nextInt(2)<1) {//1/2 kans om te schieten
+                if(new Random().nextInt(9)<7) {//1/2 kans om te schieten
                     shoot();
                     canShoot=false;
                 }
