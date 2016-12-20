@@ -30,8 +30,6 @@ public class GameScreen extends MenuScreen implements iGameScreen {
         if(Controllers.getControllers().size > 0)
             controller = Controllers.getControllers().first();
 
-        System.out.println(controller);
-
         player.setController(controller);
     }
 

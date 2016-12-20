@@ -36,12 +36,16 @@ public class ControllerManager {
     public void init()
     {
     }
+
     public void update()
     {
+        controllersList = new ArrayList<Controller>();
         for(Controller c : Controllers.getControllers())
         {
-            System.out.println(c);
+            if(!controllersList.contains(c)) {
+                controllersList.add(c);
+                System.out.println("NEW controller");
+            }
         }
     }
-
 }

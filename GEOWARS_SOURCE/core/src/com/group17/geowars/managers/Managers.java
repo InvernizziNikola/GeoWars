@@ -5,8 +5,7 @@ package com.group17.geowars.managers;
  * Created by nikola on 09/11/2016.
  */
 
-public class Managers
-{
+public class Managers {
     private static Managers _instance;
 
     private static Managers getInstance()
@@ -121,4 +120,5 @@ public class Managers
         powerUpManager.init();
         gameManager.init();
     }
+
 }

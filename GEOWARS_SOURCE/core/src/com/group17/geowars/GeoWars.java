@@ -46,6 +46,7 @@ public class GeoWars extends ApplicationAdapter{
 						GL20.GL_DEPTH_BUFFER_BIT |
 						(Gdx.graphics.getBufferFormat().coverageSampling?GL20.GL_COVERAGE_BUFFER_BIT_NV:0));
 
+		Managers.getControllerManager().update();
 		Managers.getScreenManager().render();
 	}
 
