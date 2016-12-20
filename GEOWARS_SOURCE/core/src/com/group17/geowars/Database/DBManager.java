@@ -11,6 +11,7 @@ public class DBManager {
     private static final String	URL	=	"jdbc:www.egondebaene.be:3306";
     private static final String	USER	="geowars";
     private static final String	PWD	=	"12345";
+    boolean succes = false;
     private  Connection conn;
     private static DBManager  instance;
 
@@ -326,12 +327,12 @@ public class DBManager {
         }
         catch(SQLException e)
         {
-            boolean succes = false;
+
             System.out.println("Fout in update: " + e.getMessage());
-            throw new RuntimeException(e);
+            boolean succes = false;
 
         }
-            boolean succes = false;
+            boolean succes = true;
 
         return succes;
 

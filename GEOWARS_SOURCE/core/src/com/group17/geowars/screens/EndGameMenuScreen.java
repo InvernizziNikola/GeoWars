@@ -92,6 +92,7 @@ public class EndGameMenuScreen extends MenuScreen implements iHasStage, iSetActi
     {
         SaveScoreThread = new SaveScoreToDBThread(Playername,Score,Gamemode);
         SaveScoreThread.start();
+
     }
     @Override
     public void setActive() {
