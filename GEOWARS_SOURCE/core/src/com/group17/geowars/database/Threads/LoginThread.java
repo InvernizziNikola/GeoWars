@@ -44,9 +44,9 @@ public class LoginThread implements Runnable {
 
     @Override
     public void run() {
-        DBManager manager = new DBManager();
 
-        Player = manager.DBselectLogin(Name,Password);
+
+        Player = DBManager.getInstance().DBselectLogin(Name,Password);
     }
 
     public Boolean getLoggedIn()

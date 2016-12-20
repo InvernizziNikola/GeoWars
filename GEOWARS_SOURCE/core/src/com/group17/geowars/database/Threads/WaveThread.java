@@ -42,9 +42,8 @@ public class WaveThread implements Runnable {
 
     @Override
     public void run() {
-        DBManager manager = new DBManager();
 
-        data = manager.DBselectWaveData(WaveNumber);
+        data = DBManager.getInstance().DBselectWaveData(WaveNumber);
     }
 
     public ArrayList getData()

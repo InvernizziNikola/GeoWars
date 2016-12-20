@@ -8,10 +8,60 @@ import java.util.ArrayList;
 
 public class DBManager {
 
+    private static final String	URL	=	"jdbc:www.egondebaene.be:3306";
+    private static final String	USER	="geowars";
+    private static final String	PWD	=	"12345";
+    private  Connection conn;
+    private static DBManager  instance;
+
     public ArrayList<String> resultselect;
     public ArrayList<String> list;
     public ArrayList<String> SpelersId;
     public ArrayList<String> ShipId;
+
+    Connection dbConnection;
+    PreparedStatement preparedStatement = null;
+
+
+    private DBManager()
+    {
+        this.init();
+
+    }
+
+    private void init() {
+        try{
+            Class.forName("com.mysql.jdbc.Driver");
+            MysqlDataSource dataSource = new MysqlDataSource();
+
+            dataSource.setUser("geowars");
+            dataSource.setPassword("12345");
+            dataSource.setPort(3306);
+            dataSource.setServerName("www.egondebaene.be");
+            dataSource.setDatabaseName("GeoWars");
+
+            conn = dataSource.getConnection();
+            //conn =	DriverManager.getConnection(URL,	USER,	PWD);
+
+
+        }
+        catch(ClassNotFoundException ex){
+
+            ex.printStackTrace();
+        }
+        catch(SQLException e)
+        {
+            e.printStackTrace();
+        }
+    }
+    public static DBManager getInstance()
+    {
+        if(DBManager.instance == null)
+        {
+            instance = new DBManager();
+        }
+        return DBManager.instance;
+    }
 
     /*----------------Select----------------------------*/
     public ArrayList DBselect(String selectValue, String tabel, String columName, String value) {
@@ -222,6 +272,7 @@ public class DBManager {
         }
         return succes;
     }
+
     /*----------------------------insert------------------------------------*/
     public boolean DBInsert(String tabel, String columone, String valueone) {
         String SQLstring = "INSERT INTO " + tabel + " (" + columone + ") VALUES ('" + valueone + "');";
@@ -247,6 +298,7 @@ public class DBManager {
         return succes;
     }
     public boolean DBInsertProfile(String name,Integer credits,Integer ShipLvl,Integer profileLvl) {
+        
         String SQLstring = "INSERT INTO Account(name,profileLvl,credits) VALUES ('" + name + "','"+profileLvl+ "','"+credits+ "');";
         boolean succes = false;
         try {
@@ -258,15 +310,33 @@ public class DBManager {
         return succes;
     }
     public boolean DBInsertHighscore(String nameProfile, Integer Score, String Gamemode) {
-        String SQLstring = "INSERT INTO HighScore (nameProfile,Score,gamemode) VALUES ('" + nameProfile + "','" + Score + "','" + Gamemode + "');";
-        boolean succes = false;
-        try {
-            resultselect = DBconnect(SQLstring, false);
-            succes = true;
-        } catch (Exception e) {
-            System.out.println("Fout in update: " + e.getMessage());
+
+
+        try{
+            String SQLstring = "INSERT INTO HighScore (nameProfile,Score,gamemode) VALUES (?,?,?);";
+
+            PreparedStatement prep = this.conn.prepareStatement(SQLstring);
+            prep.setString(1, nameProfile);
+            prep.setInt(2, Score);
+            prep.setString(3,Gamemode);
+
+
+            prep.executeUpdate();
+
         }
+        catch(SQLException e)
+        {
+            boolean succes = false;
+            System.out.println("Fout in update: " + e.getMessage());
+            throw new RuntimeException(e);
+
+        }
+            boolean succes = false;
+
         return succes;
+
+
+
     }
     public boolean DBInsertShipsInProfile(String nameProfile, String nameShip) {
         boolean succes = false;
@@ -301,8 +371,6 @@ public class DBManager {
             return succes;
         }
     }
-
-
 
 
     /*----------------------------Connectie Naar DB------------------------------------*/

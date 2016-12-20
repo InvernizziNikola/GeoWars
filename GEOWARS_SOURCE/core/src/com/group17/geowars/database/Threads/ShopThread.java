@@ -44,9 +44,8 @@ public class ShopThread implements Runnable {
 
     @Override
     public void run() {
-        DBManager manager = new DBManager();
-        dataShips = manager.DBselectAllShips();
-        dataDrones = manager.DBselectAllDrones();
+        dataShips = DBManager.getInstance().DBselectAllShips();
+        dataDrones = DBManager.getInstance().DBselectAllDrones();
 
 
 

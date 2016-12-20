@@ -77,8 +77,10 @@ public class LoginScreen extends MenuScreen implements iHasStage {
 
 
 
-            TxtUsername = new TextField("Type Username Here", txtStyle);
-            TxtPassword = new TextField("Password", txtStyle);
+            TxtUsername = new TextField("", txtStyle);
+            TxtPassword = new TextField("", txtStyle);
+        TxtUsername.setMessageText("type username here");
+        TxtPassword.setMessageText("type password here");
             TxtPassword.setPasswordMode(true);
             TxtPassword.setPasswordCharacter('*');
 
@@ -128,9 +130,8 @@ public class LoginScreen extends MenuScreen implements iHasStage {
         if (loading) {
             System.out.println("i ran x amount of times");
 
-            DBManager manager = new DBManager();
 
-            Player = manager.DBselectLogin(Username, Password);
+            Player = DBManager.getInstance().DBselectLogin(Username, Password);
             loading = false;
             if (Player.size() >= 1) {
                 System.out.println("You are loggedin!");

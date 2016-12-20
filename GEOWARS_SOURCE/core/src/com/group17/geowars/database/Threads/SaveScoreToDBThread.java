@@ -48,9 +48,9 @@ public class SaveScoreToDBThread implements Runnable {
 
     @Override
     public void run() {
-        DBManager manager = new DBManager();
+        DBManager.getInstance().DBInsertHighscore(Playername,Score,gameMode);
+                //User user = w9DA.getInstance().getUser(login, password);
 
-        data = manager.DBInsertHighscore(Playername,Score,gameMode);
     }
 
     public boolean Succes()

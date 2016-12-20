@@ -45,9 +45,8 @@ public class HighScoreMenuThread implements Runnable {
 
     @Override
     public void run() {
-        DBManager manager = new DBManager();
 
-        data = manager.DBselectTOP10Highscore(gameMode);
+        data = DBManager.getInstance().DBselectTOP10Highscore(gameMode);
     }
 
     public ArrayList getData()

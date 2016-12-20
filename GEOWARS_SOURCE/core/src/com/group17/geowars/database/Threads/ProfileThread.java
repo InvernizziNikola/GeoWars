@@ -44,11 +44,10 @@ public class ProfileThread implements Runnable {
 
     @Override
     public void run() {
-        DBManager manager = new DBManager();
 
-        PlayerProfile = manager.DBselectProfile(Name);
-        PlayerHighscore = manager.DBselectPlayersHighscore(Name);
-        PlayerCampaignLvl = manager.DBselectCampainLvl(Name);
+        PlayerProfile = DBManager.getInstance().DBselectProfile(Name);
+        PlayerHighscore = DBManager.getInstance().DBselectPlayersHighscore(Name);
+        PlayerCampaignLvl = DBManager.getInstance().DBselectCampainLvl(Name);
     }
 
     public ArrayList getPlayerProfile()
