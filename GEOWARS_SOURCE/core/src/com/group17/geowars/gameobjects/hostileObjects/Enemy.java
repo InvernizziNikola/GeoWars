@@ -76,6 +76,11 @@ public abstract class Enemy extends GameObject implements GOInterface {
         }
     }
 
+    public void setTexture(String type)
+    {
+        texture = Managers.getAssetManager().getTexture(type + "_2");
+    }
+
     /*
         public void dropPowerUp(int EnemyType)
         {

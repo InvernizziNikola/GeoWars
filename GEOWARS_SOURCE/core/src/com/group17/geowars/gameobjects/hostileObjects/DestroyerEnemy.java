@@ -13,7 +13,7 @@ import java.util.Random;
  * Created by kevin on 19/12/2016.
  */
 public class DestroyerEnemy extends Enemy implements GOInterface {
-    private boolean canShoot = true;
+    protected boolean canShoot = true;
     private float timer = 0;
 
 
@@ -23,8 +23,8 @@ public class DestroyerEnemy extends Enemy implements GOInterface {
         super("tank", spawnLocation);
         speed=50;
         setSize(150);
-        hp =10;
         maxHp=10;
+        hp=maxHp;
         fireRange=450;
     }
 

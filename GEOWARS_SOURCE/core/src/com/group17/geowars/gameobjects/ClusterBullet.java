@@ -12,12 +12,18 @@ import java.util.Random;
  */
 public class ClusterBullet extends Bullet {
     private float timer = 0;
+    private Boolean isBoss;
 
-    public ClusterBullet(Vector2 pos, Vector2 dir) {
+
+    public ClusterBullet(Vector2 pos, Vector2 dir, Boolean boss) {
         super(pos, dir, false);
         setSize(30);
+        isBoss = boss;
+        speed = 125;
+    }
 
-        speed=125;
+    public ClusterBullet(Vector2 pos, Vector2 dir) {
+        this(pos, dir, false);
     }
 
 
@@ -28,15 +34,17 @@ public class ClusterBullet extends Bullet {
             dir.rotate(angle);
 
             angle += 30;
-           // Managers.getEnemyManager().addEnemy(new KamikazieEnemy(new Vector2(position)));
-            Managers.getBulletManager().addBullet(new Bullet(new Vector2(position), new Vector2(dir), false));
+            if (isBoss) {
+                Managers.getEnemyManager().addEnemy(new KamikazieEnemy(new Vector2(position)));
+            } else {
+                Managers.getBulletManager().addBullet(new Bullet(new Vector2(position), new Vector2(dir), false));
+            }
         }
         Managers.getBulletManager().remove(this);
     }
 
     @Override
-    public void update()
-    {
+    public void update() {
         timer += Gdx.graphics.getDeltaTime();
         if (timer > 3.0f) {
             timer %= 3.0f;

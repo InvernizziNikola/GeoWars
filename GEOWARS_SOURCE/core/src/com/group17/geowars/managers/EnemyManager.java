@@ -1,11 +1,9 @@
 package com.group17.geowars.managers;
+
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Vector2;
-import com.group17.geowars.gameobjects.hostileObjects.DestroyerEnemy;
-import com.group17.geowars.gameobjects.hostileObjects.Enemy;
+import com.group17.geowars.gameobjects.hostileObjects.*;
 import com.group17.geowars.gameobjects.GOInterface;
-import com.group17.geowars.gameobjects.hostileObjects.KamikazieEnemy;
-import com.group17.geowars.gameobjects.hostileObjects.ShooterEnemy;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -21,50 +19,49 @@ public class EnemyManager implements GOInterface {
     private int nrOfEnemys; // TODO HACK
 
 
-    public EnemyManager () {
+    public EnemyManager() {
         enemies = new LinkedList<Enemy>();
         toRemove = new LinkedList<Enemy>();
     }
 
-    public void init()
-    {
+    public void init() {
         newEnemyList(0);
-        nrOfEnemys=5;
+        nrOfEnemys = 5;
 
     }
 
-    public void newEnemyList(int currentWave)
-    {
-
-        for (int i = Managers.getLevelManager().getWaveList().get(currentWave); i>0; i--) {
-
+    public void newEnemyList(int currentWave) {
+        if (Managers.getLevelManager().getCurrentwave() == 2) {
             List<Vector2> spawnlist = Managers.getLevelManager().getSpawnLocations();
-            //Managers.getLevelManager().getEnemies().get(new Random().nextInt(Managers.getLevelManager().getEnemies().size()))
-            int randomHackval =new Random().nextInt(10);
+            enemies.add(new DestroyerBoss(spawnlist.get(new Random().nextInt(spawnlist.size() - 1))));
+        } else {
+            for (int i = Managers.getLevelManager().getWaveList().get(currentWave); i > 0; i--) {
 
-            if(randomHackval<=3) {
-                enemies.add(new ShooterEnemy(spawnlist.get(new Random().nextInt(spawnlist.size() - 1))));
-            }
-            else {
-                if (randomHackval>3&&randomHackval<=8) {
-                    enemies.add(new KamikazieEnemy(spawnlist.get(new Random().nextInt(spawnlist.size() - 1))));
-                }
-                else
-                    {
+                List<Vector2> spawnlist = Managers.getLevelManager().getSpawnLocations();
+                //Managers.getLevelManager().getEnemies().get(new Random().nextInt(Managers.getLevelManager().getEnemies().size()))
+                int randomHackval = new Random().nextInt(10);
+
+                if (randomHackval <= 3) {
+                    enemies.add(new ShooterEnemy(spawnlist.get(new Random().nextInt(spawnlist.size() - 1))));
+                } else {
+                    if (randomHackval > 3 && randomHackval <= 8) {
+                        enemies.add(new KamikazieEnemy(spawnlist.get(new Random().nextInt(spawnlist.size() - 1))));
+                    } else {
                         enemies.add(new DestroyerEnemy(spawnlist.get(new Random().nextInt(spawnlist.size() - 1))));
                     }
+                }
             }
         }
     }
 
-    public void addEnemy(Enemy enemy)
-    {
+    public void addEnemy(Enemy enemy) {
         enemies.add(enemy);
     }
 
     public List<Enemy> getEnemies() {
         return enemies;
     }
+
     public void clearAll() {
         enemies.clear();
     }
@@ -73,13 +70,12 @@ public class EnemyManager implements GOInterface {
     @Override
     public void render(Batch batch) {
 
-        for (Enemy e: enemies) {
+        for (Enemy e : enemies) {
             e.render(batch);
         }
     }
 
-    public void reset()
-    {
+    public void reset() {
         enemies.clear();
         toRemove.clear();
     }
@@ -87,18 +83,16 @@ public class EnemyManager implements GOInterface {
     @Override
     public void update() {
 
-        if(enemies.size()==0)
-        {
+        if (enemies.size() == 0) {
             int currentWave = Managers.getLevelManager().getCurrentwave();
-            if (currentWave<Managers.getLevelManager().getWaveList().size()) {
-                Managers.getLevelManager().setCurrentwave(currentWave+1);
+            if (currentWave < Managers.getLevelManager().getWaveList().size()) {
+                Managers.getLevelManager().setCurrentwave(currentWave + 1);
                 newEnemyList(currentWave);
 
-            }
-            else {
-                nrOfEnemys= nrOfEnemys+(currentWave*6);
-                if (nrOfEnemys>1000){
-                    nrOfEnemys=1000;
+            } else {
+                nrOfEnemys = nrOfEnemys + (currentWave * 6);
+                if (nrOfEnemys > 1000) {
+                    nrOfEnemys = 1000;
                 }
                 System.out.println(nrOfEnemys);
                 Managers.getLevelManager().getWaveList().add(nrOfEnemys);
@@ -106,7 +100,7 @@ public class EnemyManager implements GOInterface {
 
         }
 
-        for (Enemy e: enemies) {
+        for (Enemy e : enemies) {
             e.update();
         }
 
