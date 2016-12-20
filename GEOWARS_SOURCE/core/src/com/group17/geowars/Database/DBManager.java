@@ -26,7 +26,7 @@ public class DBManager {
 
     public ArrayList DBselectPlayersHighscore(String Name) {
         try {
-            String SQLstring = "SELECT nameProfile,score FROM HighScoreMenuScreen where name ='" + Name + "'ORDER BY score DESC LIMIT 1";
+            String SQLstring = "SELECT score FROM HighScore where name ='" + Name + "'ORDER BY score DESC LIMIT 1";
             resultselect = DBconnect(SQLstring, true);
         } catch (Exception e) {
             System.out.println("Fout in select: " + e.getMessage());
@@ -93,6 +93,15 @@ public class DBManager {
     public ArrayList DBselectAllShips() {
         try {
             String SQLstring = "SELECT name,hitpoints,attack,speed,price FROM Ship;";
+            resultselect = DBconnect(SQLstring, true);
+        } catch (Exception e) {
+            System.out.println("Fout in select: " + e.getMessage());
+        }
+        return resultselect;
+    }
+    public ArrayList DBselectLogin(String Name,String Pass) {
+        try {
+            String SQLstring = "SELECT * FROM Profile where name ='"+Name+"' and Password='"+Pass+"';";
             resultselect = DBconnect(SQLstring, true);
         } catch (Exception e) {
             System.out.println("Fout in select: " + e.getMessage());

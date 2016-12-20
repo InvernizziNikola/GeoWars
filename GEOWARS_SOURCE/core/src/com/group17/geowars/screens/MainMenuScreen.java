@@ -77,6 +77,16 @@ public class MainMenuScreen extends MenuScreen implements iHasStage, iSetActive 
                 Managers.getScreenManager().setScreen(nextMenu);
             }
         });
+        final TextButton LoginButton = newButton("Login", GeoWars.WIDTH/2-400, GeoWars.HEIGHT/2-GeoWars.HEIGHT/4, 200, 75, new MenuGrid(0, 4));
+        LoginButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                LoginButton.setChecked(false);
+                MenuScreen nextMenu = Managers.getScreenManager().getScreen("LoginScreen");
+                Managers.getScreenManager().setScreen(nextMenu);
+            }
+        });
+
 
 
         final TextButton quitButton = newButton("QUIT GAME", GeoWars.WIDTH/2-100, GeoWars.HEIGHT-GeoWars.HEIGHT+90, 200, 75, new MenuGrid(0, 5));

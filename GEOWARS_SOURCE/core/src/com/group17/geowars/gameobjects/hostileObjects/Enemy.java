@@ -122,7 +122,13 @@ public abstract class Enemy extends GameObject implements GOInterface {
 
     @Override
     public void render(Batch batch) {
+<<<<<<< HEAD
 /*        if(pe != null) {
+=======
+
+
+        /*if(pe != null) {
+>>>>>>> origin/master
 
             pe.update(Gdx.graphics.getDeltaTime());
             pe.draw(batch);
