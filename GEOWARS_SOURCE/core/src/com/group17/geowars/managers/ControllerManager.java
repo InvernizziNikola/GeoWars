@@ -39,7 +39,6 @@ public class ControllerManager {
 
     public void update()
     {
-        controllersList = new ArrayList<Controller>();
         for(Controller c : Controllers.getControllers())
         {
             if(!controllersList.contains(c)) {
