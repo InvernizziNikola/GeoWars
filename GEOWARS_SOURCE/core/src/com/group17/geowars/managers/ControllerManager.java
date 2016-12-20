@@ -35,18 +35,18 @@ public class ControllerManager {
         }
     }
 
-    public Controller getUnusedController()
+    public List<Controller> getUnusedControllers()
     {
+        List<Controller> unusedControllers = new ArrayList<Controller>();
 
         for(Controller c : controllersList)
         {
             if(Managers.getAccountManager().getAccountByController(c) == null)
             {
-                return c;
+                unusedControllers.add(c);
             }
         }
-
-        return null;
+        return unusedControllers;
     }
 
     public void init()

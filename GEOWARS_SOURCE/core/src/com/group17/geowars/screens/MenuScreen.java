@@ -6,8 +6,11 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.controllers.Controller;
 import com.badlogic.gdx.controllers.Controllers;
 import com.badlogic.gdx.controllers.PovDirection;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.EventListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -39,12 +42,15 @@ public class MenuScreen implements Screen {
     protected TextButton.TextButtonStyle styleSelected;
     protected Stage stage;
     private Texture background;
-    private SpriteBatch batch;
+    protected Batch batch;
+    protected BitmapFont text;
 
     protected boolean active = false;
 
     public MenuScreen()
     {
+        text = new BitmapFont();
+        text.setColor(Color.WHITE);
         stage = new Stage(new FitViewport(GeoWars.WIDTH, GeoWars.HEIGHT));
         styleDefault = Managers.getScreenManager().getDefaultStyle();
         styleSelected = Managers.getScreenManager().getSelectedStyle();
@@ -59,6 +65,7 @@ public class MenuScreen implements Screen {
         // THIS LINKEDBUTTON WILL CONTAIN A MAX OF $ OTHER BUTTON TO WHICH IT IS LINKED
         // UP, DOWN, LEFT AND RIGHT. THIS WAY WE CAN 100% DECIDE TO WHICH BUTTON THE
         // SELECTOR GOES WHEN A KEY ON THE DPAD IS PRESSED
+
 
         if(Managers.getControllerManager().getControllers().size() > 0 && menuButtons.size() > 0) {
 
@@ -98,9 +105,12 @@ public class MenuScreen implements Screen {
         if(this instanceof iHasStage) {
             Gdx.gl.glClearColor(0.2f, 0.2f, 0.2f, 0);
             Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+
             batch.begin();
             batch.draw(background,0,0);
             batch.end();
+
             stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
             stage.draw();
 

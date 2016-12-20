@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
@@ -18,14 +19,12 @@ import com.group17.geowars.utils.MenuGrid;
 
 import java.util.ArrayList;
 
-public class LoginScreen extends MenuScreen implements iHasStage {
-    private BitmapFont text;
+public class LoginScreen extends MenuScreen implements iHasStage, iSetActive {
     private Skin skin;
     private TextField TxtUsername, TxtPassword;
     private Integer SelectedKeyBinding = 1;
     private int width = GeoWars.WIDTH;
     private int height = GeoWars.HEIGHT;
-    private Batch batch;
     private boolean loading = false;
     private boolean loggedIn = false;
     private Label errorlable;
@@ -46,7 +45,6 @@ public class LoginScreen extends MenuScreen implements iHasStage {
        final TextButton backButton = newButton("continue", width/2-75, height/6, 150, 50, new MenuGrid(0, 1));
 
         /*--------------EVENT HANDLER--------------------------*/
-
         backButton.addListener(new ChangeListener() {
             public void changed(ChangeEvent event, Actor actor) {
                 backButton.setChecked(false);
@@ -54,9 +52,6 @@ public class LoginScreen extends MenuScreen implements iHasStage {
                 Managers.getScreenManager().setScreen(nextMenu);
             }
         });
-
-
-
     }
 
     public void setStage() {
@@ -77,16 +72,12 @@ public class LoginScreen extends MenuScreen implements iHasStage {
         style.font = font;
 
 
-
-
-            TxtUsername = new TextField("", txtStyle);
-            TxtPassword = new TextField("", txtStyle);
+        TxtUsername = new TextField("", txtStyle);
+        TxtPassword = new TextField("", txtStyle);
         TxtUsername.setMessageText("type username here");
         TxtPassword.setMessageText("type password here");
-            TxtPassword.setPasswordMode(true);
-            TxtPassword.setPasswordCharacter('*');
-
-
+        TxtPassword.setPasswordMode(true);
+        TxtPassword.setPasswordCharacter('*');
 
 
         Label errorlable = new Label("", style);
@@ -110,15 +101,14 @@ public class LoginScreen extends MenuScreen implements iHasStage {
                 loginButton.setChecked(false);
                 System.out.println("username: "+ TxtUsername.getText()+" Password: "+TxtPassword.getText());
                 //getLogin(TxtUsername.getText(),TxtPassword.getText());
+                TxtPassword.setDisabled(true);
+                TxtUsername.setDisabled(true);
                 if(loading)
                     return;
-
                 loading = true;
-                System.out.println("test");
+                System.out.println("Login button pressed");
                 LT = new LoginThread(TxtUsername.getText(),TxtPassword.getText());
                 LT.start();
-
-
             }
         });
 
@@ -128,53 +118,56 @@ public class LoginScreen extends MenuScreen implements iHasStage {
     public void render(float deltaTime) {
         super.render(deltaTime);
 
-        if(LT != null && LT.finished())
-        {
-            loggedIn = LT.getLoggedIn();
-            LT = null;
+        if(LT != null ) {
+            if (LT.finished()) {
+                loggedIn = LT.getLoggedIn();
+                LT = null;
+                loading = false;
+                if(loggedIn)
+                {
+                    Managers.getAccountManager().createAccount(TxtUsername.getText());
 
-            loading = false;
-        }
-        if(LT != null && !LT.finished())
-        {
-            showLoading();
+                    MenuScreen nextMenu = Managers.getScreenManager().getScreen("mainmenu");
+                    Managers.getScreenManager().setScreen(nextMenu);
+                }
+                TxtPassword.setDisabled(false);
+                TxtUsername.setDisabled(false);
+            }
+            else if(!LT.finished()){
+                showLoading();
+            }
         }
 
     }
 
     public void showLoading()
     {
+        batch.begin();
         text.draw(batch, "Loading...", 350, 380);
+        batch.end();
     }
     public void setPlayername(){
        PlayerName = TxtUsername.getText();
         //TODO SET Username
 
     }
-    public void getLogin(String Username,String Password) {
-        if (loading) {
-            System.out.println("i ran x amount of times");
-
-
-            Player = DBManager.getInstance().DBselectLogin(Username, Password);
-            loading = false;
-            if (Player.size() >= 1) {
-                System.out.println("You are loggedin!");
-                MenuScreen nextMenu = Managers.getScreenManager().getScreen("mainmenu");
-                Managers.getScreenManager().setScreen(nextMenu);
-            } else {
-                System.out.println("Login failed!");
-                //errorlable.setText("Incorrect username or password");
-
-            }
-        }
-    }
 
     public void create() {
         Gdx.input.setInputProcessor(stage);
 
         setStage();
-        
     }
 
+    @Override
+    public void setActive() {
+        if(active)
+            return;
+        active = true;
+    }
+
+    @Override
+    public void setInActive() {
+        active = false;
+
+    }
 }

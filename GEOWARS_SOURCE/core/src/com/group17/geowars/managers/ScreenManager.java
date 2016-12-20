@@ -101,6 +101,7 @@ public class ScreenManager {
 
 
     public void render(){
+
         if(showScreen instanceof iGameScreen)
             ((iGameScreen)showScreen).renderGame();
         else

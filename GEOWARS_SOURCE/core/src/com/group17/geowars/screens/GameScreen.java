@@ -20,11 +20,6 @@ public class GameScreen extends MenuScreen implements iGameScreen {
     {
         batch = new SpriteBatch();
 
-        Account account = new Account("YEEEY");
-
-        Managers.getAccountManager().addAccount(account);
-
-
         Controller controller = null;
         if(Controllers.getControllers().size > 0)
             controller = Controllers.getControllers().first();

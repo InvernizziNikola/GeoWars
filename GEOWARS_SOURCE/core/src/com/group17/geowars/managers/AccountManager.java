@@ -36,11 +36,29 @@ public class AccountManager {
     }
 
 
+    public Account createAccount(String username)
+    {
+        if(dummyAccount != null) {
+            accounts.remove(dummyAccount);
+            dummyAccount = null;
+        }
+
+        Account newAcc = new Account(username);
+        if(Managers.getControllerManager().getUnusedControllers().size() > 0)
+            newAcc.setController(Managers.getControllerManager().getUnusedControllers().get(0));
+
+        accounts.add(newAcc);
+
+        return newAcc;
+    }
+
     public Account createDummyAccount()
     {
         dummyAccount = new Account("Guest");
-        if(Managers.getControllerManager().getControllers().size() > 0)
-            dummyAccount.setController(Managers.getControllerManager().getControllers().get(0));
+        if(Managers.getControllerManager().getUnusedControllers().size() > 0)
+            dummyAccount.setController(Managers.getControllerManager().getUnusedControllers().get(0));
+
+        accounts.add(dummyAccount);
 
         return dummyAccount;
     }
