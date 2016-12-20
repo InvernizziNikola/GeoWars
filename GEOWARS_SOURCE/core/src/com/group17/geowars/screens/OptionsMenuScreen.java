@@ -46,7 +46,7 @@ public class OptionsMenuScreen extends MenuScreen implements iHasStage {
             public void changed(ChangeEvent event, Actor actor) {
                 arrowkeysButton.setChecked(false);
 
-                Managers.getAccountManager().getAccounts().get(0).getPlayer().getPlayerInput().setArrowkeys();
+                //Managers.getAccountManager().getAccounts().get(0).getPlayer().getPlayerInput().setArrowkeys();
                 SelectedKeyBinding = 1;
                 test();
 
@@ -55,7 +55,7 @@ public class OptionsMenuScreen extends MenuScreen implements iHasStage {
         qwertyButton.addListener(new ChangeListener() {
             public void changed(ChangeEvent event, Actor actor) {
                 qwertyButton.setChecked(false);
-                Managers.getAccountManager().getAccounts().get(0).getPlayer().getPlayerInput().setQwerty();
+                //Managers.getAccountManager().getAccounts().get(0).getPlayer().getPlayerInput().setQwerty();
                 SelectedKeyBinding = 2;
                 test();
             }
@@ -63,7 +63,7 @@ public class OptionsMenuScreen extends MenuScreen implements iHasStage {
         azertyButton.addListener(new ChangeListener() {
             public void changed(ChangeEvent event, Actor actor) {
                 azertyButton.setChecked(false);
-                Managers.getAccountManager().getAccounts().get(0).getPlayer().getPlayerInput().setAzerty();
+                //Managers.getAccountManager().getAccounts().get(0).getPlayer().getPlayerInput().setAzerty();
                 SelectedKeyBinding = 3;
                 test();
 

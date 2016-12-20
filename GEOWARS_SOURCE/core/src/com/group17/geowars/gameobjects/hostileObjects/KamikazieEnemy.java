@@ -19,6 +19,7 @@ public class KamikazieEnemy  extends Enemy implements GOInterface {
     @Override
     public void update() {
 
+        /*
         if(pe != null)
             return;
 
@@ -57,5 +58,6 @@ public class KamikazieEnemy  extends Enemy implements GOInterface {
             lookAt = direction.nor();
         }
         position.mulAdd(lookAt.nor(), speed * Gdx.graphics.getDeltaTime());
+        */
     }
 }

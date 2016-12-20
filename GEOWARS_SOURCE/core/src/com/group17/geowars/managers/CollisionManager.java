@@ -30,6 +30,7 @@ public class CollisionManager
     }
     public void update()
     {
+        /*
         for(Bullet b: Managers.getBulletManager().getBullets()){
             if(!b.isFriendly() && !b.destroy) {
                 for (Account p : Managers.getAccountManager().getAccounts()) {
@@ -39,8 +40,8 @@ public class CollisionManager
 
                     if(distance.len() < 25) {
 
-                        Managers.getBulletManager().remove(b);
-                        System.out.println("Player hit by enemy bullet");
+                       Managers.getBulletManager().remove(b);
+                       System.out.println("Player hit by enemy bullet");
                     }
                 }
             }
@@ -95,6 +96,6 @@ public class CollisionManager
                     Managers.getScreenManager().setScreen(mainmenu);
                 }
             }
-        }
+        }*/
     }
 }

@@ -55,6 +55,8 @@ public class PlayMenuScreen extends MenuScreen implements iHasStage, iSetActive 
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 multiPlayerButton.setChecked(false);
+                MenuScreen nextMenu = Managers.getScreenManager().getScreen("coopmenu");
+                Managers.getScreenManager().setScreen(nextMenu);
             }
         });
 

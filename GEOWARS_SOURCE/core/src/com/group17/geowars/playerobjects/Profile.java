@@ -1,16 +1,18 @@
 package com.group17.geowars.playerobjects;
 
+import com.group17.geowars.gameobjects.playerObjects.Ship;
+
 /**
  * Created by nikola on 20/12/2016.
  */
 
 public class Profile {
-    private String ship;
-    private String drone;
+    private ShipProfile shipProfile;
+    private DroneProfile droneProfile;
 
-    public Profile()
+    public Profile(ShipProfile shipProfile, DroneProfile droneProfile)
     {
-        ship = "ship name";
-        drone = "drone name";
+        this.shipProfile = shipProfile;
+        this.droneProfile = droneProfile;
     }
 }
