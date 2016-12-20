@@ -30,6 +30,7 @@ public class Account {
 
     private Controller controller;
 
+    public void setController(Controller c)
     {
         controller = c;
     }
