@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
+import com.group17.geowars.GeoWars;
 import com.group17.geowars.gameobjects.*;
 import com.group17.geowars.managers.Managers;
 
@@ -142,16 +143,14 @@ public class Ship extends GameObject implements GOInterface { //interface shoot?
 
         Move();
 
-
         if(position.x < 0)
-            position.x = Gdx.graphics.getWidth();
-        if(position.x > Gdx.graphics.getWidth())
+            position.x = GeoWars.ORIGINALWIDTH;
+        if(position.x > GeoWars.ORIGINALWIDTH)
              position.x = 0;
         if(position.y < 0)
-            position.y = Gdx.graphics.getHeight();
-        if(position.y > Gdx.graphics.getHeight())
+            position.y = GeoWars.ORIGINALHEIGHT;
+        if(position.y > GeoWars.ORIGINALHEIGHT)
             position.y = 0;
-
     }
 
     private void Move()

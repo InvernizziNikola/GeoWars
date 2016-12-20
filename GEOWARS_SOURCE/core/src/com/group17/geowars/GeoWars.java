@@ -17,11 +17,15 @@ public class GeoWars extends ApplicationAdapter{
 	static public Camera camera;
 	static public int WIDTH;
 	static public int HEIGHT;
+	static public int ORIGINALWIDTH;
+	static public int ORIGINALHEIGHT;
 
 	public GeoWars(int width, int height)
 	{
 		WIDTH = width;
 		HEIGHT = height;
+		ORIGINALWIDTH = width;
+		ORIGINALHEIGHT = height;
 	}
 	@Override
 	public void create () {

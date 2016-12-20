@@ -6,16 +6,15 @@ import com.group17.geowars.GeoWars;
 
 public class DesktopLauncher {
 
-	static public int WIDTH = 1240;
-	static public int HEIGHT = 720;
+	static public int WIDTH = 1920;
+	static public int HEIGHT = 1080;
 
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 
 		config.width = WIDTH;
 		config.height = HEIGHT;
-		config.fullscreen = false;
-
+		config.fullscreen = true;
 
 		new LwjglApplication(new GeoWars(WIDTH, HEIGHT), config);
 	}

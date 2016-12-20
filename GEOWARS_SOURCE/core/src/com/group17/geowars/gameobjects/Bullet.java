@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
+import com.group17.geowars.GeoWars;
 import com.group17.geowars.managers.Managers;
 
 /**
@@ -65,9 +66,9 @@ public class Bullet extends GameObject implements GOInterface {
     public void update()
     {
         if(position.x < -10 ||
-                position.x > Gdx.graphics.getWidth() +10 ||
+                position.x > GeoWars.ORIGINALWIDTH + 10 ||
                 position.y < -10 ||
-                position.y > Gdx.graphics.getHeight()+10) {
+                position.y > GeoWars.ORIGINALHEIGHT + 10) {
             Managers.getBulletManager().remove(this);
         }
 
