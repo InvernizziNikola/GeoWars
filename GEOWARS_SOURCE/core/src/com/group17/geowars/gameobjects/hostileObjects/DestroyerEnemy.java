@@ -25,6 +25,7 @@ public class DestroyerEnemy extends Enemy implements GOInterface {
         setSize(150);
         hp =10;
         maxHp=10;
+        fireRange=450;
     }
 
     public void shoot() {
@@ -45,7 +46,7 @@ public class DestroyerEnemy extends Enemy implements GOInterface {
 
         timer += Gdx.graphics.getDeltaTime();
         if (timer > 4.0f) {
-            timer %= 4.0f;
+                timer %= 4.0f;
             canShoot = true;
         }
 
@@ -55,7 +56,7 @@ public class DestroyerEnemy extends Enemy implements GOInterface {
         if (dist.len() < 750 || !insidePlayingField) {//TODO remove ISinPlayingField
             lookAt = new Vector2(dist).nor();
 
-            if (dist.len() < 450) {
+            if (dist.len() < fireRange) {
                 if(new Random().nextInt(3)<2) {//1/2 kans om te schieten
                     shoot();
                     canShoot=false;

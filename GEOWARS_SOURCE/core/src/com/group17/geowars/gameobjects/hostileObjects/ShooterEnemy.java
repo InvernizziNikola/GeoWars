@@ -19,23 +19,24 @@ public class ShooterEnemy extends Enemy implements GOInterface {
     public ShooterEnemy(Vector2 spawnLocation) {
         super("fighter", spawnLocation);
         speed =125;
+        firedelay=1.0f;
+        fireRange=400;
     }
 
     public void shoot() {
         if (canShoot) {
-            Managers.getBulletManager().addBullet(new Bullet(new Vector2(position), new Vector2(lookAt), false));
+           Managers.getBulletManager().addBullet(new Bullet(new Vector2(position), new Vector2(lookAt), false));
             canShoot = false;
         }
     }
 
     @Override
     public void update() {
-        //TODO spawn in field ( cant get out of field
         isInfield();
 
         timer += Gdx.graphics.getDeltaTime();
-        if (timer > 1.0f) {
-            timer %= 1.0f;
+        if (timer > firedelay) {
+            timer %= firedelay;
             canShoot = true;
         }
 
@@ -45,7 +46,7 @@ public class ShooterEnemy extends Enemy implements GOInterface {
         if (dist.len() < 500 || !insidePlayingField) {//TODO remove ISinPlayingField
             lookAt = new Vector2(dist).nor();
 
-            if (dist.len() < 400) {
+            if (dist.len() < fireRange) {
                 if(new Random().nextInt(9)<7) {//1/2 kans om te schieten
                     shoot();
                     canShoot=false;

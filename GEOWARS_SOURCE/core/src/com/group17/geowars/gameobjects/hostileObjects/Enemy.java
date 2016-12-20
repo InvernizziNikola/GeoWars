@@ -36,6 +36,8 @@ public abstract class Enemy extends GameObject implements GOInterface {
     protected int size;
     protected int maxHp;
     protected int hp;
+    protected float firedelay;
+    protected int fireRange;
 
 
     public Enemy(String type, Vector2 spawnLocation) {
@@ -49,8 +51,6 @@ public abstract class Enemy extends GameObject implements GOInterface {
         size = 50;
         hp = 1;
         maxHp=1;
-
-
         Random rand = new Random();
         direction = new Vector2(rand.nextInt(100) - 50, rand.nextInt(100) - 50).nor();
 
@@ -122,17 +122,12 @@ public abstract class Enemy extends GameObject implements GOInterface {
 
     @Override
     public void render(Batch batch) {
-
-
-
-/*
-        if(pe != null) {
+/*        if(pe != null) {
 
             pe.update(Gdx.graphics.getDeltaTime());
             pe.draw(batch);
             return;
-        }
-*/
+        }*/
         sprite.setColor(color);
         sprite.setSize(size, size);
         sprite.setOrigin(size / 2, size / 2);
@@ -143,16 +138,12 @@ public abstract class Enemy extends GameObject implements GOInterface {
 
     public void setSize(int size) {
         this.size = size;
-        sprite.setOrigin(size / 2, size / 2);
+        sprite.setOrigin(size / 2, size / 2);//TODO remove?
     }
 
 
     public int getSize() {
         return size;
-    }
-
-    public Vector2 getOrigin() {
-        return new Vector2(sprite.getOriginX(), sprite.getOriginY());
     }
 
     @Override

@@ -35,8 +35,7 @@ public class Bullet extends GameObject implements GOInterface {
         color=new Color(0.9f,0.1f,0.1f,0.9f);
         size=15;
         this.isFriendly =isFriendly;
-        // normalize just incase
-        direction = dir.nor();
+        direction = dir.nor();// normalize just incase
 
         texture = Managers.getAssetManager().getTexture("bullet");
 
@@ -62,9 +61,7 @@ public class Bullet extends GameObject implements GOInterface {
 
     }
 
-    @Override
-    public void update()
-    {
+    public void handleUpdate(){
         if(position.x < -10 ||
                 position.x > GeoWars.ORIGINALWIDTH + 10 ||
                 position.y < -10 ||
@@ -73,5 +70,10 @@ public class Bullet extends GameObject implements GOInterface {
         }
 
         position.mulAdd(direction,speed * Gdx.graphics.getDeltaTime());
+    }
+    @Override
+    public void update()
+    {
+        handleUpdate();
     }
 }
