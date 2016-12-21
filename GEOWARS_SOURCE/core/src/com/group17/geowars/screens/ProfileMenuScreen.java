@@ -42,7 +42,10 @@ public class ProfileMenuScreen extends MenuScreen implements iHasStage, iSetActi
         batch = new SpriteBatch();
         text = new BitmapFont();
         text.setColor(Color.WHITE);
+    }
 
+    public void createButtons()
+    {
         final TextButton clanButton = newButton("CLANS", width / 10, height / 3, 150, 50, new MenuGrid(0, 0));
         clanButton.addListener(new ChangeListener() {
             @Override
@@ -73,9 +76,7 @@ public class ProfileMenuScreen extends MenuScreen implements iHasStage, iSetActi
                 Managers.getScreenManager().setScreen(nextMenu);
             }
         });
-
     }
-
     public void showText() {
 
         text.draw(batch, "GEOMETRYWARS", width / 2 - 70, height - height / 10);
@@ -141,7 +142,7 @@ public class ProfileMenuScreen extends MenuScreen implements iHasStage, iSetActi
     }
 
     public void showLoading() {
-        text.draw(batch, "Loading...", 350, 380);
+        text.draw(batch, "Loading...", GeoWars.WIDTH/2-25, GeoWars.HEIGHT/2);
     }
 
     public void getAllData() {
@@ -175,7 +176,11 @@ public class ProfileMenuScreen extends MenuScreen implements iHasStage, iSetActi
         if (ProfileThread != null && !ProfileThread.finished()) {
             showLoading();
         }
-        showText();
+        if(ProfileThread == null)
+        {
+            showText();
+            createButtons();
+        }
         //setVals();
         batch.end();
     }
