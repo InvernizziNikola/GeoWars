@@ -22,12 +22,15 @@ public class DestroyerShip extends Ship {
     public void shoot()
     {
         if(canShoot) {
-            shootDir.rotate(-30);
-            Managers.getBulletManager().addBullet(new Bullet(new Vector2(position), new Vector2(shootDir)));
-            shootDir.rotate(60);
-            Managers.getBulletManager().addBullet(new Bullet(new Vector2(position), new Vector2(shootDir)));
-            shootDir.rotate(30);
-            Managers.getBulletManager().addBullet(new Bullet(new Vector2(position), new Vector2(shootDir)));
+
+            Vector2 sd = new Vector2(shootDir.x, shootDir.y);
+
+            Managers.getBulletManager().addBullet(new Bullet(new Vector2(position), new Vector2(sd)));
+            sd.rotate(-10);
+            Managers.getBulletManager().addBullet(new Bullet(new Vector2(position), new Vector2(sd)));
+            sd.rotate(20);
+            Managers.getBulletManager().addBullet(new Bullet(new Vector2(position), new Vector2(sd)));
+
             canShoot = false;
         }
     }
