@@ -13,6 +13,8 @@ public class DBManager {
     public ArrayList<String> list;
     public ArrayList<String> SpelersId;
     public ArrayList<String> ShipId;
+    public ArrayList<String> resultData;
+    private PreparedStatement prep;
 
     private DBManager() {
         this.init();
@@ -21,7 +23,7 @@ public class DBManager {
     private void init() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            MysqlDataSource dataSource = new MysqlDataSource();
+            MysqlDataSource dataSource = new     MysqlDataSource();
             //add datasource
             dataSource.setUser("geowars");
             dataSource.setPassword("12345");
@@ -42,6 +44,19 @@ public class DBManager {
         }
         return DBManager.instance;
     }
+    public ArrayList<String> DbExecute(PreparedStatement statment){
+        try {
+            System.out.println("statment"+statment);
+            ResultSet rs = statment.executeQuery();
+
+            resultData = RsToArrayList(rs);
+            if (!resultData.isEmpty()) {
+                return resultData;
+            } else return null;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     /*----------------Select----------------------------*/
     public ArrayList DBselect(String selectValue, String tabel, String columName, String value) {
@@ -61,43 +76,34 @@ public class DBManager {
                 "JOIN Profile ON ShipsForProfile.profile = Profile.ships\n" +
                 "WHERE Profile.name = ?";
         try {
-            PreparedStatement prep = this.conn.prepareStatement(SQLstring);
+            prep = this.conn.prepareStatement(SQLstring);
             prep.setString(1, PlayerName);
-            ResultSet rs = prep.executeQuery();
-            if (rs.next()) {
-                return RsToArrayList(rs);
-            } else return null;
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            System.out.println("error with preparing statment. Are you trying to hack us?");
         }
+        return DbExecute(prep);
     }
 
     public ArrayList DBselectPlayersHighscore(String Name) {
         String SQLstring = "SELECT score FROM HighScore where nameProfile = ? ORDER BY score DESC LIMIT 1";
         try {
-            PreparedStatement prep = this.conn.prepareStatement(SQLstring);
+            prep = this.conn.prepareStatement(SQLstring);
             prep.setString(1, Name);
-            ResultSet rs = prep.executeQuery();
-            if (rs.next()) {
-                return RsToArrayList(rs);
-            } else return null;
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            System.out.println("error with preparing statment. Are you trying to hack us?");
         }
+        return DbExecute(prep);
     }
 
     public ArrayList DBselectTOP10Highscore(String Gamemode) {
         String SQLstring = "SELECT nameProfile,score FROM HighScore where gamemode = ? ORDER BY score DESC LIMIT 10;";
         try {
-            PreparedStatement prep = this.conn.prepareStatement(SQLstring);
+            prep = this.conn.prepareStatement(SQLstring);
             prep.setString(1, Gamemode);
-            ResultSet rs = prep.executeQuery();
-            if (rs.next()) {
-                return RsToArrayList(rs);
-            } else return null;
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            System.out.println("error with preparing statment. Are you trying to hack us?");
         }
+        return DbExecute(prep);
     }
 
     public ArrayList DBselectGeom() {
@@ -150,67 +156,51 @@ public class DBManager {
         return resultselect;
     }
 
-    public ArrayList DBselectAllShips() {
+    public ArrayList DBselectAllShips(){
 
         String SQLstring = "SELECT name,hitpoints,attack,speed,price FROM Ship;";
         try {
-            PreparedStatement prep = this.conn.prepareStatement(SQLstring);
-
-            ResultSet rs = prep.executeQuery();
-
-            if (rs.next()) {
-
-                return RsToArrayList(rs);
-            } else return null;
+            prep = this.conn.prepareStatement(SQLstring);
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            System.out.println("error with preparing statment. Are you trying to hack us?");
         }
+        return DbExecute(prep);
+
     }
 
     public ArrayList DBselectLogin(String Name, String Pass) {
 
         String SQLstring = "SELECT * FROM Profile where name = ? and Password= ?;";
         try {
-            PreparedStatement prep = this.conn.prepareStatement(SQLstring);
+            prep = this.conn.prepareStatement(SQLstring);
             prep.setString(1, Name);
             prep.setString(2, Pass);
-            ResultSet rs = prep.executeQuery();
-            System.out.println("test");
-            System.out.println(rs);
-            if (rs.next()) {
-                return RsToArrayList(rs);
-            } else return null;
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            System.out.println("error with preparing statment. Are you trying to hack us?");
         }
+        return DbExecute(prep);
     }
 
     public ArrayList DBselectAllDrones() {
         String SQLstring = "SELECT name,hitpoints,hpinfinite,attack,speed,price FROM Drone;";
         try {
-            PreparedStatement prep = this.conn.prepareStatement(SQLstring);
-            ResultSet rs = prep.executeQuery();
-            if (rs.next()) {
-                return RsToArrayList(rs);
-            } else return null;
+            prep = this.conn.prepareStatement(SQLstring);
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            System.out.println("error with preparing statment. Are you trying to hack us?");
         }
+        return DbExecute(prep);
     }
 
     public ArrayList DBselectWaveData(Integer WaveNumber) {
         String SQLstring = "SELECT Enemy.name,Waves.Amount " +
                 "FROM Waves Join Enemy ON Waves.EnemyType=Enemy.IDEnemy WHERE WaveNumber = ?;";
         try {
-            PreparedStatement prep = this.conn.prepareStatement(SQLstring);
+            prep = this.conn.prepareStatement(SQLstring);
             prep.setInt(1, WaveNumber);
-            ResultSet rs = prep.executeQuery();
-            if (rs.next()) {
-                return RsToArrayList(rs);
-            } else return null;
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            System.out.println("error with preparing statment. Are you trying to hack us?");
         }
+        return DbExecute(prep);
     }
 
     public ArrayList DBselectPowerUp(String name) {
@@ -226,29 +216,23 @@ public class DBManager {
     public ArrayList DBselectProfile(String Name) {
         String SQLstring = "SELECT profileLvl,HoursPlayed,GamesPlayed FROM Profile where name= ? limit 1;";
         try {
-            PreparedStatement prep = this.conn.prepareStatement(SQLstring);
+            prep = this.conn.prepareStatement(SQLstring);
             prep.setString(1, Name);
-            ResultSet rs = prep.executeQuery();
-            if (rs.next()) {
-                return RsToArrayList(rs);
-            } else return null;
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            System.out.println("error with preparing statment. Are you trying to hack us?");
         }
+        return DbExecute(prep);
     }
 
     public ArrayList DBselectCampainLvl(String Name) {
         String SQLstring = "SELECT CampaignLvl FROM CampaignProfile where name= ? limit 1;";
         try {
-            PreparedStatement prep = this.conn.prepareStatement(SQLstring);
+            prep = this.conn.prepareStatement(SQLstring);
             prep.setString(1, Name);
-            ResultSet rs = prep.executeQuery();
-            if (rs.next()) {
-                return RsToArrayList(rs);
-            } else return null;
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            System.out.println("error with preparing statment. Are you trying to hack us?");
         }
+        return DbExecute(prep);
     }
 
     /*----------------------------update------------------------------------*/
@@ -369,7 +353,7 @@ public class DBManager {
 
             String SQLstring = "INSERT INTO HighScore (nameProfile,Score,gamemode) VALUES (?,?,?);";
 
-            PreparedStatement prep = this.conn.prepareStatement(SQLstring);
+            prep = this.conn.prepareStatement(SQLstring);
             prep.setString(1, nameProfile);
             prep.setInt(2, Score);
             prep.setString(3, Gamemode);
