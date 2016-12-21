@@ -63,6 +63,7 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
         speed=450;
         font = new BitmapFont();
         score=0;
+        multiplier=0;
         dead = false;
         this.type=type;
 
@@ -93,9 +94,11 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
     public void handleHit()
     {
         hp--;
+        multiplier=0;
         System.out.print(hp);
         if (hp<1)
         {
+
             setDead();
 
             Managers.getGameManager().setEndScore(getScore());
@@ -109,7 +112,7 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
     public void handlePickedUp(Geom geom)
     {
         exp +=geom.getLoot().getExperience();
-        level = (exp/100)+1;
+        level = (exp/(100*level))+1;
         multiplier += geom.getLoot().getMultiplier();
         score +=(geom.getLoot().getScorePoints())*multiplier;
     }
