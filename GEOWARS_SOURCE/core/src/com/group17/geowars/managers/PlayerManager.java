@@ -37,7 +37,6 @@ public class PlayerManager {
     }
     public void render(Batch batch)
     {
-        System.out.println("fsfasdf");
         for(Player p : players)
         {
             p.render(batch);

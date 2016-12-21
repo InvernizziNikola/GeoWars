@@ -5,10 +5,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.group17.geowars.GeoWars;
 import com.group17.geowars.gamemodes.base.SoloGame;
 import com.group17.geowars.gamemodes.base.iGame;
-import com.group17.geowars.gameobjects.playerObjects.AssaultShip;
-import com.group17.geowars.gameobjects.playerObjects.AttackDrone;
-import com.group17.geowars.gameobjects.playerObjects.Drone;
-import com.group17.geowars.gameobjects.playerObjects.Ship;
+import com.group17.geowars.gameobjects.playerObjects.*;
 import com.group17.geowars.managers.Managers;
 import com.group17.geowars.playerobjects.Player;
 
@@ -27,7 +24,8 @@ public class ArcadeSoloGame extends SoloGame implements iGame {
 
         Vector2 spawnPoint = new Vector2(GeoWars.WIDTH/3,GeoWars.HEIGHT/3);
 
-        Ship s = new AssaultShip(spawnPoint, "blibli");
+
+        Ship s = new DestroyerShip(spawnPoint, "blibli");
         p.setShip(s);
 
         Drone d = new AttackDrone(spawnPoint, "blabla", Managers.getAccountManager().getAccounts().get(0)); // TODO doesnt need accoutn as parameter
