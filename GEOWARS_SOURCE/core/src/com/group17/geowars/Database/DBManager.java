@@ -57,6 +57,7 @@ public class DBManager {
     }
     public static DBManager getInstance()
     {
+
         if(DBManager.instance == null)
         {
             instance = new DBManager();
@@ -88,9 +89,12 @@ public class DBManager {
 
             if (rs.next())
             {
+
                 return RsToArrayList(rs);
+
+
             }
-            else return null;
+            else  return null;
         }
         catch(SQLException e)
         {
@@ -101,23 +105,45 @@ public class DBManager {
 }
 
     public ArrayList DBselectPlayersHighscore(String Name) {
-        try {
-            String SQLstring = "SELECT score FROM HighScore where name ='" + Name + "'ORDER BY score DESC LIMIT 1";
-            resultselect = DBconnect(SQLstring, true);
-        } catch (Exception e) {
-            System.out.println("Fout in select: " + e.getMessage());
-        }
-        return resultselect;
+
+            String SQLstring = "SELECT score FROM HighScore where name = ? ORDER BY score DESC LIMIT 1";
+            try{
+                PreparedStatement prep = this.conn.prepareStatement(SQLstring);
+                prep.setString(1, Name);
+
+                ResultSet rs = prep.executeQuery();
+
+                if (rs.next())
+                {
+                    return RsToArrayList(rs);
+                }
+                else return null;
+            }
+            catch(SQLException e)
+            {
+                throw new RuntimeException(e);
+            }
     }
 
     public ArrayList DBselectTOP10Highscore(String Gamemode) {
-        try {
-            String SQLstring = "SELECT nameProfile,score FROM HighScore where gamemode ='" + Gamemode + "' ORDER BY score DESC LIMIT 10;";
-            resultselect = DBconnect(SQLstring, true);
-        } catch (Exception e) {
-            System.out.println("Fout in select: " + e.getMessage());
-        }
-        return resultselect;
+
+            String SQLstring = "SELECT nameProfile,score FROM HighScore where gamemode = ? ORDER BY score DESC LIMIT 10;";
+            try{
+                PreparedStatement prep = this.conn.prepareStatement(SQLstring);
+                prep.setString(1, Gamemode);
+
+                ResultSet rs = prep.executeQuery();
+
+                if (rs.next())
+                {
+                    return RsToArrayList(rs);
+                }
+                else return null;
+            }
+            catch(SQLException e)
+            {
+                throw new RuntimeException(e);
+            }
     }
 
     public ArrayList DBselectGeom() {
@@ -350,8 +376,7 @@ public class DBManager {
 
 
             prep.executeUpdate();
-            conn.close();
-            //TODO testclose
+            
         }
         catch(SQLException e)
         {
