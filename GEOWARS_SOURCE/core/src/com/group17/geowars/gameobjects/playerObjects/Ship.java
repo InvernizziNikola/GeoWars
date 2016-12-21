@@ -45,7 +45,8 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
     protected int speed;
     protected Player player;
     protected ArrayList<PowerUp> powerups;
-    protected String popuptext=""; //text om af te beelden na en pickup enz
+    protected String popuptext = ""; //text om af te beelden na en pickup enz
+    protected int popuptextTime;
 
     protected boolean canShoot = true;
     protected float timer = 0;
@@ -119,20 +120,20 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
 
     public void handlePickedUp(PowerUp pow) {
         POWERUPTYPE x = pow.getType();
-        System.out.println(x);
         switch (x) {
 
             case NUKE:
-            popuptext="Boom";
+                popuptext = "Boom";
 
 
                 Managers.getEnemyManager().clearAll();
                 break;
             case PASSIVE:
-                popuptext="passive";
+                popuptext = "passive";
                 handlePassivePow(pow);
                 break;
         }
+        popuptextTime = 20;
 
     }
 
@@ -165,9 +166,12 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
         shield.setOrigin(40, 40);
         shield.setPosition(position.x - 40, position.y - 40);
         shield.draw(batch);
-        if (!popuptext.equals("") ) {
+        if (!popuptext.equals("")) {
             font.draw(batch, popuptext, GeoWars.WIDTH / 2, GeoWars.HEIGHT / 2);
-            popuptext="";
+            if (popuptextTime == 0) {
+                popuptext = "";
+            }
+            popuptextTime--;
         }
         font.draw(batch, "speler: score " + score + " multiplier= " + multiplier + "    level= " + level, 10, 20);
     }
