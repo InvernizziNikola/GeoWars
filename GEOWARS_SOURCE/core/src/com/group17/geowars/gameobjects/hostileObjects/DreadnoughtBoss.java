@@ -11,17 +11,15 @@ public class DreadnoughtBoss extends DreadnoughtEnemy {
 
     public DreadnoughtBoss(Vector2 spawnLocation) {
         super(spawnLocation);
-        maxHp=100;
-        hp=100;
-        size=250;
+        maxHp =100;
+        hp =100;
+        size =250;
     }
 
     public void shoot() {
         if (canShoot) {
             Managers.getBulletManager().addBullet(new ClusterBullet(new Vector2(position), new Vector2(lookAt),true));
             canShoot = false;
-
-
         }
     }
 }

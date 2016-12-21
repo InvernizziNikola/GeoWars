@@ -23,6 +23,7 @@ public class SuicideUnitEnemy extends Enemy implements GOInterface {
         if(pe != null)
             return;
 
+        target = findTarget();
         if(!insidePlayingField) {
             target = new Vector2(Gdx.graphics.getWidth() /2, Gdx.graphics.getHeight() / 2);
             if (position.x > 1
@@ -59,5 +60,7 @@ public class SuicideUnitEnemy extends Enemy implements GOInterface {
         }
         position.mulAdd(lookAt.nor(), speed * Gdx.graphics.getDeltaTime());
         */
+
+        super.update();
     }
 }

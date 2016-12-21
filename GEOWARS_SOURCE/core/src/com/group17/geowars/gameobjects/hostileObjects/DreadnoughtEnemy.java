@@ -42,16 +42,21 @@ public class DreadnoughtEnemy extends Enemy implements GOInterface {
     public void update() {
         //TODO spawn in field ( cant get out of field
 
+        target = findTarget();
+
         timer += Gdx.graphics.getDeltaTime();
         if (timer > 4.0f) {
                 timer %= 4.0f;
             canShoot = true;
         }
 
-        Vector2 dist = new Vector2(target.x - getPosition().x, target.y - getPosition().y);
+        if(target == null)
+            return;
+
+        Vector2 dist = new Vector2(target.getShip().getPosition().x - getPosition().x, target.getShip().getPosition().y - getPosition().y);
 
         //aggro
-        if (dist.len() < 750 || !insidePlayingField) {//TODO remove ISinPlayingField
+        if (dist.len() < 750) {
             lookAt = new Vector2(dist).nor();
 
             if (dist.len() < fireRange) {
@@ -61,16 +66,13 @@ public class DreadnoughtEnemy extends Enemy implements GOInterface {
                 }
 
             }
-            if (dist.len() < 300 &&insidePlayingField) {//TODO Don't push out of the screen
+            if (dist.len() < 300) {
                 lookAt = new Vector2(-lookAt.x,-lookAt.y);
-
             }
-
         } else {
             lookAt = direction.nor();
-
-
         }
-        position.mulAdd(lookAt.nor(), speed * Gdx.graphics.getDeltaTime());
+
+        super.update();
     }
 }

@@ -28,7 +28,6 @@ public abstract class Enemy extends GameObject implements GOInterface {
     protected Sprite sprite;
     protected Color color;
     protected Vector2 direction;
-    protected boolean insidePlayingField = false;
     public boolean destroy = false;
     protected Vector2 lookAt = new Vector2(0, 0);
     protected ParticleEffect pe;
@@ -127,13 +126,42 @@ public abstract class Enemy extends GameObject implements GOInterface {
         return size;
     }
 
+    public void keepOnScreen()
+    {
+        if (position.x < 0)
+            position.x = 0;
+
+        if(position.x > GeoWars.ORIGINALWIDTH)
+            position.x = GeoWars.ORIGINALWIDTH;
+
+        if (position.y < 0)
+            position.y = 0;
+
+        if(position.y > GeoWars.ORIGINALHEIGHT)
+            position.y = GeoWars.ORIGINALHEIGHT;
+
+    }
+
     public Player findTarget()
     {
-        float distance = 0;
+        Player newTarget = null;
+        float dst = 0;
         for(Player p : Managers.getPlayerManager().getPlayers())
         {
-            if(distance)
+            if(newTarget == null) {
+                dst = getPosition().dst(p.getShip().getPosition());
+                newTarget = p;
+            }else
+            {
+                float newDst = getPosition().dst(p.getShip().getPosition());
+                if(dst > newDst)
+                {
+                    dst = newDst;
+                    newTarget = p;
+                }
+            }
         }
+        return newTarget;
     }
 
     @Override
@@ -145,19 +173,8 @@ public abstract class Enemy extends GameObject implements GOInterface {
         if (position.y <= 0 || position.y > GeoWars.ORIGINALHEIGHT)
             direction.y *= -1;
 
-
-
-
-
-        Vector2 dist = new Vector2(target.x - getPosition().x, target.y - getPosition().y);
-
-        //aggro
-        if (dist.len() < 500 || !insidePlayingField) {
-            lookAt = dist.nor();
-
-        } else {
-            lookAt = direction.nor();
-        }
         position.mulAdd(lookAt.nor(), speed * Gdx.graphics.getDeltaTime());
+
+        keepOnScreen();
     }
 }

@@ -32,7 +32,8 @@ public class ScoutEnemy extends Enemy implements GOInterface {
 
     @Override
     public void update() {
-        isInfield();
+
+        target = findTarget();
 
         timer += Gdx.graphics.getDeltaTime();
         if (timer > firedelay) {
@@ -40,10 +41,13 @@ public class ScoutEnemy extends Enemy implements GOInterface {
             canShoot = true;
         }
 
-        Vector2 dist = new Vector2(target.x - getPosition().x, target.y - getPosition().y);
+        if(target == null)
+            return;
+        Vector2 dist = new Vector2(target.getShip().getPosition().x - getPosition().x,
+                target.getShip().getPosition().y - getPosition().y);
 
         //aggro
-        if (dist.len() < 500 || !insidePlayingField) {//TODO remove ISinPlayingField
+        if (dist.len() < 500) {//TODO remove ISinPlayingField
             lookAt = new Vector2(dist).nor();
 
             if (dist.len() < fireRange) {
@@ -55,14 +59,10 @@ public class ScoutEnemy extends Enemy implements GOInterface {
             }
             if (dist.len() < 200) {//TODO Don't push out of the screen
                 lookAt = new Vector2(-lookAt.x,-lookAt.y);
-
             }
-
         } else {
             lookAt = direction.nor();
-
-
         }
-        position.mulAdd(lookAt.nor(), speed * Gdx.graphics.getDeltaTime());
+        super.update();
     }
 }
