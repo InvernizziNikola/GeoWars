@@ -44,10 +44,6 @@ public class PlayMenuScreen extends MenuScreen implements iHasStage, iSetActive 
                 ArcadeSoloGame game = new ArcadeSoloGame();
                 Managers.getGameManager().newGame(game);
 
-                String name = Managers.getAccountManager().getAccounts().get(0).name;
-                Managers.getPlayerManager().createPlayer(name);
-
-
                 MenuScreen nextMenu = Managers.getScreenManager().getScreen("game");
                 Managers.getScreenManager().setScreen(nextMenu);
             }

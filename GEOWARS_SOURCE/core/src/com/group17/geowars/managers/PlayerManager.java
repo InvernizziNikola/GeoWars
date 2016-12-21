@@ -1,6 +1,7 @@
 package com.group17.geowars.managers;
 
 
+import com.badlogic.gdx.controllers.Controller;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.group17.geowars.playerobjects.Player;
 
@@ -20,9 +21,11 @@ public class PlayerManager {
         players = new ArrayList<Player>();
     }
 
-    public Player createPlayer(String name)
+    public Player createPlayer(String name, Controller c)
     {
-        return new Player(name);
+        Player p = new Player(name, c);
+        players.add(p);
+        return p;
     }
 
     public void update()
@@ -34,6 +37,7 @@ public class PlayerManager {
     }
     public void render(Batch batch)
     {
+        System.out.println("fsfasdf");
         for(Player p : players)
         {
             p.render(batch);
