@@ -2,6 +2,7 @@ package com.group17.geowars.gameobjects.playerObjects;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
+import com.group17.geowars.gameobjects.Bullet;
 import com.group17.geowars.managers.Managers;
 
 /**
@@ -16,4 +17,6 @@ public class TankShip extends Ship {
         fireDelay =0.3f;
         speed=200;
     }
+
+
 }

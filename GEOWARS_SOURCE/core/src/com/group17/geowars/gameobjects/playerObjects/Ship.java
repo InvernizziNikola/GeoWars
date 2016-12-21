@@ -37,12 +37,12 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
     protected float fireDelay;
     protected int speed;
 
-    private boolean canShoot = true;
-    private float timer = 0;
+    protected boolean canShoot = true;
+    protected float timer = 0;
 
-    private Vector2 shootDir = new Vector2(0,0);
-    private Vector2 moveDir = new Vector2(0,0);
-    private Vector2 lookDir = new Vector2(0,0);
+    protected Vector2 shootDir = new Vector2(0,0);
+    protected Vector2 moveDir = new Vector2(0,0);
+    protected Vector2 lookDir = new Vector2(0,0);
 
 
     public int getScore()
