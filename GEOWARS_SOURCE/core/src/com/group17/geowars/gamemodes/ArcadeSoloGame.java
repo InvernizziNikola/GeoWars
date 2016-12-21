@@ -25,10 +25,10 @@ public class ArcadeSoloGame extends SoloGame implements iGame {
         Vector2 spawnPoint = new Vector2(GeoWars.WIDTH/3,GeoWars.HEIGHT/3);
 
 
-        Ship s = new DestroyerShip(spawnPoint, "blibli");
+        Ship s = new DestroyerShip(spawnPoint);
         p.setShip(s);
 
-        Drone d = new AttackDrone(spawnPoint, "blabla", Managers.getAccountManager().getAccounts().get(0)); // TODO doesnt need accoutn as parameter
+        Drone d = new AttackDrone(spawnPoint)); // TODO doesnt need accoutn as parameter
         p.setDrone(d);
 
     }
