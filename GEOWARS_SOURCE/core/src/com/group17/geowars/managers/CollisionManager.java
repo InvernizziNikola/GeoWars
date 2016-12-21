@@ -7,6 +7,7 @@ import com.group17.geowars.gameobjects.hostileObjects.Enemy;
 import com.group17.geowars.gameobjects.Geom;
 import com.group17.geowars.gameobjects.PowerUps.PowerUp;
 import com.group17.geowars.playerobjects.Account;
+import com.group17.geowars.playerobjects.Player;
 import com.group17.geowars.screens.MenuScreen;
 import com.group17.geowars.utils.GAMESTATE;
 
@@ -30,12 +31,12 @@ public class CollisionManager
     }
     public void update()
     {
-        /*
+
         for(Bullet b: Managers.getBulletManager().getBullets()){
             if(!b.isFriendly() && !b.destroy) {
-                for (Account p : Managers.getAccountManager().getAccounts()) {
+                for (Player p : Managers.getPlayerManager().getPlayers()) {
 
-                    Vector2 playerPos = p.getPlayer().getShip().getPosition();
+                    Vector2 playerPos = p.getShip().getPosition();
                     Vector2 distance = new Vector2(b.getPosition().x - playerPos.x, b.getPosition().y - playerPos.y);
 
                     if(distance.len() < 25) {
@@ -60,14 +61,14 @@ public class CollisionManager
                 }
             }
         }
-        for (Account p : Managers.getAccountManager().getAccounts()) {
-            Vector2 playerPos = p.getPlayer().getShip().getPosition();
+        for (Player p : Managers.getPlayerManager().getPlayers()) {
+            Vector2 playerPos = p.getShip().getPosition();
 
             for (Geom g : Managers.getGeomManager().getGeomList()) {
                 Vector2 distance = new Vector2(playerPos.x - g.getPosition().x, playerPos.y - g.getPosition().y);
                 if (distance.len() < 25 && !g.destroy) {
 
-                    p.getPlayer().getShip().handlePickedUp(g);
+                    p.getShip().handlePickedUp(g);
                     Managers.getGeomManager().removeGeom(g);
                 }
             }
@@ -76,7 +77,7 @@ public class CollisionManager
                 Vector2 distance = new Vector2(playerPos.x - g.getPosition().x, playerPos.y - g.getPosition().y);
                 if (distance.len() < 25 && !g.isDestroy()) {
 
-                    p.getPlayer().getShip().handlePickedUp(g);
+                    p.getShip().handlePickedUp(g);
                     Managers.getpowerUpManager().removePowerUp(g);
                 }
             }
@@ -86,16 +87,16 @@ public class CollisionManager
                 Vector2 distance = new Vector2(playerPos.x - e.getPosition().x, playerPos.y - e.getPosition().y);
                 if (distance.len() < 25) {
 
-                    p.getPlayer().getShip().setDead();
+                    p.getShip().setDead();
 
-                    Managers.getGameManager().setEndScore(p.getPlayer().getShip().getScore());
-                    Managers.getGameManager().gameState = GAMESTATE.MENU;
+                    Managers.getGameManager().setEndScore(p.getShip().getScore());
+                   // Managers.getGameManager().gameState = GAMESTATE.MENU;
                     Managers.getGameManager().resetGame();
 
                     MenuScreen mainmenu = Managers.getScreenManager().getScreen("endgamemenu");
                     Managers.getScreenManager().setScreen(mainmenu);
                 }
             }
-        }*/
+        }
     }
 }
