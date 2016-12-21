@@ -25,10 +25,6 @@ public class CollisionManager
     {
 
     }
-    public void render(Batch batch)
-    {
-
-    }
     public void update()
     {
 
@@ -53,10 +49,10 @@ public class CollisionManager
                     Vector2 distance = new Vector2(b.getPosition().x - e.getPosition().x, b.getPosition().y - e.getPosition().y);
                     if(distance.len() < e.getSize()/2 && !e.destroy &&!b.destroy)
                     {
-                       // System.out.println(distance);
+                        // System.out.println(distance);
                         e.handleDead(e,b);
-                      //  Managers.getEnemyManager().remove(e);
-                       // Managers.getBulletManager().remove(b);
+                        //  Managers.getEnemyManager().remove(e);
+                        // Managers.getBulletManager().remove(b);
                         break;
                     }
                 }

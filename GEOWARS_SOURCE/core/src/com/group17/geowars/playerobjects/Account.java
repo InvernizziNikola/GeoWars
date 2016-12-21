@@ -23,6 +23,11 @@ public class Account {
 
     public List<Profile> profiles;
 
+    private Player player;
+    public Player getPlayer()
+    {
+        return player;
+    }
     private Controller controller;
 
     public void setController(Controller c)

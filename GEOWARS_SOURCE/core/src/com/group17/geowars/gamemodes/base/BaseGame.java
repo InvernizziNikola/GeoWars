@@ -7,9 +7,13 @@ import com.group17.geowars.utils.GAMESTATE;
  */
 public class BaseGame {
 
-    protected String modeName = "";
+    protected String mode = "";
     protected GAMESTATE gameState = GAMESTATE.GAMELOAD;
 
+    public String getMode()
+    {
+        return mode;
+    }
     public BaseGame()
     {
 

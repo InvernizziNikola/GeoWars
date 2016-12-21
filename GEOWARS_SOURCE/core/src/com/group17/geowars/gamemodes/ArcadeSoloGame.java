@@ -16,7 +16,7 @@ public class ArcadeSoloGame extends SoloGame implements iGame {
 
 
     public ArcadeSoloGame() {
-        super.modeName = "Arcade";
+        super.mode = "Arcade";
 
         String name = Managers.getAccountManager().getAccounts().get(0).name;
         Controller c = Managers.getAccountManager().getAccounts().get(0).getController();

@@ -55,7 +55,6 @@ public class CoopMenuScreen extends MenuScreen implements iHasStage, iSetActive 
             public void changed(ChangeEvent event, Actor actor) {
                 startGameButton.setChecked(false);
 
-
                 startGameButton.setChecked(false);
 
                 if(Managers.getGameManager().game != null)
@@ -85,10 +84,16 @@ public class CoopMenuScreen extends MenuScreen implements iHasStage, iSetActive 
     public void render (float deltaTime) {
         super.render(deltaTime);
 
-
         batch.begin();
+        int count = 0;
+        int offset = 20;
+        text.draw(batch, "Maximum players (" + (Managers.getControllerManager().getControllers().size()+1) + ")", GeoWars.WIDTH/3*2-125, GeoWars.HEIGHT / 5 * 4 + 120);
+        text.draw(batch, "Keyboard: " + "" + "0/1", GeoWars.WIDTH/3*2-125, GeoWars.HEIGHT / 5 * 4 + 100);
+        text.draw(batch, "Controllers: " + (Managers.getControllerManager().getControllers().size()-Managers.getControllerManager().getUnusedControllers().size()) + "/" + Managers.getControllerManager().getControllers().size(), GeoWars.WIDTH/3*2-125, GeoWars.HEIGHT / 5 * 4 + 80);
+
         for(Account a : Managers.getAccountManager().getAccounts()) {
-            text.draw(batch, a.name, GeoWars.WIDTH / 3 - 100, GeoWars.HEIGHT / 5 * 4);
+            text.draw(batch, a.name, GeoWars.WIDTH / 3 - 100, GeoWars.HEIGHT / 5 * 4 - offset * count);
+            count++;
         }
         batch.end();
 
