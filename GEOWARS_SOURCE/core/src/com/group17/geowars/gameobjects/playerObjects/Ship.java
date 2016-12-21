@@ -65,6 +65,7 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
         score=0;
         multiplier=0;
         level=1;
+        exp=1001;
         dead = false;
         this.type=type;
 
@@ -113,7 +114,7 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
     public void handlePickedUp(Geom geom)
     {
         exp +=geom.getLoot().getExperience();
-        level = (exp/(100*level));
+        level = (exp/(1000));
         multiplier += geom.getLoot().getMultiplier();
         score +=(geom.getLoot().getScorePoints())*multiplier;
     }
