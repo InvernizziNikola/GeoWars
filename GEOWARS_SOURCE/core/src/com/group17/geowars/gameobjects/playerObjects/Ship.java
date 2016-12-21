@@ -15,7 +15,7 @@ import com.group17.geowars.GeoWars;
 import com.group17.geowars.gameobjects.*;
 import com.group17.geowars.gameobjects.PowerUps.PowerUp;
 import com.group17.geowars.managers.Managers;
-
+import com.group17.geowars.playerobjects.Player;
 
 
 /**
@@ -36,6 +36,7 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
     protected Sprite shield;
     protected float fireDelay;
     protected int speed;
+    protected Player player;
 
     protected boolean canShoot = true;
     protected float timer = 0;
@@ -44,6 +45,10 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
     protected Vector2 moveDir = new Vector2(0,0);
     protected Vector2 lookDir = new Vector2(0,0);
 
+    public void setPlayer(Player p)
+    {
+        player = p;
+    }
 
     public int getScore()
     {

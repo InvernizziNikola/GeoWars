@@ -42,8 +42,6 @@ public class DreadnoughtEnemy extends Enemy implements GOInterface {
     public void update() {
         //TODO spawn in field ( cant get out of field
 
-        isInfield();
-
         timer += Gdx.graphics.getDeltaTime();
         if (timer > 4.0f) {
                 timer %= 4.0f;

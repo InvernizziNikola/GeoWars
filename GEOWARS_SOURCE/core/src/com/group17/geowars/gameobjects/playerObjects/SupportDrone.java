@@ -10,7 +10,7 @@ import com.group17.geowars.playerobjects.Account;
  */
 public class SupportDrone extends Drone {
     public SupportDrone(Vector2 pos) {
-        super(pos, "supportdrone", null);
+        super(pos, "supportdrone");
 
     }
 }

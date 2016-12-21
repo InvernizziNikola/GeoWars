@@ -16,6 +16,7 @@ import com.group17.geowars.gameobjects.*;
 import com.group17.geowars.gameobjects.PowerUps.PowerUp;
 import com.group17.geowars.gameobjects.PowerUps.PowerUp_Nuke;
 import com.group17.geowars.managers.Managers;
+import com.group17.geowars.playerobjects.Player;
 
 
 import java.util.Random;
@@ -32,7 +33,7 @@ public abstract class Enemy extends GameObject implements GOInterface {
     public boolean destroy = false;
     protected Vector2 lookAt = new Vector2(0, 0);
     protected ParticleEffect pe;
-    protected Vector2 target = new Vector2(0, 0);
+    protected Player target = null;
     protected int speed = 125;
     protected int size;
     protected int maxHp;
@@ -56,27 +57,6 @@ public abstract class Enemy extends GameObject implements GOInterface {
         direction = new Vector2(rand.nextInt(100) - 50, rand.nextInt(100) - 50).nor();
 
     }
-
-    public void isInfield() {
-        if (!insidePlayingField) {
-            target = new Vector2(Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2);
-            if (position.x > 1
-                    && position.x < Gdx.graphics.getWidth() - 1
-                    && position.y > 1
-                    && position.y < Gdx.graphics.getHeight() - 1) {
-                insidePlayingField = true;
-                offset = -0;
-                //target = Managers.getAccountManager().getAccounts().get(0).getPlayer().getShip().getPosition();
-            }
-        }
-        if (insidePlayingField) {
-            if (position.x < -offset || position.x > GeoWars.ORIGINALWIDTH + offset)
-                direction.x *= -1;
-            if (position.y <= -offset || position.y > GeoWars.ORIGINALHEIGHT + offset)
-                direction.y *= -1;
-        }
-    }
-
     public void setTexture(String type)
     {
         texture = Managers.getAssetManager().getTexture(type + "_2");
@@ -90,6 +70,7 @@ public abstract class Enemy extends GameObject implements GOInterface {
             // pow naar game scherm doen
         }
         */
+
     public void handleDead(Enemy e, Bullet b) {
 
         float c =(float)hp/maxHp ;
@@ -150,10 +131,15 @@ public abstract class Enemy extends GameObject implements GOInterface {
     @Override
     public void update() {
 
-//        if(pe != null)
-        //          return;
+        // keep enemies in field
+        if (position.x < -offset || position.x > GeoWars.ORIGINALWIDTH + offset)
+            direction.x *= -1;
+        if (position.y <= -offset || position.y > GeoWars.ORIGINALHEIGHT + offset)
+            direction.y *= -1;
 
-        isInfield();
+
+    
+
 
         Vector2 dist = new Vector2(target.x - getPosition().x, target.y - getPosition().y);
 

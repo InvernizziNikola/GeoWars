@@ -40,12 +40,6 @@ public class Player implements GOInterface {
         return playerInput;
     }
 
-    public String getStats(){
-        return "name= "+ name+
-                "\n   drone= "+drone.getType()+
-                "\n   ship=  "+ship.getType();
-    }
-
     public Ship getShip() {
         return ship;
     }
