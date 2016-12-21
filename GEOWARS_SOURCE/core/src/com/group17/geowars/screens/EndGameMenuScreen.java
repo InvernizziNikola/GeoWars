@@ -1,23 +1,17 @@
 package com.group17.geowars.screens;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.group17.geowars.GeoWars;
-import com.group17.geowars.database.Threads.HighScoreMenuThread;
-import com.group17.geowars.database.Threads.SaveScoreToDBThread;
 import com.group17.geowars.managers.Managers;
 import com.group17.geowars.playerobjects.Account;
 import com.group17.geowars.utils.MenuGrid;
-import com.group17.geowars.utils.GAMESTATE;
 /**
  * Created by michiel on 4/12/2016.
  */
@@ -70,6 +64,9 @@ public class EndGameMenuScreen extends MenuScreen implements iHasStage, iSetActi
             public void changed(ChangeEvent event, Actor actor) {
                 shareScoreButton.setChecked(false);
 
+                Managers.getAccountManager().removeNonMainAccounts();
+                Managers.getGameManager().resetGame();
+
             }
         });
 
@@ -84,7 +81,7 @@ public class EndGameMenuScreen extends MenuScreen implements iHasStage, iSetActi
         int count = 0;
         for(Account a : Managers.getAccountManager().getAccounts())
         {
-            text.draw(batch,a.name + ": " + a.getPlayer().getScore(), width/10, height/2 + height/3 + ++count*-20);
+            text.draw(batch,a.name + ": " + a.getPlayer().getShip().getScore(), width/10, height/2 + height/3 + ++count*-20);
         }
 
         text.draw(batch,"HIGH SCORE: ", width/10,height/2+height/4);
@@ -97,8 +94,6 @@ public class EndGameMenuScreen extends MenuScreen implements iHasStage, iSetActi
         text.draw(batch,"EMP",300,225);
         text.draw(batch,"FAST BULLETS",300,150);
         */
-
-
     }
 
     @Override
@@ -117,7 +112,6 @@ public class EndGameMenuScreen extends MenuScreen implements iHasStage, iSetActi
 
     @Override
     public void render(float delta) {
-
         super.render(delta);
 
         batch.begin();

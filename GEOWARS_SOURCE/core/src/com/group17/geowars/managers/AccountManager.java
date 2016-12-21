@@ -32,10 +32,19 @@ public class AccountManager {
 
     public void init()
     {
-        createDummyAccount();
+        createDummyAccount().main = true;
     }
 
-
+    public void removeNonMainAccounts()
+    {
+        List<Account> toRemove = new ArrayList<Account>();
+        for(Account a : accounts)
+        {
+            if(a.main)
+                toRemove.add(a);
+        }
+        accounts.remove(toRemove);
+    }
     public void removeAccount(Account a)
     {
         accounts.remove(a);

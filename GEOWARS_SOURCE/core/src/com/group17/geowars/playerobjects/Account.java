@@ -23,6 +23,7 @@ public class Account {
 
     public List<Profile> profiles;
 
+    public boolean main = false;
     private Player player;
     public Player getPlayer()
     {
