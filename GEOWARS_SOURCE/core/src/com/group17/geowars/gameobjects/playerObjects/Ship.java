@@ -16,6 +16,7 @@ import com.group17.geowars.gameobjects.*;
 import com.group17.geowars.gameobjects.PowerUps.PowerUp;
 import com.group17.geowars.managers.Managers;
 import com.group17.geowars.playerobjects.Player;
+import com.group17.geowars.screens.MenuScreen;
 
 
 /**
@@ -89,6 +90,22 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
         }
     }
 
+    public void handleHit()
+    {
+        hp--;
+        System.out.print(hp);
+        if (hp<1)
+        {
+            setDead();
+
+            Managers.getGameManager().setEndScore(getScore());
+            // Managers.getGameManager().gameState = GAMESTATE.MENU;
+            Managers.getGameManager().resetGame();
+
+            MenuScreen mainmenu = Managers.getScreenManager().getScreen("endgamemenu");
+            Managers.getScreenManager().setScreen(mainmenu);
+        }
+    }
     public void handlePickedUp(Geom geom)
     {
         exp +=geom.getLoot().getExperience();
