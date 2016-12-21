@@ -38,6 +38,7 @@ public abstract class Drone extends GameObject {
         super(pos);
 
         this.player = Managers.getPlayerManager().getPlayer(this);
+        System.out.println(type);
         texture = Managers.getAssetManager().getTexture(type);
         sprite = new Sprite(texture,texture.getWidth(),texture.getHeight());
     }
