@@ -10,6 +10,14 @@ public class BaseGame {
     protected String mode = "";
     protected GAMESTATE gameState = GAMESTATE.GAMELOAD;
 
+    public GAMESTATE getGameState()
+    {
+        return gameState;
+    }
+    public void setGame(GAMESTATE gs)
+    {
+        gameState = gs;
+    }
     public String getMode()
     {
         return mode;

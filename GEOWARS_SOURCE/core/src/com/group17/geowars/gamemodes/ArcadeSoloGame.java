@@ -7,6 +7,7 @@ import com.group17.geowars.gamemodes.base.SoloGame;
 import com.group17.geowars.gamemodes.base.iGame;
 import com.group17.geowars.gameobjects.playerObjects.*;
 import com.group17.geowars.managers.Managers;
+import com.group17.geowars.playerobjects.Account;
 import com.group17.geowars.playerobjects.Player;
 
 /**
@@ -17,10 +18,12 @@ public class ArcadeSoloGame extends SoloGame implements iGame {
 
     public ArcadeSoloGame() {
         super.mode = "Arcade";
-
-        String name = Managers.getAccountManager().getAccounts().get(0).name;
-        Controller c = Managers.getAccountManager().getAccounts().get(0).getController();
+        Account a = Managers.getAccountManager().getAccounts().get(0);
+        String name = a.name;
+        Controller c = a.getController();
         Player p = Managers.getPlayerManager().createPlayer(name, c);
+
+        a.setPlayer(p);
 
         Vector2 spawnPoint = new Vector2(GeoWars.WIDTH/3,GeoWars.HEIGHT/3);
 
@@ -28,7 +31,7 @@ public class ArcadeSoloGame extends SoloGame implements iGame {
         s.setPlayer(p);
         p.setShip(s);
 
-        Drone d = new AttackDrone(spawnPoint); // TODO doesnt need accoutn as parameter
+        Drone d = new DefenceDrone(spawnPoint); // TODO doesnt need accoutn as parameter
         d.setPlayer(p);
         p.setDrone(d);
 

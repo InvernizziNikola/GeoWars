@@ -28,6 +28,7 @@ public class Account {
     {
         return player;
     }
+    public void setPlayer(Player p) {player = p; }
     private Controller controller;
 
     public void setController(Controller c)
