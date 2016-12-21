@@ -2,8 +2,10 @@ package com.group17.geowars.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -35,6 +37,7 @@ public class ShopMenuScreen extends MenuScreen implements iHasStage, iSetActive 
     private String tankPrice = "";
     private String armoredShipName = "";
     private String armoredShipPrice = "";
+
     public ShopMenuScreen()
     {
         super();
@@ -47,7 +50,10 @@ public class ShopMenuScreen extends MenuScreen implements iHasStage, iSetActive 
         batch = new SpriteBatch();
         text = new BitmapFont();
         text.setColor(Color.WHITE);
+    }
 
+    public void createButtons()
+    {
         final TextButton backButton = newButton("BACK",width-width/6,20,150,50, new MenuGrid(0,2));
         backButton.addListener(new ChangeListener() {
             @Override
@@ -71,10 +77,8 @@ public class ShopMenuScreen extends MenuScreen implements iHasStage, iSetActive 
         final TextButton buyDroneAttackButton = newButton("BUY",width-width/10,height/8,55,25,new MenuGrid(2,1));
     }
 
-
     public void showText()
     {
-
         text.draw(batch,"SHOP",width/2-20,height-height/8);
         text.draw(batch,"SHIP",width/12,height-height/6);
         text.draw(batch,"____",width/12,height-height/6-1);
@@ -89,7 +93,7 @@ public class ShopMenuScreen extends MenuScreen implements iHasStage, iSetActive 
         text.draw(batch,armoredShipPrice, width-width/10,height/2+height/12);
         text.draw(batch,"DRONE",width/12,height/2-height/15);
         text.draw(batch,"_______",width/12,height/2-height/15-1);
-        text.draw(batch,"DEFENCE",width/12,height/2-height/8);
+        text.draw(batch,"DEFENSE",width/12,height/2-height/8);
         text.draw(batch,"PRICE",width/3,height/2-height/5);
         text.draw(batch,"defenseprice",width/3,height/5);
         text.draw(batch,"SUPPORT",width/2-width/9,height/2-height/8);
@@ -98,7 +102,16 @@ public class ShopMenuScreen extends MenuScreen implements iHasStage, iSetActive 
         text.draw(batch,"ATTACK",width-width/3,height/2-height/8);
         text.draw(batch,"PRICE",width-width/10,height/2-height/5);
         text.draw(batch,"attackprice",width-width/10,height/5);
+    }
 
+    public void showImages()
+    {
+        final Sprite assault = newImage("Speler_2", 300, 300, width/10, height/2-height/19);
+        final Sprite destroyer = newImage("Destroyer", 300, 300, width/2-width/10, height/2-height/19);
+        final Sprite tank = newImage("TankShip", 300, 300, width-width/3+50, height/2-height/19);
+        final Sprite defense = newImage("defdrone",250 , 250, width/9, height/10);
+        final Sprite support = newImage("supportdrone", 250, 250, width/2-width/15, height/10);
+        final Sprite attack = newImage("attackdrone", 250, 250, width-width/4-50, height/10);
     }
 
     @Override
@@ -116,7 +129,7 @@ public class ShopMenuScreen extends MenuScreen implements iHasStage, iSetActive 
     }
     public void showLoading()
     {
-        text.draw(batch, "Loading...", 350, 380);
+        text.draw(batch, "Loading...", width/2, height/2);
     }
     public void getAllData()
     {
@@ -133,6 +146,10 @@ public class ShopMenuScreen extends MenuScreen implements iHasStage, iSetActive 
 
         super.render(delta);
         batch.begin();
+        if(ShopThread != null && !ShopThread.finished())
+        {
+            showLoading();
+        }
         if(ShopThread != null && ShopThread.finished())
         {
             ShipData = ShopThread.getShipData();
@@ -140,6 +157,10 @@ public class ShopMenuScreen extends MenuScreen implements iHasStage, iSetActive 
             ShopThread = null;
             loading = false;
 
+            System.out.println(ShipData);
+        }
+        if(ShopThread == null)
+        {
             assaultName = ShipData.get(0).toString();
             assaultPrice = ShipData.get(4).toString();
             tankName = ShipData.get(5).toString();
@@ -147,13 +168,10 @@ public class ShopMenuScreen extends MenuScreen implements iHasStage, iSetActive 
             armoredShipName = ShipData.get(10).toString();
             armoredShipPrice = ShipData.get(14).toString();
             showText();
-            System.out.println(DroneData);
+            createButtons();
         }
-        if(ShopThread != null && !ShopThread.finished())
-        {
-            showLoading();
-        }
-        showText();
         batch.end();
+        if (ShopThread == null)
+        showImages();
     }
 }

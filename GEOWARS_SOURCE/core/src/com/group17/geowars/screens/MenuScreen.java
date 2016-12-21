@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.EventListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -202,6 +203,18 @@ public class MenuScreen implements Screen {
         }
 
         return tempButton;
+    }
+
+    protected Sprite newImage(String name, int width, int height, int xpos, int ypos)
+    {
+        Texture tempImg = Managers.getAssetManager().getTexture(name);
+        Sprite img = new Sprite(tempImg);
+        img.setSize(width,height);
+        img.setPosition(xpos,ypos);
+        batch.begin();
+        img.draw(batch);
+        batch.end();
+        return img;
     }
 
     public Stage getStage() {
