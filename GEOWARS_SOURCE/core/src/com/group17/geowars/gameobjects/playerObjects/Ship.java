@@ -13,6 +13,7 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.Array;
 import com.group17.geowars.GeoWars;
 import com.group17.geowars.gameobjects.*;
 import com.group17.geowars.gameobjects.PowerUps.POWERUPTYPE;
@@ -21,6 +22,8 @@ import com.group17.geowars.gameobjects.PowerUps.Power_UpPassive;
 import com.group17.geowars.managers.Managers;
 import com.group17.geowars.playerobjects.Player;
 import com.group17.geowars.screens.MenuScreen;
+
+import java.util.ArrayList;
 
 
 /**
@@ -41,6 +44,8 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
     protected float fireDelay;
     protected int speed;
     protected Player player;
+    protected ArrayList<PowerUp> powerups;
+    protected String popuptext=""; //text om af te beelden na en pickup enz
 
     protected boolean canShoot = true;
     protected float timer = 0;
@@ -118,11 +123,13 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
         switch (x) {
 
             case NUKE:
-                System.out.println("nuke");
+            popuptext="Boom";
+
+
                 Managers.getEnemyManager().clearAll();
                 break;
             case PASSIVE:
-                System.out.println("passive");
+                popuptext="passive";
                 handlePassivePow(pow);
                 break;
         }
@@ -158,8 +165,10 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
         shield.setOrigin(40, 40);
         shield.setPosition(position.x - 40, position.y - 40);
         shield.draw(batch);
-
-
+        if (!popuptext.equals("") ) {
+            font.draw(batch, popuptext, GeoWars.WIDTH / 2, GeoWars.HEIGHT / 2);
+            popuptext="";
+        }
         font.draw(batch, "speler: score " + score + " multiplier= " + multiplier + "    level= " + level, 10, 20);
     }
 

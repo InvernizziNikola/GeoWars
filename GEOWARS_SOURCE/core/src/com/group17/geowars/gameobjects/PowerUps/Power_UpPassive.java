@@ -23,7 +23,7 @@ public class Power_UpPassive extends PowerUp {
         extraHp=2;
         speed=50;
         color= new Color(0.8f, 0.8f,0,0.6f);
-        texture = Managers.getAssetManager().getTexture("dfdgsdgsd");
+        texture = Managers.getAssetManager().getTexture("itsagem:)");
         sprite = new Sprite(texture, texture.getWidth(), texture.getHeight());
     }
 
