@@ -55,7 +55,6 @@ public class SaveScoreToDBThread implements Runnable {
             DBManager.getInstance().DBInsertHighscore(Playername,Score,gameMode);
         }
                 //User user = w9DA.getInstance().getUser(login, password);
-
     }
 
     public boolean Succes()
