@@ -5,7 +5,6 @@ package com.group17.geowars.utils;
  */
 public enum GAMESTATE
 {
-    MENU,
     GAMELOAD,
     GAMESTART,
     GAMEPLAYING,

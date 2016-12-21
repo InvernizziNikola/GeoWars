@@ -36,6 +36,11 @@ public class AccountManager {
     }
 
 
+    public void removeAccount(Account a)
+    {
+        accounts.remove(a);
+    }
+
     public Account createAccount(String username)
     {
         if(dummyAccount != null) {
@@ -81,24 +86,4 @@ public class AccountManager {
         return dummyAccount;
     }
 
-    public void update()
-    {
-        /*for (Account p: accounts) {
-            p.getPlayer().update();
-        }*/
-    }
-    public void render(Batch batch)
-    {
-        /*for (Account p: accounts) {
-            p.getPlayer().render(batch);
-        }*/
-    }
-    public void reset()
-    {
-        // TODO
-
-        /*for (Account a: accounts) {
-            a.reset();
-        }*/
-    }
 }

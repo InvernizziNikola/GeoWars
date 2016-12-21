@@ -17,13 +17,12 @@ public class PlayerManager {
 
     public PlayerManager()
     {
-
         players = new ArrayList<Player>();
     }
 
-    public Player createPlayer()
+    public Player createPlayer(String name)
     {
-        return new Player("");
+        return new Player(name);
     }
 
     public void update()

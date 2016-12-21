@@ -26,7 +26,10 @@ public class PlayerInput {
     private String KeyDown;
 
 
-
+    public Controller getController()
+    {
+        return controller;
+    }
 
     public PlayerInput(Controller controller, Player player)
     {

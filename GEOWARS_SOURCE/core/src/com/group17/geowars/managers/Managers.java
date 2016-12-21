@@ -85,11 +85,19 @@ public class Managers {
         return  getInstance().powerUpManager;
     }
 
+
+    private PlayerManager playerManager;
+    public static PlayerManager getPlayerManager(){
+
+        return  getInstance().playerManager;
+    }
+
     // playerManager
 
 
     private Managers()
     {
+        playerManager = new PlayerManager();
         assetManager = new AssetManager();
         controllerManager = new ControllerManager();
         levelManager = new LevelManager();

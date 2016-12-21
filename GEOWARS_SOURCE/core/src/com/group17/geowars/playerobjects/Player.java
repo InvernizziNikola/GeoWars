@@ -20,7 +20,6 @@ public class Player implements GOInterface {
     private String name;
     private Ship ship;
     private Drone drone;
-    private Controller controller;// nodig ?
     private PlayerInput playerInput;
 
     public Player(String naam)
@@ -59,14 +58,14 @@ public class Player implements GOInterface {
     }
 
     public void setController(Controller controller) {
-        this.controller = controller;
         playerInput = new PlayerInput(controller, this);
         //controller.addListener(playerInput);
         //Gdx.app.log("controller: ", controller.getName());
     }
 
     public Controller getController() {
-        return controller;
+        Controller c = playerInput.getController();
+        return c;
     }
 
     @Override

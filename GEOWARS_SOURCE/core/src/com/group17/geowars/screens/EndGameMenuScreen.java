@@ -45,9 +45,9 @@ public class EndGameMenuScreen extends MenuScreen implements iHasStage, iSetActi
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 replayButton.setChecked(false);
-                Managers.getGameManager().gameState = GAMESTATE.GAMEPLAYING;
-                MenuScreen nextMenu = Managers.getScreenManager().getScreen("game");
-                Managers.getScreenManager().setScreen(nextMenu);
+                //Managers.getGameManager().gameState = GAMESTATE.GAMEPLAYING;
+                //MenuScreen nextMenu = Managers.getScreenManager().getScreen("game");
+                //Managers.getScreenManager().setScreen(nextMenu);
             }
         });
 
