@@ -23,12 +23,9 @@ public class Player implements GOInterface {
     private Controller controller;// nodig ?
     private PlayerInput playerInput;
 
-    public Player(String naam , Drone dr , Ship sp)
+    public Player(String naam)
     {
         name = naam;
-        drone = dr;
-        ship = sp;
-
     }
     public void setShip(Ship ship) {
         this.ship = ship;

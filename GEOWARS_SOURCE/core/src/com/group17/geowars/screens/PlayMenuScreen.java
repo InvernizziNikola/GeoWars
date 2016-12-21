@@ -41,10 +41,14 @@ public class PlayMenuScreen extends MenuScreen implements iHasStage, iSetActive 
         arcadeButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-
                 arcadeButton.setChecked(false);
                 Managers.getGameManager().gameState = GAMESTATE.GAMEPLAYING;
                 MenuScreen nextMenu = Managers.getScreenManager().getScreen("game");
+
+
+
+
+
                 Managers.getScreenManager().setScreen(nextMenu);
             }
         });

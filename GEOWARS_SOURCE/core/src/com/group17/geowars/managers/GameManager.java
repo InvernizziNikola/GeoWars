@@ -1,6 +1,7 @@
 package com.group17.geowars.managers;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.group17.geowars.utils.GAMEMODE;
 import com.group17.geowars.utils.GAMESTATE;
 
 /**
@@ -11,9 +12,9 @@ public class GameManager {
 
 
     public GAMESTATE gameState = GAMESTATE.MENU;
+    public GAMEMODE gameMode = GAMEMODE.NONE;
 
     public int score = 0;
-
 
     public void setEndScore(int score)
     {
@@ -23,6 +24,7 @@ public class GameManager {
     {
         return score;
     }
+
     public GameManager()
     {
 
