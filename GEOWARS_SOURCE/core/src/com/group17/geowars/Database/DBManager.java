@@ -334,9 +334,9 @@ public class DBManager {
         return succes;
     }
 
-    public boolean DBInsertProfile(String name, Integer credits, Integer ShipLvl, Integer profileLvl) {
+    public boolean DBInsertProfile(String name, String Password) {
 
-        String SQLstring = "INSERT INTO Account(name,profileLvl,credits) VALUES ('" + name + "','" + profileLvl + "','" + credits + "');";
+        String SQLstring = "INSERT INTO Profile(name,password) VALUES (?,?);";
         boolean succes = false;
         try {
             resultselect = DBconnect(SQLstring, false);
