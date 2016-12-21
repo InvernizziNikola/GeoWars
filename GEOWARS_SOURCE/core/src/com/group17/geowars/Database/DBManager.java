@@ -23,7 +23,7 @@ public class DBManager {
     private void init() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            MysqlDataSource dataSource = new     MysqlDataSource();
+            MysqlDataSource dataSource = new MysqlDataSource();
             //add datasource
             dataSource.setUser("geowars");
             dataSource.setPassword("12345");
@@ -44,9 +44,10 @@ public class DBManager {
         }
         return DBManager.instance;
     }
-    public ArrayList<String> DbExecute(PreparedStatement statment){
+
+    public ArrayList<String> DbExecute(PreparedStatement statment) {
         try {
-            System.out.println("statment"+statment);
+            System.out.println("statment" + statment);
             ResultSet rs = statment.executeQuery();
 
             resultData = RsToArrayList(rs);
@@ -156,7 +157,7 @@ public class DBManager {
         return resultselect;
     }
 
-    public ArrayList DBselectAllShips(){
+    public ArrayList DBselectAllShips() {
 
         String SQLstring = "SELECT name,hitpoints,attack,speed,price FROM Ship;";
         try {
@@ -357,21 +358,13 @@ public class DBManager {
             prep.setString(1, nameProfile);
             prep.setInt(2, Score);
             prep.setString(3, Gamemode);
-
-
             prep.executeUpdate();
-
         } catch (SQLException e) {
-
             System.out.println("Fout in update: " + e.getMessage());
             boolean succes = false;
-
         }
         boolean succes = true;
-
         return succes;
-
-
     }
 
     public boolean DBInsertShipsInProfile(String nameProfile, String nameShip) {
