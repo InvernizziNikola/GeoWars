@@ -34,6 +34,8 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
     protected String type;
     protected Sprite sprite;
     protected Sprite shield;
+    protected float fireDelay;
+    protected int speed;
 
     private boolean canShoot = true;
     private float timer = 0;
@@ -51,8 +53,8 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
     public Ship(Vector2 pos, String type)
     {
         super(pos);
-
-
+        fireDelay=0.15f;
+        speed=450;
         font = new BitmapFont();
         score=0;
         this.type = type;
@@ -128,8 +130,8 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
     public void update()
     {
         timer += Gdx.graphics.getDeltaTime();
-        if(timer > 0.15f) {
-            timer %= 0.15f;
+        if(timer > fireDelay) {
+            timer %= fireDelay;
             canShoot = true;
         }
 
@@ -157,7 +159,7 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
 
     private void Move()
     {
-        position.mulAdd(moveDir, 450 * Gdx.graphics.getDeltaTime());
+        position.mulAdd(moveDir, speed * Gdx.graphics.getDeltaTime());
     }
 
     public void setMoveDirection(Vector2 dir)
