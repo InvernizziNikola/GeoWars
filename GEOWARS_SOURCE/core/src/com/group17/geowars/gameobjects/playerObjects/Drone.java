@@ -16,7 +16,7 @@ import com.group17.geowars.gameobjects.Bullet;
 import com.group17.geowars.gameobjects.hostileObjects.Enemy;
 import com.group17.geowars.gameobjects.GameObject;
 import com.group17.geowars.managers.Managers;
-import com.group17.geowars.playerobjects.Account;
+import com.group17.geowars.playerobjects.Player;
 
 
 public abstract class Drone extends GameObject {
@@ -24,21 +24,20 @@ public abstract class Drone extends GameObject {
     protected int attack;
     protected int level;
     protected float angle;
-    protected String type;
     protected Sprite sprite;
     protected Texture texture;
-    protected Account player;
+    protected Player player;
     protected Enemy target = null;
 
 
     private boolean canShoot = true;
     private float timer = 0;
 
-    public Drone(Vector2 pos, String type, Account player)
+    public Drone(Vector2 pos, String type)
     {
         super(pos);
-        this.player = player;
-        this.type = type;
+
+        this.player = Managers.getPlayerManager().getPlayer(this);
         texture = Managers.getAssetManager().getTexture(type);
         sprite = new Sprite(texture,texture.getWidth(),texture.getHeight());
     }
@@ -46,11 +45,6 @@ public abstract class Drone extends GameObject {
     {
         return sprite;
     }
-
-    public String getType() {
-        return type;
-    }
-
 
     public void render(Batch batch)
     {
@@ -62,6 +56,12 @@ public abstract class Drone extends GameObject {
         sprite.setPosition(position.x - 10, position.y - 10);
         sprite.draw(batch);
     }
+
+    public void setPlayer(Player p)
+    {
+        player = p;
+    }
+
     public void reset()
     {
         target = null;
@@ -76,14 +76,14 @@ public abstract class Drone extends GameObject {
     }
     public void update() {
 
-        /*
+
         timer += Gdx.graphics.getDeltaTime();
         if(timer > 0.2f) {
             timer %= 0.2f;
             canShoot = true;
         }
 
-        Vector2 shipPos = player.getPlayer().getShip().getPosition();
+        Vector2 shipPos = player.getShip().getPosition();
         Vector2 dist = new Vector2(shipPos.x - getPosition().x, shipPos.y - getPosition().y);
         Vector2 pos = new Vector2(position.x, position.y);
 
@@ -137,6 +137,6 @@ public abstract class Drone extends GameObject {
                 }
             }
         }
-*/
+
     }
 }

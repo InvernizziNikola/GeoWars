@@ -29,7 +29,6 @@ public abstract class Enemy extends GameObject implements GOInterface {
     protected Color color;
     protected Vector2 direction;
     protected boolean insidePlayingField = false;
-    protected float offset = 200;
     public boolean destroy = false;
     protected Vector2 lookAt = new Vector2(0, 0);
     protected ParticleEffect pe;
@@ -128,17 +127,26 @@ public abstract class Enemy extends GameObject implements GOInterface {
         return size;
     }
 
+    public Player findTarget()
+    {
+        float distance = 0;
+        for(Player p : Managers.getPlayerManager().getPlayers())
+        {
+            if(distance)
+        }
+    }
+
     @Override
     public void update() {
 
         // keep enemies in field
-        if (position.x < -offset || position.x > GeoWars.ORIGINALWIDTH + offset)
+        if (position.x < 0 || position.x > GeoWars.ORIGINALWIDTH)
             direction.x *= -1;
-        if (position.y <= -offset || position.y > GeoWars.ORIGINALHEIGHT + offset)
+        if (position.y <= 0 || position.y > GeoWars.ORIGINALHEIGHT)
             direction.y *= -1;
 
 
-    
+
 
 
         Vector2 dist = new Vector2(target.x - getPosition().x, target.y - getPosition().y);
