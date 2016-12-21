@@ -7,6 +7,7 @@ import com.group17.geowars.playerobjects.Player;
  */
 public class SoloGame extends BaseGame {
 
+    
     public SoloGame()
     {
 

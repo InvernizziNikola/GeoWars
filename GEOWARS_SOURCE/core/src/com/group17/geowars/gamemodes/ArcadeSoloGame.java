@@ -24,7 +24,6 @@ public class ArcadeSoloGame extends SoloGame implements iGame {
 
         Vector2 spawnPoint = new Vector2(GeoWars.WIDTH/3,GeoWars.HEIGHT/3);
 
-
         Ship s = new DestroyerShip(spawnPoint);
         p.setShip(s);
 
