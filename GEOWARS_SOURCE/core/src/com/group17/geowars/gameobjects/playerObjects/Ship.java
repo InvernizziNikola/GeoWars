@@ -132,8 +132,12 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
     }
 
     public void handlePassivePow(PowerUp pow) {
-        Power_UpPassive p =(Power_UpPassive) pow;
-        fireDelay/=p.getFireDelay();
+        Power_UpPassive p = (Power_UpPassive) pow;
+        fireDelay /= p.getFireDelay();
+        if (speed < 700) {
+            speed += p.getSpeed();
+        }
+        hp += p.getExtraHp();
     }
 
     public void nuke() {
