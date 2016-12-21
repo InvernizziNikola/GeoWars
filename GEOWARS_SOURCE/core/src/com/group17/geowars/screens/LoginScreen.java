@@ -123,6 +123,7 @@ public class LoginScreen extends MenuScreen implements iHasStage, iSetActive {
                 loggedIn = LT.getLoggedIn();
                 LT = null;
                 loading = false;
+                System.out.println(loggedIn);
                 if(loggedIn)
                 {
                     Managers.getAccountManager().createAccount(TxtUsername.getText());
@@ -133,7 +134,7 @@ public class LoginScreen extends MenuScreen implements iHasStage, iSetActive {
                 TxtPassword.setDisabled(false);
                 TxtUsername.setDisabled(false);
             }
-            else if(!LT.finished()){
+            else{
                 showLoading();
             }
         }
