@@ -74,6 +74,31 @@ public class DBManager {
         }
         return resultselect;
     }
+    public ArrayList DBselectProfileShips(String PlayerName){
+
+        String SQLstring = "SELECT Ship.name,Ship.image,Ship.hitpoints,Ship.attack,Ship.speed,Profile.name,Profile.profileLvl,Profile.credits,Profile.HoursPlayed,Profile.GamesPlayed FROM `Ship`\n" +
+                "JOIN ShipsForProfile ON Ship.IDShip = ShipsForProfile.IDShipForProfile\n" +
+                "JOIN Profile ON ShipsForProfile.profile = Profile.ships\n" +
+                "WHERE Profile.name = ?";
+        try{
+        PreparedStatement prep = this.conn.prepareStatement(SQLstring);
+        prep.setString(1, PlayerName);
+
+            ResultSet rs = prep.executeQuery();
+
+            if (rs.next())
+            {
+                return RsToArrayList(rs);
+            }
+            else return null;
+        }
+        catch(SQLException e)
+        {
+            throw new RuntimeException(e);
+        }
+
+
+}
 
     public ArrayList DBselectPlayersHighscore(String Name) {
         try {
@@ -240,6 +265,7 @@ public class DBManager {
         }
         return succes;
     }
+
     public boolean DBupdateProfileLvl(Integer ProfileLvl,String playername) {
         boolean succes = false;
         try {
@@ -314,6 +340,7 @@ public class DBManager {
 
 
         try{
+
             String SQLstring = "INSERT INTO HighScore (nameProfile,Score,gamemode) VALUES (?,?,?);";
 
             PreparedStatement prep = this.conn.prepareStatement(SQLstring);
@@ -323,7 +350,8 @@ public class DBManager {
 
 
             prep.executeUpdate();
-
+            conn.close();
+            //TODO testclose
         }
         catch(SQLException e)
         {
@@ -373,7 +401,25 @@ public class DBManager {
         }
     }
 
+    public ArrayList RsToArrayList(ResultSet resultSet) throws SQLException {
 
+        ResultSetMetaData rsmd = resultSet.getMetaData();
+        int columnCount = rsmd.getColumnCount();
+
+            list = new ArrayList<String>();
+            while (resultSet.next()) {
+
+                for (int i = 1; i <= columnCount; i++) {
+                    list.add(resultSet.getString(i));
+
+                }
+
+            }
+
+            //System.out.println("select geslaagd");
+
+        return list;
+    }
     /*----------------------------Connectie Naar DB------------------------------------*/
     public ArrayList DBconnect(String sqlString, boolean BoolSelect) throws SQLException {
 
