@@ -26,6 +26,8 @@ public class ArcadeCoopGame extends SoloGame implements iGame {
             Controller c = a.getController();
             Player p = Managers.getPlayerManager().createPlayer(name, c);
 
+            a.setPlayer(p);
+
             Vector2 spawnPoint = new Vector2(GeoWars.WIDTH / 3 , GeoWars.HEIGHT / 2 - 100 * count);
 
             Ship s = new DestroyerShip(spawnPoint);

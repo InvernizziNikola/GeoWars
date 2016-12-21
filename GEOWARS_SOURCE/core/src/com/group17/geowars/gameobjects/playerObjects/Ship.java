@@ -6,6 +6,7 @@
 package com.group17.geowars.gameobjects.playerObjects;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.controllers.Controller;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -93,14 +94,11 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
     public void handleHit() {
         hp--;
         multiplier = 0;
-        System.out.print(hp);
         if (hp < 1) {
 
             setDead();
 
-            Managers.getGameManager().setEndScore(getScore());
-            // Managers.getGameManager().gameState = GAMESTATE.MENU;
-            Managers.getGameManager().resetGame();
+            Managers.getGameManager().endGame();
 
             MenuScreen mainmenu = Managers.getScreenManager().getScreen("endgamemenu");
             Managers.getScreenManager().setScreen(mainmenu);

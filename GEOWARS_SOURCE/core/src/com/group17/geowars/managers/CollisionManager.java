@@ -38,7 +38,6 @@ public class CollisionManager
                     if(distance.len() < 25) {
                         Managers.getBulletManager().remove(b);
                         p.getShip().handleHit();
-                        System.out.println("Player hit by enemy bullet");
                     }
                 }
             }

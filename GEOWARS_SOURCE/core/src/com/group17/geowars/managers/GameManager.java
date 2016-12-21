@@ -2,6 +2,7 @@ package com.group17.geowars.managers;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.group17.geowars.database.Threads.SaveScoreToDBThread;
+import com.group17.geowars.gamemodes.ArcadeSoloGame;
 import com.group17.geowars.gamemodes.base.BaseGame;
 import com.group17.geowars.gamemodes.base.iGame;
 import com.group17.geowars.playerobjects.Account;
@@ -42,26 +43,21 @@ public class GameManager {
 
     public void handleEndGame()
     {
-
-
     }
     public void init()
     {
-
     }
 
     public void endGame()
     {
-
         game.setGame(GAMESTATE.GAMEEND);
-        
+
         for(Account a : Managers.getAccountManager().getAccounts())
         {
             System.out.println(a.getPlayer());
             setHighScore(a.name, a.getPlayer().getScore(),game.getMode());
         }
 
-        game = null;
         resetGame = true;
 
         MenuScreen mainmenu = Managers.getScreenManager().getScreen("endgamemenu");
@@ -91,8 +87,16 @@ public class GameManager {
             Managers.getPlayerManager().update();
 
         }
-        if(resetGame)
-            resetGame();
+        //if(resetGame)
+            //resetGame();
+    }
+    public void newGame()
+    {
+        ArcadeSoloGame game = new ArcadeSoloGame();
+        Managers.getGameManager().newGame(game);
+
+        MenuScreen nextMenu = Managers.getScreenManager().getScreen("game");
+        Managers.getScreenManager().setScreen(nextMenu);
     }
 
     public void render(Batch batch)
@@ -113,7 +117,7 @@ public class GameManager {
         Managers.getGeomManager().reset();
         Managers.getLevelManager().reset();
         Managers.getPlayerManager().reset();
-
+        game = null;
         resetGame = false;
     }
 }

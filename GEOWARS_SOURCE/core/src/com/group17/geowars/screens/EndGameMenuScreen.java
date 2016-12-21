@@ -1,5 +1,6 @@
 package com.group17.geowars.screens;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
@@ -47,10 +48,8 @@ public class EndGameMenuScreen extends MenuScreen implements iHasStage, iSetActi
             public void changed(ChangeEvent event, Actor actor) {
                 replayButton.setChecked(false);
 
-
-                //Managers.getGameManager().gameState = GAMESTATE.GAMEPLAYING;
-                //MenuScreen nextMenu = Managers.getScreenManager().getScreen("game");
-                //Managers.getScreenManager().setScreen(nextMenu);
+                Managers.getGameManager().resetGame();
+                Managers.getGameManager().newGame();
             }
         });
 
@@ -59,6 +58,7 @@ public class EndGameMenuScreen extends MenuScreen implements iHasStage, iSetActi
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 mainMenuButton.setChecked(false);
+                Managers.getGameManager().resetGame();
                 MenuScreen nextMenu = Managers.getScreenManager().getScreen("mainmenu");
                 Managers.getScreenManager().setScreen(nextMenu);
             }
@@ -69,18 +69,16 @@ public class EndGameMenuScreen extends MenuScreen implements iHasStage, iSetActi
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 shareScoreButton.setChecked(false);
+
             }
         });
 
         text = new BitmapFont();
         text.setColor(Color.WHITE);
-
     }
 
     public void showText()
     {
-        int score = Managers.getGameManager().getScore();
-
         text.draw(batch,"Score:", width/10, height/2+height/3);
 
         int count = 0;
@@ -91,7 +89,6 @@ public class EndGameMenuScreen extends MenuScreen implements iHasStage, iSetActi
 
         text.draw(batch,"HIGH SCORE: ", width/10,height/2+height/4);
         text.draw(batch,"UPGRADES",width/2+width/20,height/2+height/3); //TODO level buttons need to be added
-
 
         /*
         text.draw(batch,"GLASS CANON", 300,450);
