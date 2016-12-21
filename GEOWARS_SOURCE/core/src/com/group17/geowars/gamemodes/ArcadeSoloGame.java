@@ -28,7 +28,7 @@ public class ArcadeSoloGame extends SoloGame implements iGame {
         s.setPlayer(p);
         p.setShip(s);
 
-        Drone d = new AttackDrone(spawnPoint); // TODO doesnt need accoutn as parameter
+        Drone d = new DefenceDrone(spawnPoint); // TODO doesnt need accoutn as parameter
         d.setPlayer(p);
         p.setDrone(d);
 
