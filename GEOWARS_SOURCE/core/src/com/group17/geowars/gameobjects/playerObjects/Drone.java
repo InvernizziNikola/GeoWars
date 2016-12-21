@@ -82,6 +82,8 @@ public abstract class Drone extends GameObject {
             timer %= 0.2f;
             canShoot = true;
         }
+        if(player == null)
+            return;
 
         Vector2 shipPos = player.getShip().getPosition();
         Vector2 dist = new Vector2(shipPos.x - getPosition().x, shipPos.y - getPosition().y);

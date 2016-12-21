@@ -8,6 +8,8 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.group17.geowars.GeoWars;
+import com.group17.geowars.gamemodes.ArcadeCoopGame;
+import com.group17.geowars.gamemodes.ArcadeSoloGame;
 import com.group17.geowars.managers.Managers;
 import com.group17.geowars.playerobjects.Account;
 import com.group17.geowars.utils.GAMESTATE;
@@ -41,6 +43,8 @@ public class CoopMenuScreen extends MenuScreen implements iHasStage, iSetActive 
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 addNewButton.setChecked(false);
+
+                Managers.getAccountManager().createAccount("Guest");
             }
         });
 
@@ -52,7 +56,16 @@ public class CoopMenuScreen extends MenuScreen implements iHasStage, iSetActive 
                 startGameButton.setChecked(false);
 
 
-                Managers.getGameManager(); // -> START GAME, ADD PLAYERS WITH SELECTED PROFILES
+                startGameButton.setChecked(false);
+
+                if(Managers.getGameManager().game != null)
+                    return;
+
+                ArcadeCoopGame game = new ArcadeCoopGame();
+                Managers.getGameManager().newGame(game);
+
+                MenuScreen nextMenu = Managers.getScreenManager().getScreen("game");
+                Managers.getScreenManager().setScreen(nextMenu);
             }
         });
 
