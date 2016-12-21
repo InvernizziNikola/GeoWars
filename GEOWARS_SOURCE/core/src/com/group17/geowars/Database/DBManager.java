@@ -175,6 +175,8 @@ public class DBManager {
             prep.setString(1, Name);
             prep.setString(2, Pass);
             ResultSet rs = prep.executeQuery();
+            System.out.println("test");
+            System.out.println(rs);
             if (rs.next()) {
                 return RsToArrayList(rs);
             } else return null;

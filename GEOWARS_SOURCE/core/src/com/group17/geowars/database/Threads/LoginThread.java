@@ -47,6 +47,7 @@ public class LoginThread implements Runnable {
 
 
         Player = DBManager.getInstance().DBselectLogin(Name,Password);
+        System.out.println(Player);
     }
 
     public Boolean getLoggedIn()
