@@ -33,7 +33,7 @@ public class EnemyManager implements GOInterface {
     public void newEnemyList(int currentWave) {
         if (Managers.getLevelManager().getCurrentwave() == 2) {
             List<Vector2> spawnlist = Managers.getLevelManager().getSpawnLocations();
-            enemies.add(new DestroyerBoss(spawnlist.get(new Random().nextInt(spawnlist.size() - 1))));
+            enemies.add(new DreadnoughtBoss(spawnlist.get(new Random().nextInt(spawnlist.size() - 1))));
         } else {
             for (int i = Managers.getLevelManager().getWaveList().get(currentWave); i > 0; i--) {
 
@@ -42,12 +42,12 @@ public class EnemyManager implements GOInterface {
                 int randomHackval = new Random().nextInt(10);
 
                 if (randomHackval <= 3) {
-                    enemies.add(new ShooterEnemy(spawnlist.get(new Random().nextInt(spawnlist.size() - 1))));
+                    enemies.add(new ScoutEnemy(spawnlist.get(new Random().nextInt(spawnlist.size() - 1))));
                 } else {
                     if (randomHackval > 3 && randomHackval <= 8) {
-                        enemies.add(new KamikazieEnemy(spawnlist.get(new Random().nextInt(spawnlist.size() - 1))));
+                        enemies.add(new SuicideUnitEnemy(spawnlist.get(new Random().nextInt(spawnlist.size() - 1))));
                     } else {
-                        enemies.add(new DestroyerEnemy(spawnlist.get(new Random().nextInt(spawnlist.size() - 1))));
+                        enemies.add(new DreadnoughtEnemy(spawnlist.get(new Random().nextInt(spawnlist.size() - 1))));
                     }
                 }
             }

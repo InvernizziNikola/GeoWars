@@ -19,16 +19,16 @@ import com.group17.geowars.managers.Managers;
 import com.group17.geowars.playerobjects.Account;
 
 
-public class Drone extends GameObject {
-    private int hp;
-    private int attack;
-    private int level;
-    private float angle;
-    private String type;
-    private Sprite sprite;
-    private Texture texture;
-    private Account player;
-    private Enemy target = null;
+public abstract class Drone extends GameObject {
+    protected int hp;
+    protected int attack;
+    protected int level;
+    protected float angle;
+    protected String type;
+    protected Sprite sprite;
+    protected Texture texture;
+    protected Account player;
+    protected Enemy target = null;
 
 
     private boolean canShoot = true;

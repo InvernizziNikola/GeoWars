@@ -9,9 +9,9 @@ import com.group17.geowars.managers.Managers;
 /**
  * Created by kevin on 19/12/2016.
  */
-public class KamikazieEnemy  extends Enemy implements GOInterface {
+public class SuicideUnitEnemy extends Enemy implements GOInterface {
 
-    public KamikazieEnemy(Vector2 spawnLocation) {
+    public SuicideUnitEnemy(Vector2 spawnLocation) {
         super("fighter", spawnLocation);
         speed =100;
     }

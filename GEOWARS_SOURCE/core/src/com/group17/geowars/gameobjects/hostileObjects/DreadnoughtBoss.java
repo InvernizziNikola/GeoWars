@@ -1,6 +1,5 @@
 package com.group17.geowars.gameobjects.hostileObjects;
 
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.group17.geowars.gameobjects.ClusterBullet;
 import com.group17.geowars.managers.Managers;
@@ -8,9 +7,9 @@ import com.group17.geowars.managers.Managers;
 /**
  * Created by kevin on 20/12/2016.
  */
-public class DestroyerBoss extends DestroyerEnemy {
+public class DreadnoughtBoss extends DreadnoughtEnemy {
 
-    public DestroyerBoss(Vector2 spawnLocation) {
+    public DreadnoughtBoss(Vector2 spawnLocation) {
         super(spawnLocation);
         maxHp=100;
         hp=100;

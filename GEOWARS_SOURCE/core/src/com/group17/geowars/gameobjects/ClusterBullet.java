@@ -2,10 +2,8 @@ package com.group17.geowars.gameobjects;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
-import com.group17.geowars.gameobjects.hostileObjects.KamikazieEnemy;
+import com.group17.geowars.gameobjects.hostileObjects.SuicideUnitEnemy;
 import com.group17.geowars.managers.Managers;
-
-import java.util.Random;
 
 /**
  * Created by kevin on 19/12/2016.
@@ -35,7 +33,7 @@ public class ClusterBullet extends Bullet {
 
             angle += 30;
             if (isBoss) {
-                Managers.getEnemyManager().addEnemy(new KamikazieEnemy(new Vector2(position)));
+                Managers.getEnemyManager().addEnemy(new SuicideUnitEnemy(new Vector2(position)));
             } else {
                 Managers.getBulletManager().addBullet(new Bullet(new Vector2(position), new Vector2(dir), false));
             }

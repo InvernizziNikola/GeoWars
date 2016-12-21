@@ -22,18 +22,18 @@ import com.group17.geowars.managers.Managers;
  *
  * @author kevin
  */
-public class Ship extends GameObject implements GOInterface { //interface shoot?    extends DynamicGameObject ?
-    private int hp;
-    private int attack;
-    private boolean dead;
-    private int exp;
-    private int level;
-    private int score;
-    private int multiplier;
-    private BitmapFont font;
-    private String type;
-    private Sprite sprite;
-    private Sprite shield;
+public abstract class Ship extends GameObject implements GOInterface { //interface shoot?    extends DynamicGameObject ?
+    protected int hp;
+    protected int attack;
+    public boolean dead;
+    protected int exp;
+    protected int level;
+    protected int score;
+    protected int multiplier;
+    protected BitmapFont font;
+    protected String type;
+    protected Sprite sprite;
+    protected Sprite shield;
 
     private boolean canShoot = true;
     private float timer = 0;
