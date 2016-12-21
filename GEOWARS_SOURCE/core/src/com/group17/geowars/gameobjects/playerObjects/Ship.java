@@ -57,25 +57,24 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
         speed=450;
         font = new BitmapFont();
         score=0;
-        this.type = type;
         dead = false;
+        this.type=type;
 
-        texture = Managers.getAssetManager().getTexture("Speler_2");
+        texture = Managers.getAssetManager().getTexture(type);
         sprite = new Sprite(texture, texture.getWidth(), texture.getHeight());
 
         Texture texture2 = Managers.getAssetManager().getTexture("shield");
         shield = new Sprite(texture2, texture.getWidth(), texture.getHeight());
     }
 
-    public String getType() {
-        return type;
-    }
     public Sprite getSprite()
     {
         return sprite;
     }
 
-
+    public String getType() {
+        return type;
+    }
 
     public void shoot()
     {

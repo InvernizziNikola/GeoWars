@@ -9,9 +9,7 @@ import com.group17.geowars.managers.Managers;
  */
 public class AssaultShip extends Ship {
     public AssaultShip(Vector2 pos, String type) {
-        super(pos, type);
-        texture = Managers.getAssetManager().getTexture("Assault");
-        setSprite(new Sprite(texture, texture.getWidth(), texture.getHeight()));
+        super(pos,"Assault");
         hp=20;
         fireDelay =0.15f;
         speed=450;

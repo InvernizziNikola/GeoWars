@@ -10,9 +10,7 @@ import com.group17.geowars.managers.Managers;
  */
 public class TankShip extends Ship {
     public TankShip(Vector2 pos, String type) {
-        super(pos, type);
-        texture = Managers.getAssetManager().getTexture("Tank");
-        setSprite(new Sprite(texture, texture.getWidth(), texture.getHeight()));
+        super(pos,"TankShip");
         hp=50;
         fireDelay =0.3f;
         speed=200;
