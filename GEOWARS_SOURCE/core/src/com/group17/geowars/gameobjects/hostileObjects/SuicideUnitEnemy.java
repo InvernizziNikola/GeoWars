@@ -19,33 +19,16 @@ public class SuicideUnitEnemy extends Enemy implements GOInterface {
     @Override
     public void update() {
 
-        /*
-        if(pe != null)
-            return;
 
         target = findTarget();
-        if(!insidePlayingField) {
-            target = new Vector2(Gdx.graphics.getWidth() /2, Gdx.graphics.getHeight() / 2);
-            if (position.x > 1
-                    && position.x < Gdx.graphics.getWidth() - 1
-                    && position.y > 1
-                    && position.y < Gdx.graphics.getHeight() - 1) {
-                insidePlayingField = true;
-                offset = -0;
-                target = Managers.getAccountManager().getAccounts().get(0).getPlayer().getShip().getPosition();
-            }
-        }
-        if(insidePlayingField) {
-            if (position.x < -offset || position.x > Gdx.graphics.getWidth() + offset)
-                direction.x *= -1;
-            if (position.y <= -offset || position.y > Gdx.graphics.getHeight() + offset)
-                direction.y *= -1;
-        }
 
-        Vector2 dist = new Vector2(target.x - getPosition().x, target.y - getPosition().y);
+        if(target == null)
+            return;
+
+        Vector2 dist = new Vector2(target.getShip().getPosition().x - getPosition().x, target.getShip().getPosition().y - getPosition().y);
 
         //aggro
-        if (dist.len() < 500 || !insidePlayingField)
+        if (dist.len() < 500)
         {
             lookAt = dist.nor();
             if (dist.len()<300)
@@ -58,8 +41,6 @@ public class SuicideUnitEnemy extends Enemy implements GOInterface {
         {
             lookAt = direction.nor();
         }
-        position.mulAdd(lookAt.nor(), speed * Gdx.graphics.getDeltaTime());
-        */
 
         super.update();
     }

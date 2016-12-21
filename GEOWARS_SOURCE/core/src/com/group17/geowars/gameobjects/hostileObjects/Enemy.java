@@ -168,9 +168,9 @@ public abstract class Enemy extends GameObject implements GOInterface {
     public void update() {
 
         // keep enemies in field
-        if (position.x < 0 || position.x > GeoWars.ORIGINALWIDTH)
+        if (position.x <= 0 || position.x >= GeoWars.ORIGINALWIDTH)
             direction.x *= -1;
-        if (position.y <= 0 || position.y > GeoWars.ORIGINALHEIGHT)
+        if (position.y <= 0 || position.y >= GeoWars.ORIGINALHEIGHT)
             direction.y *= -1;
 
         position.mulAdd(lookAt.nor(), speed * Gdx.graphics.getDeltaTime());
