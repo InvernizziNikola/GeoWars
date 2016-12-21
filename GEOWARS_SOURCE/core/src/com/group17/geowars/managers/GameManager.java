@@ -5,6 +5,8 @@ import com.group17.geowars.database.Threads.SaveScoreToDBThread;
 import com.group17.geowars.gamemodes.base.BaseGame;
 import com.group17.geowars.gamemodes.base.iGame;
 import com.group17.geowars.playerobjects.Account;
+import com.group17.geowars.screens.MenuScreen;
+import com.group17.geowars.utils.GAMESTATE;
 
 /**
  * Created by nikola on 10/11/2016.
@@ -14,7 +16,7 @@ public class GameManager {
 
 
     public BaseGame game;
-
+    private boolean resetGame = false;
     private SaveScoreToDBThread SaveScoreThread;
     private int score = 0;
 
@@ -50,16 +52,20 @@ public class GameManager {
 
     public void endGame()
     {
-        score = Managers.getGameManager().getScore();
 
+        game.setGame(GAMESTATE.GAMEEND);
+        
         for(Account a : Managers.getAccountManager().getAccounts())
         {
+            System.out.println(a.getPlayer());
             setHighScore(a.name, a.getPlayer().getScore(),game.getMode());
         }
 
         game = null;
-        Managers.getPlayerManager().reset();
+        resetGame = true;
 
+        MenuScreen mainmenu = Managers.getScreenManager().getScreen("endgamemenu");
+        Managers.getScreenManager().setScreen(mainmenu);
     }
 
     public void setHighScore(String Playername,Integer Score,String Gamemode)
@@ -73,14 +79,20 @@ public class GameManager {
         if(game instanceof iGame)
             ((iGame)game).update();
 
-        Managers.getCollisionManager().update();
-        Managers.getControllerManager().update();
-        Managers.getGeomManager().update();
-        Managers.getBulletManager().update();
-        Managers.getEnemyManager().update();
-        Managers.getLevelManager().update();
-        Managers.getpowerUpManager().update();
-        Managers.getPlayerManager().update();
+        if(game.getGameState() != GAMESTATE.GAMEEND)
+        {
+            Managers.getCollisionManager().update();
+            Managers.getControllerManager().update();
+            Managers.getGeomManager().update();
+            Managers.getBulletManager().update();
+            Managers.getEnemyManager().update();
+            Managers.getLevelManager().update();
+            Managers.getpowerUpManager().update();
+            Managers.getPlayerManager().update();
+
+        }
+        if(resetGame)
+            resetGame();
     }
 
     public void render(Batch batch)
@@ -101,5 +113,7 @@ public class GameManager {
         Managers.getGeomManager().reset();
         Managers.getLevelManager().reset();
         Managers.getPlayerManager().reset();
+
+        resetGame = false;
     }
 }

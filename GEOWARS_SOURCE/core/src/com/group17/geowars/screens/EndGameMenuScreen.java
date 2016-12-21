@@ -81,12 +81,12 @@ public class EndGameMenuScreen extends MenuScreen implements iHasStage, iSetActi
     {
         int score = Managers.getGameManager().getScore();
 
-        text.draw(batch,"SCORE: " + score, width/10, height/2+height/3);
+        text.draw(batch,"Score:", width/10, height/2+height/3);
 
         int count = 0;
         for(Account a : Managers.getAccountManager().getAccounts())
         {
-            text.draw(batch,a.name + ": " + a.getPlayer().getScore(), width/10, height/2+height/3);
+            text.draw(batch,a.name + ": " + a.getPlayer().getScore(), width/10, height/2 + height/3 + ++count*-20);
         }
 
         text.draw(batch,"HIGH SCORE: ", width/10,height/2+height/4);
