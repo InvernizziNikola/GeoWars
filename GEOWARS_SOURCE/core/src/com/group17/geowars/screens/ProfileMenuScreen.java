@@ -20,8 +20,6 @@ import java.util.ArrayList;
 public class ProfileMenuScreen extends MenuScreen implements iHasStage, iSetActive {
     private BitmapFont text;
     private Batch batch;
-    private int width = GeoWars.WIDTH;
-    private int height = GeoWars.HEIGHT;
     private ProfileThread ProfileThread;
     private ArrayList PlayerProfile;
     private ArrayList PlayerHighscore;
@@ -46,7 +44,7 @@ public class ProfileMenuScreen extends MenuScreen implements iHasStage, iSetActi
 
     public void createButtons()
     {
-        final TextButton clanButton = newButton("CLANS", width / 10, height / 3, 150, 50, new MenuGrid(0, 0));
+        final TextButton clanButton = newButton("CLANS", GeoWars.WIDTH / 10, GeoWars.HEIGHT / 3, 150, 50, new MenuGrid(0, 0));
         clanButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -56,7 +54,7 @@ public class ProfileMenuScreen extends MenuScreen implements iHasStage, iSetActi
             }
         });
 
-        final TextButton backButton = newButton("BACK", width / 2 - 75, height / 10, 150, 50, new MenuGrid(1, 1));
+        final TextButton backButton = newButton("BACK", GeoWars.HEIGHT / 2 - 75, GeoWars.HEIGHT / 10, 150, 50, new MenuGrid(1, 1));
         backButton.addListener(new ChangeListener() {
 
             public void changed(ChangeEvent event, Actor actor) {
@@ -67,7 +65,7 @@ public class ProfileMenuScreen extends MenuScreen implements iHasStage, iSetActi
             }
         });
 
-        final TextButton upgradeButton = newButton("CHANGE/UPGRADE", width - width / 3, height / 3, 150, 50, new MenuGrid(1, 0));
+        final TextButton upgradeButton = newButton("CHANGE/UPGRADE", GeoWars.WIDTH - GeoWars.WIDTH / 3, GeoWars.HEIGHT / 3, 150, 50, new MenuGrid(1, 0));
         upgradeButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -79,7 +77,7 @@ public class ProfileMenuScreen extends MenuScreen implements iHasStage, iSetActi
     }
     public void showText() {
 
-        text.draw(batch, "GEOMETRYWARS", width / 2 - 70, height - height / 10);
+        text.draw(batch, "GEOMETRYWARS", GeoWars.WIDTH / 2 - 70, GeoWars.HEIGHT - GeoWars.HEIGHT / 10);
         //TODO values need to be inserted
       /*  text.draw(batch, "USERNAME", width / 2 - 50, height - height / 6);
         text.draw(batch, "HIGHSCORE ARCADE: ", width / 10, height - height / 3);
