@@ -73,11 +73,11 @@ public class Geom extends GameObject implements GOInterface
     @Override
     public void update()
     {
-        /*
+
         // TODO MOVEMENT
 
         // geom movement code
-        Vector2 playerPos = Managers.getAccountManager().getAccounts().get(0).getPlayer().getShip().getPosition();
+        Vector2 playerPos = Managers.getPlayerManager().getPlayers().get(0).getShip().getPosition();//TODO find target
         Vector2 dist = new Vector2(playerPos.x - position.x, playerPos.y - position.y);
 
         if (dist.len() < 120)
@@ -113,8 +113,6 @@ public class Geom extends GameObject implements GOInterface
 
         angle += Gdx.graphics.getDeltaTime() * rotateSpeed * rotateDirection;
         angle = angle % 360;
-
-*/
     }
         // ROTATE
         // move
