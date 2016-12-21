@@ -3,8 +3,6 @@ package com.group17.geowars.managers;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.group17.geowars.gamemodes.base.BaseGame;
 import com.group17.geowars.gamemodes.base.iGame;
-import com.group17.geowars.utils.GAMEMODE;
-import com.group17.geowars.utils.GAMESTATE;
 
 /**
  * Created by nikola on 10/11/2016.
