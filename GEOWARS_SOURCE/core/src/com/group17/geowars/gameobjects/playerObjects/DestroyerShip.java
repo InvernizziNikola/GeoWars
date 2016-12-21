@@ -12,7 +12,7 @@ public class DestroyerShip extends Ship {
     public DestroyerShip(Vector2 pos) {
         super(pos,"Destroyer");
         hp=10;
-        fireDelay =0.05f;
+        fireDelay =0.25f;
         speed=375;
     }
 

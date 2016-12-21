@@ -15,6 +15,7 @@ import com.group17.geowars.GeoWars;
 import com.group17.geowars.gameobjects.*;
 import com.group17.geowars.gameobjects.PowerUps.PowerUp;
 import com.group17.geowars.gameobjects.PowerUps.PowerUp_Nuke;
+import com.group17.geowars.gameobjects.PowerUps.Power_UpPassive;
 import com.group17.geowars.managers.Managers;
 import com.group17.geowars.playerobjects.Player;
 
@@ -84,6 +85,12 @@ public abstract class Enemy extends GameObject implements GOInterface {
             if (i > 98) {
                 PowerUp p = new PowerUp_Nuke(position);
                 Managers.getpowerUpManager().addPowerUp(p);
+                return;
+            }
+            if (i>50){
+                PowerUp p = new Power_UpPassive(position);
+                Managers.getpowerUpManager().addPowerUp(p);
+                return;
             }
             Managers.getEnemyManager().remove(e);
         }

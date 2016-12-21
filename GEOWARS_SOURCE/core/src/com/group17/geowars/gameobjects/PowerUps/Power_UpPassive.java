@@ -10,16 +10,21 @@ import com.group17.geowars.managers.Managers;
  */
 public class Power_UpPassive extends PowerUp {
 
-    private int fireRate;
+    private float fireDelay;
     private int extraHp;
 
-    public Power_UpPassive(Vector2 pos, String type) {
-        super(pos);
+    public Power_UpPassive(Vector2 pos) {
+        super(pos,POWERUPTYPE.PASSIVE);
         //get out of DB ? DB.getpowerUP(type)
         //this.fireRate = fireRate;
         //this.extraHp = extraHp;
+        fireDelay=1.2f;
         color= new Color(0.8f, 0.8f,0,0.6f);
         texture = Managers.getAssetManager().getTexture("dfdgsdgsd");
         sprite = new Sprite(texture, texture.getWidth(), texture.getHeight());
+    }
+
+    public float getFireDelay() {
+        return fireDelay;
     }
 }

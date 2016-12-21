@@ -15,23 +15,27 @@ import com.group17.geowars.gameobjects.GameObject;
 import com.group17.geowars.managers.Managers;
 
 /**
- *
  * @author kevin
  */
 public abstract class PowerUp extends GameObject implements GOInterface {
     protected Sprite sprite;
     protected Color color;
+    protected POWERUPTYPE type;
     private boolean destroy = false;
 
-    public PowerUp(Vector2 pos) {
+    public PowerUp(Vector2 pos, POWERUPTYPE type) {
         super(pos);
+        this.type=type;
 
     }
 
 
-    public Sprite getSprite()
-    {
+    public Sprite getSprite() {
         return sprite;
+    }
+
+    public POWERUPTYPE getType() {
+        return type;
     }
 
     public boolean isDestroy() {
@@ -46,8 +50,8 @@ public abstract class PowerUp extends GameObject implements GOInterface {
     public void render(Batch batch) {
         sprite.setColor(color);
         sprite.setSize(30, 30);
-        sprite.setOrigin(15,15);
-        sprite.setPosition(position.x-15,position.y-15);
+        sprite.setOrigin(15, 15);
+        sprite.setPosition(position.x - 15, position.y - 15);
         sprite.draw(batch);
     }
 
