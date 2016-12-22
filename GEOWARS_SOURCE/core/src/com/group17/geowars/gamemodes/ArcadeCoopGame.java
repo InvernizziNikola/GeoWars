@@ -39,6 +39,7 @@ public class ArcadeCoopGame extends SoloGame implements iGame {
             d.setPlayer(p);
             count++;
         }
+        placePlayerTextFields();
     }
 
     @Override

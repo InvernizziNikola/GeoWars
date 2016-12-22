@@ -6,6 +6,7 @@
 package com.group17.geowars.gameobjects.playerObjects;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -59,6 +60,8 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
     protected int popuptextTime;
     protected Vector2 popUpTextPos;
 
+    //weg doen
+    protected Sound sound;
 
     protected boolean canShoot = true;
     protected float timer = 0;
@@ -81,7 +84,7 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
         speed = 450;
         maxHp = 1;
         shipColor = new Color(0.8f, new Random().nextFloat(), new Random().nextFloat(), 1);
-
+                         sound = Gdx.audio.newSound(Gdx.files.internal("sounds/shot.wav"));
         //font = new BitmapFont();
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/Guardians.ttf"));
         FreeTypeFontParameter parameter = new FreeTypeFontParameter();
@@ -122,6 +125,7 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
     }
 
     public void shoot() {
+
         if (canShoot) {
             Managers.getBulletManager().addBullet(new Bullet(new Vector2(position), new Vector2(shootDir)));
             canShoot = false;

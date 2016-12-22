@@ -21,6 +21,9 @@ public class DestroyerShip extends Ship {
     public void shoot()
     {
         if(canShoot) {
+            sound.play(1.0f);
+
+            System.out.println("hey"+sound);
 
             Vector2 sd = new Vector2(shootDir.x, shootDir.y);
 
