@@ -47,7 +47,7 @@ public class CollisionManager
                     Vector2 distance = new Vector2(b.getPosition().x - e.getPosition().x, b.getPosition().y - e.getPosition().y);
                     if(distance.len() < e.getSize()/2 && !e.destroy &&!b.destroy)
                     {
-                        e.handleDead(e);
+                        e.handleDead();
                         Managers.getBulletManager().remove(b);
 
                         break;
