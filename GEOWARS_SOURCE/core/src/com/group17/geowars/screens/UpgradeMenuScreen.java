@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -26,7 +27,6 @@ public class UpgradeMenuScreen extends MenuScreen implements iHasStage, iSetActi
     private int showDrone = 0;
     private int showShipStats = 0;
     private int showDroneStats = 0;
-    private int width = GeoWars.WIDTH/2;
     private ShopThread ShopThread;
     private ArrayList ShipData;
     private ArrayList DroneData;
@@ -44,35 +44,38 @@ public class UpgradeMenuScreen extends MenuScreen implements iHasStage, iSetActi
         batch = new SpriteBatch();
         text = new BitmapFont();
         text.setColor(Color.WHITE);
+    }
 
-        final TextButton tankButton = newButton("TANK", 5,490,130,40, new MenuGrid(0,0));
-        tankButton.addListener(new ChangeListener() {
-            @Override
-            public void changed(ChangeEvent event, Actor actor) {
-                selectButton(tankButton);
-                showShip = 0;
-            }
-        });
-
-        final TextButton assaultButton = newButton("ASSAULT",135,490,130,40,new MenuGrid(1,0));
+    public void createButtons()
+    {
+        final TextButton assaultButton = newButton("ASSAULT", 0,GeoWars.HEIGHT-75,(GeoWars.WIDTH/2)/3,75, new MenuGrid(0,0));
         assaultButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 selectButton(assaultButton);
+                showShip = 0;
+            }
+        });
+
+        final TextButton destroyerButton = newButton("DESTROYER",(GeoWars.WIDTH/2)/3,GeoWars.HEIGHT-75,(GeoWars.WIDTH/2)/3,75,new MenuGrid(1,0));
+        destroyerButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                selectButton(destroyerButton);
                 showShip = 1;
             }
         });
 
-        final TextButton jetButton = newButton("JET", 265,490,133,40,new MenuGrid(2,0));
-        jetButton.addListener(new ChangeListener() {
+        final TextButton tankButton = newButton("TANK", (GeoWars.WIDTH/2)/3+(GeoWars.WIDTH/2)/3,GeoWars.HEIGHT-75,(GeoWars.WIDTH/2)/3,75,new MenuGrid(2,0));
+        tankButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                selectButton(jetButton);
+                selectButton(tankButton);
                 showShip = 2;
             }
         });
 
-        final TextButton supportButton = newButton("SUPPORT",402,490,133,40, new MenuGrid(3,0));
+        final TextButton supportButton = newButton("SUPPORT",(GeoWars.WIDTH-(GeoWars.WIDTH/2)/3)-((GeoWars.WIDTH/2)/3)-(GeoWars.WIDTH/2)/3,GeoWars.HEIGHT-75,(GeoWars.WIDTH/2)/3,75, new MenuGrid(3,0));
         supportButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -81,7 +84,7 @@ public class UpgradeMenuScreen extends MenuScreen implements iHasStage, iSetActi
             }
         });
 
-        final TextButton attackButton = newButton("ATTACK",535,490,130,40,new MenuGrid(4,0));
+        final TextButton attackButton = newButton("ATTACK",(GeoWars.WIDTH-(GeoWars.WIDTH/2)/3-5)-(GeoWars.WIDTH/2)/3,GeoWars.HEIGHT-75,(GeoWars.WIDTH/2)/3,75,new MenuGrid(4,0));
         attackButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -90,7 +93,7 @@ public class UpgradeMenuScreen extends MenuScreen implements iHasStage, iSetActi
             }
         });
 
-        final TextButton defendButton = newButton("DEFEND", 665,490,130,40, new MenuGrid(5,0));
+        final TextButton defendButton = newButton("DEFEND", GeoWars.WIDTH-(GeoWars.WIDTH/2)/3-5,GeoWars.HEIGHT-75,(GeoWars.WIDTH/2)/3+5,75, new MenuGrid(5,0));
         defendButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -99,7 +102,7 @@ public class UpgradeMenuScreen extends MenuScreen implements iHasStage, iSetActi
             }
         });
 
-        final TextButton shipSkillTreeButton = newButton("SKILL TREE",5,240,196,40, new MenuGrid(0,1));
+        final TextButton shipSkillTreeButton = newButton("SKILL TREE",0,GeoWars.HEIGHT/2,(GeoWars.WIDTH/2)/2,75, new MenuGrid(0,1));
         shipSkillTreeButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -108,7 +111,7 @@ public class UpgradeMenuScreen extends MenuScreen implements iHasStage, iSetActi
             }
         });
 
-        final TextButton shipStatsButton = newButton("STATS",201,240,196,40,new MenuGrid(1,1));
+        final TextButton shipStatsButton = newButton("STATS",GeoWars.WIDTH/4,GeoWars.HEIGHT/2,(GeoWars.WIDTH/2)/2,75,new MenuGrid(1,1));
         shipStatsButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -117,7 +120,7 @@ public class UpgradeMenuScreen extends MenuScreen implements iHasStage, iSetActi
             }
         });
 
-        final TextButton droneSkillTreeButton = newButton("SKILL TREE", 402,240,196,40,new MenuGrid(2,1));
+        final TextButton droneSkillTreeButton = newButton("SKILL TREE", GeoWars.WIDTH/2,GeoWars.HEIGHT/2,(GeoWars.WIDTH/2)/2,75,new MenuGrid(2,1));
         droneSkillTreeButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -126,7 +129,7 @@ public class UpgradeMenuScreen extends MenuScreen implements iHasStage, iSetActi
             }
         });
 
-        final TextButton droneStatsButton = newButton("STATS", 598,240,196,40, new MenuGrid(3,1));
+        final TextButton droneStatsButton = newButton("STATS", GeoWars.WIDTH/2+GeoWars.WIDTH/4,GeoWars.HEIGHT/2,(GeoWars.WIDTH/2)/2-5,75, new MenuGrid(3,1));
         droneStatsButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -135,12 +138,12 @@ public class UpgradeMenuScreen extends MenuScreen implements iHasStage, iSetActi
             }
         });
 
-        final TextButton confirmButton = newButton("CONFIRM",5,20,Gdx.graphics.getWidth()-10,40,new MenuGrid(0,2));
+        final TextButton confirmButton = newButton("CONFIRM",5,20,Gdx.graphics.getWidth()-10,75,new MenuGrid(0,2));
         confirmButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 confirmButton.setChecked(false);
-                MenuScreen nextMenu = Managers.getScreenManager().getScreen("profilemenu");
+                MenuScreen nextMenu = Managers.getScreenManager().getScreen("mainmenu");
                 Managers.getScreenManager().setScreen(nextMenu);
             }
         });
@@ -152,86 +155,89 @@ public class UpgradeMenuScreen extends MenuScreen implements iHasStage, iSetActi
         deSelectButtons();
         txtB.setStyle(Managers.getScreenManager().getSelectedStyle());
     }
-    public void tankText(int width)
+
+    public void tankText()
     {
-        text.draw(batch,"-TANK",width-(width/2)+50,420);
-        text.draw(batch,"-HIGH HP",width-(width/2)+50,395);
-        text.draw(batch,"-LOW ATK",width-(width/2)+50,370);
-        text.draw(batch,"HP = 30",50,315);
-        text.draw(batch,"ATK = 2", width-(width/2)+50,315);
+        text.draw(batch,"-TANK",50,GeoWars.HEIGHT-GeoWars.HEIGHT/6);
+        text.draw(batch,"-HIGH HP",50,(float)(GeoWars.HEIGHT-GeoWars.HEIGHT/4.75));
+        text.draw(batch,"-LOW ATK",50,GeoWars.HEIGHT-GeoWars.HEIGHT/4);
+        text.draw(batch,"HP = 30",50,GeoWars.HEIGHT/2+GeoWars.HEIGHT/10);
+        text.draw(batch,"ATK = 2", GeoWars.WIDTH/3,GeoWars.HEIGHT/2+GeoWars.HEIGHT/10);
     }
 
 
-    public void assaultText(int width)
+    public void assaultText()
     {
-        text.draw(batch,"-ASSAULT",width-(width/2)+50,420);
-        text.draw(batch,"-HIGH ATTACK",width-(width/2)+50,395);
-        text.draw(batch,"-MED HP",width-(width/2)+50,370);
-        text.draw(batch,"HP = 20",50,315);
-        text.draw(batch,"ATK = 10", width-(width/2)+50,315);
+        text.draw(batch,"-ASSAULT",50,GeoWars.HEIGHT-GeoWars.HEIGHT/6);
+        text.draw(batch,"-HIGH ATTACK",50,(float)(GeoWars.HEIGHT-GeoWars.HEIGHT/4.75));
+        text.draw(batch,"-MED HP",50,GeoWars.HEIGHT-GeoWars.HEIGHT/4);
+        text.draw(batch,"HP = 20",50,GeoWars.HEIGHT/2+GeoWars.HEIGHT/10);
+        text.draw(batch,"ATK = 10", GeoWars.WIDTH/3,GeoWars.HEIGHT/2+GeoWars.HEIGHT/10);
     }
 
-    public void jetText(int width)
+    public void destroyerText()
     {
-        text.draw(batch,"-JET",width-(width/2)+50,420);
-        text.draw(batch,"-HIGH ATK",width-(width/2)+50,395);
-        text.draw(batch,"-LOW DEF",width-(width/2)+50,370);
-        text.draw(batch,"HP = 10",50,315);
-        text.draw(batch,"ATK = 10", width-(width/2)+50,315);
+        text.draw(batch,"-DESTROYER",50,GeoWars.HEIGHT-GeoWars.HEIGHT/6);
+        text.draw(batch,"-HIGH ATK",50,(float)(GeoWars.HEIGHT-GeoWars.HEIGHT/4.75));
+        text.draw(batch,"-LOW DEF",50,GeoWars.HEIGHT-GeoWars.HEIGHT/4);
+        text.draw(batch,"HP = 10",50,GeoWars.HEIGHT/2+GeoWars.HEIGHT/10);
+        text.draw(batch,"ATK = 10", GeoWars.WIDTH/3,GeoWars.HEIGHT/2+GeoWars.HEIGHT/10);
     }
 
-    public void supportText(int width)
+    public void supportText()
     {
-        text.draw(batch,"-SLOW DOWN ENEMIES",width+(width/2),420);
-        text.draw(batch,"-CAN'T DIE",width+(width/2),395);
-        text.draw(batch,"ATK= 0", width+50,315);
-        text.draw(batch,"HP = INFINITE", width+(width/2),315);
+        text.draw(batch,"-SLOW DOWN ENEMIES",GeoWars.WIDTH/2+(GeoWars.WIDTH/3),GeoWars.HEIGHT-GeoWars.HEIGHT/6);
+        text.draw(batch,"-CAN'T DIE",GeoWars.WIDTH/2+(GeoWars.WIDTH/3),GeoWars.HEIGHT-GeoWars.HEIGHT/4);
+        text.draw(batch,"ATK= 0", GeoWars.WIDTH/2+50,GeoWars.HEIGHT/2+GeoWars.HEIGHT/10);
+        text.draw(batch,"HP = INFINITE", GeoWars.WIDTH/2+(GeoWars.WIDTH/3),GeoWars.HEIGHT/2+GeoWars.HEIGHT/10);
     }
 
-    public void attackText(int width)
+    public void attackText()
     {
-        text.draw(batch,"-SHOOTS UNITS",width+(width/2),420);
-        text.draw(batch,"-CAN'T DIE",width+(width/2),395);
-        text.draw(batch,"ATK= 1", width+50,315);
-        text.draw(batch,"HP = INFINITE", width+(width/2),315);
+        text.draw(batch,"-SHOOTS UNITS",GeoWars.WIDTH/2+(GeoWars.WIDTH/3),GeoWars.HEIGHT-GeoWars.HEIGHT/6);
+        text.draw(batch,"-CAN'T DIE",GeoWars.WIDTH/2+(GeoWars.WIDTH/3),GeoWars.HEIGHT-GeoWars.HEIGHT/4);
+        text.draw(batch,"ATK= 1", GeoWars.WIDTH/2+50,GeoWars.HEIGHT/2+GeoWars.HEIGHT/10);
+        text.draw(batch,"HP = INFINITE", GeoWars.WIDTH/2+(GeoWars.WIDTH/3),GeoWars.HEIGHT/2+GeoWars.HEIGHT/10);
     }
 
-    public void defendText(int width)
+    public void defendText()
     {
-        text.draw(batch,"-DEFENDS SHIP",width+(width/2),420);
-        text.draw(batch,"-CAN'T DIE",width+(width/2),395);
-        text.draw(batch,"ATK= 0", width+50,315);
-        text.draw(batch,"HP = INFINITE", width+(width/2),315);
+        text.draw(batch,"-DEFENDS SHIP",GeoWars.WIDTH/2+(GeoWars.WIDTH/3),GeoWars.HEIGHT-GeoWars.HEIGHT/6);
+        text.draw(batch,"-CAN'T DIE",GeoWars.WIDTH/2+(GeoWars.WIDTH/3),GeoWars.HEIGHT-GeoWars.HEIGHT/4);
+        text.draw(batch,"ATK= 0", GeoWars.WIDTH/2+50,GeoWars.HEIGHT/2+GeoWars.HEIGHT/10);
+        text.draw(batch,"HP = INFINITE", GeoWars.WIDTH/2+(GeoWars.WIDTH/3),GeoWars.HEIGHT/2+GeoWars.HEIGHT/10);
     }
 
-    public void shipSkilltreeText(int width)
+    public void shipSkillTreeText()
     {
-        text.draw(batch,"SKILL TREE",15,220);
-        text.draw(batch,"SKILL POINTS 2/2",width-(width/2)+40,220);
+        text.draw(batch,"SKILL TREE",50,GeoWars.HEIGHT/2-50);
+        text.draw(batch,"SKILL POINTS 2/2",GeoWars.WIDTH/3,GeoWars.HEIGHT/2-50);
     }
 
-    public void shipStatsText(int width) //width meegegeven voor geval dat het nodig zou zijn
+    public void shipStatsText()
     {
-        text.draw(batch,"-KILLS: ",15,200);
-        text.draw(batch,"-HOURS PLAYED: ",15,160);
+        text.draw(batch,"-KILLS: ",50,GeoWars.HEIGHT/2-GeoWars.HEIGHT/10);
+        text.draw(batch,"-HOURS PLAYED: ",50,GeoWars.HEIGHT/2-GeoWars.HEIGHT/4);
     }
 
-    public void droneSkillTreeText(int width)
+    public void droneSkillTreeText()
     {
-        text.draw(batch,"SKILL TREE",width+40,220);
-        text.draw(batch,"SKILL POINTS 2/2",width+(width/2)+40,220);
+        text.draw(batch,"SKILL TREE",GeoWars.WIDTH/2+50,GeoWars.HEIGHT/2-50);
+        text.draw(batch,"SKILL POINTS 2/2",GeoWars.WIDTH/2+(GeoWars.WIDTH/3),GeoWars.HEIGHT/2-50);
     }
 
-    public void droneStatsText(int width)
+    public void droneStatsText()
     {
-        text.draw(batch,"-KILLS: ",width+25,200);
-        text.draw(batch,"-HOURS PLAYED: ",width+25,160);
+        text.draw(batch,"-KILLS: ",GeoWars.WIDTH/2+50,GeoWars.HEIGHT/2-GeoWars.HEIGHT/10);
+        text.draw(batch,"-HOURS PLAYED: ",GeoWars.WIDTH/2+50,GeoWars.HEIGHT/2-GeoWars.HEIGHT/4);
     }
 
-    public void showText(int width)
+    public void showText()
     {
-        text.draw(batch,"SHIP", (width)/2-15,570);
-        text.draw(batch, "DRONE",width+(width/2-30),570);
+        text.draw(batch,"SHIP", (GeoWars.WIDTH/2)/2-15,GeoWars.HEIGHT-90);
+        text.draw(batch, "DRONE",GeoWars.WIDTH/2+(GeoWars.WIDTH/2/2-30),GeoWars.HEIGHT-90);
+        changeText();
+        createButtons();
     }
 
     public void changeText()
@@ -240,17 +246,17 @@ public class UpgradeMenuScreen extends MenuScreen implements iHasStage, iSetActi
         {
             case 0:
             {
-                tankText(width);
+                assaultText();
                 break;
             }
             case 1:
             {
-                assaultText(width);
+                destroyerText();
                 break;
             }
             case 2:
             {
-                jetText(width);
+                tankText();
                 break;
             }
         }
@@ -259,37 +265,65 @@ public class UpgradeMenuScreen extends MenuScreen implements iHasStage, iSetActi
         {
             case 0:
             {
-                supportText(width);
+                supportText();
                 break;
             }
             case 1:
             {
-                attackText(width);
+                attackText();
                 break;
             }
             case 2:
             {
-                defendText(width);
+                defendText();
                 break;
             }
         }
         switch (showShipStats)
         {
             case 0:
-                shipSkilltreeText(width);
+                shipSkillTreeText();
                 break;
             case 1:
-                shipStatsText(width);
+                shipStatsText();
                 break;
         }
 
         switch (showDroneStats)
         {
             case 0:
-                droneSkillTreeText(width);
+                droneSkillTreeText();
                 break;
             case 1:
-                droneStatsText(width);
+                droneStatsText();
+                break;
+        }
+    }
+
+    public void changeImage()
+    {
+        switch (showShip)
+        {
+            case 0:
+                final Sprite assault = newImage("Speler_2",300,300,GeoWars.WIDTH/6,GeoWars.HEIGHT/2+GeoWars.HEIGHT/10);
+                break;
+            case 1:
+                final Sprite destroyer = newImage("Destroyer",300,300,GeoWars.WIDTH/6,GeoWars.HEIGHT/2+GeoWars.HEIGHT/10);
+                break;
+            case 2:
+                final Sprite tank = newImage("TankShip",300,300,GeoWars.WIDTH/6,GeoWars.HEIGHT/2+GeoWars.HEIGHT/10);
+                break;
+        }
+        switch (showDrone)
+        {
+            case 0:
+                final Sprite support = newImage("supportdrone",250,250,GeoWars.WIDTH/2+GeoWars.WIDTH/8,GeoWars.HEIGHT/2+GeoWars.HEIGHT/8);
+                break;
+            case 1:
+                final Sprite attack = newImage("attackdrone",250,250,GeoWars.WIDTH/2+GeoWars.WIDTH/8,GeoWars.HEIGHT/2+GeoWars.HEIGHT/8);
+                break;
+            case 2:
+                final Sprite defense = newImage("defdrone",250,250,GeoWars.WIDTH/2+GeoWars.WIDTH/8,GeoWars.HEIGHT/2+GeoWars.HEIGHT/8);
                 break;
         }
     }
@@ -339,14 +373,19 @@ public class UpgradeMenuScreen extends MenuScreen implements iHasStage, iSetActi
             ShopThread = null;
 
             loading = false;
-            showText(width);
+
+
             System.out.println(ShipData);
         }
         if(ShopThread != null && !ShopThread.finished())
         {
             showLoading();
         }
-        showText(width);
+        if (ShopThread == null)
+        {
+            showText();
+        }
         batch.end();
+        if(ShopThread == null)changeImage();
     }
 }
