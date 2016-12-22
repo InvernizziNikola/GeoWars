@@ -48,7 +48,7 @@ public class LevelManager {
     public void newWave()
     {
         isSpawning = true;
-        int points = currentLevel * 30 + currentwave * 5;
+        int points = currentLevel * 20 + currentwave * 3;
         int warpGateCount = MathUtils.ceil(points/35.0f);
 
         Random rand = new Random();
@@ -58,11 +58,9 @@ public class LevelManager {
 
         while(points > 0)
         {
-            System.out.println(points);
             EnemyProfile ep = enemyProfiles.get(rand.nextInt(enemyProfiles.size()));
             if(ep.type != ENEMYTYPE.BOSS)
             {
-                System.out.println(ep.name);
                 points -= ep.difficultyGrade;
                 enemiesToWarp.add(ep);
             }
