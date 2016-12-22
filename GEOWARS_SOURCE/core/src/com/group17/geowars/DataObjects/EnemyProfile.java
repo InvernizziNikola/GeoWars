@@ -18,16 +18,15 @@ public class EnemyProfile {
     public float fireDelay;
     public float fireRange;
     public float speed;
+    public Integer difficultyGrade;
+    public Integer Spread;
+    public Integer red;
+    public Integer green;
+    public Integer blue;
 
     public EnemyProfile()
     {
-        this.name = name;
         this.type = ENEMYTYPE.valueOf(type);
-        this.imageName = imageName;
-        this.health = health;
-        this.fireDelay = fireDelay;
-        this.fireRange = fireRange;
-        this.speed = speed;
     }
 
 }
