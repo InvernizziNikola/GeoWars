@@ -53,7 +53,7 @@ public class LevelManager {
         isSpawning = true;
 
         int points = currentLevel * 20 + currentwave * 3;
-        int warpGateCount = MathUtils.ceil(points/20.0f);
+        int warpGateCount = MathUtils.ceil(points/35.0f);
 
         Random rand = new Random();
         List<EnemyProfile> enemyProfiles = Managers.getEnemyManager().getProfiles();
@@ -72,6 +72,7 @@ public class LevelManager {
 
             warpGates.add(new WarpGate(new Vector2(1200, 800), enemiesToWarp));
         }
+        
     }
 
     public void render(Batch batch) {
