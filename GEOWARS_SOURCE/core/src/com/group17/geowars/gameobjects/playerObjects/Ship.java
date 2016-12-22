@@ -6,14 +6,12 @@
 package com.group17.geowars.gameobjects.playerObjects;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.controllers.Controller;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.utils.Array;
 import com.group17.geowars.GeoWars;
 import com.group17.geowars.gameobjects.*;
 import com.group17.geowars.gameobjects.PowerUps.POWERUPTYPE;
@@ -31,6 +29,7 @@ import java.util.ArrayList;
  * @author kevin
  */
 public abstract class Ship extends GameObject implements GOInterface { //interface shoot?    extends DynamicGameObject ?
+    protected int maxHp;
     protected int hp;
     protected int attack;
     public boolean dead;
@@ -40,8 +39,14 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
     protected int multiplier;
     protected BitmapFont font;
     protected String type;
-    protected Sprite sprite;
+    protected Sprite shipSprite;
+    protected Color shipColor;
     protected Sprite shield;
+    protected Color shieldColor;
+    protected Sprite greenHp;
+    protected Color green;
+    protected Sprite redHp;
+    protected Color red;
     protected float fireDelay;
     protected int speed;
     protected Player player;
@@ -68,6 +73,7 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
         super(pos);
         fireDelay = 0.15f;
         speed = 450;
+        maxHp=1;
         font = new BitmapFont();
         score = 0;
         multiplier = 0;
@@ -77,14 +83,22 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
         this.type = type;
 
         texture = Managers.getAssetManager().getTexture(type);
-        sprite = new Sprite(texture, texture.getWidth(), texture.getHeight());
+        shipSprite = new Sprite(texture, texture.getWidth(), texture.getHeight());
+        shipColor= new Color(0.8f, 0.8f, 0, 1);
 
         Texture texture2 = Managers.getAssetManager().getTexture("shield");
         shield = new Sprite(texture2, texture.getWidth(), texture.getHeight());
+        shieldColor= new Color(new Color(0.1f, 0.8f, 0, 0.5f));
+
+        Texture greenHptexture=Managers.getAssetManager().getTexture("Nikoala_2");
+        greenHp = new Sprite(greenHptexture,100,20);
+        red=new Color(1,0,0,1);
+        redHp = new Sprite(greenHptexture,100,20);
+        green= new Color(0,1,0,1);
     }
 
-    public Sprite getSprite() {
-        return sprite;
+    public Sprite getShipSprite() {
+        return shipSprite;
     }
 
     public String getType() {
@@ -167,15 +181,25 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
     @Override
     public void render(Batch batch) {
         // TODO DRAW IMAGE CORRRECTLY
-        sprite.setColor(new Color(0.8f, 0.8f, 0, 1));
-        sprite.setSize(50, 50);
-        sprite.setOrigin(25, 25);
-        sprite.setRotation(lookDir.angle());
-        sprite.setPosition(position.x - 25, position.y - 25);
-        sprite.draw(batch);
+        shipSprite.setColor(shipColor);
+        shipSprite.setSize(50, 50);
+        shipSprite.setOrigin(25, 25);
+        shipSprite.setRotation(lookDir.angle());
+        shipSprite.setPosition(position.x - 25, position.y - 25);
+        shipSprite.draw(batch);
+
+        greenHp.setColor(green);
+        greenHp.setSize((int)(50*(float)hp/maxHp),5);
+        greenHp.setPosition(position.x-20, position.y + 30);
+        redHp.setColor(red);
+        redHp.setSize(50,5);
+        redHp.setPosition(position.x-20, position.y + 30);
+        redHp.draw(batch);
+        greenHp.draw(batch);
 
 
-        shield.setColor(new Color(0.1f, 0.8f, 0, 0.5f));
+
+        shield.setColor(shieldColor);
         shield.setSize(80, 80);
         shield.setOrigin(40, 40);
         shield.setPosition(position.x - 40, position.y - 40);

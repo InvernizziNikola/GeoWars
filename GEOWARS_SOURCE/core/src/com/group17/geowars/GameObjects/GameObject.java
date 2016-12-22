@@ -35,7 +35,7 @@ public abstract class GameObject
         this.texture = texture;
     }
 
-    public Sprite getSprite() {
+    public Sprite getShipSprite() {
         return sprite;
     }
 

@@ -108,7 +108,7 @@ public abstract class Enemy extends GameObject implements GOInterface {
         return hp;
     }
 
-    public Sprite getSprite() {
+    public Sprite getShipSprite() {
         return sprite;
     }
 

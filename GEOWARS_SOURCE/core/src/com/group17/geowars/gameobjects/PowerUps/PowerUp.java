@@ -30,7 +30,7 @@ public abstract class PowerUp extends GameObject implements GOInterface {
     }
 
 
-    public Sprite getSprite() {
+    public Sprite getShipSprite() {
         return sprite;
     }
 

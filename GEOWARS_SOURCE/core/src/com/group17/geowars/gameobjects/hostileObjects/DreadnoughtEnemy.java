@@ -17,15 +17,14 @@ public class DreadnoughtEnemy extends Enemy implements GOInterface {
     private float timer = 0;
 
 
-
-
     public DreadnoughtEnemy(Vector2 spawnLocation) {
         super("tank", spawnLocation);
-        speed=50;
+        speed = 50;
         setSize(150);
-        maxHp=10;
-        hp=maxHp;
-        fireRange=450;
+        maxHp = 10;
+        hp = maxHp;
+        fireRange = 450;
+        firedelay = 4.0f;
     }
 
     public void shoot() {
@@ -37,7 +36,6 @@ public class DreadnoughtEnemy extends Enemy implements GOInterface {
     }
 
 
-
     @Override
     public void update() {
         //TODO spawn in field ( cant get out of field
@@ -45,12 +43,12 @@ public class DreadnoughtEnemy extends Enemy implements GOInterface {
         target = findTarget();
 
         timer += Gdx.graphics.getDeltaTime();
-        if (timer > 4.0f) {
-                timer %= 4.0f;
+        if (timer > firedelay) {
+            timer %= firedelay;
             canShoot = true;
         }
 
-        if(target == null)
+        if (target == null)
             return;
 
         Vector2 dist = new Vector2(target.getShip().getPosition().x - getPosition().x, target.getShip().getPosition().y - getPosition().y);
@@ -60,14 +58,14 @@ public class DreadnoughtEnemy extends Enemy implements GOInterface {
             lookAt = new Vector2(dist).nor();
 
             if (dist.len() < fireRange) {
-                if(new Random().nextInt(3)<2) {//1/2 kans om te schieten
+                if (new Random().nextInt(3) < 2) {//1/2 kans om te schieten
                     shoot();
-                    canShoot=false;
+                    canShoot = false;
                 }
 
             }
             if (dist.len() < 300) {
-                lookAt = new Vector2(-lookAt.x,-lookAt.y);
+                lookAt = new Vector2(-lookAt.x, -lookAt.y);
             }
         } else {
             lookAt = direction.nor();
