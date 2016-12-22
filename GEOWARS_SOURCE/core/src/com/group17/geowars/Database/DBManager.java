@@ -105,7 +105,7 @@ public class DBManager {
         return DbExecute(prep);
     }
     public ArrayList DBSelectEnemy(String Enemy) {
-        String SQLstring = "SELECT name,speed,maxHP,fireDelay,fireRange,difficultyGrade,spread FROM Enemy where name = ?;";
+        String SQLstring = "SELECT name,type,image,speed,maxHP,fireDelay,fireRange,difficultyGrade,spread FROM Enemy where name = ?;";
         try {
             prep = this.conn.prepareStatement(SQLstring);
             prep.setString(1, Enemy);
@@ -115,7 +115,7 @@ public class DBManager {
         return DbExecute(prep);
     }
     public ArrayList DBSelectAllEnemys() {
-        String SQLstring = "SELECT name,speed,maxHP,fireDelay,fireRange,difficultyGrade,spread FROM Enemy;";
+        String SQLstring = "SELECT name,type,image,speed,maxHP,fireDelay,fireRange,difficultyGrade,spread FROM Enemy;";
         try {
             prep = this.conn.prepareStatement(SQLstring);
         } catch (SQLException e) {
