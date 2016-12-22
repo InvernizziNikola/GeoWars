@@ -19,7 +19,7 @@ import java.util.Hashtable;
  * Created by michield on 10/11/2016.
  */
 public class ScreenManager {
-    private MainMenuScreen mainMenuScreen;
+    private LoginScreen StartScreen;
 
     private MenuScreen showScreen;
 
@@ -85,18 +85,18 @@ public class ScreenManager {
     }
     public void createMenus(){
 
-        menuList.put("mainmenu", mainMenuScreen = new MainMenuScreen());
+        menuList.put("mainmenu",  new MainMenuScreen());
         menuList.put("playmenu", new PlayMenuScreen());
         menuList.put("profilemenu", new ProfileMenuScreen());
         menuList.put("highscoremenu", new HighScoreMenuScreen());
         menuList.put("game", new GameScreen());
         menuList.put("endgamemenu",new EndGameMenuScreen());
         menuList.put("optionsmenu",new OptionsMenuScreen());
-        menuList.put("LoginScreen", new LoginScreen());
+        menuList.put("LoginScreen", StartScreen = new LoginScreen());
         menuList.put("upgrademenu", new UpgradeMenuScreen());
         menuList.put("shopmenu", new ShopMenuScreen());
         menuList.put("coopmenu", new CoopMenuScreen());
-        setScreen(mainMenuScreen);
+        setScreen(StartScreen);
     }
 
 
@@ -113,7 +113,7 @@ public class ScreenManager {
         MenuScreen screen = menuList.get(name);
         if(screen == null) {
             System.out.println("SHOULDNT HAPPEN!");
-            return mainMenuScreen;
+            return StartScreen;
         }
         return screen;
     }
@@ -122,7 +122,7 @@ public class ScreenManager {
 
         if(screen == null) {
             System.out.println("SHOULDNT HAPPEN!!EVAR!");
-            showScreen = mainMenuScreen;
+            showScreen = StartScreen;
         }
         else {
             if(showScreen instanceof iSetActive){
