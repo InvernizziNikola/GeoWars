@@ -28,7 +28,7 @@ public class DifficultyScreen extends MenuScreen implements iHasStage, iSetActiv
             public void changed(ChangeEvent event, Actor actor) {
                 easyButton.setChecked(false);
                 //set here
-
+                Managers.getGameManager().setDifficulty("Easy");
                 if(Managers.getGameManager().game != null)
                     return;
 
@@ -42,7 +42,7 @@ public class DifficultyScreen extends MenuScreen implements iHasStage, iSetActiv
             public void changed(ChangeEvent event, Actor actor) {
                 mediumButton.setChecked(false);
                 //sethere
-
+                Managers.getGameManager().setDifficulty("Medium");
                 if(Managers.getGameManager().game != null)
                     return;
 
@@ -58,7 +58,7 @@ public class DifficultyScreen extends MenuScreen implements iHasStage, iSetActiv
             public void changed(ChangeEvent event, Actor actor) {
                 hardButton.setChecked(false);
                 //sethere
-
+                Managers.getGameManager().setDifficulty("Hard");
                 if(Managers.getGameManager().game != null)
                     return;
 
