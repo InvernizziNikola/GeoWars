@@ -9,15 +9,15 @@ import com.badlogic.gdx.controllers.PovDirection;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.*;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.scenes.scene2d.EventListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.group17.geowars.GeoWars;
 import com.group17.geowars.database.XBOX360KeyMapping;
@@ -200,6 +200,30 @@ public class MenuScreen implements Screen {
         return tempButton;
     }
 
+    protected ImageButton newImageButton(String name, int x, int y, int width, int height)
+    {
+        Texture tempImg = Managers.getAssetManager().getTexture(name);
+        TextureRegion tempImgReg = new TextureRegion(tempImg);
+        TextureRegionDrawable tempImgRegDraw = new TextureRegionDrawable(tempImgReg);
+        ImageButton imgbutton = new ImageButton(tempImgRegDraw);
+        imgbutton.setPosition(x,y);
+        imgbutton.setWidth(width);
+        imgbutton.setHeight(height);
+        stage.addActor(imgbutton);
+        return imgbutton;
+    }
+
+    protected ShapeRenderer drawTreeLine(int x, int y, int x2, int y2)
+    {
+        ShapeRenderer line = new ShapeRenderer();
+        line.begin(ShapeRenderer.ShapeType.Line);
+        line.setColor(1, 1, 1, 1);
+        line.line(x, y, x2, y2);
+        line.end();
+        return line;
+    }
+
+
     protected Sprite newImage(String name, int width, int height, int xpos, int ypos)
     {
         Texture tempImg = Managers.getAssetManager().getTexture(name);
@@ -220,6 +244,7 @@ public class MenuScreen implements Screen {
         batch.end();
         return background;
     }
+
 
     public Stage getStage() {
         return stage;

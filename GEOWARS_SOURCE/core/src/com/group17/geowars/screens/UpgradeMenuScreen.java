@@ -6,7 +6,10 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g3d.utils.MeshBuilder;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.group17.geowars.GeoWars;
@@ -32,23 +35,20 @@ public class UpgradeMenuScreen extends MenuScreen implements iHasStage, iSetActi
     private ArrayList DroneData;
     private boolean loading = false;
 
-    public UpgradeMenuScreen()
-    {
+    public UpgradeMenuScreen() {
         super();
         create();
     }
 
-    public void create()
-    {
+    public void create() {
         Gdx.input.setInputProcessor(stage);
         batch = new SpriteBatch();
         text = new BitmapFont();
         text.setColor(Color.WHITE);
     }
 
-    public void createButtons()
-    {
-        final TextButton assaultButton = newButton("ASSAULT", 0,GeoWars.HEIGHT-75,(GeoWars.WIDTH/2)/3,75, new MenuGrid(0,0));
+    public void createButtons() {
+        final TextButton assaultButton = newButton("ASSAULT", 0, GeoWars.HEIGHT - 75, (GeoWars.WIDTH / 2) / 3, 75, new MenuGrid(0, 0));
         assaultButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -57,7 +57,7 @@ public class UpgradeMenuScreen extends MenuScreen implements iHasStage, iSetActi
             }
         });
 
-        final TextButton destroyerButton = newButton("DESTROYER",(GeoWars.WIDTH/2)/3,GeoWars.HEIGHT-75,(GeoWars.WIDTH/2)/3,75,new MenuGrid(1,0));
+        final TextButton destroyerButton = newButton("DESTROYER", (GeoWars.WIDTH / 2) / 3, GeoWars.HEIGHT - 75, (GeoWars.WIDTH / 2) / 3, 75, new MenuGrid(1, 0));
         destroyerButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -66,7 +66,7 @@ public class UpgradeMenuScreen extends MenuScreen implements iHasStage, iSetActi
             }
         });
 
-        final TextButton tankButton = newButton("TANK", (GeoWars.WIDTH/2)/3+(GeoWars.WIDTH/2)/3,GeoWars.HEIGHT-75,(GeoWars.WIDTH/2)/3,75,new MenuGrid(2,0));
+        final TextButton tankButton = newButton("TANK", (GeoWars.WIDTH / 2) / 3 + (GeoWars.WIDTH / 2) / 3, GeoWars.HEIGHT - 75, (GeoWars.WIDTH / 2) / 3, 75, new MenuGrid(2, 0));
         tankButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -75,7 +75,7 @@ public class UpgradeMenuScreen extends MenuScreen implements iHasStage, iSetActi
             }
         });
 
-        final TextButton supportButton = newButton("SUPPORT",(GeoWars.WIDTH-(GeoWars.WIDTH/2)/3)-((GeoWars.WIDTH/2)/3)-(GeoWars.WIDTH/2)/3,GeoWars.HEIGHT-75,(GeoWars.WIDTH/2)/3,75, new MenuGrid(3,0));
+        final TextButton supportButton = newButton("SUPPORT", (GeoWars.WIDTH - (GeoWars.WIDTH / 2) / 3) - ((GeoWars.WIDTH / 2) / 3) - (GeoWars.WIDTH / 2) / 3, GeoWars.HEIGHT - 75, (GeoWars.WIDTH / 2) / 3, 75, new MenuGrid(3, 0));
         supportButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -84,7 +84,7 @@ public class UpgradeMenuScreen extends MenuScreen implements iHasStage, iSetActi
             }
         });
 
-        final TextButton attackButton = newButton("ATTACK",(GeoWars.WIDTH-(GeoWars.WIDTH/2)/3-5)-(GeoWars.WIDTH/2)/3,GeoWars.HEIGHT-75,(GeoWars.WIDTH/2)/3,75,new MenuGrid(4,0));
+        final TextButton attackButton = newButton("ATTACK", (GeoWars.WIDTH - (GeoWars.WIDTH / 2) / 3 - 5) - (GeoWars.WIDTH / 2) / 3, GeoWars.HEIGHT - 75, (GeoWars.WIDTH / 2) / 3, 75, new MenuGrid(4, 0));
         attackButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -93,7 +93,7 @@ public class UpgradeMenuScreen extends MenuScreen implements iHasStage, iSetActi
             }
         });
 
-        final TextButton defendButton = newButton("DEFEND", GeoWars.WIDTH-(GeoWars.WIDTH/2)/3-5,GeoWars.HEIGHT-75,(GeoWars.WIDTH/2)/3+5,75, new MenuGrid(5,0));
+        final TextButton defendButton = newButton("DEFEND", GeoWars.WIDTH - (GeoWars.WIDTH / 2) / 3 - 5, GeoWars.HEIGHT - 75, (GeoWars.WIDTH / 2) / 3 + 5, 75, new MenuGrid(5, 0));
         defendButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -102,7 +102,7 @@ public class UpgradeMenuScreen extends MenuScreen implements iHasStage, iSetActi
             }
         });
 
-        final TextButton shipSkillTreeButton = newButton("SKILL TREE",0,GeoWars.HEIGHT/2,(GeoWars.WIDTH/2)/2,75, new MenuGrid(0,1));
+        final TextButton shipSkillTreeButton = newButton("SKILL TREE", 0, GeoWars.HEIGHT / 2, GeoWars.WIDTH / 2, 75, new MenuGrid(0, 1));
         shipSkillTreeButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -111,16 +111,7 @@ public class UpgradeMenuScreen extends MenuScreen implements iHasStage, iSetActi
             }
         });
 
-        final TextButton shipStatsButton = newButton("STATS",GeoWars.WIDTH/4,GeoWars.HEIGHT/2,(GeoWars.WIDTH/2)/2,75,new MenuGrid(1,1));
-        shipStatsButton.addListener(new ChangeListener() {
-            @Override
-            public void changed(ChangeEvent event, Actor actor) {
-                selectButton(shipStatsButton);
-                showShipStats = 1;
-            }
-        });
-
-        final TextButton droneSkillTreeButton = newButton("SKILL TREE", GeoWars.WIDTH/2,GeoWars.HEIGHT/2,(GeoWars.WIDTH/2)/2,75,new MenuGrid(2,1));
+        final TextButton droneSkillTreeButton = newButton("SKILL TREE", GeoWars.WIDTH / 2, GeoWars.HEIGHT / 2, GeoWars.WIDTH / 2, 75, new MenuGrid(1, 1));
         droneSkillTreeButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -129,16 +120,7 @@ public class UpgradeMenuScreen extends MenuScreen implements iHasStage, iSetActi
             }
         });
 
-        final TextButton droneStatsButton = newButton("STATS", GeoWars.WIDTH/2+GeoWars.WIDTH/4,GeoWars.HEIGHT/2,(GeoWars.WIDTH/2)/2-5,75, new MenuGrid(3,1));
-        droneStatsButton.addListener(new ChangeListener() {
-            @Override
-            public void changed(ChangeEvent event, Actor actor) {
-                selectButton(droneStatsButton);
-                showDroneStats = 1;
-            }
-        });
-
-        final TextButton confirmButton = newButton("CONFIRM",5,20,Gdx.graphics.getWidth()-10,75,new MenuGrid(0,2));
+        final TextButton confirmButton = newButton("CONFIRM", 5, 20, Gdx.graphics.getWidth() - 10, 75, new MenuGrid(0, 2));
         confirmButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -149,195 +131,287 @@ public class UpgradeMenuScreen extends MenuScreen implements iHasStage, iSetActi
         });
     }
 
-    public void selectButton(TextButton txtB)
-    {
+    public void createShipSkillTreeButtons() {
+        final ImageButton extraSpread = newImageButton("skillButton", GeoWars.WIDTH / 4 - 18, GeoWars.HEIGHT / 10, 35, 35);
+        extraSpread.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                System.out.println("buy extra spread");
+            }
+        });
+
+        final ImageButton bigBullet = newImageButton("skillButton", GeoWars.WIDTH / 4 - 18, GeoWars.HEIGHT / 5 - 18, 35, 35);
+        bigBullet.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                System.out.println("buy big bullet");
+            }
+        });
+
+        final ImageButton mirrorShot = newImageButton("skillButton", GeoWars.WIDTH / 5 - 18, GeoWars.HEIGHT / 4 - 18, 35, 35);
+        mirrorShot.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                System.out.println("buy mirror shot");
+            }
+        });
+
+        final ImageButton glassCannon = newImageButton("skillButton", GeoWars.WIDTH / 5 - 18, GeoWars.HEIGHT / 3 - 18, 35, 35);
+        glassCannon.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                System.out.println("buy glass cannon");
+            }
+        });
+
+        final ImageButton smallUnit = newImageButton("skillButton", GeoWars.WIDTH / 4 - 18, GeoWars.HEIGHT / 3 + GeoWars.HEIGHT / 20 - 18, 35, 35);
+        smallUnit.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                System.out.println("buy small unit");
+            }
+        });
+
+    }
+
+    public void createDroneSkillTreeButtons() {
+        final ImageButton extraSpread = newImageButton("skillButton", GeoWars.WIDTH / 2 + GeoWars.WIDTH / 4 - 18, GeoWars.HEIGHT / 10, 35, 35);
+        extraSpread.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                System.out.println("buy extra spread");
+            }
+        });
+
+        final ImageButton bigBullet = newImageButton("skillButton", GeoWars.WIDTH / 2 + GeoWars.WIDTH / 4 - 18, GeoWars.HEIGHT / 5 - 18, 35, 35);
+        bigBullet.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                System.out.println("buy big bullet");
+            }
+        });
+
+        final ImageButton mirrorShot = newImageButton("skillButton", GeoWars.WIDTH / 2 + GeoWars.WIDTH / 5 - 18, GeoWars.HEIGHT / 4 - 18, 35, 35);
+        mirrorShot.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                System.out.println("buy mirror shot");
+            }
+        });
+
+        final ImageButton glassCannon = newImageButton("skillButton", GeoWars.WIDTH / 2 + GeoWars.WIDTH / 5 - 18, GeoWars.HEIGHT / 3 - 18, 35, 35);
+        glassCannon.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                System.out.println("buy glass cannon");
+            }
+        });
+
+        final ImageButton bigUnit = newImageButton("skillButton", GeoWars.WIDTH / 2 + GeoWars.WIDTH / 4 - 18, GeoWars.HEIGHT / 3 + GeoWars.HEIGHT / 20 - 18, 35, 35);
+        bigUnit.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                System.out.println("buy big unit");
+            }
+        });
+    }
+
+    public void selectButton(TextButton txtB) {
         txtB.setChecked(false);
         deSelectButtons();
         txtB.setStyle(Managers.getScreenManager().getSelectedStyle());
     }
 
-    public void tankText()
-    {
-        text.draw(batch,"-TANK",50,GeoWars.HEIGHT-GeoWars.HEIGHT/6);
-        text.draw(batch,"-HIGH HP",50,(float)(GeoWars.HEIGHT-GeoWars.HEIGHT/4.75));
-        text.draw(batch,"-LOW ATK",50,GeoWars.HEIGHT-GeoWars.HEIGHT/4);
-        text.draw(batch,"HP = 30",50,GeoWars.HEIGHT/2+GeoWars.HEIGHT/10);
-        text.draw(batch,"ATK = 2", GeoWars.WIDTH/3,GeoWars.HEIGHT/2+GeoWars.HEIGHT/10);
+    public void tankText() {
+        text.draw(batch, "-TANK", 50, GeoWars.HEIGHT - GeoWars.HEIGHT / 6);
+        text.draw(batch, "-HIGH HP", 50, (float) (GeoWars.HEIGHT - GeoWars.HEIGHT / 4.75));
+        text.draw(batch, "-LOW ATK", 50, GeoWars.HEIGHT - GeoWars.HEIGHT / 4);
+        text.draw(batch, "HP = 30", 50, GeoWars.HEIGHT / 2 + GeoWars.HEIGHT / 10);
+        text.draw(batch, "ATK = 2", GeoWars.WIDTH / 3, GeoWars.HEIGHT / 2 + GeoWars.HEIGHT / 10);
     }
 
 
-    public void assaultText()
-    {
-        text.draw(batch,"-ASSAULT",50,GeoWars.HEIGHT-GeoWars.HEIGHT/6);
-        text.draw(batch,"-HIGH ATTACK",50,(float)(GeoWars.HEIGHT-GeoWars.HEIGHT/4.75));
-        text.draw(batch,"-MED HP",50,GeoWars.HEIGHT-GeoWars.HEIGHT/4);
-        text.draw(batch,"HP = 20",50,GeoWars.HEIGHT/2+GeoWars.HEIGHT/10);
-        text.draw(batch,"ATK = 10", GeoWars.WIDTH/3,GeoWars.HEIGHT/2+GeoWars.HEIGHT/10);
+    public void assaultText() {
+        text.draw(batch, "-ASSAULT", 50, GeoWars.HEIGHT - GeoWars.HEIGHT / 6);
+        text.draw(batch, "-HIGH ATTACK", 50, (float) (GeoWars.HEIGHT - GeoWars.HEIGHT / 4.75));
+        text.draw(batch, "-MED HP", 50, GeoWars.HEIGHT - GeoWars.HEIGHT / 4);
+        text.draw(batch, "HP = 20", 50, GeoWars.HEIGHT / 2 + GeoWars.HEIGHT / 10);
+        text.draw(batch, "ATK = 10", GeoWars.WIDTH / 3, GeoWars.HEIGHT / 2 + GeoWars.HEIGHT / 10);
     }
 
-    public void destroyerText()
-    {
-        text.draw(batch,"-DESTROYER",50,GeoWars.HEIGHT-GeoWars.HEIGHT/6);
-        text.draw(batch,"-HIGH ATK",50,(float)(GeoWars.HEIGHT-GeoWars.HEIGHT/4.75));
-        text.draw(batch,"-LOW DEF",50,GeoWars.HEIGHT-GeoWars.HEIGHT/4);
-        text.draw(batch,"HP = 10",50,GeoWars.HEIGHT/2+GeoWars.HEIGHT/10);
-        text.draw(batch,"ATK = 10", GeoWars.WIDTH/3,GeoWars.HEIGHT/2+GeoWars.HEIGHT/10);
+    public void destroyerText() {
+        text.draw(batch, "-DESTROYER", 50, GeoWars.HEIGHT - GeoWars.HEIGHT / 6);
+        text.draw(batch, "-HIGH ATK", 50, (float) (GeoWars.HEIGHT - GeoWars.HEIGHT / 4.75));
+        text.draw(batch, "-LOW DEF", 50, GeoWars.HEIGHT - GeoWars.HEIGHT / 4);
+        text.draw(batch, "HP = 10", 50, GeoWars.HEIGHT / 2 + GeoWars.HEIGHT / 10);
+        text.draw(batch, "ATK = 10", GeoWars.WIDTH / 3, GeoWars.HEIGHT / 2 + GeoWars.HEIGHT / 10);
     }
 
-    public void supportText()
-    {
-        text.draw(batch,"-SLOW DOWN ENEMIES",GeoWars.WIDTH/2+(GeoWars.WIDTH/3),GeoWars.HEIGHT-GeoWars.HEIGHT/6);
-        text.draw(batch,"-CAN'T DIE",GeoWars.WIDTH/2+(GeoWars.WIDTH/3),GeoWars.HEIGHT-GeoWars.HEIGHT/4);
-        text.draw(batch,"ATK= 0", GeoWars.WIDTH/2+50,GeoWars.HEIGHT/2+GeoWars.HEIGHT/10);
-        text.draw(batch,"HP = INFINITE", GeoWars.WIDTH/2+(GeoWars.WIDTH/3),GeoWars.HEIGHT/2+GeoWars.HEIGHT/10);
+    public void supportText() {
+        text.draw(batch, "-SLOW DOWN ENEMIES", GeoWars.WIDTH / 2 + (GeoWars.WIDTH / 3), GeoWars.HEIGHT - GeoWars.HEIGHT / 6);
+        text.draw(batch, "-CAN'T DIE", GeoWars.WIDTH / 2 + (GeoWars.WIDTH / 3), GeoWars.HEIGHT - GeoWars.HEIGHT / 4);
+        text.draw(batch, "ATK= 0", GeoWars.WIDTH / 2 + 50, GeoWars.HEIGHT / 2 + GeoWars.HEIGHT / 10);
+        text.draw(batch, "HP = INFINITE", GeoWars.WIDTH / 2 + (GeoWars.WIDTH / 3), GeoWars.HEIGHT / 2 + GeoWars.HEIGHT / 10);
     }
 
-    public void attackText()
-    {
-        text.draw(batch,"-SHOOTS UNITS",GeoWars.WIDTH/2+(GeoWars.WIDTH/3),GeoWars.HEIGHT-GeoWars.HEIGHT/6);
-        text.draw(batch,"-CAN'T DIE",GeoWars.WIDTH/2+(GeoWars.WIDTH/3),GeoWars.HEIGHT-GeoWars.HEIGHT/4);
-        text.draw(batch,"ATK= 1", GeoWars.WIDTH/2+50,GeoWars.HEIGHT/2+GeoWars.HEIGHT/10);
-        text.draw(batch,"HP = INFINITE", GeoWars.WIDTH/2+(GeoWars.WIDTH/3),GeoWars.HEIGHT/2+GeoWars.HEIGHT/10);
+    public void attackText() {
+        text.draw(batch, "-SHOOTS UNITS", GeoWars.WIDTH / 2 + (GeoWars.WIDTH / 3), GeoWars.HEIGHT - GeoWars.HEIGHT / 6);
+        text.draw(batch, "-CAN'T DIE", GeoWars.WIDTH / 2 + (GeoWars.WIDTH / 3), GeoWars.HEIGHT - GeoWars.HEIGHT / 4);
+        text.draw(batch, "ATK= 1", GeoWars.WIDTH / 2 + 50, GeoWars.HEIGHT / 2 + GeoWars.HEIGHT / 10);
+        text.draw(batch, "HP = INFINITE", GeoWars.WIDTH / 2 + (GeoWars.WIDTH / 3), GeoWars.HEIGHT / 2 + GeoWars.HEIGHT / 10);
     }
 
-    public void defendText()
-    {
-        text.draw(batch,"-DEFENDS SHIP",GeoWars.WIDTH/2+(GeoWars.WIDTH/3),GeoWars.HEIGHT-GeoWars.HEIGHT/6);
-        text.draw(batch,"-CAN'T DIE",GeoWars.WIDTH/2+(GeoWars.WIDTH/3),GeoWars.HEIGHT-GeoWars.HEIGHT/4);
-        text.draw(batch,"ATK= 0", GeoWars.WIDTH/2+50,GeoWars.HEIGHT/2+GeoWars.HEIGHT/10);
-        text.draw(batch,"HP = INFINITE", GeoWars.WIDTH/2+(GeoWars.WIDTH/3),GeoWars.HEIGHT/2+GeoWars.HEIGHT/10);
+    public void defendText() {
+        text.draw(batch, "-DEFENDS SHIP", GeoWars.WIDTH / 2 + (GeoWars.WIDTH / 3), GeoWars.HEIGHT - GeoWars.HEIGHT / 6);
+        text.draw(batch, "-CAN'T DIE", GeoWars.WIDTH / 2 + (GeoWars.WIDTH / 3), GeoWars.HEIGHT - GeoWars.HEIGHT / 4);
+        text.draw(batch, "ATK= 0", GeoWars.WIDTH / 2 + 50, GeoWars.HEIGHT / 2 + GeoWars.HEIGHT / 10);
+        text.draw(batch, "HP = INFINITE", GeoWars.WIDTH / 2 + (GeoWars.WIDTH / 3), GeoWars.HEIGHT / 2 + GeoWars.HEIGHT / 10);
     }
 
-    public void shipSkillTreeText()
-    {
-        text.draw(batch,"SKILL TREE",50,GeoWars.HEIGHT/2-50);
-        text.draw(batch,"SKILL POINTS 2/2",GeoWars.WIDTH/3,GeoWars.HEIGHT/2-50);
+    public void shipSkillTreeText() {
+        text.draw(batch, "SKILL TREE", 50, GeoWars.HEIGHT / 2 - 50);
+        text.draw(batch, "SKILL POINTS 2/2", GeoWars.WIDTH / 3, GeoWars.HEIGHT / 2 - 50);
     }
 
-    public void shipStatsText()
-    {
-        text.draw(batch,"-KILLS: ",50,GeoWars.HEIGHT/2-GeoWars.HEIGHT/10);
-        text.draw(batch,"-HOURS PLAYED: ",50,GeoWars.HEIGHT/2-GeoWars.HEIGHT/4);
+    public void droneSkillTreeText() {
+        text.draw(batch, "SKILL TREE", GeoWars.WIDTH / 2 + 50, GeoWars.HEIGHT / 2 - 50);
+        text.draw(batch, "SKILL POINTS 2/2", GeoWars.WIDTH / 2 + (GeoWars.WIDTH / 3), GeoWars.HEIGHT / 2 - 50);
     }
 
-    public void droneSkillTreeText()
-    {
-        text.draw(batch,"SKILL TREE",GeoWars.WIDTH/2+50,GeoWars.HEIGHT/2-50);
-        text.draw(batch,"SKILL POINTS 2/2",GeoWars.WIDTH/2+(GeoWars.WIDTH/3),GeoWars.HEIGHT/2-50);
-    }
-
-    public void droneStatsText()
-    {
-        text.draw(batch,"-KILLS: ",GeoWars.WIDTH/2+50,GeoWars.HEIGHT/2-GeoWars.HEIGHT/10);
-        text.draw(batch,"-HOURS PLAYED: ",GeoWars.WIDTH/2+50,GeoWars.HEIGHT/2-GeoWars.HEIGHT/4);
-    }
-
-    public void showText()
-    {
-        text.draw(batch,"SHIP", (GeoWars.WIDTH/2)/2-15,GeoWars.HEIGHT-90);
-        text.draw(batch, "DRONE",GeoWars.WIDTH/2+(GeoWars.WIDTH/2/2-30),GeoWars.HEIGHT-90);
+    public void showText() {
+        text.draw(batch, "SHIP", (GeoWars.WIDTH / 2) / 2 - 15, GeoWars.HEIGHT - 90);
+        text.draw(batch, "DRONE", GeoWars.WIDTH / 2 + (GeoWars.WIDTH / 2 / 2 - 30), GeoWars.HEIGHT - 90);
         changeText();
         createButtons();
     }
 
-    public void changeText()
-    {
-        switch (showShip)
-        {
-            case 0:
-            {
+    public void changeText() {
+        switch (showShip) {
+            case 0: {
                 assaultText();
                 break;
             }
-            case 1:
-            {
+            case 1: {
                 destroyerText();
                 break;
             }
-            case 2:
-            {
+            case 2: {
                 tankText();
                 break;
             }
         }
 
-        switch (showDrone)
-        {
-            case 0:
-            {
+        switch (showDrone) {
+            case 0: {
                 supportText();
                 break;
             }
-            case 1:
-            {
+            case 1: {
                 attackText();
                 break;
             }
-            case 2:
-            {
+            case 2: {
                 defendText();
                 break;
             }
         }
-        switch (showShipStats)
-        {
+        switch (showShipStats) {
             case 0:
                 shipSkillTreeText();
                 break;
+        }
+
+        switch (showDroneStats) {
+            case 0:
+                droneSkillTreeText();
+                break;
+        }
+    }
+
+    public void changeImage() {
+        switch (showShip) {
+            case 0:
+                final Sprite assault = newImage("Speler_2", 300, 300, GeoWars.WIDTH / 6, GeoWars.HEIGHT / 2 + GeoWars.HEIGHT / 10);
+                break;
             case 1:
-                shipStatsText();
+                final Sprite destroyer = newImage("Destroyer", 300, 300, GeoWars.WIDTH / 6, GeoWars.HEIGHT / 2 + GeoWars.HEIGHT / 10);
+                break;
+            case 2:
+                final Sprite tank = newImage("TankShip", 300, 300, GeoWars.WIDTH / 6, GeoWars.HEIGHT / 2 + GeoWars.HEIGHT / 10);
+                break;
+        }
+        switch (showDrone) {
+            case 0:
+                final Sprite support = newImage("supportdrone", 250, 250, GeoWars.WIDTH / 2 + GeoWars.WIDTH / 8, GeoWars.HEIGHT / 2 + GeoWars.HEIGHT / 8);
+                break;
+            case 1:
+                final Sprite attack = newImage("attackdrone", 250, 250, GeoWars.WIDTH / 2 + GeoWars.WIDTH / 8, GeoWars.HEIGHT / 2 + GeoWars.HEIGHT / 8);
+                break;
+            case 2:
+                final Sprite defense = newImage("defdrone", 250, 250, GeoWars.WIDTH / 2 + GeoWars.WIDTH / 8, GeoWars.HEIGHT / 2 + GeoWars.HEIGHT / 8);
+                break;
+        }
+    }
+
+    public void shipSkilltree() {
+        createShipSkillTreeButtons();
+        drawTreeLine(GeoWars.WIDTH / 4, GeoWars.HEIGHT / 9, GeoWars.WIDTH / 4, GeoWars.HEIGHT / 5);
+        drawTreeLine(GeoWars.WIDTH / 4, GeoWars.HEIGHT / 5, GeoWars.WIDTH / 5, GeoWars.HEIGHT / 4);
+        drawTreeLine(GeoWars.WIDTH / 5, GeoWars.HEIGHT / 4, GeoWars.WIDTH / 5, GeoWars.HEIGHT / 3);
+        drawTreeLine(GeoWars.WIDTH / 5, GeoWars.HEIGHT / 3, GeoWars.WIDTH / 4, GeoWars.HEIGHT / 3 + GeoWars.HEIGHT / 20);
+        drawTreeLine(GeoWars.WIDTH / 2, 75, GeoWars.WIDTH / 2, GeoWars.HEIGHT);
+    }
+
+    public void droneSkillTree() {
+        if (showDroneStats == 0) {
+            createDroneSkillTreeButtons();
+            drawTreeLine(GeoWars.WIDTH / 2 + GeoWars.WIDTH / 4, GeoWars.HEIGHT / 9, GeoWars.WIDTH / 2 + GeoWars.WIDTH / 4, GeoWars.HEIGHT / 5);
+            drawTreeLine(GeoWars.WIDTH / 2 + GeoWars.WIDTH / 4, GeoWars.HEIGHT / 5, GeoWars.WIDTH / 2 + GeoWars.WIDTH / 5, GeoWars.HEIGHT / 4);
+            drawTreeLine(GeoWars.WIDTH / 2 + GeoWars.WIDTH / 5, GeoWars.HEIGHT / 4, GeoWars.WIDTH / 2 + GeoWars.WIDTH / 5, GeoWars.HEIGHT / 3);
+            drawTreeLine(GeoWars.WIDTH / 2 + GeoWars.WIDTH / 5, GeoWars.HEIGHT / 3, GeoWars.WIDTH / 2 + GeoWars.WIDTH / 4, GeoWars.HEIGHT / 3 + GeoWars.HEIGHT / 20);
+        }
+    }
+
+    public void showSkillTrees()
+    {
+        switch (showShipStats)
+        {
+            case 0:
+                shipSkilltree();
+                break;
+            case 1:
+                shipSkilltree();
+                break;
+            case 2:
+                shipSkilltree();
                 break;
         }
 
         switch (showDroneStats)
         {
             case 0:
-                droneSkillTreeText();
+                droneSkillTree();
                 break;
             case 1:
-                droneStatsText();
+                droneSkillTree();
+                break;
+            case 2:
+                droneSkillTree();
                 break;
         }
     }
 
-    public void changeImage()
-    {
-        switch (showShip)
-        {
-            case 0:
-                final Sprite assault = newImage("Speler_2",300,300,GeoWars.WIDTH/6,GeoWars.HEIGHT/2+GeoWars.HEIGHT/10);
-                break;
-            case 1:
-                final Sprite destroyer = newImage("Destroyer",300,300,GeoWars.WIDTH/6,GeoWars.HEIGHT/2+GeoWars.HEIGHT/10);
-                break;
-            case 2:
-                final Sprite tank = newImage("TankShip",300,300,GeoWars.WIDTH/6,GeoWars.HEIGHT/2+GeoWars.HEIGHT/10);
-                break;
-        }
-        switch (showDrone)
-        {
-            case 0:
-                final Sprite support = newImage("supportdrone",250,250,GeoWars.WIDTH/2+GeoWars.WIDTH/8,GeoWars.HEIGHT/2+GeoWars.HEIGHT/8);
-                break;
-            case 1:
-                final Sprite attack = newImage("attackdrone",250,250,GeoWars.WIDTH/2+GeoWars.WIDTH/8,GeoWars.HEIGHT/2+GeoWars.HEIGHT/8);
-                break;
-            case 2:
-                final Sprite defense = newImage("defdrone",250,250,GeoWars.WIDTH/2+GeoWars.WIDTH/8,GeoWars.HEIGHT/2+GeoWars.HEIGHT/8);
-                break;
-        }
-    }
     @Override
-    public void show()
-    {
+    public void show() {
 
     }
 
 
     @Override
     public void setActive() {
-        if(active)
-            return;;
+        if (active)
+            return;
+        ;
         active = true;
         getAllData();
     }
@@ -347,27 +421,25 @@ public class UpgradeMenuScreen extends MenuScreen implements iHasStage, iSetActi
         active = false;
     }
 
-    public void showLoading()
-    {
+    public void showLoading() {
         text.draw(batch, "Loading...", 350, 380);
     }
-    public void getAllData()
-    {
-        if(loading)
+
+    public void getAllData() {
+        if (loading)
             return;
 
         loading = true;
         ShopThread = new ShopThread();
         ShopThread.start();
     }
+
     @Override
-    public void render(float delta)
-    {
+    public void render(float delta) {
 
         super.render(delta);
         batch.begin();
-        if(ShopThread != null && ShopThread.finished())
-        {
+        if (ShopThread != null && ShopThread.finished()) {
             ShipData = ShopThread.getShipData();
             DroneData = ShopThread.getDronesData();
             ShopThread = null;
@@ -377,15 +449,16 @@ public class UpgradeMenuScreen extends MenuScreen implements iHasStage, iSetActi
 
             System.out.println(ShipData);
         }
-        if(ShopThread != null && !ShopThread.finished())
-        {
+        if (ShopThread != null && !ShopThread.finished()) {
             showLoading();
         }
-        if (ShopThread == null)
-        {
+        if (ShopThread == null) {
             showText();
         }
         batch.end();
-        if(ShopThread == null)changeImage();
+        if (ShopThread == null) {
+            changeImage();
+            showSkillTrees();
+        }
     }
 }
