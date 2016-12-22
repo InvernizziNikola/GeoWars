@@ -58,7 +58,7 @@ public class MainMenuScreen extends MenuScreen implements iHasStage, iSetActive 
             }
         });
         System.out.println(Managers.getAccountManager().getAccounts().get(0).name.toString());
-        if(!Managers.getAccountManager().getAccounts().get(0).name.toString().equals("G uest")) {
+        if(!Managers.getAccountManager().getAccounts().get(0).name.toString().equals("Guest")) {
             final TextButton profileButton = newButton("PROFILE", GeoWars.WIDTH / 2 - 100, GeoWars.HEIGHT / 2 + GeoWars.HEIGHT / 8, 200, 75, new MenuGrid(0, 1));
             profileButton.addListener(new ChangeListener() {
                 @Override
