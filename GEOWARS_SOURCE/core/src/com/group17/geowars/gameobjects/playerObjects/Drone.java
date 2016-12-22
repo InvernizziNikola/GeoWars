@@ -37,7 +37,7 @@ public abstract class Drone extends GameObject {
     {
         super(pos);
 
-        this.player = Managers.getPlayerManager().getPlayer(this);
+        //this.player = Managers.getPlayerManager().getPlayer(this);
         System.out.println(type);
         texture = Managers.getAssetManager().getTexture(type);
         sprite = new Sprite(texture,texture.getWidth(),texture.getHeight());
@@ -47,10 +47,11 @@ public abstract class Drone extends GameObject {
         return sprite;
     }
 
+
     public void render(Batch batch)
     {
 
-        sprite.setColor(new Color(0.8f, 0.8f,0,1));
+        sprite.setColor(player.getShip().getShipColor());
         sprite.setSize(20, 20);
         sprite.setOrigin(10, 10);
         sprite.setRotation(90);
@@ -83,8 +84,10 @@ public abstract class Drone extends GameObject {
             timer %= 0.2f;
             canShoot = true;
         }
-        if(player == null)
+        if(player == null) {
+            System.out.println("kakakakakakaka");
             return;
+        }
 
         Vector2 shipPos = player.getShip().getPosition();
         Vector2 dist = new Vector2(shipPos.x - getPosition().x, shipPos.y - getPosition().y);

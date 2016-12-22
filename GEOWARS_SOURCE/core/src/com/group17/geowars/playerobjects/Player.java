@@ -7,6 +7,7 @@ package com.group17.geowars.playerobjects;
 
 import com.badlogic.gdx.controllers.Controller;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.math.Vector2;
 import com.group17.geowars.gameobjects.playerObjects.Drone;
 import com.group17.geowars.gameobjects.GOInterface;
 import com.group17.geowars.gameobjects.playerObjects.Ship;
@@ -21,6 +22,7 @@ public class Player implements GOInterface {
     private Ship ship;
     private Drone drone;
     private PlayerInput playerInput;
+    private Vector2 playerTextpos;
 
     private int score = 0;
     public int getScore()
@@ -33,6 +35,7 @@ public class Player implements GOInterface {
     {
         setController(c);
         name = naam;
+        playerTextpos=new Vector2(0,0);
     }
     public void setShip(Ship ship) {
         this.ship = ship;
@@ -40,6 +43,14 @@ public class Player implements GOInterface {
 
     public void setDrone(Drone drone) {
         this.drone = drone;
+    }
+
+    public Vector2 getPlayerTextpos() {
+        return playerTextpos;
+    }
+
+    public void setPlayerTextpos(Vector2 playerTextpos) {
+        this.playerTextpos = playerTextpos;
     }
 
     public PlayerInput getPlayerInput()

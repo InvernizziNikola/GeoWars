@@ -26,6 +26,7 @@ import com.group17.geowars.playerobjects.Player;
 import com.group17.geowars.screens.MenuScreen;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 
 /**
@@ -58,6 +59,7 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
     protected int popuptextTime;
     protected Vector2 popUpTextPos;
 
+
     protected boolean canShoot = true;
     protected float timer = 0;
 
@@ -77,12 +79,14 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
         super(pos);
         fireDelay = 0.15f;
         speed = 450;
-        maxHp=1;
+        maxHp = 1;
+        shipColor = new Color(0.8f, new Random().nextFloat(), new Random().nextFloat(), 1);
 
         //font = new BitmapFont();
-                FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/Guardians.ttf"));
+        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/Guardians.ttf"));
         FreeTypeFontParameter parameter = new FreeTypeFontParameter();
         parameter.size = 15;
+        parameter.color = shipColor;
         font = generator.generateFont(parameter); // font size 12 pixels
         generator.dispose();
 
@@ -96,17 +100,17 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
 
         texture = Managers.getAssetManager().getTexture(type);
         shipSprite = new Sprite(texture, texture.getWidth(), texture.getHeight());
-        shipColor= new Color(0.8f, 0.8f, 0, 1);
+
 
         Texture texture2 = Managers.getAssetManager().getTexture("shield");
         shield = new Sprite(texture2, texture.getWidth(), texture.getHeight());
-        shieldColor= new Color(new Color(0.1f, 0.8f, 0, 0.5f));
+        shieldColor = new Color(new Color(0.1f, 0.8f, 0, 0.5f));
 
-        Texture greenHptexture=Managers.getAssetManager().getTexture("Nikoala_2");
-        greenHp = new Sprite(greenHptexture,100,20);
-        red=new Color(1,0,0,1);
-        redHp = new Sprite(greenHptexture,100,20);
-        green= new Color(0,1,0,1);
+        Texture greenHptexture = Managers.getAssetManager().getTexture("Nikoala_2");
+        greenHp = new Sprite(greenHptexture, 100, 20);
+        red = new Color(1, 0, 0, 1);
+        redHp = new Sprite(greenHptexture, 100, 20);
+        green = new Color(0, 1, 0, 1);
     }
 
     public Sprite getShipSprite() {
@@ -125,7 +129,7 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
     }
 
     public void handleHit(int damage) {
-        hp-=damage;
+        hp -= damage;
         multiplier = 0;
         if (hp < 1) {
 
@@ -140,11 +144,11 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
 
     public void handlePickedUp(Geom geom) {
         exp += geom.getLoot().getExperience();
-        int newlevel= (exp / (100));
-        if (newlevel>level)
-        {popuptext="Leveled up to:  "+newlevel;
+        int newlevel = (exp / (100));
+        if (newlevel > level) {
+            popuptext = "Leveled up to:  " + newlevel;
             popuptextTime = 50;
-            popUpTextPos= geom.getPosition();
+            popUpTextPos = geom.getPosition();
         }
         level = newlevel;
         multiplier += geom.getLoot().getMultiplier();
@@ -164,7 +168,7 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
         }
         popuptext = pow.getText();
         popuptextTime = 50;
-        popUpTextPos=pow.getPosition();
+        popUpTextPos = pow.getPosition();
 
     }
 
@@ -174,12 +178,12 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
         if (speed < 700) {
             speed += p.getSpeed();
         }
-        maxHp+=p.getExtraHp();
+        maxHp += p.getExtraHp();
         hp += p.getExtraHp();
     }
 
-    public void handleEnemyCrash(Enemy enemy){
-        hp-=enemy.getHp();
+    public void handleEnemyCrash(Enemy enemy) {
+        hp -= enemy.getHp();
         //kan even nie dood
         multiplier = 0;
         if (hp < 1) {
@@ -190,6 +194,11 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
         }
         enemy.handleDead(enemy);
     }
+
+    public Color getShipColor() {
+        return shipColor;
+    }
+
 
     public void nuke() {
         Managers.getBulletManager().clearAll();
@@ -206,14 +215,13 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
         shipSprite.draw(batch);
 
         greenHp.setColor(green);
-        greenHp.setSize((int)(50*(float)hp/maxHp),5);
-        greenHp.setPosition(position.x-20, position.y + 30);
+        greenHp.setSize((int) (50 * (float) hp / maxHp), 5);
+        greenHp.setPosition(position.x - 20, position.y + 30);
         redHp.setColor(red);
-        redHp.setSize(50,5);
-        redHp.setPosition(position.x-20, position.y + 30);
+        redHp.setSize(50, 5);
+        redHp.setPosition(position.x - 20, position.y + 30);
         redHp.draw(batch);
         greenHp.draw(batch);
-
 
 
         shield.setColor(shieldColor);
@@ -222,13 +230,15 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
         shield.setPosition(position.x - 40, position.y - 40);
         shield.draw(batch);
         if (!popuptext.equals("")) {
-            font.draw(batch, popuptext, popUpTextPos.x, popUpTextPos.y+popuptextTime*2);
-            if (popuptextTime<= 0) {
+            font.draw(batch, popuptext, popUpTextPos.x, popUpTextPos.y + popuptextTime * 2);
+
+            if (popuptextTime <= 0) {
                 popuptext = "";
             }
             popuptextTime--;
         }
-        font.draw(batch, "speler: score " + score + " multiplier= " + multiplier + "    Shiplevel= " + level + "   HP= "+hp, 10, 20);
+        font.draw(batch, "speler: score " + score + " multiplier= " + multiplier + "    Shiplevel= " + level + "   HP= " + hp, player.getPlayerTextpos().x, player.getPlayerTextpos().y);
+        //System.out.println(player.getPlayerTextpos());
     }
 
     @Override

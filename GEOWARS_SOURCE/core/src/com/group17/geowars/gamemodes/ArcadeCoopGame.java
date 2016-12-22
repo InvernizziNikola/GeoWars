@@ -32,9 +32,11 @@ public class ArcadeCoopGame extends SoloGame implements iGame {
 
             Ship s = new DestroyerShip(spawnPoint);
             p.setShip(s);
+            s.setPlayer(p);
 
             Drone d = new DefenceDrone(spawnPoint); // TODO doesnt need accoutn as parameter
             p.setDrone(d);
+            d.setPlayer(p);
             count++;
         }
     }
