@@ -70,31 +70,31 @@ public abstract class Enemy extends GameObject implements GOInterface {
         }
         */
 
-    public void handleDead(Enemy e, Bullet b) {
+    public void handleDead(Enemy e) {
 
         float c =(float)hp/maxHp ;
-        System.out.println(c);
+
         setColor(new Color((1-c),0,c,1));
         //color = new Color(0, 0, 1, 1);
         if(hp<1) {
             int lootId = 1;
             Geom g = new Geom(lootId, position);
             Managers.getGeomManager().addGeom(g);
-            int i = new Random().nextInt(100);
+            int i = new Random().nextInt(300);
             //dropPowerUp
-            if (i > 98) {
+            if (i > 298) {
                 PowerUp p = new PowerUp_Nuke(position);
                 Managers.getpowerUpManager().addPowerUp(p);
                 return;
             }
-            if (i>50){
+            if (i>295){
                 PowerUp p = new Power_UpPassive(position);
                 Managers.getpowerUpManager().addPowerUp(p);
                 return;
             }
             Managers.getEnemyManager().remove(e);
         }
-        Managers.getBulletManager().remove(b);
+
         hp--;
 /*
         pe = new ParticleEffect();
@@ -103,6 +103,10 @@ public abstract class Enemy extends GameObject implements GOInterface {
         pe.start();
 */
 }
+
+    public int getHp() {
+        return hp;
+    }
 
     public Sprite getSprite() {
         return sprite;

@@ -23,6 +23,13 @@ public class Account {
 
     public List<Profile> profiles;
 
+    public boolean main = false;
+    private Player player;
+    public Player getPlayer()
+    {
+        return player;
+    }
+    public void setPlayer(Player p) {player = p; }
     private Controller controller;
 
     public void setController(Controller c)

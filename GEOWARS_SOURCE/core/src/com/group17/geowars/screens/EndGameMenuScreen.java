@@ -2,20 +2,16 @@ package com.group17.geowars.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.group17.geowars.GeoWars;
-import com.group17.geowars.database.Threads.HighScoreMenuThread;
-import com.group17.geowars.database.Threads.SaveScoreToDBThread;
 import com.group17.geowars.managers.Managers;
+import com.group17.geowars.playerobjects.Account;
 import com.group17.geowars.utils.MenuGrid;
-import com.group17.geowars.utils.GAMESTATE;
 /**
  * Created by michiel on 4/12/2016.
  */
@@ -25,10 +21,10 @@ public class EndGameMenuScreen extends MenuScreen implements iHasStage, iSetActi
     private Batch batch;
     private int width = GeoWars.WIDTH;
     private int height = GeoWars.HEIGHT;
-    private SaveScoreToDBThread SaveScoreThread;
-    private int Score = 0;
     private String GameMode;
     private String PlayerName;
+
+
     public EndGameMenuScreen()
     {
         super();
@@ -45,9 +41,9 @@ public class EndGameMenuScreen extends MenuScreen implements iHasStage, iSetActi
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 replayButton.setChecked(false);
-                //Managers.getGameManager().gameState = GAMESTATE.GAMEPLAYING;
-                //MenuScreen nextMenu = Managers.getScreenManager().getScreen("game");
-                //Managers.getScreenManager().setScreen(nextMenu);
+
+                Managers.getGameManager().resetGame();
+                Managers.getGameManager().newGame();
             }
         });
 
@@ -56,6 +52,7 @@ public class EndGameMenuScreen extends MenuScreen implements iHasStage, iSetActi
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 mainMenuButton.setChecked(false);
+                Managers.getGameManager().resetGame();
                 MenuScreen nextMenu = Managers.getScreenManager().getScreen("mainmenu");
                 Managers.getScreenManager().setScreen(nextMenu);
             }
@@ -66,48 +63,46 @@ public class EndGameMenuScreen extends MenuScreen implements iHasStage, iSetActi
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 shareScoreButton.setChecked(false);
+
+                Managers.getAccountManager().removeNonMainAccounts();
+                Managers.getGameManager().resetGame();
+
             }
         });
 
         text = new BitmapFont();
         text.setColor(Color.WHITE);
-
     }
 
     public void showText()
     {
-        Score = Managers.getGameManager().getScore();
-        text.draw(batch,"SCORE: " + Score, width/10, height/2+height/3); // TODO score and higscore need to be added
+        text.draw(batch,"Score:", width/10, height/2+height/3);
+
+        int count = 0;
+        for(Account a : Managers.getAccountManager().getAccounts())
+        {
+            text.draw(batch,a.name + ": " + a.getPlayer().getShip().getScore(), width/10, height/2 + height/3 + ++count*-20);
+        }
+
         text.draw(batch,"HIGH SCORE: ", width/10,height/2+height/4);
         text.draw(batch,"UPGRADES",width/2+width/20,height/2+height/3); //TODO level buttons need to be added
+
+        /*
         text.draw(batch,"GLASS CANON", 300,450);
         text.draw(batch,"BIG BULLETS", 300,375);
         text.draw(batch,"THICK SKIN",300,300);
         text.draw(batch,"EMP",300,225);
         text.draw(batch,"FAST BULLETS",300,150);
-
-
+        */
     }
-    public void setHighScore(String Playername,Integer Score,String Gamemode)
-    {
-        SaveScoreThread = new SaveScoreToDBThread(Playername,Score,Gamemode);
-        SaveScoreThread.start();
 
-    }
     @Override
     public void setActive() {
         if(active)
             return;
         active = true;
 
-        //TODO getGameMode
-        //TODO getPlayerName
-        GameMode = "Arcade";
-        PlayerName = "egoon";
-        Score = Managers.getGameManager().getScore();
-        System.out.println(Score);
 
-        setHighScore(PlayerName,Score,GameMode);
     }
 
     @Override
@@ -117,7 +112,6 @@ public class EndGameMenuScreen extends MenuScreen implements iHasStage, iSetActi
 
     @Override
     public void render(float delta) {
-
         super.render(delta);
 
         batch.begin();

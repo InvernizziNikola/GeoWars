@@ -67,7 +67,7 @@ public class PlayerManager {
     }
     public void reset()
     {
-        //players.clear();
+        players.clear();
     }
 }
 

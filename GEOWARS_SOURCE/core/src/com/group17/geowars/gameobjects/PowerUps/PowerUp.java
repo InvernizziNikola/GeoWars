@@ -24,7 +24,7 @@ public abstract class PowerUp extends GameObject implements GOInterface {
     private boolean destroy = false;
 
     public PowerUp(Vector2 pos, POWERUPTYPE type) {
-        super(pos);
+        super(new Vector2(pos));
         this.type=type;
 
     }

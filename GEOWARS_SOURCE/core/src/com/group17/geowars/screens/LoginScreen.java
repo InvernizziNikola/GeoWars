@@ -126,7 +126,8 @@ public class LoginScreen extends MenuScreen implements iHasStage, iSetActive {
                 System.out.println(loggedIn);
                 if(loggedIn)
                 {
-                    Managers.getAccountManager().createAccount(TxtUsername.getText());
+                    Managers.getAccountManager().createAccount(TxtUsername.getText()).main = true;
+
 
                     MenuScreen nextMenu = Managers.getScreenManager().getScreen("mainmenu");
                     Managers.getScreenManager().setScreen(nextMenu);

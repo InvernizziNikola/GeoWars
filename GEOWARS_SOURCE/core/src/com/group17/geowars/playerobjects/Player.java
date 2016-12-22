@@ -22,6 +22,13 @@ public class Player implements GOInterface {
     private Drone drone;
     private PlayerInput playerInput;
 
+    private int score = 0;
+    public int getScore()
+    {
+        return score;
+    }
+
+
     public Player(String naam, Controller c)
     {
         setController(c);

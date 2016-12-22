@@ -12,6 +12,7 @@ public class Power_UpPassive extends PowerUp {
 
     private float fireDelay;
     private int extraHp;
+    private int speed;
 
     public Power_UpPassive(Vector2 pos) {
         super(pos,POWERUPTYPE.PASSIVE);
@@ -19,12 +20,22 @@ public class Power_UpPassive extends PowerUp {
         //this.fireRate = fireRate;
         //this.extraHp = extraHp;
         fireDelay=1.2f;
+        extraHp=2;
+        speed=50;
         color= new Color(0.8f, 0.8f,0,0.6f);
-        texture = Managers.getAssetManager().getTexture("dfdgsdgsd");
+        texture = Managers.getAssetManager().getTexture("itsagem:)");
         sprite = new Sprite(texture, texture.getWidth(), texture.getHeight());
     }
 
     public float getFireDelay() {
         return fireDelay;
+    }
+
+    public int getExtraHp() {
+        return extraHp;
+    }
+
+    public int getSpeed() {
+        return speed;
     }
 }

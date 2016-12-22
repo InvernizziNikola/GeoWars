@@ -6,20 +6,25 @@
 package com.group17.geowars.gameobjects.playerObjects;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.controllers.Controller;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.Array;
 import com.group17.geowars.GeoWars;
 import com.group17.geowars.gameobjects.*;
 import com.group17.geowars.gameobjects.PowerUps.POWERUPTYPE;
 import com.group17.geowars.gameobjects.PowerUps.PowerUp;
 import com.group17.geowars.gameobjects.PowerUps.Power_UpPassive;
+import com.group17.geowars.gameobjects.hostileObjects.Enemy;
 import com.group17.geowars.managers.Managers;
 import com.group17.geowars.playerobjects.Player;
 import com.group17.geowars.screens.MenuScreen;
+
+import java.util.ArrayList;
 
 
 /**
@@ -40,6 +45,9 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
     protected float fireDelay;
     protected int speed;
     protected Player player;
+    protected ArrayList<PowerUp> powerups;
+    protected String popuptext = ""; //text om af te beelden na en pickup enz
+    protected int popuptextTime;
 
     protected boolean canShoot = true;
     protected float timer = 0;
@@ -90,17 +98,14 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
         }
     }
 
-    public void handleHit() {
-        hp--;
+    public void handleHit(int damage) {
+        hp-=damage;
         multiplier = 0;
-        System.out.print(hp);
         if (hp < 1) {
 
             setDead();
 
-            Managers.getGameManager().setEndScore(getScore());
-            // Managers.getGameManager().gameState = GAMESTATE.MENU;
-            Managers.getGameManager().resetGame();
+            Managers.getGameManager().endGame();
 
             MenuScreen mainmenu = Managers.getScreenManager().getScreen("endgamemenu");
             Managers.getScreenManager().setScreen(mainmenu);
@@ -116,24 +121,43 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
 
     public void handlePickedUp(PowerUp pow) {
         POWERUPTYPE x = pow.getType();
-        System.out.println(x);
         switch (x) {
 
             case NUKE:
-                System.out.println("nuke");
+                popuptext = "Boom";
+
+
                 Managers.getEnemyManager().clearAll();
                 break;
             case PASSIVE:
-                System.out.println("passive");
+                popuptext = "passive";
                 handlePassivePow(pow);
                 break;
         }
+        popuptextTime = 20;
 
     }
 
     public void handlePassivePow(PowerUp pow) {
-        Power_UpPassive p =(Power_UpPassive) pow;
-        fireDelay/=p.getFireDelay();
+        Power_UpPassive p = (Power_UpPassive) pow;
+        fireDelay /= p.getFireDelay();
+        if (speed < 700) {
+            speed += p.getSpeed();
+        }
+        hp += p.getExtraHp();
+    }
+
+    public void handleEnemyCrash(Enemy enemy){
+        hp-=enemy.getHp();
+        //kan even nie dood
+        multiplier = 0;
+        if (hp < 1) {
+            setDead();
+            Managers.getGameManager().endGame();
+            MenuScreen mainmenu = Managers.getScreenManager().getScreen("endgamemenu");
+            Managers.getScreenManager().setScreen(mainmenu);
+        }
+        enemy.handleDead(enemy);
     }
 
     public void nuke() {
@@ -156,9 +180,14 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
         shield.setOrigin(40, 40);
         shield.setPosition(position.x - 40, position.y - 40);
         shield.draw(batch);
-
-
-        font.draw(batch, "speler: score " + score + " multiplier= " + multiplier + "    level= " + level, 10, 20);
+        if (!popuptext.equals("")) {
+            font.draw(batch, popuptext, GeoWars.WIDTH / 2, GeoWars.HEIGHT / 2);
+            if (popuptextTime == 0) {
+                popuptext = "";
+            }
+            popuptextTime--;
+        }
+        font.draw(batch, "speler: score " + score + " multiplier= " + multiplier + "    level= " + level + "HP="+hp, 10, 20);
     }
 
     @Override

@@ -20,8 +20,6 @@ import java.util.ArrayList;
 public class ProfileMenuScreen extends MenuScreen implements iHasStage, iSetActive {
     private BitmapFont text;
     private Batch batch;
-    private int width = GeoWars.WIDTH;
-    private int height = GeoWars.HEIGHT;
     private ProfileThread ProfileThread;
     private ArrayList PlayerProfile;
     private ArrayList PlayerHighscore;
@@ -42,10 +40,14 @@ public class ProfileMenuScreen extends MenuScreen implements iHasStage, iSetActi
         batch = new SpriteBatch();
         text = new BitmapFont();
         text.setColor(Color.WHITE);
+    }
 
+<<<<<<< HEAD
 
     }
 
+=======
+>>>>>>> origin/master
     public void createButtons()
     {
         final TextButton clanButton = newButton("CLANS", GeoWars.WIDTH / 10, GeoWars.HEIGHT / 3, 150, 50, new MenuGrid(0, 0));
@@ -79,10 +81,9 @@ public class ProfileMenuScreen extends MenuScreen implements iHasStage, iSetActi
             }
         });
     }
-
     public void showText() {
 
-        text.draw(batch, "GEOMETRYWARS", width / 2 - 70, height - height / 10);
+        text.draw(batch, "GEOMETRYWARS", GeoWars.WIDTH / 2 - 70, GeoWars.HEIGHT - GeoWars.HEIGHT / 10);
         //TODO values need to be inserted
       /*  text.draw(batch, "USERNAME", width / 2 - 50, height - height / 6);
         text.draw(batch, "HIGHSCORE ARCADE: ", width / 10, height - height / 3);
@@ -196,7 +197,11 @@ public class ProfileMenuScreen extends MenuScreen implements iHasStage, iSetActi
             showText();
             createButtons();
         }
+<<<<<<< HEAD
 
+=======
+        //setVals();
+>>>>>>> origin/master
         batch.end();
     }
 

@@ -20,6 +20,7 @@ public class Bullet extends GameObject implements GOInterface {
     public boolean destroy = false;
     private Color color;
     private int size;
+    protected int damage;
 
     private boolean isFriendly = true;
 
@@ -36,7 +37,7 @@ public class Bullet extends GameObject implements GOInterface {
         size=15;
         this.isFriendly =isFriendly;
         direction = dir.nor();// normalize just incase
-
+        damage=1;
         texture = Managers.getAssetManager().getTexture("bullet");
 
         sprite = new Sprite(texture, texture.getWidth(), texture.getHeight());
@@ -71,6 +72,11 @@ public class Bullet extends GameObject implements GOInterface {
 
         position.mulAdd(direction,speed * Gdx.graphics.getDeltaTime());
     }
+
+    public int getDamage() {
+        return damage;
+    }
+
     @Override
     public void update()
     {
