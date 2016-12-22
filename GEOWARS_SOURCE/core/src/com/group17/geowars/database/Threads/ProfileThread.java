@@ -48,12 +48,12 @@ public class ProfileThread implements Runnable {
 
         PlayerProfile = DBManager.getInstance().DBselectProfile(Name);
         PlayerHighscoreTemp = DBManager.getInstance().DBselectPlayersHighscore(Name);
+        System.out.println(PlayerHighscoreTemp);
         if (PlayerHighscoreTemp==null){
             PlayerHighscore = 0;
-        }else {PlayerHighscore = (Integer) PlayerHighscoreTemp.get(0);
+        }else {PlayerHighscore = Integer.parseInt(PlayerHighscoreTemp.get(0).toString());
         }
         PlayerCampaignLvl = DBManager.getInstance().DBselectCampainLvl(Name);
-        System.out.println("testinprofile "+PlayerHighscore +" en "+PlayerCampaignLvl);
     }
 
     public ArrayList getPlayerProfile()

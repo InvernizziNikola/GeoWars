@@ -96,6 +96,7 @@ public class ScreenManager {
         menuList.put("upgrademenu", new UpgradeMenuScreen());
         menuList.put("shopmenu", new ShopMenuScreen());
         menuList.put("coopmenu", new CoopMenuScreen());
+        menuList.put("guestErrorScreen", new GuestErrorScreen());
         setScreen(StartScreen);
     }
 
