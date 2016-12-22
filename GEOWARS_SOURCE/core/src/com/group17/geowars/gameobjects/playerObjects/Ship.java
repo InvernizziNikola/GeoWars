@@ -11,6 +11,9 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
+import com.badlogic.gdx.graphics.g2d.freetype.FreetypeFontLoader;
 import com.badlogic.gdx.math.Vector2;
 import com.group17.geowars.GeoWars;
 import com.group17.geowars.gameobjects.*;
@@ -53,6 +56,7 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
     protected ArrayList<PowerUp> powerups;
     protected String popuptext = ""; //text om af te beelden na en pickup enz
     protected int popuptextTime;
+    protected Vector2 popUpTextPos;
 
     protected boolean canShoot = true;
     protected float timer = 0;
@@ -74,13 +78,21 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
         fireDelay = 0.15f;
         speed = 450;
         maxHp=1;
-        font = new BitmapFont();
+
+        //font = new BitmapFont();
+                FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/Guardians.ttf"));
+        FreeTypeFontParameter parameter = new FreeTypeFontParameter();
+        parameter.size = 15;
+        font = generator.generateFont(parameter); // font size 12 pixels
+        generator.dispose();
+
         score = 0;
         multiplier = 0;
         level = 1;
-        exp = 1001;
+        exp = 101;
         dead = false;
         this.type = type;
+
 
         texture = Managers.getAssetManager().getTexture(type);
         shipSprite = new Sprite(texture, texture.getWidth(), texture.getHeight());
@@ -128,7 +140,13 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
 
     public void handlePickedUp(Geom geom) {
         exp += geom.getLoot().getExperience();
-        level = (exp / (1000));
+        int newlevel= (exp / (100));
+        if (newlevel>level)
+        {popuptext="Leveled up to:  "+newlevel;
+            popuptextTime = 50;
+            popUpTextPos= geom.getPosition();
+        }
+        level = newlevel;
         multiplier += geom.getLoot().getMultiplier();
         score += (geom.getLoot().getScorePoints()) * multiplier;
     }
@@ -138,17 +156,15 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
         switch (x) {
 
             case NUKE:
-                popuptext = "Boom";
-
-
                 Managers.getEnemyManager().clearAll();
                 break;
             case PASSIVE:
-                popuptext = "passive";
                 handlePassivePow(pow);
                 break;
         }
-        popuptextTime = 20;
+        popuptext = pow.getText();
+        popuptextTime = 50;
+        popUpTextPos=pow.getPosition();
 
     }
 
@@ -158,6 +174,7 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
         if (speed < 700) {
             speed += p.getSpeed();
         }
+        maxHp+=p.getExtraHp();
         hp += p.getExtraHp();
     }
 
@@ -205,13 +222,13 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
         shield.setPosition(position.x - 40, position.y - 40);
         shield.draw(batch);
         if (!popuptext.equals("")) {
-            font.draw(batch, popuptext, GeoWars.WIDTH / 2, GeoWars.HEIGHT / 2);
-            if (popuptextTime == 0) {
+            font.draw(batch, popuptext, popUpTextPos.x, popUpTextPos.y+popuptextTime*2);
+            if (popuptextTime<= 0) {
                 popuptext = "";
             }
             popuptextTime--;
         }
-        font.draw(batch, "speler: score " + score + " multiplier= " + multiplier + "    level= " + level + "HP="+hp, 10, 20);
+        font.draw(batch, "speler: score " + score + " multiplier= " + multiplier + "    Shiplevel= " + level + "   HP= "+hp, 10, 20);
     }
 
     @Override

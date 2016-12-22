@@ -16,6 +16,7 @@ public class Power_UpPassive extends PowerUp {
 
     public Power_UpPassive(Vector2 pos) {
         super(pos,POWERUPTYPE.PASSIVE);
+        text="fireDelay-- \n"+"hp++ \n"+"speed++ \n";
         //get out of DB ? DB.getpowerUP(type)
         //this.fireRate = fireRate;
         //this.extraHp = extraHp;

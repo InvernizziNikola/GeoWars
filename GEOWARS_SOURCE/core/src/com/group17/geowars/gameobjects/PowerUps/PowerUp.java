@@ -21,6 +21,7 @@ public abstract class PowerUp extends GameObject implements GOInterface {
     protected Sprite sprite;
     protected Color color;
     protected POWERUPTYPE type;
+    protected String text;
     private boolean destroy = false;
 
     public PowerUp(Vector2 pos, POWERUPTYPE type) {
@@ -44,6 +45,10 @@ public abstract class PowerUp extends GameObject implements GOInterface {
 
     public void setDestroy(boolean destroy) {
         this.destroy = destroy;
+    }
+
+    public String getText() {
+        return text;
     }
 
     @Override

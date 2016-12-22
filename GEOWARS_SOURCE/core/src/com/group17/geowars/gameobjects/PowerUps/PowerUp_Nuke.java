@@ -12,6 +12,7 @@ public class PowerUp_Nuke extends PowerUp {
 
     public PowerUp_Nuke(Vector2 pos) {
         super(pos,POWERUPTYPE.NUKE);
+        text="BOOM!!!";
         color= new Color(0.8f, 0.8f,0,0.6f);
         texture = Managers.getAssetManager().getTexture("powerup");
         sprite = new Sprite(texture, texture.getWidth(), texture.getHeight());
