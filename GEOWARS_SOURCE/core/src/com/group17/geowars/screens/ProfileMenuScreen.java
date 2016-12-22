@@ -41,13 +41,6 @@ public class ProfileMenuScreen extends MenuScreen implements iHasStage, iSetActi
         text = new BitmapFont();
         text.setColor(Color.WHITE);
     }
-
-<<<<<<< HEAD
-
-    }
-
-=======
->>>>>>> origin/master
     public void createButtons()
     {
         final TextButton clanButton = newButton("CLANS", GeoWars.WIDTH / 10, GeoWars.HEIGHT / 3, 150, 50, new MenuGrid(0, 0));
@@ -197,11 +190,6 @@ public class ProfileMenuScreen extends MenuScreen implements iHasStage, iSetActi
             showText();
             createButtons();
         }
-<<<<<<< HEAD
-
-=======
-        //setVals();
->>>>>>> origin/master
         batch.end();
     }
 
