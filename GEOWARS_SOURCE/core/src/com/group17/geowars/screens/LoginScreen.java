@@ -1,7 +1,6 @@
 package com.group17.geowars.screens;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
@@ -31,7 +30,8 @@ public class LoginScreen extends MenuScreen implements iHasStage, iSetActive {
     private Label errorlable;
     private ArrayList Player;
     private String PlayerName;
-    protected Sound sound;
+    private TextField username;
+    private TextField password;
 
     private LoginThread LT;
 
@@ -40,13 +40,11 @@ public class LoginScreen extends MenuScreen implements iHasStage, iSetActive {
     public LoginScreen() {
         super();
         create();
-        sound = Gdx.audio.newSound(Gdx.files.internal("sounds/b.mp3"));
-        sound.play(1.0f);
     }
 
     public void Buttons() {
 
-       final TextButton backButton = newButton("continue", width/2-75, height/6, 150, 50, new MenuGrid(0, 1));
+        final TextButton backButton = newButton("continue", width/2-75, height/6, 150, 50, new MenuGrid(0, 1));
 
         /*--------------EVENT HANDLER--------------------------*/
         backButton.addListener(new ChangeListener() {
@@ -62,39 +60,21 @@ public class LoginScreen extends MenuScreen implements iHasStage, iSetActive {
         //skin and style
         stage.clear();
         Buttons();
-        skin = new Skin();
-        Pixmap pixmap = new Pixmap(200, 50, Pixmap.Format.RGBA8888);
-        pixmap.setColor(Color.WHITE);
-        pixmap.fill();
-        skin.add("white", new Texture(pixmap));
-        BitmapFont font = new BitmapFont();
-        TextField.TextFieldStyle txtStyle = new TextField.TextFieldStyle();
-        TextField.TextFieldStyle txtStylePassword = new TextField.TextFieldStyle();
-        txtStyle.fontColor = Color.WHITE;
-        txtStyle.font = font;
-        Label.LabelStyle style = new Label.LabelStyle();
-        style.font = font;
+        Label errorlable = new Label("", style());
 
 
-        TxtUsername = new TextField("", txtStyle);
-        TxtPassword = new TextField("", txtStyle);
-        TxtUsername.setMessageText("type username here");
-        TxtPassword.setMessageText("type password here");
-        TxtPassword.setPasswordMode(true);
-        TxtPassword.setPasswordCharacter('*');
-
-
-        Label errorlable = new Label("", style);
-
+        this.username = newTextField();
+        this.password = newPwField();
         table = new Table();
         table.setFillParent(true);
         table.add(errorlable);
         table.row();
-        table.add(new Label("Username", style)).width(200);
-        table.add(TxtUsername).width(200);
+
+        table.add(new Label("Username", style())).width(200);
+        table.add(username).width(200);
         table.row();
-        table.add(new Label("Password", style)).width(200);
-        table.add(TxtPassword).width(200);
+        table.add(new Label("Password", style())).width(200);
+        table.add(password).width(200);
         table.row();
 
         final TextButton loginButton = newButton("Login",GeoWars.WIDTH/2-100, GeoWars.HEIGHT-GeoWars.HEIGHT/4, 200, 75, new MenuGrid(0, 0));
@@ -103,15 +83,15 @@ public class LoginScreen extends MenuScreen implements iHasStage, iSetActive {
             public void changed(ChangeEvent event, Actor actor) {
 
                 loginButton.setChecked(false);
-                System.out.println("username: "+ TxtUsername.getText()+" Password: "+TxtPassword.getText());
+                System.out.println("username: "+ username.getText()+" Password: "+password.getText());
                 //getLogin(TxtUsername.getText(),TxtPassword.getText());
-                TxtPassword.setDisabled(true);
-                TxtUsername.setDisabled(true);
+                password.setDisabled(true);
+                username.setDisabled(true);
                 if(loading)
                     return;
                 loading = true;
                 System.out.println("Login button pressed");
-                LT = new LoginThread(TxtUsername.getText(),TxtPassword.getText());
+                LT = new LoginThread(username.getText(),password.getText());
                 LT.start();
             }
         });
@@ -130,14 +110,14 @@ public class LoginScreen extends MenuScreen implements iHasStage, iSetActive {
                 System.out.println(loggedIn);
                 if(loggedIn)
                 {
-                    Managers.getAccountManager().createAccount(TxtUsername.getText()).main = true;
+                    Managers.getAccountManager().createAccount(username.getText()).main = true;
 
 
                     MenuScreen nextMenu = Managers.getScreenManager().getScreen("mainmenu");
                     Managers.getScreenManager().setScreen(nextMenu);
                 }
-                TxtPassword.setDisabled(false);
-                TxtUsername.setDisabled(false);
+                password.setDisabled(false);
+                username.setDisabled(false);
             }
             else{
                 showLoading();
@@ -153,7 +133,7 @@ public class LoginScreen extends MenuScreen implements iHasStage, iSetActive {
         batch.end();
     }
     public void setPlayername(){
-       PlayerName = TxtUsername.getText();
+        PlayerName = TxtUsername.getText();
         //TODO SET Username
 
     }
