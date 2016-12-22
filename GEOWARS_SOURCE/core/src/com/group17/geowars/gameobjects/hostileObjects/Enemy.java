@@ -70,7 +70,7 @@ public abstract class Enemy extends GameObject implements GOInterface {
         }
         */
 
-    public void handleDead(Enemy e, Bullet b) {
+    public void handleDead(Enemy e) {
 
         float c =(float)hp/maxHp ;
 
@@ -94,7 +94,7 @@ public abstract class Enemy extends GameObject implements GOInterface {
             }
             Managers.getEnemyManager().remove(e);
         }
-        Managers.getBulletManager().remove(b);
+
         hp--;
 /*
         pe = new ParticleEffect();
@@ -103,6 +103,10 @@ public abstract class Enemy extends GameObject implements GOInterface {
         pe.start();
 */
 }
+
+    public int getHp() {
+        return hp;
+    }
 
     public Sprite getSprite() {
         return sprite;

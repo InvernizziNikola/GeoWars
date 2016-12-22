@@ -19,6 +19,7 @@ import com.group17.geowars.gameobjects.*;
 import com.group17.geowars.gameobjects.PowerUps.POWERUPTYPE;
 import com.group17.geowars.gameobjects.PowerUps.PowerUp;
 import com.group17.geowars.gameobjects.PowerUps.Power_UpPassive;
+import com.group17.geowars.gameobjects.hostileObjects.Enemy;
 import com.group17.geowars.managers.Managers;
 import com.group17.geowars.playerobjects.Player;
 import com.group17.geowars.screens.MenuScreen;
@@ -97,8 +98,8 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
         }
     }
 
-    public void handleHit() {
-        hp--;
+    public void handleHit(int damage) {
+        hp-=damage;
         multiplier = 0;
         if (hp < 1) {
 
@@ -146,6 +147,19 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
         hp += p.getExtraHp();
     }
 
+    public void handleEnemyCrash(Enemy enemy){
+        hp-=enemy.getHp();
+        //kan even nie dood
+        multiplier = 0;
+        if (hp < 1) {
+            setDead();
+            Managers.getGameManager().endGame();
+            MenuScreen mainmenu = Managers.getScreenManager().getScreen("endgamemenu");
+            Managers.getScreenManager().setScreen(mainmenu);
+        }
+        enemy.handleDead(enemy);
+    }
+
     public void nuke() {
         Managers.getBulletManager().clearAll();
     }
@@ -173,7 +187,7 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
             }
             popuptextTime--;
         }
-        font.draw(batch, "speler: score " + score + " multiplier= " + multiplier + "    level= " + level, 10, 20);
+        font.draw(batch, "speler: score " + score + " multiplier= " + multiplier + "    level= " + level + "HP="+hp, 10, 20);
     }
 
     @Override

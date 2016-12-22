@@ -18,6 +18,7 @@ public class ClusterBullet extends Bullet {
         setSize(30);
         isBoss = boss;
         speed = 125;
+        damage=5;
     }
 
     public ClusterBullet(Vector2 pos, Vector2 dir) {

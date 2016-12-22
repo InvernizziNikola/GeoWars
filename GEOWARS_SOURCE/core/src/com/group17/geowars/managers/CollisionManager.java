@@ -37,7 +37,7 @@ public class CollisionManager
 
                     if(distance.len() < 25) {
                         Managers.getBulletManager().remove(b);
-                        p.getShip().handleHit();
+                        p.getShip().handleHit(b.getDamage());
                     }
                 }
             }
@@ -47,10 +47,9 @@ public class CollisionManager
                     Vector2 distance = new Vector2(b.getPosition().x - e.getPosition().x, b.getPosition().y - e.getPosition().y);
                     if(distance.len() < e.getSize()/2 && !e.destroy &&!b.destroy)
                     {
-                        // System.out.println(distance);
-                        e.handleDead(e,b);
-                        //  Managers.getEnemyManager().remove(e);
-                        // Managers.getBulletManager().remove(b);
+                        e.handleDead(e);
+                        Managers.getBulletManager().remove(b);
+
                         break;
                     }
                 }
@@ -82,12 +81,13 @@ public class CollisionManager
                 Vector2 distance = new Vector2(playerPos.x - e.getPosition().x, playerPos.y - e.getPosition().y);
                 if (distance.len() < 25) {
 
-                    p.getShip().setDead();
+                    p.getShip().handleEnemyCrash(e);
+
 
                     //Managers.getGameManager().setEndScore(p.getShip().getScore());
                    // Managers.getGameManager().gameState = GAMESTATE.MENU;
 
-                    Managers.getGameManager().endGame();
+                    
                 }
             }
         }
