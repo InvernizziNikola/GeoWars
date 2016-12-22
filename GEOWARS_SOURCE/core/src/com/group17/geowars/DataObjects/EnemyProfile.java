@@ -1,4 +1,4 @@
-package com.group17.geowars.DataObjecten;
+package com.group17.geowars.DataObjects;
 
 import com.group17.geowars.utils.ENEMYTYPE;
 

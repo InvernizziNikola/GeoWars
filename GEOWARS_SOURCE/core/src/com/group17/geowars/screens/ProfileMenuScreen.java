@@ -125,12 +125,13 @@ public class ProfileMenuScreen extends MenuScreen implements iHasStage, iSetActi
 
         stage.addActor(table);
     }
+
     public void setData(){
         playerScore = PlayerHighscore.get(0).toString();
         playerName = Managers.getAccountManager().getAccounts().get(0).name.toString();
-        gamesPlayed=PlayerProfile.get(1).toString();;
-        hoursPlayed=PlayerProfile.get(2).toString();;
-        playerLvl=PlayerProfile.get(0).toString();;
+        gamesPlayed=PlayerProfile.get(1).toString();
+        hoursPlayed=PlayerProfile.get(2).toString();
+        playerLvl=PlayerProfile.get(0).toString();
         //currentShip=PlayerHighscore.get(0).toString();;
         //currentDrone=PlayerHighscore.get(0).toString();;
         currentShip = "Assault";
