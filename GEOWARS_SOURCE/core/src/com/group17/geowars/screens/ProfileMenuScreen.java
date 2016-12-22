@@ -22,7 +22,7 @@ public class ProfileMenuScreen extends MenuScreen implements iHasStage, iSetActi
     private Batch batch;
     private ProfileThread ProfileThread;
     private ArrayList PlayerProfile;
-    private ArrayList PlayerHighscore;
+    private Integer PlayerHighscore;
     private ArrayList PlayerCampaignLvl;
     private Table table;
     private String playerName,playerScore,gamesPlayed,hoursPlayed,playerLvl,currentShip,currentDrone;
@@ -127,9 +127,10 @@ public class ProfileMenuScreen extends MenuScreen implements iHasStage, iSetActi
     }
 
     public void setData(){
-        playerScore = PlayerHighscore.get(0).toString();
+        playerScore = PlayerHighscore.toString();
         playerName = Managers.getAccountManager().getAccounts().get(0).name.toString();
         gamesPlayed=PlayerProfile.get(1).toString();
+        //will come from steam
         hoursPlayed=PlayerProfile.get(2).toString();
         playerLvl=PlayerProfile.get(0).toString();
         //currentShip=PlayerHighscore.get(0).toString();;
@@ -163,6 +164,7 @@ public class ProfileMenuScreen extends MenuScreen implements iHasStage, iSetActi
         //TODO playername ophalen
 
         ProfileThread = new ProfileThread(Managers.getAccountManager().getAccounts().get(0).name.toString());
+
         ProfileThread.start();
     }
 
@@ -172,6 +174,7 @@ public class ProfileMenuScreen extends MenuScreen implements iHasStage, iSetActi
         super.render(delta);
         batch.begin();
         if (ProfileThread != null && ProfileThread.finished()) {
+
             PlayerProfile = ProfileThread.getPlayerProfile();
             PlayerHighscore = ProfileThread.getPlayerHighscore();
             PlayerCampaignLvl = ProfileThread.getPlayersCampaignLvl();
