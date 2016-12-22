@@ -34,7 +34,7 @@ public class LevelManager {
 
         warpGates = new ArrayList<WarpGate>();
         currentwave = 1;
-        currentLevel = 0;
+        currentLevel = 1;
     }
     public void init()
     {
@@ -58,6 +58,7 @@ public class LevelManager {
 
         while(points > 0)
         {
+            System.out.println(points);
             EnemyProfile ep = enemyProfiles.get(rand.nextInt(enemyProfiles.size()));
             if(ep.type != ENEMYTYPE.BOSS)
             {
