@@ -114,7 +114,6 @@ public class HighScoreMenuScreen extends MenuScreen implements iHasStage, iSetAc
 
         stage.clear();
         Buttons();
-        //TODO change width
         skin = new Skin();
         skin1 = new Skin();
         Pixmap pixmap = new Pixmap(200, 50, Pixmap.Format.RGBA8888);

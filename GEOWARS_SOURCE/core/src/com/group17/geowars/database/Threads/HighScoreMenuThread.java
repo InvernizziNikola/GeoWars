@@ -37,11 +37,12 @@ public class HighScoreMenuThread implements Runnable {
     {
         return data;
     }
-
+    Integer i = 0;
     public boolean finished()
     {
-        if(data != null)
+        if(data != null||i>300)
             return true;
+        i++;
         return false;
     }
 }

@@ -8,13 +8,13 @@ import com.badlogic.gdx.controllers.Controllers;
 import com.badlogic.gdx.controllers.PovDirection;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.scenes.scene2d.EventListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
@@ -223,7 +223,6 @@ public class MenuScreen implements Screen {
         return line;
     }
 
-
     protected Sprite newImage(String name, int width, int height, int xpos, int ypos)
     {
         Texture tempImg = Managers.getAssetManager().getTexture(name);
@@ -245,7 +244,54 @@ public class MenuScreen implements Screen {
         return background;
     }
 
+    protected TextField newTextField()
+    {
+        Skin skin = new Skin();
+        Pixmap pixmap = new Pixmap(200, 50, Pixmap.Format.RGBA8888);
+        pixmap.setColor(Color.WHITE);
+        pixmap.fill();
+        skin.add("white", new Texture(pixmap));
+        BitmapFont font = new BitmapFont();
+        TextField.TextFieldStyle txtStyle = new TextField.TextFieldStyle();
+        txtStyle.fontColor = Color.WHITE;
+        txtStyle.font = font;
+        Label.LabelStyle style = new Label.LabelStyle();
+        style.font = font;
 
+        TextField TxtUsername = new TextField("", txtStyle);
+        TxtUsername.setMessageText("type username here");
+
+        return TxtUsername;
+    }
+
+    protected Label.LabelStyle style()
+    {
+        BitmapFont font = new BitmapFont();
+        Label.LabelStyle style = new Label.LabelStyle();
+        style.font = font;
+        return style;
+    }
+
+    protected TextField newPwField()
+    {
+        Skin skin = new Skin();
+        Pixmap pixmap = new Pixmap(200, 50, Pixmap.Format.RGBA8888);
+        pixmap.setColor(Color.WHITE);
+        pixmap.fill();
+        skin.add("white", new Texture(pixmap));
+        BitmapFont font = new BitmapFont();
+        TextField.TextFieldStyle txtStyle = new TextField.TextFieldStyle();
+        txtStyle.fontColor = Color.WHITE;
+        txtStyle.font = font;
+        Label.LabelStyle style = new Label.LabelStyle();
+        style.font = font;
+
+        TextField TxtPw = new TextField("", txtStyle);
+        TxtPw.setMessageText("type password here");
+        TxtPw.setPasswordMode(true);
+        TxtPw.setPasswordCharacter('*');
+        return TxtPw;
+    }
     public Stage getStage() {
         return stage;
     }

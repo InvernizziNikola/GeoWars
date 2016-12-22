@@ -45,11 +45,12 @@ public class ShopThread implements Runnable {
 
         return dataDrones;
     }
-
+    Integer i = 0;
     public boolean finished()
     {
-        if(dataDrones != null && dataShips !=null)
+        if(dataDrones != null && dataShips !=null||i>300)
             return true;
+        i++;
         return false;
     }
 }

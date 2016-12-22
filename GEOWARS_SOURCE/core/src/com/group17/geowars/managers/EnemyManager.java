@@ -24,8 +24,6 @@ public class EnemyManager implements GOInterface {
     private List<Enemy> enemies;
     private List<Enemy> toRemove;
 
-
-
     public EnemyManager() {
 
         LET = new LoadEnemyThread();
@@ -35,9 +33,7 @@ public class EnemyManager implements GOInterface {
         toRemove = new LinkedList<Enemy>();
     }
 
-    public void init() {
-        newEnemyList(0);
-    }
+    public void init() { }
     public void addEnemy(Enemy e)
     {
         enemies.add(e);
@@ -71,31 +67,6 @@ public class EnemyManager implements GOInterface {
         }
     }
 
-    public void newEnemyList(int currentWave) {
-
-        /*if (Managers.getLevelManager().getCurrentwave() == 2) {
-            List<Vector2> spawnlist = Managers.getLevelManager().getSpawnLocations();
-            enemies.add(new DreadnoughtBoss(spawnlist.get(new Random().nextInt(spawnlist.size() - 1))));
-        } else {
-            for (int i = Managers.getLevelManager().getWaveList().get(currentWave); i > 0; i--) {
-
-                List<Vector2> spawnlist = Managers.getLevelManager().getSpawnLocations();
-                //Managers.getLevelManager().getEnemies().get(new Random().nextInt(Managers.getLevelManager().getEnemies().size()))
-                int randomHackval = new Random().nextInt(10);
-
-                if (randomHackval <= 3) {
-                    enemies.add(new ScoutEnemy(spawnlist.get(new Random().nextInt(spawnlist.size() - 1))));
-                } else {
-                    if (randomHackval > 3 && randomHackval <= 8) {
-                        enemies.add(new SuicideUnitEnemy(spawnlist.get(new Random().nextInt(spawnlist.size() - 1))));
-                    } else {
-                        enemies.add(new DreadnoughtEnemy(spawnlist.get(new Random().nextInt(spawnlist.size() - 1))));
-                    }
-                }
-            }
-        }*/
-    }
-
     public List<Enemy> getEnemies() {
         return enemies;
     }
@@ -114,7 +85,7 @@ public class EnemyManager implements GOInterface {
     }
 
     public void reset() {
-        enemies.clear();
+        clearAll();
         toRemove.clear();
     }
 
@@ -125,7 +96,6 @@ public class EnemyManager implements GOInterface {
         for (Enemy e : enemies) {
             e.update();
         }
-
         enemies.removeAll(toRemove);
         toRemove.clear();
     }
