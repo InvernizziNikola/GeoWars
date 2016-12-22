@@ -30,6 +30,8 @@ public class LoginScreen extends MenuScreen implements iHasStage, iSetActive {
     private Label errorlable;
     private ArrayList Player;
     private String PlayerName;
+    private TextField username;
+    private TextField password;
 
     private LoginThread LT;
 
@@ -61,8 +63,8 @@ public class LoginScreen extends MenuScreen implements iHasStage, iSetActive {
         Label errorlable = new Label("", style());
 
 
-        final TextField username = newTextField();
-        final TextField password = newPwField();
+        this.username = newTextField();
+        this.password = newPwField();
         table = new Table();
         table.setFillParent(true);
         table.add(errorlable);
@@ -81,15 +83,15 @@ public class LoginScreen extends MenuScreen implements iHasStage, iSetActive {
             public void changed(ChangeEvent event, Actor actor) {
 
                 loginButton.setChecked(false);
-                System.out.println("username: "+ TxtUsername.getText()+" Password: "+TxtPassword.getText());
+                System.out.println("username: "+ username.getText()+" Password: "+password.getText());
                 //getLogin(TxtUsername.getText(),TxtPassword.getText());
-                TxtPassword.setDisabled(true);
-                TxtUsername.setDisabled(true);
+                password.setDisabled(true);
+                username.setDisabled(true);
                 if(loading)
                     return;
                 loading = true;
                 System.out.println("Login button pressed");
-                LT = new LoginThread(TxtUsername.getText(),TxtPassword.getText());
+                LT = new LoginThread(username.getText(),password.getText());
                 LT.start();
             }
         });
@@ -108,14 +110,14 @@ public class LoginScreen extends MenuScreen implements iHasStage, iSetActive {
                 System.out.println(loggedIn);
                 if(loggedIn)
                 {
-                    Managers.getAccountManager().createAccount(TxtUsername.getText()).main = true;
+                    Managers.getAccountManager().createAccount(username.getText()).main = true;
 
 
                     MenuScreen nextMenu = Managers.getScreenManager().getScreen("mainmenu");
                     Managers.getScreenManager().setScreen(nextMenu);
                 }
-                TxtPassword.setDisabled(false);
-                TxtUsername.setDisabled(false);
+                password.setDisabled(false);
+                username.setDisabled(false);
             }
             else{
                 showLoading();
