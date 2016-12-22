@@ -11,7 +11,7 @@ public class CoopGame extends BaseGame {
 
     public CoopGame()
     {
-
+        
     }
 
 }

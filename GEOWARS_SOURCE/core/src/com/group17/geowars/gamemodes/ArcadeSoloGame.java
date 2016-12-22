@@ -17,6 +17,7 @@ public class ArcadeSoloGame extends SoloGame implements iGame {
 
 
     public ArcadeSoloGame() {
+        super();
         super.mode = "Arcade";
         Account a = Managers.getAccountManager().getAccounts().get(0);
         String name = a.name;
@@ -34,7 +35,7 @@ public class ArcadeSoloGame extends SoloGame implements iGame {
         Drone d = new DefenceDrone(spawnPoint); // TODO doesnt need accoutn as parameter
         d.setPlayer(p);
         p.setDrone(d);
-
+        placePlayerTextFields();
     }
 
     @Override

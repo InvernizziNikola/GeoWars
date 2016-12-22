@@ -2,36 +2,78 @@ package com.group17.geowars.managers;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Vector2;
+import com.group17.geowars.DataObjects.EnemyProfile;
+import com.group17.geowars.database.Threads.LoadEnemyThread;
 import com.group17.geowars.gameobjects.hostileObjects.*;
 import com.group17.geowars.gameobjects.GOInterface;
+import com.group17.geowars.utils.ENEMYTYPE;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 /**
  * Created by kevin on 9/11/2016.
  */
 public class EnemyManager implements GOInterface {
 
+    private LoadEnemyThread LET;
+    private List<EnemyProfile> enemyProfiles;
+    public List<EnemyProfile> getProfiles()
+    {
+        return enemyProfiles;
+    }
     private List<Enemy> enemies;
     private List<Enemy> toRemove;
-    private int nrOfEnemys; // TODO HACK
+
 
 
     public EnemyManager() {
+
+        LET = new LoadEnemyThread();
+        LET.start();
+
         enemies = new LinkedList<Enemy>();
         toRemove = new LinkedList<Enemy>();
     }
 
     public void init() {
         newEnemyList(0);
-        nrOfEnemys = 5;
-
+    }
+    public void addEnemy(Enemy e)
+    {
+        enemies.add(e);
+    }
+    public void spawnEnemy(EnemyProfile profile, Vector2 position)
+    {
+        ENEMYTYPE type = profile.type;
+        Enemy tempEnemy;
+        switch(type)
+        {
+            case SCOUT:{
+                tempEnemy = new ScoutEnemy(position);
+                enemies.add(tempEnemy);
+                break;
+            }
+            case KAMIKAZE:{
+                tempEnemy = new ScoutEnemy(position);
+                enemies.add(tempEnemy);
+                break;
+            }
+            case DREADNOUGHT:{
+                tempEnemy = new ScoutEnemy(position);
+                enemies.add(tempEnemy);
+                break;
+            }
+            case BOSS:{
+                tempEnemy = new DreadnoughtBoss(position);
+                enemies.add(tempEnemy);
+                break;
+            }
+        }
     }
 
     public void newEnemyList(int currentWave) {
-        if (Managers.getLevelManager().getCurrentwave() == 2) {
+
+        /*if (Managers.getLevelManager().getCurrentwave() == 2) {
             List<Vector2> spawnlist = Managers.getLevelManager().getSpawnLocations();
             enemies.add(new DreadnoughtBoss(spawnlist.get(new Random().nextInt(spawnlist.size() - 1))));
         } else {
@@ -51,11 +93,7 @@ public class EnemyManager implements GOInterface {
                     }
                 }
             }
-        }
-    }
-
-    public void addEnemy(Enemy enemy) {
-        enemies.add(enemy);
+        }*/
     }
 
     public List<Enemy> getEnemies() {
@@ -83,23 +121,11 @@ public class EnemyManager implements GOInterface {
     @Override
     public void update() {
 
-        if (enemies.size() == 0) {
-            int currentWave = Managers.getLevelManager().getCurrentwave();
-            if (currentWave < Managers.getLevelManager().getWaveList().size()) {
-                Managers.getLevelManager().setCurrentwave(currentWave + 1);
-                newEnemyList(currentWave);
+        if(LET != null && LET.finished()) {
 
-            } else {
-                nrOfEnemys = nrOfEnemys + (currentWave * 6);
-                if (nrOfEnemys > 1000) {
-                    nrOfEnemys = 1000;
-                }
-                System.out.println(nrOfEnemys);
-                Managers.getLevelManager().getWaveList().add(nrOfEnemys);
-            }
-
+            enemyProfiles = LET.getEnemies();
+            LET = null;
         }
-
         for (Enemy e : enemies) {
             e.update();
         }
