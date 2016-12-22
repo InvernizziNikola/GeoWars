@@ -15,13 +15,23 @@ public class DestroyerShip extends Ship {
         hp=maxHp;
         fireDelay =0.25f;
         speed=375;
-    }
 
+    }
+Integer i = 0;
     @Override
     public void shoot()
     {
         if(canShoot) {
-            sound.play(0.1f);
+            if (i==0) {
+                sound.play(0.2f);
+                i++;
+            }else if(i==1){
+                sound.play(0.17f);
+                i++;
+            }else {
+                sound.play(0.14f);
+                i=0;
+            }
 
             Vector2 sd = new Vector2(shootDir.x, shootDir.y);
 
