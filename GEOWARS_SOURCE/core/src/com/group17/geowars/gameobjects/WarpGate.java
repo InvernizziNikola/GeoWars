@@ -95,6 +95,7 @@ public class WarpGate {
 
     public void spawnEnemies()
     {
+
         ArrayList<EnemyProfile> toRemove = new ArrayList<EnemyProfile>();
         for(EnemyProfile ep : enemiesToSpawn)
         {

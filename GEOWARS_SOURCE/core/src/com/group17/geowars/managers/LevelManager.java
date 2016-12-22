@@ -63,11 +63,10 @@ public class LevelManager {
         isSpawning = true;
 
         float points = (float)currentLevel * 25.0f + (float)currentwave * 2.5f;
-        float warpGateCount = MathUtils.ceil(points/10.0f);
+        float warpGateCount = points/25.0f;
 
         Random rand = new Random();
         List<EnemyProfile> enemyProfiles = Managers.getEnemyManager().getProfiles();
-
         for(float i = 0; i < warpGateCount; i++)
         {
             float pointsPerWarp =  points / warpGateCount;
@@ -80,9 +79,7 @@ public class LevelManager {
                     enemiesToWarp.add(ep);
                 }
             }
-
             Vector2 warpPos;
-
             boolean okSpawnPoint = true;
             do
             {
