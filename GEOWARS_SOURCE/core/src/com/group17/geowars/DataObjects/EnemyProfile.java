@@ -23,10 +23,4 @@ public class EnemyProfile {
     public Integer red;
     public Integer green;
     public Integer blue;
-
-    public EnemyProfile()
-    {
-        this.type = ENEMYTYPE.valueOf(type);
-    }
-
 }
