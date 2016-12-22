@@ -18,12 +18,9 @@ public class EnemyProfile {
     public float fireDelay;
     public float fireRange;
     public float speed;
-    private ArrayList Enemys;
-    private LoadEnemyThread LET;
 
     public EnemyProfile()
     {
-
         this.name = name;
         this.type = ENEMYTYPE.valueOf(type);
         this.imageName = imageName;
@@ -32,17 +29,5 @@ public class EnemyProfile {
         this.fireRange = fireRange;
         this.speed = speed;
     }
-    public void getEnemyData()
-    {
-        /*if(loading)
-            return;
 
-        loading = true;*/
-        LET = new LoadEnemyThread();
-        LET.start();
-        Enemys=LET.getEnemys();
-        Enemys.get(0);//naam
-        //Enemys.get(X)
-
-    }
 }

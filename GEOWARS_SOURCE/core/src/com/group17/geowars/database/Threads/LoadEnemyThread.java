@@ -1,6 +1,8 @@
 package com.group17.geowars.database.Threads;
 
+import com.group17.geowars.DataObjects.EnemyProfile;
 import com.group17.geowars.database.DBManager;
+import com.group17.geowars.utils.ENEMYTYPE;
 
 import java.util.ArrayList;
 
@@ -24,7 +26,7 @@ public class LoadEnemyThread implements Runnable {
 
 
     private ArrayList Enemy = null;
-    private ArrayList BuildedArray=null;
+    private ArrayList<EnemyProfile> enemyProfiles =null;
     private ArrayList BuildedSingleArray=null;
     private ArrayList Enemys=null;
     private String Name = null;
@@ -48,80 +50,46 @@ public class LoadEnemyThread implements Runnable {
     @Override
     public void run() {
         if(Name!=null){
-            Enemy = DBManager.getInstance().DBselectEnemy(Name);
+            Enemys = DBManager.getInstance().DBselectEnemy(Name);
+        }
+        else {
+            Enemys = DBManager.getInstance().DBSelectAllEnemys();
         }
 
-        Enemys = DBManager.getInstance().DBSelectAllEnemys();
+        enemyProfiles = new ArrayList<EnemyProfile>();
 
-    }
-
-    public ArrayList getEnemy()
-    {
-        String Name = Enemy.get(0).toString();
-        String Type = Enemy.get(1).toString();
-        String Image = Enemy.get(2).toString();
-        Integer MaxHP = (Integer) Enemy.get(3);
-        Integer FireDelay = (Integer) Enemy.get(4);
-        Integer FireRange = (Integer) Enemy.get(5);
-        Integer Speed = (Integer) Enemy.get(6);
-        Integer DifficultyGrade = (Integer) Enemy.get(7);
-        Integer Spread = (Integer) Enemy.get(8);
-        Integer Red = (Integer) Enemy.get(8);
-        Integer Green = (Integer) Enemy.get(8);
-        Integer Blue = (Integer) Enemy.get(8);
-
-
-        BuildedSingleArray.add(Name);
-        BuildedSingleArray.add(Type);
-        BuildedSingleArray.add(Image);
-        BuildedSingleArray.add(MaxHP);
-        BuildedSingleArray.add(FireDelay);
-        BuildedSingleArray.add(FireRange);
-        BuildedSingleArray.add(Speed);
-        BuildedSingleArray.add(DifficultyGrade);
-        BuildedSingleArray.add(Spread);
-        BuildedSingleArray.add(Red);
-        BuildedSingleArray.add(Green);
-        BuildedSingleArray.add(Blue);
-        return BuildedSingleArray;
-    }
-    public ArrayList getEnemys()
-    {
         Integer CollumCount = 12;
         rows=Enemys.size()/CollumCount;
+
         for (int i=0;i==(rows-1);i++){
-            String Name = Enemy.get((i*CollumCount)+0).toString();
-            String Type = Enemy.get((i*CollumCount)+1).toString();
-            String Image = Enemy.get((i*CollumCount)+2).toString();
-            Integer MaxHP = (Integer) Enemy.get((i*CollumCount)+3);
-            Integer FireDelay = (Integer) Enemy.get((i*CollumCount)+4);
-            Integer FireRange = (Integer) Enemy.get((i*CollumCount)+5);
-            Integer Speed = (Integer) Enemy.get((i*CollumCount)+6);
-            Integer DifficultyGrade = (Integer) Enemy.get((i*CollumCount)+7);
-            Integer Spread = (Integer) Enemy.get((i*CollumCount)+8);
-            Integer Red = (Integer) Enemy.get((i*CollumCount)+8);
-            Integer Green = (Integer) Enemy.get((i*CollumCount)+8);
-            Integer Blue = (Integer) Enemy.get((i*CollumCount)+8);
-            BuildedArray.add(Name);
-            BuildedArray.add(Type);
-            BuildedArray.add(Image);
-            BuildedArray.add(MaxHP);
-            BuildedArray.add(FireDelay);
-            BuildedArray.add(FireRange);
-            BuildedArray.add(Speed);
-            BuildedArray.add(DifficultyGrade);
-            BuildedArray.add(Spread);
-            BuildedArray.add(Red);
-            BuildedArray.add(Green);
-            BuildedArray.add(Blue);
+
+            EnemyProfile ep = new EnemyProfile();
+
+            ep.name = Enemy.get((i*CollumCount)+0).toString();
+            ep.type = ENEMYTYPE.valueOf(Enemy.get((i*CollumCount)+1).toString());
+            ep.imageName = Enemy.get((i*CollumCount)+2).toString();
+            ep.MaxHP = (Integer) Enemy.get((i*CollumCount)+3);
+            ep.FireDelay = (Integer) Enemy.get((i*CollumCount)+4);
+            ep.FireRange = (Integer) Enemy.get((i*CollumCount)+5);
+            ep.Speed = (Integer) Enemy.get((i*CollumCount)+6);
+            ep.DifficultyGrade = (Integer) Enemy.get((i*CollumCount)+7);
+            ep.Spread = (Integer) Enemy.get((i*CollumCount)+8);
+            ep.Red = (Integer) Enemy.get((i*CollumCount)+8);
+            ep.Green = (Integer) Enemy.get((i*CollumCount)+8);
+            ep.Blue = (Integer) Enemy.get((i*CollumCount)+8);
+
+            enemyProfiles.add(ep);
         }
-        return BuildedArray;
     }
 
+    public ArrayList getEnemies()
+    {
+        return enemyProfiles;
+    }
 
     public boolean finished()
     {
-        if(Enemy != null&&Enemys != null)
+        if(enemyProfiles != null)
             return true;
         return false;
     }
