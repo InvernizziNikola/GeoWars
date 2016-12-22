@@ -62,6 +62,8 @@ public class WarpGate {
             {
                 angle -= rotateSpeed*2;
                 spawnEnemies();
+                if(enemiesToSpawn.size() == 0)
+                    state = WARPSTATE.UNLOADING;
                 break;
             }
             case UNLOADING:
@@ -72,7 +74,6 @@ public class WarpGate {
                 {
                     size=0;
                 }
-                System.out.println("removing warpgate");
                 break;
             }
         }
@@ -86,8 +87,10 @@ public class WarpGate {
             // SPAWN ENEMY
             float x = rand.nextFloat() % 200;
             float y = rand.nextFloat() % 200;
+            x = position.x+(x - 0.5f)*size/2;
+            y = position.y+(y - 0.5f)*size/2;
 
-            Managers.getEnemyManager().spawnEnemy(ep, new Vector2(x, y)) ;
+            Managers.getEnemyManager().spawnEnemy(ep, new Vector2(x, y));
             toRemove.add(ep);
         }
         enemiesToSpawn.removeAll(toRemove);

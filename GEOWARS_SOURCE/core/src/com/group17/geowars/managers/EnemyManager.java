@@ -50,22 +50,22 @@ public class EnemyManager implements GOInterface {
         {
             case SCOUT:{
                 tempEnemy = new ScoutEnemy(position);
-                enemies.add(tempEnemy);
+                addEnemy(tempEnemy);
                 break;
             }
             case KAMIKAZE:{
-                tempEnemy = new ScoutEnemy(position);
-                enemies.add(tempEnemy);
+                tempEnemy = new SuicideUnitEnemy(position);
+                addEnemy(tempEnemy);
                 break;
             }
             case DREADNOUGHT:{
-                tempEnemy = new ScoutEnemy(position);
-                enemies.add(tempEnemy);
+                tempEnemy = new DreadnoughtEnemy(position);
+                addEnemy(tempEnemy);
                 break;
             }
             case BOSS:{
                 tempEnemy = new DreadnoughtBoss(position);
-                enemies.add(tempEnemy);
+                addEnemy(tempEnemy);
                 break;
             }
         }
@@ -121,11 +121,7 @@ public class EnemyManager implements GOInterface {
     @Override
     public void update() {
 
-        if(LET != null && LET.finished()) {
-
-            enemyProfiles = LET.getEnemies();
-            LET = null;
-        }
+        loadEnemies();
         for (Enemy e : enemies) {
             e.update();
         }
@@ -134,6 +130,14 @@ public class EnemyManager implements GOInterface {
         toRemove.clear();
     }
 
+    public void loadEnemies()
+    {
+        if(LET != null && LET.finished()) {
+
+            enemyProfiles = LET.getEnemies();
+            LET = null;
+        }
+    }
     public void remove(Enemy enemy) {
         enemy.destroy = true; //TODO to private
         toRemove.add(enemy);

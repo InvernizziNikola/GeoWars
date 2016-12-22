@@ -11,11 +11,9 @@ import com.group17.geowars.DataObjects.EnemyProfile;
 import com.group17.geowars.GeoWars;
 import com.group17.geowars.gameobjects.WarpGate;
 import com.group17.geowars.utils.ENEMYTYPE;
-import com.sun.org.apache.xml.internal.security.keys.content.KeyValue;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
 
 /**
@@ -30,7 +28,7 @@ public class LevelManager {
     private BitmapFont font;
     private Texture textureBG;
     private Sprite spriteBG;
-
+    public boolean isSpawning;
 
     public LevelManager () {
 
@@ -49,25 +47,27 @@ public class LevelManager {
 
     public void newWave()
     {
+        isSpawning = true;
         int points = currentLevel * 30 + currentwave * 5;
         int warpGateCount = MathUtils.ceil(points/35.0f);
 
         Random rand = new Random();
-        List<EnemyProfile> possibleEnemies = Managers.getEnemyManager().getProfiles();
+        List<EnemyProfile> enemyProfiles = Managers.getEnemyManager().getProfiles();
 
         List<EnemyProfile> enemiesToWarp = new ArrayList<EnemyProfile>();
 
         while(points > 0)
         {
-            EnemyProfile ep = possibleEnemies.get(rand.nextInt(possibleEnemies.size()));
+            EnemyProfile ep = enemyProfiles.get(rand.nextInt(enemyProfiles.size()));
             if(ep.type != ENEMYTYPE.BOSS)
             {
+                System.out.println(ep.name);
                 points -= ep.difficultyGrade;
                 enemiesToWarp.add(ep);
             }
         }
 
-        warpGates.add(new WarpGate(new Vector2(200,200), enemiesToWarp));
+        warpGates.add(new WarpGate(new Vector2(1200,800), enemiesToWarp));
     }
 
     public void render(Batch batch) {
@@ -82,6 +82,10 @@ public class LevelManager {
     public void update() {
         for(WarpGate wg : warpGates)
             wg.update();
+
+        if(warpGates.size() < 0) {
+            isSpawning = false;
+        }
     }
 
 

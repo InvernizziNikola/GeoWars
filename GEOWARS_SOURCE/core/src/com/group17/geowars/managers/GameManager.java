@@ -50,7 +50,7 @@ public class GameManager {
 
     public void endGame()
     {
-        game.setGame(GAMESTATE.GAMEEND);
+        game.setGameState(GAMESTATE.GAMEEND);
 
         for(Account a : Managers.getAccountManager().getAccounts())
         {
@@ -75,20 +75,40 @@ public class GameManager {
         if(game instanceof iGame)
             ((iGame)game).update();
 
-        if(game.getGameState() != GAMESTATE.GAMEEND)
-        {
-            Managers.getCollisionManager().update();
-            Managers.getControllerManager().update();
-            Managers.getGeomManager().update();
-            Managers.getBulletManager().update();
-            Managers.getEnemyManager().update();
-            Managers.getLevelManager().update();
-            Managers.getpowerUpManager().update();
-            Managers.getPlayerManager().update();
 
+        updateManagers();
+
+        switch (game.getGameState())
+        {
+            case GAMELOAD: {
+                if (Managers.getEnemyManager().getProfiles() != null) {
+                    game.setGameState(GAMESTATE.GAMEPLAYING);
+                }
+                break;
+            }
+            case GAMESPAWNINGWAVE:{
+                if(!Managers.getLevelManager().isSpawning)
+                    Managers.getLevelManager().newWave();
+
+                break;
+            }
+            case GAMEPLAYING:{
+                if(Managers.getEnemyManager().getEnemies().size() == 0)
+                {
+                    game.setGameState(GAMESTATE.GAMESPAWNINGWAVE);
+                }
+            }
         }
-        //if(resetGame)
-            //resetGame();
+    }
+    public void updateManagers()
+    {
+        Managers.getControllerManager().update();
+        Managers.getGeomManager().update();
+        Managers.getBulletManager().update();
+        Managers.getEnemyManager().update();
+        Managers.getLevelManager().update();
+        Managers.getpowerUpManager().update();
+        Managers.getPlayerManager().update();
     }
     public void newGame()
     {

@@ -24,11 +24,9 @@ import java.util.ArrayList;
 * */
 public class LoadEnemyThread implements Runnable {
 
-
-    private ArrayList Enemy = null;
     private ArrayList<EnemyProfile> enemyProfiles =null;
     private ArrayList BuildedSingleArray=null;
-    private ArrayList Enemys=null;
+    private ArrayList enemy = null;
     private String Name = null;
     private Integer rows;
     private Thread t;
@@ -50,34 +48,32 @@ public class LoadEnemyThread implements Runnable {
     @Override
     public void run() {
         if(Name!=null){
-            Enemys = DBManager.getInstance().DBselectEnemy(Name);
+            enemy = DBManager.getInstance().DBselectEnemy(Name);
         }
         else {
-            Enemys = DBManager.getInstance().DBSelectAllEnemys();
+            enemy = DBManager.getInstance().DBSelectAllEnemys();
         }
 
         enemyProfiles = new ArrayList<EnemyProfile>();
 
         Integer CollumCount = 12;
-        rows=Enemys.size()/CollumCount;
+        rows = enemy.size() / CollumCount;
 
-        for (int i=0;i==(rows-1);i++){
-
+        for (int i = 0; i < rows; i++){
             EnemyProfile ep = new EnemyProfile();
 
-            ep.name = Enemy.get((i*CollumCount)+0).toString();
-            ep.type = ENEMYTYPE.valueOf(Enemy.get((i*CollumCount)+1).toString());
-            ep.imageName = Enemy.get((i*CollumCount)+2).toString();
-            ep.health = (Integer) Enemy.get((i*CollumCount)+3);
-            ep.fireDelay = (Integer) Enemy.get((i*CollumCount)+4);
-            ep.fireRange = (Integer) Enemy.get((i*CollumCount)+5);
-            ep.speed = (Integer) Enemy.get((i*CollumCount)+6);
-            ep.difficultyGrade = (Integer) Enemy.get((i*CollumCount)+7);
-            ep.Spread = (Integer) Enemy.get((i*CollumCount)+8);
-            ep.red = (Integer) Enemy.get((i*CollumCount)+8);
-            ep.green = (Integer) Enemy.get((i*CollumCount)+8);
-            ep.blue = (Integer) Enemy.get((i*CollumCount)+8);
-
+            ep.name = enemy.get((i*CollumCount)+0).toString();
+            ep.type = ENEMYTYPE.valueOf(enemy.get((i*CollumCount)+1).toString().toUpperCase());
+            ep.imageName = enemy.get((i*CollumCount)+2).toString();
+            ep.health = Integer.parseInt(enemy.get((i*CollumCount)+3).toString());
+            ep.fireDelay = Integer.parseInt(enemy.get((i*CollumCount)+4).toString());
+            ep.fireRange = Integer.parseInt(enemy.get((i*CollumCount)+5).toString());
+            ep.speed = Integer.parseInt(enemy.get((i*CollumCount)+6).toString());
+            ep.difficultyGrade = Integer.parseInt(enemy.get((i*CollumCount)+7).toString());
+            ep.Spread = Integer.parseInt(enemy.get((i*CollumCount)+8).toString());
+            ep.red = Integer.parseInt(enemy.get((i*CollumCount)+9).toString());
+            ep.green = Integer.parseInt(enemy.get((i*CollumCount)+10).toString());
+            ep.blue = Integer.parseInt(enemy.get((i*CollumCount)+11).toString());
             enemyProfiles.add(ep);
         }
     }

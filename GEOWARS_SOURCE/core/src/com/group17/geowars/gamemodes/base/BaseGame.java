@@ -17,7 +17,7 @@ public class BaseGame {
     {
         return gameState;
     }
-    public void setGame(GAMESTATE gs)
+    public void setGameState(GAMESTATE gs)
     {
         gameState = gs;
     }
@@ -35,10 +35,8 @@ public class BaseGame {
     public void placePlayerTextFields()
     {
         int y=20;
-        System.out.println("heyyyyy");
         for (Player p: Managers.getPlayerManager().getPlayers()) {
             p.setPlayerTextpos(new Vector2(10,y));
-            System.out.println("spelers"+p);
             y+=50;
         }
     }
