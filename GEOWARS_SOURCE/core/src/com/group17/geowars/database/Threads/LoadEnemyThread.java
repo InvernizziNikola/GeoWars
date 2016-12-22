@@ -20,18 +20,17 @@ import java.util.ArrayList;
     }
 *
 * */
-public class LoginThread implements Runnable {
+public class LoadEnemyThread implements Runnable {
 
 
-    private ArrayList Player = null;
-    private String Name = "";
-    private String Password = "";
+    private ArrayList Enemy = null;
+    private ArrayList Enemys=null;
+    private String Name = null;
     private Thread t;
-    //// TODO: 22/12/2016 timeout;
-    public LoginThread(String Name,String Password)
+
+    public LoadEnemyThread(String Name)
     {
         this.Name = Name;
-        this.Password = Password;
     }
 
     public void start()
@@ -44,28 +43,27 @@ public class LoginThread implements Runnable {
 
     @Override
     public void run() {
+        if(Name!=null){
+            Enemy = DBManager.getInstance().DBselectEnemy(Name);
+        }
 
+        Enemys = DBManager.getInstance().DBSelectAllEnemys();
 
-        Player = DBManager.getInstance().DBselectLogin(Name,Password);
-        System.out.println(Player);
     }
 
-    public Boolean getLoggedIn()
+    public ArrayList getEnemy()
     {
-        if(Player!=null){
-        if (Player.size()>0){
-            return true;
-        }else{
-            return false;
-        }
-        }else{
-            return false;
-        }
+        return Enemy;
     }
+    public ArrayList getEnemys()
+    {
+        return Enemys;
+    }
+
 
     public boolean finished()
     {
-        if(Player != null)
+        if(Enemy != null&&Enemys != null)
             return true;
         return false;
     }

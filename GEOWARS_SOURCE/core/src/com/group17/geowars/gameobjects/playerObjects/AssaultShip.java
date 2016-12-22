@@ -10,7 +10,8 @@ import com.group17.geowars.managers.Managers;
 public class AssaultShip extends Ship {
     public AssaultShip(Vector2 pos, String type) {
         super(pos,"Assault");
-        hp=20;
+        maxHp=20;
+        hp=maxHp;
         fireDelay =0.15f;
         speed=450;
     }

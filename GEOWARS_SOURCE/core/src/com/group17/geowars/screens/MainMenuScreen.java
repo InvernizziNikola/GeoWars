@@ -37,16 +37,6 @@ public class MainMenuScreen extends MenuScreen implements iHasStage, iSetActive 
             }
         });
 
-        final TextButton profileButton = newButton("PROFILE", GeoWars.WIDTH/2-100, GeoWars.HEIGHT/2+GeoWars.HEIGHT/8, 200, 75, new MenuGrid(0, 1));
-        profileButton.addListener(new ChangeListener() {
-            @Override
-            public void changed(ChangeEvent event, Actor actor) {
-                profileButton.setChecked(false);
-                MenuScreen nextMenu = Managers.getScreenManager().getScreen("profilemenu");
-                Managers.getScreenManager().setScreen(nextMenu);
-            }
-        });
-
         final TextButton optionsButton = newButton("OPTIONS", GeoWars.WIDTH/2-100, GeoWars.HEIGHT/2, 200, 75, new MenuGrid(0, 2));
         optionsButton.addListener(new ChangeListener() {
             @Override
@@ -67,16 +57,29 @@ public class MainMenuScreen extends MenuScreen implements iHasStage, iSetActive 
 
             }
         });
+        System.out.println(Managers.getAccountManager().getAccounts().get(0).name.toString());
+        if(!Managers.getAccountManager().getAccounts().get(0).name.toString().equals("Guest")) {
+            final TextButton profileButton = newButton("PROFILE", GeoWars.WIDTH / 2 - 100, GeoWars.HEIGHT / 2 + GeoWars.HEIGHT / 8, 200, 75, new MenuGrid(0, 1));
+            profileButton.addListener(new ChangeListener() {
+                @Override
+                public void changed(ChangeEvent event, Actor actor) {
+                    profileButton.setChecked(false);
+                    MenuScreen nextMenu = Managers.getScreenManager().getScreen("profilemenu");
+                    Managers.getScreenManager().setScreen(nextMenu);
+                }
+            });
 
-        final TextButton shopButton = newButton("SHOP", GeoWars.WIDTH/2-100, GeoWars.HEIGHT/2-GeoWars.HEIGHT/4, 200, 75, new MenuGrid(0, 4));
-        shopButton.addListener(new ChangeListener() {
-            @Override
-            public void changed(ChangeEvent event, Actor actor) {
-                shopButton.setChecked(false);
-                MenuScreen nextMenu = Managers.getScreenManager().getScreen("shopmenu");
-                Managers.getScreenManager().setScreen(nextMenu);
-            }
-        });
+            final TextButton shopButton = newButton("SHOP", GeoWars.WIDTH / 2 - 100, GeoWars.HEIGHT / 2 - GeoWars.HEIGHT / 4, 200, 75, new MenuGrid(0, 4));
+            shopButton.addListener(new ChangeListener() {
+                @Override
+                public void changed(ChangeEvent event, Actor actor) {
+                    shopButton.setChecked(false);
+                    MenuScreen nextMenu = Managers.getScreenManager().getScreen("shopmenu");
+                    Managers.getScreenManager().setScreen(nextMenu);
+                }
+            });
+        }
+        /*
         final TextButton LoginButton = newButton("Login", GeoWars.WIDTH/2-400, GeoWars.HEIGHT/2-GeoWars.HEIGHT/4, 200, 75, new MenuGrid(-1, 4));
         LoginButton.addListener(new ChangeListener() {
             @Override
@@ -86,7 +89,7 @@ public class MainMenuScreen extends MenuScreen implements iHasStage, iSetActive 
                 Managers.getScreenManager().setScreen(nextMenu);
             }
         });
-
+*/
 
 
         final TextButton quitButton = newButton("QUIT GAME", GeoWars.WIDTH/2-100, GeoWars.HEIGHT-GeoWars.HEIGHT+90, 200, 75, new MenuGrid(0, 5));

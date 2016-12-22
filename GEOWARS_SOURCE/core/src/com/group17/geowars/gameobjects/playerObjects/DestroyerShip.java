@@ -11,7 +11,8 @@ import com.group17.geowars.managers.Managers;
 public class DestroyerShip extends Ship {
     public DestroyerShip(Vector2 pos) {
         super(pos,"Destroyer");
-        hp=10;
+        maxHp=10;
+        hp=maxHp;
         fireDelay =0.25f;
         speed=375;
     }

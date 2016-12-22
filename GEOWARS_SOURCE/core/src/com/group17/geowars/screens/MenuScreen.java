@@ -42,7 +42,6 @@ public class MenuScreen implements Screen {
     protected TextButton.TextButtonStyle styleDefault;
     protected TextButton.TextButtonStyle styleSelected;
     protected Stage stage;
-    private Texture background;
     protected Batch batch;
     protected BitmapFont text;
 
@@ -56,7 +55,6 @@ public class MenuScreen implements Screen {
         styleDefault = Managers.getScreenManager().getDefaultStyle();
         styleSelected = Managers.getScreenManager().getSelectedStyle();
         batch = new SpriteBatch();
-        background = new Texture(Gdx.files.internal("../assets/menuBackground.png"));
     }
 
     @Override
@@ -107,10 +105,7 @@ public class MenuScreen implements Screen {
             Gdx.gl.glClearColor(0.2f, 0.2f, 0.2f, 0);
             Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-
-            batch.begin();
-            batch.draw(background,0,0);
-            batch.end();
+            newBackground("menuBackground");
 
             stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
             stage.draw();
@@ -215,6 +210,15 @@ public class MenuScreen implements Screen {
         img.draw(batch);
         batch.end();
         return img;
+    }
+
+    protected Texture newBackground(String name)
+    {
+        Texture background = Managers.getAssetManager().getTexture(name);
+        batch.begin();
+        batch.draw(background,0,0);
+        batch.end();
+        return background;
     }
 
     public Stage getStage() {

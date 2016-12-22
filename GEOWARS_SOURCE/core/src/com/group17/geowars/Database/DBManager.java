@@ -32,9 +32,9 @@ public class DBManager {
             dataSource.setDatabaseName("GeoWars");
             conn = dataSource.getConnection();
         } catch (ClassNotFoundException ex) {
-            ex.printStackTrace();
+            //ex.printStackTrace();
         } catch (SQLException e) {
-            e.printStackTrace();
+           // e.printStackTrace();
         }
     }
 
@@ -47,9 +47,7 @@ public class DBManager {
 
     public ArrayList<String> DbExecute(PreparedStatement statment) {
         try {
-            System.out.println("statment" + statment);
             ResultSet rs = statment.executeQuery();
-
             resultData = RsToArrayList(rs);
             if (!resultData.isEmpty()) {
                 return resultData;
@@ -101,6 +99,25 @@ public class DBManager {
         try {
             prep = this.conn.prepareStatement(SQLstring);
             prep.setString(1, Gamemode);
+        } catch (SQLException e) {
+            System.out.println("error with preparing statment. Are you trying to hack us?");
+        }
+        return DbExecute(prep);
+    }
+    public ArrayList DBSelectEnemy(String Enemy) {
+        String SQLstring = "SELECT name,type,image,speed,maxHP,fireDelay,fireRange,difficultyGrade,spread FROM Enemy where name = ?;";
+        try {
+            prep = this.conn.prepareStatement(SQLstring);
+            prep.setString(1, Enemy);
+        } catch (SQLException e) {
+            System.out.println("error with preparing statment. Are you trying to hack us?");
+        }
+        return DbExecute(prep);
+    }
+    public ArrayList DBSelectAllEnemys() {
+        String SQLstring = "SELECT name,type,image,speed,maxHP,fireDelay,fireRange,difficultyGrade,spread FROM Enemy;";
+        try {
+            prep = this.conn.prepareStatement(SQLstring);
         } catch (SQLException e) {
             System.out.println("error with preparing statment. Are you trying to hack us?");
         }
@@ -415,9 +432,6 @@ public class DBManager {
             }
 
         }
-
-        //System.out.println("select geslaagd");
-
         return list;
     }
 
@@ -426,7 +440,6 @@ public class DBManager {
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            //System.out.println("Driver loaded!");
 
         } catch (ClassNotFoundException ex) {
             throw new RuntimeException("Driver niet gevonden, toevoegen via de properties: " + ex.getMessage());
@@ -440,7 +453,6 @@ public class DBManager {
         dataSource.setDatabaseName("GeoWars");
         try {
             java.sql.Connection conn = dataSource.getConnection();
-            //System.out.println("connectie met database is gelukt");
 
             java.sql.Statement stmt = conn.createStatement();
             if (BoolSelect) {
@@ -460,17 +472,14 @@ public class DBManager {
                 }
                 DBMemory.close();
                 stmt.close();
-                //System.out.println("select geslaagd");
             } else {
                 stmt.executeUpdate(sqlString);
-                //System.out.println("query geslaagd");
                 //sluiten van statement
                 stmt.close();
             }
             //sluiten van connectie
             conn.close();
         } catch (Exception ex) {
-            System.out.println(dataSource);
             System.out.println("Dataconnectie gefaald: " + ex.getMessage());
         }
 

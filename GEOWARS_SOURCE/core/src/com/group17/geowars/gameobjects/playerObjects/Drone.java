@@ -42,7 +42,7 @@ public abstract class Drone extends GameObject {
         texture = Managers.getAssetManager().getTexture(type);
         sprite = new Sprite(texture,texture.getWidth(),texture.getHeight());
     }
-    public Sprite getSprite()
+    public Sprite getShipSprite()
     {
         return sprite;
     }

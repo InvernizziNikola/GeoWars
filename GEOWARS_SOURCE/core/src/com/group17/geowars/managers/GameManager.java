@@ -54,8 +54,7 @@ public class GameManager {
 
         for(Account a : Managers.getAccountManager().getAccounts())
         {
-            System.out.println(a.getPlayer());
-            setHighScore(a.name, a.getPlayer().getScore(),game.getMode());
+            setHighScore(a.name, a.getPlayer().getShip().getScore(),game.getMode());
         }
 
         resetGame = true;
@@ -66,6 +65,7 @@ public class GameManager {
 
     public void setHighScore(String Playername,Integer Score,String Gamemode)
     {
+        System.out.println("this is our score"+Score);
         SaveScoreThread = new SaveScoreToDBThread(Playername,Score,Gamemode);
         SaveScoreThread.start();
 

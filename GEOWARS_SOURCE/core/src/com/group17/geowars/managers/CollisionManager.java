@@ -87,7 +87,7 @@ public class CollisionManager
                     //Managers.getGameManager().setEndScore(p.getShip().getScore());
                    // Managers.getGameManager().gameState = GAMESTATE.MENU;
 
-                    
+
                 }
             }
         }
