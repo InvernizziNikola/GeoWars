@@ -36,11 +36,12 @@ public class DifficultyThread implements Runnable {
         difficultyModifier = Integer.parseInt(data.get(0).toString());
         return difficultyModifier;
     }
-
+    Integer i =0;
     public boolean finished()
     {
-        if(data != null)
+        if(data != null||i>300)
             return true;
+        i++;
         return false;
     }
 }

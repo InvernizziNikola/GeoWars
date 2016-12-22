@@ -66,11 +66,12 @@ public class LoadEnemyThread implements Runnable {
     {
         return enemyProfiles;
     }
-
+    Integer i = 0;
     public boolean finished()
     {
-        if(enemyProfiles != null)
+        if(enemyProfiles != null||i>300)
             return true;
+        i++;
         return false;
     }
 }

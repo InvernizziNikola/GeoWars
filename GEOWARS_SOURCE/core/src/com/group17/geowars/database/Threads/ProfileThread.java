@@ -48,12 +48,12 @@ public class ProfileThread implements Runnable {
         System.out.println("highscore"+PlayerHighscore);
         return PlayerHighscore;
     }
+    private Integer i=0;
     public boolean finished()
     {
-        if(PlayerProfile != null&&PlayerHighscore!=null) {
-            System.out.println("im done!");
+        if(PlayerProfile != null&&PlayerHighscore!=null||i>300)
             return true;
-        }
+        i++;
         return false;
     }
 }

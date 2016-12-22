@@ -42,14 +42,13 @@ public class SaveScoreToDBThread implements Runnable {
     {
         return data;
     }
-
+    private Integer i;
     public boolean finished()
     {
-        if(data != null&&Succes) {
+        if(data != null&&Succes||i>300)
             return true;
-        }else{
-            run();
+        i++;
         return false;
-    }
+
     }
 }
