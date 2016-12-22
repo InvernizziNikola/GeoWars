@@ -2,6 +2,7 @@ package com.group17.geowars;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -20,15 +21,18 @@ public class GeoWars extends ApplicationAdapter{
 	static public int ORIGINALWIDTH;
 	static public int ORIGINALHEIGHT;
 
+
 	public GeoWars(int width, int height)
 	{
 		WIDTH = width;
 		HEIGHT = height;
 		ORIGINALWIDTH = width;
 		ORIGINALHEIGHT = height;
+
 	}
 	@Override
 	public void create () {
+
 
 		camera = new OrthographicCamera();
 		viewport = new FitViewport(WIDTH, HEIGHT, camera);

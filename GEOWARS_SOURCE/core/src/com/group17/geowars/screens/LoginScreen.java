@@ -1,6 +1,7 @@
 package com.group17.geowars.screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
@@ -30,6 +31,7 @@ public class LoginScreen extends MenuScreen implements iHasStage, iSetActive {
     private Label errorlable;
     private ArrayList Player;
     private String PlayerName;
+    protected Sound sound;
 
     private LoginThread LT;
 
@@ -38,6 +40,8 @@ public class LoginScreen extends MenuScreen implements iHasStage, iSetActive {
     public LoginScreen() {
         super();
         create();
+        sound = Gdx.audio.newSound(Gdx.files.internal("sounds/b.mp3"));
+        sound.play(1.0f);
     }
 
     public void Buttons() {
