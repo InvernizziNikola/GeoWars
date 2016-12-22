@@ -104,6 +104,25 @@ public class DBManager {
         }
         return DbExecute(prep);
     }
+    public ArrayList DBSelectEnemy(String Enemy) {
+        String SQLstring = "SELECT name,speed,maxHP,fireDelay,fireRange FROM Enemy where name = ?;";
+        try {
+            prep = this.conn.prepareStatement(SQLstring);
+            prep.setString(1, Enemy);
+        } catch (SQLException e) {
+            System.out.println("error with preparing statment. Are you trying to hack us?");
+        }
+        return DbExecute(prep);
+    }
+    public ArrayList DBSelectAllEnemys() {
+        String SQLstring = "SELECT name,speed,maxHP,fireDelay,fireRange FROM Enemy;";
+        try {
+            prep = this.conn.prepareStatement(SQLstring);
+        } catch (SQLException e) {
+            System.out.println("error with preparing statment. Are you trying to hack us?");
+        }
+        return DbExecute(prep);
+    }
 
     public ArrayList DBselectGeom() {
         try {
