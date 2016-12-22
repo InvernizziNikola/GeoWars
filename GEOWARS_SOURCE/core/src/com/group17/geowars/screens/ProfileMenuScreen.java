@@ -25,7 +25,7 @@ public class ProfileMenuScreen extends MenuScreen implements iHasStage, iSetActi
     private ArrayList PlayerHighscore;
     private ArrayList PlayerCampaignLvl;
     private Table table;
-    private String playerName,playerScore,gamesPlayed,hoursPlayed,playerLvl,currentShip,currentDrone;
+    private String playerName, playerScore, gamesPlayed, hoursPlayed, playerLvl, currentShip, currentDrone;
 
 
     private boolean loading = false;
@@ -41,8 +41,8 @@ public class ProfileMenuScreen extends MenuScreen implements iHasStage, iSetActi
         text = new BitmapFont();
         text.setColor(Color.WHITE);
     }
-    public void createButtons()
-    {
+
+    public void createButtons() {
         final TextButton clanButton = newButton("CLANS", GeoWars.WIDTH / 10, GeoWars.HEIGHT / 3, 150, 50, new MenuGrid(0, 0));
         clanButton.addListener(new ChangeListener() {
             @Override
@@ -74,23 +74,10 @@ public class ProfileMenuScreen extends MenuScreen implements iHasStage, iSetActi
             }
         });
     }
+
     public void showText() {
 
         text.draw(batch, "GEOMETRYWARS", GeoWars.WIDTH / 2 - 70, GeoWars.HEIGHT - GeoWars.HEIGHT / 10);
-        //TODO values need to be inserted
-      /*  text.draw(batch, "USERNAME", width / 2 - 50, height - height / 6);
-        text.draw(batch, "HIGHSCORE ARCADE: ", width / 10, height - height / 3);
-        text.draw(batch, "CAMPAIGN COMPLETION: %", width / 10, height - height / 3 - 50);
-        text.draw(batch, "GAMES PLAYED: ", width / 10, height - height / 3 - 100);
-        text.draw(batch, "HOURS PLAYED: ", width / 10, height / 2 + 25);
-        text.draw(batch, "LEVEL: ", width / 10, height / 2 - 25);
-        text.draw(batch, "CURRENT SHIP & DRONE", width - width / 3, height - height / 3);
-        text.draw(batch, "CURRENT SHIP", width - width / 6, height - height / 3 - 100);
-        text.draw(batch, "CURRENT DRONE", width - width / 6, height / 2 - 25);
-*/
-
-        //TODO change width
-
 
         BitmapFont font = new BitmapFont();
         Label.LabelStyle style = new Label.LabelStyle();
@@ -102,39 +89,43 @@ public class ProfileMenuScreen extends MenuScreen implements iHasStage, iSetActi
         table.add(new Label(playerName, style)).width(200);
         table.row();
         table.add(new Label("HIGHSCORE ARCADE: ", style)).width(200);
-        table.add(new Label(playerScore,style)).width(200);
+        table.add(new Label(playerScore, style)).width(200);
         table.row();
         //table.add(new Label("CAMPAIGN COMPLETION: ", style)).width(200);
         //table.row();
         table.add(new Label("GAMES PLAYED:", style)).width(200);
-        table.add(new Label(gamesPlayed,style)).width(200);
+        table.add(new Label(gamesPlayed, style)).width(200);
         table.row();
         table.add(new Label("HOURS PLAYED:", style)).width(200);
-        table.add(new Label(hoursPlayed,style)).width(200);
+        table.add(new Label(hoursPlayed, style)).width(200);
         table.row();
         table.add(new Label("LEVEL: ", style)).width(200);
-        table.add(new Label(playerLvl,style)).width(200);
+        table.add(new Label(playerLvl, style)).width(200);
         table.row();
         table.add(new Label("CURRENT SHIP: ", style)).width(200);
-        table.add(new Label(currentShip,style)).width(200);
+        table.add(new Label(currentShip, style)).width(200);
         table.row();
         table.add(new Label("CURRENT Drone: ", style)).width(200);
-        table.add(new Label(currentDrone,style)).width(200);
+        table.add(new Label(currentDrone, style)).width(200);
 
         table.row();
 
         stage.addActor(table);
     }
-    public void setData(){
+
+    public void setData() {
         playerScore = PlayerHighscore.get(0).toString();
         playerName = Managers.getAccountManager().getAccounts().get(0).name.toString();
-        gamesPlayed=PlayerProfile.get(1).toString();;
-        hoursPlayed=PlayerProfile.get(2).toString();;
-        playerLvl=PlayerProfile.get(0).toString();;
+        gamesPlayed = PlayerProfile.get(1).toString();
+        ;
+        hoursPlayed = PlayerProfile.get(2).toString();
+        ;
+        playerLvl = PlayerProfile.get(0).toString();
+        ;
         //currentShip=PlayerHighscore.get(0).toString();;
         //currentDrone=PlayerHighscore.get(0).toString();;
         currentShip = "Assault";
-        currentDrone ="Fighter";
+        currentDrone = "Fighter";
     }
 
     @Override
@@ -151,7 +142,7 @@ public class ProfileMenuScreen extends MenuScreen implements iHasStage, iSetActi
     }
 
     public void showLoading() {
-        text.draw(batch, "Loading...", GeoWars.WIDTH/2-25, GeoWars.HEIGHT/2);
+        text.draw(batch, "Loading...", GeoWars.WIDTH / 2 - 25, GeoWars.HEIGHT / 2);
     }
 
     public void getAllData() {
@@ -185,8 +176,7 @@ public class ProfileMenuScreen extends MenuScreen implements iHasStage, iSetActi
         if (ProfileThread != null && !ProfileThread.finished()) {
             showLoading();
         }
-        if(ProfileThread == null)
-        {
+        if (ProfileThread == null) {
             showText();
             createButtons();
         }
