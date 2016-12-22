@@ -66,6 +66,11 @@ public class LoadEnemyThread implements Runnable {
         Integer Speed = (Integer) Enemy.get(6);
         Integer DifficultyGrade = (Integer) Enemy.get(7);
         Integer Spread = (Integer) Enemy.get(8);
+        Integer Red = (Integer) Enemy.get(8);
+        Integer Green = (Integer) Enemy.get(8);
+        Integer Blue = (Integer) Enemy.get(8);
+
+
         BuildedSingleArray.add(Name);
         BuildedSingleArray.add(Type);
         BuildedSingleArray.add(Image);
@@ -75,21 +80,28 @@ public class LoadEnemyThread implements Runnable {
         BuildedSingleArray.add(Speed);
         BuildedSingleArray.add(DifficultyGrade);
         BuildedSingleArray.add(Spread);
+        BuildedSingleArray.add(Red);
+        BuildedSingleArray.add(Green);
+        BuildedSingleArray.add(Blue);
         return BuildedSingleArray;
     }
     public ArrayList getEnemys()
     {
-        rows=Enemys.size()/9;
+        Integer CollumCount = 12;
+        rows=Enemys.size()/CollumCount;
         for (int i=0;i==(rows-1);i++){
-            String Name = Enemy.get((i*9)+0).toString();
-            String Type = Enemy.get((i*9)+1).toString();
-            String Image = Enemy.get((i*9)+2).toString();
-            Integer MaxHP = (Integer) Enemy.get((i*9)+3);
-            Integer FireDelay = (Integer) Enemy.get((i*9)+4);
-            Integer FireRange = (Integer) Enemy.get((i*9)+5);
-            Integer Speed = (Integer) Enemy.get((i*9)+6);
-            Integer DifficultyGrade = (Integer) Enemy.get((i*9)+7);
-            Integer Spread = (Integer) Enemy.get((i*9)+8);
+            String Name = Enemy.get((i*CollumCount)+0).toString();
+            String Type = Enemy.get((i*CollumCount)+1).toString();
+            String Image = Enemy.get((i*CollumCount)+2).toString();
+            Integer MaxHP = (Integer) Enemy.get((i*CollumCount)+3);
+            Integer FireDelay = (Integer) Enemy.get((i*CollumCount)+4);
+            Integer FireRange = (Integer) Enemy.get((i*CollumCount)+5);
+            Integer Speed = (Integer) Enemy.get((i*CollumCount)+6);
+            Integer DifficultyGrade = (Integer) Enemy.get((i*CollumCount)+7);
+            Integer Spread = (Integer) Enemy.get((i*CollumCount)+8);
+            Integer Red = (Integer) Enemy.get((i*CollumCount)+8);
+            Integer Green = (Integer) Enemy.get((i*CollumCount)+8);
+            Integer Blue = (Integer) Enemy.get((i*CollumCount)+8);
             BuildedArray.add(Name);
             BuildedArray.add(Type);
             BuildedArray.add(Image);
@@ -99,6 +111,9 @@ public class LoadEnemyThread implements Runnable {
             BuildedArray.add(Speed);
             BuildedArray.add(DifficultyGrade);
             BuildedArray.add(Spread);
+            BuildedArray.add(Red);
+            BuildedArray.add(Green);
+            BuildedArray.add(Blue);
         }
         return BuildedArray;
     }
