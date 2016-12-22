@@ -150,9 +150,11 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
         exp += geom.getLoot().getExperience();
         int newlevel = (exp / (100));
         if (newlevel > level) {
-            popuptext = "Leveled up to:  " + newlevel;
+            popuptext = "Level up";
             popuptextTime = 50;
             popUpTextPos = geom.getPosition();
+            maxHp+=5;
+            hp+=5;
         }
         level = newlevel;
         multiplier += geom.getLoot().getMultiplier();
