@@ -26,6 +26,7 @@ public class MusicThread implements Runnable {
     public void run() {
         Music music = Gdx.audio.newMusic(Gdx.files.internal("sounds/backgroundmusic.mp3"));
         music.play();
+        music.setLooping(true);
     }
 
 
