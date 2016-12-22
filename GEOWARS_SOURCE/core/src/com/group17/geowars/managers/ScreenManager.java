@@ -43,6 +43,7 @@ public class ScreenManager {
     public ScreenManager(){
 
         menuList = new Hashtable<String, MenuScreen>();
+        createStyles();
     }
 
     public MenuScreen currentScreen()
@@ -52,7 +53,7 @@ public class ScreenManager {
 
     public void init()
     {
-        createStyles();
+
         createMenus();
     }
     public void createStyles()
