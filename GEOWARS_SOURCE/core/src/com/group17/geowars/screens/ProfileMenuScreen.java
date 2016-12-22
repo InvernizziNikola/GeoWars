@@ -23,7 +23,7 @@ public class ProfileMenuScreen extends MenuScreen implements iHasStage, iSetActi
     private ProfileThread ProfileThread;
     private ArrayList PlayerProfile;
     private Integer PlayerHighscore;
-    private ArrayList PlayerCampaignLvl;
+  //  private ArrayList PlayerCampaignLvl;
     private Table table;
     private String playerName,playerScore,gamesPlayed,hoursPlayed,playerLvl,currentShip,currentDrone;
 
@@ -177,7 +177,7 @@ public class ProfileMenuScreen extends MenuScreen implements iHasStage, iSetActi
 
             PlayerProfile = ProfileThread.getPlayerProfile();
             PlayerHighscore = ProfileThread.getPlayerHighscore();
-            PlayerCampaignLvl = ProfileThread.getPlayersCampaignLvl();
+            //PlayerCampaignLvl = ProfileThread.getPlayersCampaignLvl();
             ProfileThread = null;
 
             loading = false;
