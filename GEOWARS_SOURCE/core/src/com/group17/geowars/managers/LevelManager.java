@@ -11,6 +11,7 @@ import com.group17.geowars.DataObjects.EnemyProfile;
 import com.group17.geowars.GeoWars;
 import com.group17.geowars.gameobjects.WarpGate;
 import com.group17.geowars.utils.ENEMYTYPE;
+import com.group17.geowars.utils.GAMESTATE;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +24,7 @@ import java.util.Random;
 public class LevelManager {
 
     private List<WarpGate> warpGates;
+    private List<WarpGate> toRemove;
     private int currentwave;
     private int currentLevel;
     private BitmapFont font;
@@ -33,6 +35,7 @@ public class LevelManager {
     public LevelManager () {
 
         warpGates = new ArrayList<WarpGate>();
+        toRemove = new ArrayList<WarpGate>();
         currentwave = 1;
         currentLevel = 1;
     }
@@ -48,25 +51,27 @@ public class LevelManager {
     public void newWave()
     {
         isSpawning = true;
+
         int points = currentLevel * 20 + currentwave * 3;
-        int warpGateCount = MathUtils.ceil(points/35.0f);
+        int warpGateCount = MathUtils.ceil(points/20.0f);
 
         Random rand = new Random();
         List<EnemyProfile> enemyProfiles = Managers.getEnemyManager().getProfiles();
-
-        List<EnemyProfile> enemiesToWarp = new ArrayList<EnemyProfile>();
-
-        while(points > 0)
+        System.out.println(warpGateCount);
+        // TODO MULTIPLE WARPGATES
         {
-            EnemyProfile ep = enemyProfiles.get(rand.nextInt(enemyProfiles.size()));
-            if(ep.type != ENEMYTYPE.BOSS)
-            {
-                points -= ep.difficultyGrade;
-                enemiesToWarp.add(ep);
-            }
-        }
+            List<EnemyProfile> enemiesToWarp = new ArrayList<EnemyProfile>();
 
-        warpGates.add(new WarpGate(new Vector2(1200,800), enemiesToWarp));
+            while (points > 0) {
+                EnemyProfile ep = enemyProfiles.get(rand.nextInt(enemyProfiles.size()));
+                if (ep.type != ENEMYTYPE.BOSS) {
+                    points -= ep.difficultyGrade;
+                    enemiesToWarp.add(ep);
+                }
+            }
+
+            warpGates.add(new WarpGate(new Vector2(1200, 800), enemiesToWarp));
+        }
     }
 
     public void render(Batch batch) {
@@ -79,11 +84,18 @@ public class LevelManager {
     }
 
     public void update() {
-        for(WarpGate wg : warpGates)
+        for(WarpGate wg : warpGates) {
             wg.update();
+            if(wg.finished())
+                toRemove.add(wg);
+        }
 
-        if(warpGates.size() < 0) {
+        warpGates.removeAll(toRemove);
+        toRemove.clear();
+
+        if(isSpawning == true && warpGates.size() == 0) {
             isSpawning = false;
+            Managers.getGameManager().setGameState(GAMESTATE.GAMEPLAYING);
         }
     }
 

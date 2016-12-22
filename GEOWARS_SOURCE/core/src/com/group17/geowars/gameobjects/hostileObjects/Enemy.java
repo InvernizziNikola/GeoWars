@@ -70,8 +70,7 @@ public abstract class Enemy extends GameObject implements GOInterface {
         }
         */
 
-    public void handleDead(Enemy e) {
-
+    public void handleDead() {
         float c =(float)hp/maxHp ;
 
         setColor(new Color((1-c),0,c,1));
@@ -92,7 +91,7 @@ public abstract class Enemy extends GameObject implements GOInterface {
                 Managers.getpowerUpManager().addPowerUp(p);
                 return;
             }
-            Managers.getEnemyManager().remove(e);
+            Managers.getEnemyManager().remove(this);
         }
 
         hp--;

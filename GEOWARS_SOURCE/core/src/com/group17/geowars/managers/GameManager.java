@@ -35,6 +35,11 @@ public class GameManager {
         this.game = game;
     }
 
+    public void setGameState(GAMESTATE gs)
+    {
+        game.setGameState(gs);
+    }
+
     public GameManager()
     {
 
@@ -109,6 +114,7 @@ public class GameManager {
         Managers.getLevelManager().update();
         Managers.getpowerUpManager().update();
         Managers.getPlayerManager().update();
+        Managers.getCollisionManager().update();
     }
     public void newGame()
     {

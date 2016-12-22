@@ -6,5 +6,6 @@ package com.group17.geowars.utils;
 public enum WARPSTATE {
     LOADING,
     SPAWNING,
-    UNLOADING
+    UNLOADING,
+    FINISHED
 }

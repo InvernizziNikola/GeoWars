@@ -30,6 +30,13 @@ public class WarpGate {
     private Random rand = new Random();
     private float timer = 200;
 
+    public boolean finished()
+    {
+        if(state == WARPSTATE.FINISHED)
+            return true;
+        return false;
+    }
+
     public WarpGate(Vector2 position, List<EnemyProfile> enemiesToSpawn)
     {
         this.position = position;
@@ -68,13 +75,17 @@ public class WarpGate {
             }
             case UNLOADING:
             {
-                size-=3;
+                size-=2;
                 angle -= rotateSpeed*10;
                 if(size <= 0)
                 {
+                    state = WARPSTATE.FINISHED;
                     size=0;
                 }
                 break;
+            }
+            case FINISHED:{
+
             }
         }
     }

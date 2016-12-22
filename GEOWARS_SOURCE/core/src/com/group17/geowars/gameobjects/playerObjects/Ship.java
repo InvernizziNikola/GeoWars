@@ -198,7 +198,7 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
             MenuScreen mainmenu = Managers.getScreenManager().getScreen("endgamemenu");
             Managers.getScreenManager().setScreen(mainmenu);
         }
-        enemy.handleDead(enemy);
+        enemy.handleDead();
     }
 
     public Color getShipColor() {
