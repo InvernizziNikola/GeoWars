@@ -23,7 +23,6 @@ public class ProfileMenuScreen extends MenuScreen implements iHasStage, iSetActi
     private ProfileThread ProfileThread;
     private ArrayList PlayerProfile;
     private Integer PlayerHighscore;
-  //  private ArrayList PlayerCampaignLvl;
     private Table table;
     private String playerName,playerScore,gamesPlayed,hoursPlayed,playerLvl,currentShip,currentDrone;
 
@@ -77,19 +76,6 @@ public class ProfileMenuScreen extends MenuScreen implements iHasStage, iSetActi
     public void showText() {
 
         text.draw(batch, "GEOMETRYWARS", GeoWars.WIDTH / 2 - 70, GeoWars.HEIGHT - GeoWars.HEIGHT / 10);
-        //TODO values need to be inserted
-      /*  text.draw(batch, "USERNAME", width / 2 - 50, height - height / 6);
-        text.draw(batch, "HIGHSCORE ARCADE: ", width / 10, height - height / 3);
-        text.draw(batch, "CAMPAIGN COMPLETION: %", width / 10, height - height / 3 - 50);
-        text.draw(batch, "GAMES PLAYED: ", width / 10, height - height / 3 - 100);
-        text.draw(batch, "HOURS PLAYED: ", width / 10, height / 2 + 25);
-        text.draw(batch, "LEVEL: ", width / 10, height / 2 - 25);
-        text.draw(batch, "CURRENT SHIP & DRONE", width - width / 3, height - height / 3);
-        text.draw(batch, "CURRENT SHIP", width - width / 6, height - height / 3 - 100);
-        text.draw(batch, "CURRENT DRONE", width - width / 6, height / 2 - 25);
-*/
-
-        //TODO change width
 
 
         BitmapFont font = new BitmapFont();
@@ -104,8 +90,6 @@ public class ProfileMenuScreen extends MenuScreen implements iHasStage, iSetActi
         table.add(new Label("HIGHSCORE ARCADE: ", style)).width(200);
         table.add(new Label(playerScore,style)).width(200);
         table.row();
-        //table.add(new Label("CAMPAIGN COMPLETION: ", style)).width(200);
-        //table.row();
         table.add(new Label("GAMES PLAYED:", style)).width(200);
         table.add(new Label(gamesPlayed,style)).width(200);
         table.row();
@@ -129,10 +113,12 @@ public class ProfileMenuScreen extends MenuScreen implements iHasStage, iSetActi
     public void setData(){
         playerScore = PlayerHighscore.toString();
         playerName = Managers.getAccountManager().getAccounts().get(0).name.toString();
+        //// TODO: sql count highscore amount
         gamesPlayed=PlayerProfile.get(1).toString();
         //will come from steam
         hoursPlayed=PlayerProfile.get(2).toString();
         playerLvl=PlayerProfile.get(0).toString();
+        //TODO  SET CURRENT SHIP and drone
         //currentShip=PlayerHighscore.get(0).toString();;
         //currentDrone=PlayerHighscore.get(0).toString();;
         currentShip = "Assault";
@@ -161,8 +147,6 @@ public class ProfileMenuScreen extends MenuScreen implements iHasStage, iSetActi
             return;
 
         loading = true;
-        //TODO playername ophalen
-
         ProfileThread = new ProfileThread(Managers.getAccountManager().getAccounts().get(0).name.toString());
 
         ProfileThread.start();
@@ -177,13 +161,11 @@ public class ProfileMenuScreen extends MenuScreen implements iHasStage, iSetActi
 
             PlayerProfile = ProfileThread.getPlayerProfile();
             PlayerHighscore = ProfileThread.getPlayerHighscore();
-            //PlayerCampaignLvl = ProfileThread.getPlayersCampaignLvl();
             ProfileThread = null;
 
             loading = false;
             setData();
             showText();
-            System.out.println(PlayerProfile);
 
         }
         if (ProfileThread != null && !ProfileThread.finished()) {

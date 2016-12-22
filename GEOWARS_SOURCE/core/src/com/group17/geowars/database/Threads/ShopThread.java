@@ -4,24 +4,6 @@ import com.group17.geowars.database.DBManager;
 
 import java.util.ArrayList;
 
-/**
- * Created by nikola on 06/12/2016.
- */
-
-
-/*
-* -------------HOW TO GET THE ARRAYLIST-------------
-*  public void getHighScore(String gameMode)
-    {
-        if(loading)
-            return;
-
-        loading = true;
-        hsT = new HighScoreMenuThread(gameMode);
-        hsT.start();
-    }
-*
-* */
 public class ShopThread implements Runnable {
 
 
