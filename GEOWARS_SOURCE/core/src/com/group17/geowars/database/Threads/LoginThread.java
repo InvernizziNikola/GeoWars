@@ -27,7 +27,7 @@ public class LoginThread implements Runnable {
     private String Name = "";
     private String Password = "";
     private Thread t;
-
+    //// TODO: 22/12/2016 timeout; 
     public LoginThread(String Name,String Password)
     {
         this.Name = Name;
