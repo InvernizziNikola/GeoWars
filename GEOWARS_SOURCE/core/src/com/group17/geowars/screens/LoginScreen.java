@@ -58,39 +58,21 @@ public class LoginScreen extends MenuScreen implements iHasStage, iSetActive {
         //skin and style
         stage.clear();
         Buttons();
-        skin = new Skin();
-        Pixmap pixmap = new Pixmap(200, 50, Pixmap.Format.RGBA8888);
-        pixmap.setColor(Color.WHITE);
-        pixmap.fill();
-        skin.add("white", new Texture(pixmap));
-        BitmapFont font = new BitmapFont();
-        TextField.TextFieldStyle txtStyle = new TextField.TextFieldStyle();
-        TextField.TextFieldStyle txtStylePassword = new TextField.TextFieldStyle();
-        txtStyle.fontColor = Color.WHITE;
-        txtStyle.font = font;
-        Label.LabelStyle style = new Label.LabelStyle();
-        style.font = font;
+        Label errorlable = new Label("", style());
 
 
-        TxtUsername = new TextField("", txtStyle);
-        TxtPassword = new TextField("", txtStyle);
-        TxtUsername.setMessageText("type username here");
-        TxtPassword.setMessageText("type password here");
-        TxtPassword.setPasswordMode(true);
-        TxtPassword.setPasswordCharacter('*');
-
-
-        Label errorlable = new Label("", style);
-
+        final TextField username = newTextField();
+        final TextField password = newPwField();
         table = new Table();
         table.setFillParent(true);
         table.add(errorlable);
         table.row();
-        table.add(new Label("Username", style)).width(200);
-        table.add(TxtUsername).width(200);
+
+        table.add(new Label("Username", style())).width(200);
+        table.add(username).width(200);
         table.row();
-        table.add(new Label("Password", style)).width(200);
-        table.add(TxtPassword).width(200);
+        table.add(new Label("Password", style())).width(200);
+        table.add(password).width(200);
         table.row();
 
         final TextButton loginButton = newButton("Login",GeoWars.WIDTH/2-100, GeoWars.HEIGHT-GeoWars.HEIGHT/4, 200, 75, new MenuGrid(0, 0));
