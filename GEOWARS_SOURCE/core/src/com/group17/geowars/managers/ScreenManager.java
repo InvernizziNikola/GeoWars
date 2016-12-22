@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.*;
@@ -33,9 +34,11 @@ public class ScreenManager {
     {
         return selectedStyle;
     }
+    private BitmapFont gameFont;
 
     private Skin skin;
     private Dictionary<String, MenuScreen> menuList;
+
 
     public ScreenManager(){
 
@@ -82,6 +85,13 @@ public class ScreenManager {
         selectedStyle.fontColor = Color.BLACK;
         selectedStyle.font = skin.getFont("default");
         skin.add("selected", selectedStyle);
+
+        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/Guardians.ttf"));
+        FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
+        parameter.size = 20;
+        gameFont = generator.generateFont(parameter); // font size 12 pixels
+        generator.dispose();
+
     }
     public void createMenus(){
 
@@ -117,6 +127,11 @@ public class ScreenManager {
             return StartScreen;
         }
         return screen;
+    }
+
+
+    public BitmapFont getGameFont() {
+        return gameFont;
     }
 
     public void setScreen(MenuScreen screen){
