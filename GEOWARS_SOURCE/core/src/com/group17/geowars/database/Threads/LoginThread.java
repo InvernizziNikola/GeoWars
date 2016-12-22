@@ -11,7 +11,6 @@ public class LoginThread implements Runnable {
     private String Name = "";
     private String Password = "";
     private Thread t;
-    //// TODO: 22/12/2016 timeout;
     public LoginThread(String Name,String Password)
     {
         this.Name = Name;
@@ -46,11 +45,13 @@ public class LoginThread implements Runnable {
             return false;
         }
     }
-
+    Integer i = 0;
     public boolean finished()
     {
-        if(Player != null)
+        if(Player != null||i>300)
             return true;
+        i++;
+        System.out.println(i);
         return false;
     }
 }

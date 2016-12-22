@@ -14,6 +14,7 @@ import com.group17.geowars.GeoWars;
 import com.group17.geowars.database.DBManager;
 import com.group17.geowars.database.Threads.HighScoreMenuThread;
 import com.group17.geowars.database.Threads.LoginThread;
+import com.group17.geowars.database.Threads.MusicThread;
 import com.group17.geowars.managers.Managers;
 import com.group17.geowars.utils.MenuGrid;
 
@@ -34,12 +35,14 @@ public class LoginScreen extends MenuScreen implements iHasStage, iSetActive {
     private TextField password;
 
     private LoginThread LT;
+    private MusicThread MT;
 
     private Table table;
 
     public LoginScreen() {
         super();
         create();
+
     }
 
     public void Buttons() {
@@ -54,6 +57,8 @@ public class LoginScreen extends MenuScreen implements iHasStage, iSetActive {
                 Managers.getScreenManager().setScreen(nextMenu);
             }
         });
+
+        System.out.println("test2");
     }
 
     public void setStage() {
@@ -93,10 +98,17 @@ public class LoginScreen extends MenuScreen implements iHasStage, iSetActive {
                 System.out.println("Login button pressed");
                 LT = new LoginThread(username.getText(),password.getText());
                 LT.start();
+
             }
         });
 
         stage.addActor(table);
+        System.out.println("test1");
+        if(MT==null) {
+            MT = new MusicThread();
+            MT.start();
+            MT.run();
+        }
 
     }
     public void render(float deltaTime) {
