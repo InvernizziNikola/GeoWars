@@ -43,6 +43,7 @@ public class GameManager {
     }
     public void setDifficulty(String difficulty)
     {
+        //thread nog starten en data uithalen
 //        difficultyModifier = DT.getDifficultyModifier();
     }
 
