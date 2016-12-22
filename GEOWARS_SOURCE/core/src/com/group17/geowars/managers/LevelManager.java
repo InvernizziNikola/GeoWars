@@ -10,8 +10,10 @@ import com.badlogic.gdx.math.Vector2;
 import com.group17.geowars.DataObjects.EnemyProfile;
 import com.group17.geowars.GeoWars;
 import com.group17.geowars.gameobjects.WarpGate;
+import com.group17.geowars.playerobjects.Player;
 import com.group17.geowars.utils.ENEMYTYPE;
 import com.group17.geowars.utils.GAMESTATE;
+import com.sun.javafx.css.parser.DeriveColorConverter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +25,7 @@ import java.util.Random;
 
 public class LevelManager {
 
+
     private List<WarpGate> warpGates;
     private List<WarpGate> toRemove;
     private int currentwave;
@@ -32,16 +35,17 @@ public class LevelManager {
     private Sprite spriteBG;
     public boolean isSpawning;
 
+
     public LevelManager () {
 
         warpGates = new ArrayList<WarpGate>();
         toRemove = new ArrayList<WarpGate>();
-        currentwave = 1;
+        currentwave = 0;
         currentLevel = 1;
     }
     public void init()
     {
-        font = new BitmapFont();
+        font = Managers.getScreenManager().getGameFont();
 
         //backgound stuff
         textureBG = Managers.getAssetManager().getTexture("test_background_geoWars");
@@ -50,35 +54,66 @@ public class LevelManager {
 
     public void newWave()
     {
+        currentwave++;
+        if(currentwave > 10) {
+            currentwave = 1;
+            currentLevel++;
+        }
+
         isSpawning = true;
 
-        int points = currentLevel * 20 + currentwave * 3;
-        int warpGateCount = MathUtils.ceil(points/35.0f);
+        float points = (float)currentLevel * 25.0f + (float)currentwave * 2.5f;
+        float warpGateCount = MathUtils.ceil(points/10.0f);
 
         Random rand = new Random();
         List<EnemyProfile> enemyProfiles = Managers.getEnemyManager().getProfiles();
-        System.out.println(warpGateCount);
-        // TODO MULTIPLE WARPGATES
+
+        for(float i = 0; i < warpGateCount; i++)
         {
+            float pointsPerWarp =  points / warpGateCount;
             List<EnemyProfile> enemiesToWarp = new ArrayList<EnemyProfile>();
 
-            while (points > 0) {
+            while (pointsPerWarp > 0) {
                 EnemyProfile ep = enemyProfiles.get(rand.nextInt(enemyProfiles.size()));
                 if (ep.type != ENEMYTYPE.BOSS) {
-                    points -= ep.difficultyGrade;
+                    pointsPerWarp -= ep.difficultyGrade;
                     enemiesToWarp.add(ep);
                 }
             }
 
-            warpGates.add(new WarpGate(new Vector2(1200, 800), enemiesToWarp));
+            Vector2 warpPos;
+
+            boolean okSpawnPoint = true;
+            do
+            {
+                okSpawnPoint = true;
+                warpPos = new Vector2(rand.nextInt(GeoWars.ORIGINALWIDTH-240)+120, rand.nextInt(GeoWars.ORIGINALHEIGHT-240)+120);
+                for(Player p : Managers.getPlayerManager().getPlayers())
+                {
+                    if(warpPos.dst(p.getShip().getPosition()) < 100){
+                        okSpawnPoint = false;
+                        return;
+                    }
+                }
+                if(okSpawnPoint) {
+                    for (WarpGate wg : warpGates) {
+                        if (warpPos.dst(wg.GetPosition()) < 300) {
+                            okSpawnPoint = false;
+                            return;
+                        }
+                    }
+                }
+            }
+            while(!okSpawnPoint);
+
+            warpGates.add(new WarpGate(warpPos, enemiesToWarp));
         }
-        
     }
 
     public void render(Batch batch) {
 
         spriteBG.draw(batch);
-        font.draw(batch, "Wave " + Managers.getLevelManager().getCurrentwave(), GeoWars.WIDTH/2, GeoWars.HEIGHT-50);
+        font.draw(batch, "Level "+ currentLevel + " Wave " + currentwave, GeoWars.WIDTH/2 - 100, GeoWars.HEIGHT-50);
 
         for(WarpGate wg : warpGates)
             wg.render(batch);
@@ -110,7 +145,9 @@ public class LevelManager {
 
     public void reset()
     {
+        warpGates.clear();
         currentwave = 0;
+        currentLevel = 0;
     }
 
 

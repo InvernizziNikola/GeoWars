@@ -39,11 +39,13 @@ public class GameManager {
     {
         game.setGameState(gs);
     }
+    public void setDifficulty()
+    {
+
+    }
 
     public GameManager()
     {
-
-
     }
 
     public void handleEndGame()

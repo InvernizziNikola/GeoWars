@@ -378,7 +378,6 @@ public class DBManager {
 
 
         try {
-
             String SQLstring = "INSERT INTO HighScore (nameProfile,Score,gamemode) VALUES (?,?,?);";
 
             prep = this.conn.prepareStatement(SQLstring);

@@ -85,7 +85,6 @@ public abstract class Drone extends GameObject {
             canShoot = true;
         }
         if(player == null) {
-            System.out.println("kakakakakakaka");
             return;
         }
 

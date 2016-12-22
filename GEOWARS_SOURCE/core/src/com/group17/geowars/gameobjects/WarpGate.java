@@ -36,7 +36,10 @@ public class WarpGate {
             return true;
         return false;
     }
-
+    public Vector2 GetPosition()
+    {
+        return position;
+    }
     public WarpGate(Vector2 position, List<EnemyProfile> enemiesToSpawn)
     {
         this.position = position;
