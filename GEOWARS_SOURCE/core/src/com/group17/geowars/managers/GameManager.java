@@ -22,7 +22,7 @@ public class GameManager {
     private boolean resetGame = false;
     private SaveScoreToDBThread SaveScoreThread;
     private int score = 0;
-
+    public Integer difficultyModifier;
     public void setEndScore(int score)
     {
         this.score = score;
@@ -43,7 +43,7 @@ public class GameManager {
     }
     public void setDifficulty(String difficulty)
     {
-        Integer difficultyModifier = DT.getDifficultyModifier();
+//        difficultyModifier = DT.getDifficultyModifier();
     }
 
     public GameManager()
