@@ -123,6 +123,16 @@ public class DBManager {
         }
         return DbExecute(prep);
     }
+    public ArrayList DBSelectDifficulty(String NameDifficulty) {
+        String SQLstring = "SELECT Difficulty FROM Difficulty where Name = ?;";
+        try {
+            prep = this.conn.prepareStatement(SQLstring);
+            prep.setString(1,SQLstring);
+        } catch (SQLException e) {
+            System.out.println("error with preparing statment. Are you trying to hack us?");
+        }
+        return DbExecute(prep);
+    }
 
     public ArrayList DBselectGeom() {
         try {
