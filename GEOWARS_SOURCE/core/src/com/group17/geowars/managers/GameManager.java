@@ -1,6 +1,8 @@
 package com.group17.geowars.managers;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.group17.geowars.database.DBManager;
+import com.group17.geowars.database.Threads.DifficultyThread;
 import com.group17.geowars.database.Threads.SaveScoreToDBThread;
 import com.group17.geowars.gamemodes.ArcadeSoloGame;
 import com.group17.geowars.gamemodes.base.BaseGame;
@@ -29,7 +31,7 @@ public class GameManager {
     {
         return score;
     }
-
+    private DifficultyThread DT;
     public void newGame(BaseGame game)
     {
         this.game = game;
@@ -39,9 +41,9 @@ public class GameManager {
     {
         game.setGameState(gs);
     }
-    public void setDifficulty()
+    public void setDifficulty(String difficulty)
     {
-
+        Integer difficultyModifier = DT.getDifficultyModifier();
     }
 
     public GameManager()
