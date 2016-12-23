@@ -9,7 +9,7 @@ import com.group17.geowars.managers.Managers;
  * Created by kevin on 21/12/2016.
  */
 public class TankShip extends Ship {
-    public TankShip(Vector2 pos, String type) {
+    public TankShip(Vector2 pos ) {
         super(pos,"TankShip");
         maxHp=100;
         hp=maxHp;

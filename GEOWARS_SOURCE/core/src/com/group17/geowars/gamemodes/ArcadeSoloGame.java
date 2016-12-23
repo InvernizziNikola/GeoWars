@@ -40,9 +40,20 @@ public class ArcadeSoloGame extends SoloGame implements iGame {
             case TANK:
                 s=new TankShip(spawnPoint);
                 break;
-
         }
-        /*
+        switch (a.profile.getDroneType())
+        {
+            case ATTACK:
+                d=new AttackDrone(spawnPoint);
+                break;
+            case DEFEND:
+                d=new DefenceDrone(spawnPoint);
+                break;
+            case SUPPORT:
+                d=new SupportDrone(spawnPoint);
+                break;
+        }
+
 
         s.setPlayer(p);
         p.setShip(s);
@@ -51,7 +62,7 @@ public class ArcadeSoloGame extends SoloGame implements iGame {
         d.setPlayer(p);
         p.setDrone(d);
         placePlayerTextFields();
-        */
+        
 
 
     }
