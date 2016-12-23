@@ -7,10 +7,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.group17.geowars.GeoWars;
 import com.group17.geowars.database.Threads.HighScoreMenuThread;
@@ -62,7 +59,7 @@ public class GuestErrorScreen extends MenuScreen implements iHasStage, iSetActiv
 
     public void Buttons(){
 
-        final TextButton backButton = newButton("BACK", width/2-75,height/5,150,50, new MenuGrid(0, 0));
+        final ImageButton backButton = newImageButton("BACK", width/2-75,height/5,150,50, new MenuGrid(0, 0));
 
         backButton.addListener(new ChangeListener() {
             public void changed(ChangeEvent event, Actor actor) {

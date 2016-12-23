@@ -2,6 +2,7 @@ package com.group17.geowars.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.group17.geowars.GeoWars;
@@ -24,7 +25,7 @@ public class MainMenuScreen extends MenuScreen implements iHasStage, iSetActive 
     public void create() {
         Gdx.input.setInputProcessor(stage);
 
-        final TextButton playButton = newButton("PLAY", GeoWars.WIDTH / 2 - 100, GeoWars.HEIGHT - GeoWars.HEIGHT / 4, 200, 75, new MenuGrid(0, 0));
+        final ImageButton playButton = newImageButton("PLAY", GeoWars.WIDTH / 2 - 100, GeoWars.HEIGHT - GeoWars.HEIGHT / 4, 200, 75, new MenuGrid(0, 0));
         playButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -35,7 +36,7 @@ public class MainMenuScreen extends MenuScreen implements iHasStage, iSetActive 
             }
         });
 
-        final TextButton optionsButton = newButton("OPTIONS", GeoWars.WIDTH / 2 - 100, GeoWars.HEIGHT / 2, 200, 75, new MenuGrid(0, 2));
+        final ImageButton optionsButton = newImageButton("OPTIONS", GeoWars.WIDTH / 2 - 100, GeoWars.HEIGHT / 2, 200, 75, new MenuGrid(0, 2));
         optionsButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -45,7 +46,7 @@ public class MainMenuScreen extends MenuScreen implements iHasStage, iSetActive 
             }
         });
 
-        final TextButton leaderboardButton = newButton("LEADERBOARDS", GeoWars.WIDTH / 2 - 100, GeoWars.HEIGHT / 2 - GeoWars.HEIGHT / 8, 200, 75, new MenuGrid(0, 3));
+        final ImageButton leaderboardButton = newImageButton("LEADERBOARDS", GeoWars.WIDTH / 2 - 100, GeoWars.HEIGHT / 2 - GeoWars.HEIGHT / 8, 200, 75, new MenuGrid(0, 3));
         leaderboardButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -57,7 +58,7 @@ public class MainMenuScreen extends MenuScreen implements iHasStage, iSetActive 
         });
 
         //// TODO: 23/12/2016 remove this button
-        final TextButton tempButton = newButton("temp upgrade screen", GeoWars.WIDTH / 2 - 500, GeoWars.HEIGHT / 2 - GeoWars.HEIGHT / 8, 200, 75, new MenuGrid(0, 3));
+        final ImageButton tempButton = newImageButton("temp upgrade screen", GeoWars.WIDTH / 2 - 500, GeoWars.HEIGHT / 2 - GeoWars.HEIGHT / 8, 200, 75, new MenuGrid(0, 3));
         tempButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -67,7 +68,7 @@ public class MainMenuScreen extends MenuScreen implements iHasStage, iSetActive 
 
             }
         });
-        final TextButton profileButton = newButton("PROFILE", GeoWars.WIDTH / 2 - 100, GeoWars.HEIGHT / 2 + GeoWars.HEIGHT / 8, 200, 75, new MenuGrid(0, 1));
+        final ImageButton profileButton = newImageButton("PROFILE", GeoWars.WIDTH / 2 - 100, GeoWars.HEIGHT / 2 + GeoWars.HEIGHT / 8, 200, 75, new MenuGrid(0, 1));
         profileButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -82,7 +83,7 @@ public class MainMenuScreen extends MenuScreen implements iHasStage, iSetActive 
             }
         });
 
-        final TextButton shopButton = newButton("SHOP", GeoWars.WIDTH / 2 - 100, GeoWars.HEIGHT / 2 - GeoWars.HEIGHT / 4, 200, 75, new MenuGrid(0, 4));
+        final ImageButton shopButton = newImageButton("SHOP", GeoWars.WIDTH / 2 - 100, GeoWars.HEIGHT / 2 - GeoWars.HEIGHT / 4, 200, 75, new MenuGrid(0, 4));
         shopButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -97,20 +98,7 @@ public class MainMenuScreen extends MenuScreen implements iHasStage, iSetActive 
             }
         });
 
-        /*
-        final TextButton LoginButton = newButton("Login", GeoWars.WIDTH/2-400, GeoWars.HEIGHT/2-GeoWars.HEIGHT/4, 200, 75, new MenuGrid(-1, 4));
-        LoginButton.addListener(new ChangeListener() {
-            @Override
-            public void changed(ChangeEvent event, Actor actor) {
-                LoginButton.setChecked(false);
-                MenuScreen nextMenu = Managers.getScreenManager().getScreen("LoginScreen");
-                Managers.getScreenManager().setScreen(nextMenu);
-            }
-        });
-*/
-
-
-        final TextButton quitButton = newButton("QUIT GAME", GeoWars.WIDTH / 2 - 100, GeoWars.HEIGHT - GeoWars.HEIGHT + 90, 200, 75, new MenuGrid(0, 5));
+        final ImageButton quitButton = newImageButton("QUIT GAME", GeoWars.WIDTH / 2 - 100, GeoWars.HEIGHT - GeoWars.HEIGHT + 90, 200, 75, new MenuGrid(0, 5));
         quitButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {

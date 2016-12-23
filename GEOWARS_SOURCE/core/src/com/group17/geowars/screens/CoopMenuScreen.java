@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.group17.geowars.GeoWars;
@@ -30,7 +31,7 @@ public class CoopMenuScreen extends MenuScreen implements iHasStage, iSetActive 
     public void create() {
         Gdx.input.setInputProcessor(stage);
 
-        final TextButton playerButton = newButton("PLAYER 1", GeoWars.WIDTH/3-125, GeoWars.HEIGHT / 5 * 4, 250, 50, new MenuGrid(-1, 0));
+        final ImageButton playerButton = newImageButton("PLAYER 1", GeoWars.WIDTH/3-125, GeoWars.HEIGHT / 5 * 4, 250, 50, new MenuGrid(-1, 0));
         playerButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -38,7 +39,7 @@ public class CoopMenuScreen extends MenuScreen implements iHasStage, iSetActive 
             }
         });
 
-        final TextButton addNewButton = newButton("Add Player", GeoWars.WIDTH/3*2-125, GeoWars.HEIGHT / 5 * 4, 250, 50, new MenuGrid(0, 0));
+        final ImageButton addNewButton = newImageButton("Add Player", GeoWars.WIDTH/3*2-125, GeoWars.HEIGHT / 5 * 4, 250, 50, new MenuGrid(0, 0));
         addNewButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -49,7 +50,7 @@ public class CoopMenuScreen extends MenuScreen implements iHasStage, iSetActive 
         });
 
 
-        final TextButton startGameButton = newButton("START", GeoWars.WIDTH/2-125, GeoWars.HEIGHT / 5 * 2 ,250,50, new MenuGrid(0, 1));
+        final ImageButton startGameButton = newImageButton("START", GeoWars.WIDTH/2-125, GeoWars.HEIGHT / 5 * 2 ,250,50, new MenuGrid(0, 1));
         startGameButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -69,7 +70,7 @@ public class CoopMenuScreen extends MenuScreen implements iHasStage, iSetActive 
         });
 
 
-        final TextButton backButton = newButton("Back", GeoWars.WIDTH/2 - 125, GeoWars.HEIGHT / 5, 250 ,50, new MenuGrid(0, 2));
+        final ImageButton backButton = newImageButton("Back", GeoWars.WIDTH/2 - 125, GeoWars.HEIGHT / 5, 250 ,50, new MenuGrid(0, 2));
         backButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {

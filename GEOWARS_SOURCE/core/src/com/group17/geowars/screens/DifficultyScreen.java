@@ -2,6 +2,7 @@ package com.group17.geowars.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.group17.geowars.GeoWars;
@@ -22,7 +23,7 @@ public class DifficultyScreen extends MenuScreen implements iHasStage, iSetActiv
     public void create() {
         Gdx.input.setInputProcessor(stage);
 
-        final TextButton easyButton = newButton("Easy", (width/2)-(width/2)/2,height/2+50,150,50, new MenuGrid(0, 0));
+        final ImageButton easyButton = newImageButton("Easy", (width/2)-(width/2)/2,height/2+50,150,50, new MenuGrid(0, 0));
         easyButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -36,7 +37,7 @@ public class DifficultyScreen extends MenuScreen implements iHasStage, iSetActiv
             }
         });
 
-        final TextButton mediumButton = newButton("Normal",(width/2)-75,height/2+50,150,50, new MenuGrid(1, 0));
+        final ImageButton mediumButton = newImageButton("Normal",(width/2)-75,height/2+50,150,50, new MenuGrid(1, 0));
         mediumButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -51,7 +52,7 @@ public class DifficultyScreen extends MenuScreen implements iHasStage, iSetActiv
             }
         });
 
-        final TextButton hardButton = newButton("Hard",(width/2)+(width/6),height/2+50,150,50, new MenuGrid(2, 0));
+        final ImageButton hardButton = newImageButton("Hard",(width/2)+(width/6),height/2+50,150,50, new MenuGrid(2, 0));
 
         hardButton.addListener(new ChangeListener() {
             @Override
@@ -67,7 +68,7 @@ public class DifficultyScreen extends MenuScreen implements iHasStage, iSetActiv
             }
         });
 
-        final TextButton backButton = newButton("BACK",(width/2)-75,(height/2)-(height/2)+(height/2)/4,150,50, new MenuGrid(1, 1));
+        final ImageButton backButton = newImageButton("BACK",(width/2)-75,(height/2)-(height/2)+(height/2)/4,150,50, new MenuGrid(1, 1));
         backButton.addListener(new ChangeListener() {
 
             public void changed(ChangeEvent event, Actor actor) {

@@ -63,13 +63,13 @@ public class HighScoreMenuScreen extends MenuScreen implements iHasStage, iSetAc
     }
     public void Buttons(){
 
-        final TextButton campaignButton = newButton("CAMPAIGN",width/2-width/5,height-height/3,150,50, new MenuGrid(-1, 0));
+        final ImageButton campaignButton = newImageButton("CAMPAIGN",width/2-width/5,height-height/3,150,50, new MenuGrid(-1, 0));
 
-        final TextButton arcadeButton = newButton("ARCADE",width/2-75,height-height/3,150,50, new MenuGrid(0, 0));
+        final ImageButton arcadeButton = newImageButton("ARCADE",width/2-75,height-height/3,150,50, new MenuGrid(0, 0));
 
-        final TextButton multiPlayerButton = newButton("CO-OP",width/2+width/8,height-height/3,150,50, new MenuGrid(1, 0));
+        final ImageButton multiPlayerButton = newImageButton("CO-OP",width/2+width/8,height-height/3,150,50, new MenuGrid(1, 0));
 
-        final TextButton backButton = newButton("BACK", width/2-75,height/5,150,50, new MenuGrid(0, 1));
+        final ImageButton backButton = newImageButton("BACK", width/2-75,height/5,150,50, new MenuGrid(0, 1));
 
         /*--------------EVENT HANDLER--------------------------*/
         campaignButton.addListener(new ChangeListener() {

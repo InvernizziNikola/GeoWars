@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.group17.geowars.GeoWars;
@@ -54,7 +55,7 @@ public class ShopMenuScreen extends MenuScreen implements iHasStage, iSetActive 
 
     public void createButtons()
     {
-        final TextButton backButton = newButton("BACK",width-width/6,20,150,50, new MenuGrid(0,2));
+        final ImageButton backButton = newImageButton("BACK",width-width/6,20,150,50, new MenuGrid(0,2));
         backButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -64,17 +65,17 @@ public class ShopMenuScreen extends MenuScreen implements iHasStage, iSetActive 
             }
         });
 
-        final TextButton buyShipTankButton = newButton("BUY",width/3,height/2,55,25, new MenuGrid(0,0));
+        final ImageButton buyShipTankButton = newImageButton("BUY",width/3,height/2,55,25, new MenuGrid(0,0));
 
-        final TextButton buyShipAssaultButton = newButton("BUY", width/2+width/9,height/2,55,25, new MenuGrid(1,0));
+        final ImageButton buyShipAssaultButton = newImageButton("BUY", width/2+width/9,height/2,55,25, new MenuGrid(1,0));
 
-        final TextButton buyShipDefenseButton = newButton("BUY",width-width/10,height/2,55,25, new MenuGrid(2,0));
+        final ImageButton buyShipDefenseButton = newImageButton("BUY",width-width/10,height/2,55,25, new MenuGrid(2,0));
 
-        final TextButton buyDroneDefenseButton = newButton("BUY",width/3,height/8,55,25, new MenuGrid(0,1));
+        final ImageButton buyDroneDefenseButton = newImageButton("BUY",width/3,height/8,55,25, new MenuGrid(0,1));
 
-        final TextButton buyDroneSupportButton = newButton("BUY", width/2+width/9,height/8,55,25,new MenuGrid(1,1));
+        final ImageButton buyDroneSupportButton = newImageButton("BUY", width/2+width/9,height/8,55,25,new MenuGrid(1,1));
 
-        final TextButton buyDroneAttackButton = newButton("BUY",width-width/10,height/8,55,25,new MenuGrid(2,1));
+        final ImageButton buyDroneAttackButton = newImageButton("BUY",width-width/10,height/8,55,25,new MenuGrid(2,1));
     }
 
     public void showText()

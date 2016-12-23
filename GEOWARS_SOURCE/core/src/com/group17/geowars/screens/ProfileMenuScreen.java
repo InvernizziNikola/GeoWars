@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -42,7 +43,7 @@ public class ProfileMenuScreen extends MenuScreen implements iHasStage, iSetActi
     }
     public void createButtons()
     {
-        final TextButton clanButton = newButton("CLANS", GeoWars.WIDTH / 10, GeoWars.HEIGHT / 3, 150, 50, new MenuGrid(0, 0));
+        final ImageButton clanButton = newImageButton("CLANS", GeoWars.WIDTH / 10, GeoWars.HEIGHT / 3, 150, 50, new MenuGrid(0, 0));
         clanButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -52,7 +53,7 @@ public class ProfileMenuScreen extends MenuScreen implements iHasStage, iSetActi
             }
         });
 
-        final TextButton backButton = newButton("BACK", GeoWars.HEIGHT / 2 - 75, GeoWars.HEIGHT / 10, 150, 50, new MenuGrid(1, 1));
+        final ImageButton backButton = newImageButton("BACK", GeoWars.HEIGHT / 2 - 75, GeoWars.HEIGHT / 10, 150, 50, new MenuGrid(1, 1));
         backButton.addListener(new ChangeListener() {
 
             public void changed(ChangeEvent event, Actor actor) {
@@ -63,7 +64,7 @@ public class ProfileMenuScreen extends MenuScreen implements iHasStage, iSetActi
             }
         });
 
-        final TextButton upgradeButton = newButton("CHANGE/UPGRADE", GeoWars.WIDTH - GeoWars.WIDTH / 3, GeoWars.HEIGHT / 3, 150, 50, new MenuGrid(1, 0));
+        final ImageButton upgradeButton = newImageButton("CHANGE/UPGRADE", GeoWars.WIDTH - GeoWars.WIDTH / 3, GeoWars.HEIGHT / 3, 150, 50, new MenuGrid(1, 0));
         upgradeButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
