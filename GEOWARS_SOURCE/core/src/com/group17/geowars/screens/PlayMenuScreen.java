@@ -28,15 +28,7 @@ public class PlayMenuScreen extends MenuScreen implements iHasStage, iSetActive 
     public void create() {
         Gdx.input.setInputProcessor(stage);
 
-        final ImageButton campaignButton = newImageButton("CAMPAIGN", (width/2)-(width/2)/2,height/2+50,150,50, new MenuGrid(0, 0));
-        campaignButton.addListener(new ChangeListener() {
-            @Override
-            public void changed(ChangeEvent event, Actor actor) {
-                campaignButton.setChecked(false);
-            }
-        });
-
-        final ImageButton arcadeButton = newImageButton("ARCADE",(width/2)-75,height/2+50,150,50, new MenuGrid(1, 0));
+        final ImageButton arcadeButton = newImageButton("Menu_arcadeicon",(width/2)-75,height/2+50,150,50, new MenuGrid(1, 0));
         arcadeButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -48,7 +40,7 @@ public class PlayMenuScreen extends MenuScreen implements iHasStage, iSetActive 
             }
         });
 
-        final ImageButton multiPlayerButton = newImageButton("CO-OP",(width/2)+(width/6),height/2+50,150,50, new MenuGrid(2, 0));
+        final ImageButton multiPlayerButton = newImageButton("Menu_coopicon",(width/2)+(width/6),height/2+50,150,50, new MenuGrid(2, 0));
 
         multiPlayerButton.addListener(new ChangeListener() {
             @Override
@@ -59,7 +51,7 @@ public class PlayMenuScreen extends MenuScreen implements iHasStage, iSetActive 
             }
         });
 
-        final ImageButton backButton = newImageButton("BACK",(width/2)-75,(height/2)-(height/2)+(height/2)/4,150,50, new MenuGrid(1, 1));
+        final ImageButton backButton = newImageButton("Menu_backicon",(width/2)-75,(height/2)-(height/2)+(height/2)/4,150,50, new MenuGrid(1, 1));
         backButton.addListener(new ChangeListener() {
 
             public void changed(ChangeEvent event, Actor actor) {

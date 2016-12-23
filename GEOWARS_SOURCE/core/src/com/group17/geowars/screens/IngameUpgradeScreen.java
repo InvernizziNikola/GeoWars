@@ -59,7 +59,7 @@ public class IngameUpgradeScreen extends MenuScreen implements iHasStage, iSetAc
             }
         });
 
-        final ImageButton nextLvlButton = newImageButton("NextLevel", (width/2)-(width/2)/2,height/2+200,150,50, new MenuGrid(0,3));
+        final ImageButton nextLvlButton = newImageButton("Menu_nextlevelicon", (width/2)-(width/2)/2,height/2+200,150,50, new MenuGrid(0,3));
         nextLvlButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -68,7 +68,7 @@ public class IngameUpgradeScreen extends MenuScreen implements iHasStage, iSetAc
 
             }
         });
-        final ImageButton QuitButton = newImageButton("Speed", (width/2)-(width/2)/2,height/2+250,150,50, new MenuGrid(0,4));
+        final ImageButton QuitButton = newImageButton("Menu_speedicon", (width/2)-(width/2)/2,height/2+250,150,50, new MenuGrid(0,4));
         QuitButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {

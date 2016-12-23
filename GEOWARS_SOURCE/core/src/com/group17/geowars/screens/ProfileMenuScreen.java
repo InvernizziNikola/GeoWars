@@ -43,7 +43,7 @@ public class ProfileMenuScreen extends MenuScreen implements iHasStage, iSetActi
     }
     public void createButtons()
     {
-        final ImageButton clanButton = newImageButton("CLANS", GeoWars.WIDTH / 10, GeoWars.HEIGHT / 3, 150, 50, new MenuGrid(0, 0));
+        final ImageButton clanButton = newImageButton("Menu_clanicon", GeoWars.WIDTH / 10, GeoWars.HEIGHT / 3, 150, 50, new MenuGrid(0, 0));
         clanButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -53,7 +53,7 @@ public class ProfileMenuScreen extends MenuScreen implements iHasStage, iSetActi
             }
         });
 
-        final ImageButton backButton = newImageButton("BACK", GeoWars.HEIGHT / 2 - 75, GeoWars.HEIGHT / 10, 150, 50, new MenuGrid(1, 1));
+        final ImageButton backButton = newImageButton("Menu_backicon", GeoWars.HEIGHT / 2 - 75, GeoWars.HEIGHT / 10, 150, 50, new MenuGrid(1, 1));
         backButton.addListener(new ChangeListener() {
 
             public void changed(ChangeEvent event, Actor actor) {
@@ -64,7 +64,7 @@ public class ProfileMenuScreen extends MenuScreen implements iHasStage, iSetActi
             }
         });
 
-        final ImageButton upgradeButton = newImageButton("CHANGE/UPGRADE", GeoWars.WIDTH - GeoWars.WIDTH / 3, GeoWars.HEIGHT / 3, 150, 50, new MenuGrid(1, 0));
+        final ImageButton upgradeButton = newImageButton("Menu_upgradeicon", GeoWars.WIDTH - GeoWars.WIDTH / 3, GeoWars.HEIGHT / 3, 150, 50, new MenuGrid(1, 0));
         upgradeButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {

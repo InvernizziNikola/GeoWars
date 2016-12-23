@@ -39,7 +39,7 @@ public class LoginScreen extends MenuScreen implements iHasStage, iSetActive {
 
     public void Buttons() {
 
-        final ImageButton backButton = newImageButton("Continue as guest", width / 2 - 75, height / 6, 150, 50, new MenuGrid(0, 1));
+        final ImageButton backButton = newImageButton("Menu_continueicon", width / 2 - 75, height / 6, 150, 50, new MenuGrid(0, 1));
 
         /*--------------EVENT HANDLER--------------------------*/
         backButton.addListener(new ChangeListener() {
@@ -71,7 +71,7 @@ public class LoginScreen extends MenuScreen implements iHasStage, iSetActive {
         table.add(password).width(200);
         table.row();
 
-        final ImageButton loginButton = newImageButton("Login", GeoWars.WIDTH / 2 - 100, GeoWars.HEIGHT - GeoWars.HEIGHT / 4, 200, 75, new MenuGrid(0, 0));
+        final ImageButton loginButton = newImageButton("Menu_loginicon", GeoWars.WIDTH / 2 - 100, GeoWars.HEIGHT - GeoWars.HEIGHT / 4, 200, 75, new MenuGrid(0, 0));
         loginButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {

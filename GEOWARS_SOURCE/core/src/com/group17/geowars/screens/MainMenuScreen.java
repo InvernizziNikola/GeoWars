@@ -25,7 +25,7 @@ public class MainMenuScreen extends MenuScreen implements iHasStage, iSetActive 
     public void create() {
         Gdx.input.setInputProcessor(stage);
 
-        final ImageButton playButton = newImageButton("PLAY", GeoWars.WIDTH / 2 - 100, GeoWars.HEIGHT - GeoWars.HEIGHT / 4, 400, 200, new MenuGrid(0, 0));
+        final ImageButton playButton = newImageButton("Menu_playicon", GeoWars.WIDTH / 2 - 100, GeoWars.HEIGHT - GeoWars.HEIGHT / 4, 400, 200, new MenuGrid(0, 0));
         playButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -62,7 +62,7 @@ public class MainMenuScreen extends MenuScreen implements iHasStage, iSetActive 
             }
         });
 
-        final ImageButton optionsButton = newImageButton("OPTIONS", GeoWars.WIDTH / 2 - 100, GeoWars.HEIGHT / 2, 200, 200, new MenuGrid(0, 1));
+        final ImageButton optionsButton = newImageButton("Menu_optionicon", GeoWars.WIDTH / 2 - 100, GeoWars.HEIGHT / 2, 200, 200, new MenuGrid(0, 1));
         optionsButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -87,7 +87,7 @@ public class MainMenuScreen extends MenuScreen implements iHasStage, iSetActive 
         });
 
 
-        final ImageButton shopButton = newImageButton("SHOP", GeoWars.WIDTH / 2 - 100, GeoWars.HEIGHT / 2 - GeoWars.HEIGHT / 4, 200, 200, new MenuGrid(0, 3));
+        final ImageButton shopButton = newImageButton("Menu_shopicon", GeoWars.WIDTH / 2 - 100, GeoWars.HEIGHT / 2 - GeoWars.HEIGHT / 4, 200, 200, new MenuGrid(0, 3));
         shopButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -102,7 +102,7 @@ public class MainMenuScreen extends MenuScreen implements iHasStage, iSetActive 
             }
         });
 
-        final ImageButton quitButton = newImageButton("QUIT GAME", GeoWars.WIDTH / 2 - 100, GeoWars.HEIGHT - GeoWars.HEIGHT + 90, 200, 200, new MenuGrid(0, 4));
+        final ImageButton quitButton = newImageButton("Menu_quiticon", GeoWars.WIDTH / 2 - 100, GeoWars.HEIGHT - GeoWars.HEIGHT + 90, 200, 200, new MenuGrid(0, 4));
         quitButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
