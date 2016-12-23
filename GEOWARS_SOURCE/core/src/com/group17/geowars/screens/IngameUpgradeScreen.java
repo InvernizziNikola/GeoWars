@@ -12,6 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.group17.geowars.GeoWars;
 import com.group17.geowars.managers.Managers;
+import com.group17.geowars.playerobjects.Player;
 import com.group17.geowars.utils.MenuGrid;
 
 public class IngameUpgradeScreen extends MenuScreen implements iHasStage, iSetActive {
@@ -35,6 +36,11 @@ public class IngameUpgradeScreen extends MenuScreen implements iHasStage, iSetAc
             public void changed(ChangeEvent event, Actor actor) {
                 speedButton.setChecked(false);
                 //set speed here
+                //set firepower here
+                for(Player p : Managers.getPlayerManager().getPlayers())
+                {
+                    p.getShip().upgradeSpeed(20);
+                }
 
             }
         });
@@ -45,7 +51,10 @@ public class IngameUpgradeScreen extends MenuScreen implements iHasStage, iSetAc
             public void changed(ChangeEvent event, Actor actor) {
                 firePowerButton.setChecked(false);
                 //set firepower here
-
+                for(Player p : Managers.getPlayerManager().getPlayers())
+                {
+                    p.getShip().upgradeFireRate(0.05f);
+                }
             }
         });
 
@@ -55,7 +64,10 @@ public class IngameUpgradeScreen extends MenuScreen implements iHasStage, iSetAc
             public void changed(ChangeEvent event, Actor actor) {
                 healButton.setChecked(false);
                 //set heal here
-
+                for(Player p : Managers.getPlayerManager().getPlayers())
+                {
+                    p.getShip().upgradeMaxHp(5);
+                }
             }
         });
 
@@ -65,7 +77,9 @@ public class IngameUpgradeScreen extends MenuScreen implements iHasStage, iSetAc
             public void changed(ChangeEvent event, Actor actor) {
                 nextLvlButton.setChecked(false);
                 //set next level here
-
+                Managers.getLevelManager().addLevel();
+                MenuScreen upgradeMenu = Managers.getScreenManager().getScreen("game");
+                Managers.getScreenManager().setScreen(upgradeMenu);
             }
         });
         final ImageButton QuitButton = newImageButton("Menu_speedicon", (width/2)-(width/2)/2,height/2+250,150,50, new MenuGrid(0,4));
@@ -78,7 +92,6 @@ public class IngameUpgradeScreen extends MenuScreen implements iHasStage, iSetAc
                     public void result(Boolean quit) {
                         if (quit) {
                             Gdx.app.exit();
-                            System.out.println("result " + quit);
                         }
                     }
                 };
