@@ -33,6 +33,9 @@ public class GameManager {
     private boolean isDifficultySet = false;
     public void setDifficultyModifier(float dm)
     {
+        LET = new LoadEnemyThread();
+        LET.start();
+
         difficultyModifier = dm;
         isDifficultySet = true;
     }
@@ -116,7 +119,6 @@ public class GameManager {
 
         if((loadTimer < 0) && (!isDifficultySet || Managers.getEnemyManager().getProfiles() == null))
         {
-            System.out.println("GET HARDCODED PROFILES OR DIFFICULTY");
             //TODO fallback when no internet
             // uess this isnt implemented :'( Srry Dirk :(
         }
@@ -134,7 +136,9 @@ public class GameManager {
         {
             case GAMELOAD: {
                 loadGame();
-                if (Managers.getEnemyManager().getProfiles() != null && difficultyModifier != -1) {
+                System.out.println(Managers.getEnemyManager().getProfiles());
+                System.out.println(isDifficultySet);
+                if (Managers.getEnemyManager().getProfiles() != null && isDifficultySet) {
                     game.setGameState(GAMESTATE.GAMEPLAYING);
                 }
                 break;
