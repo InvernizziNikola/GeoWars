@@ -50,7 +50,7 @@ public class CoopMenuScreen extends MenuScreen implements iHasStage, iSetActive 
                 if (Managers.getControllerManager().getControllers().size() + 1 > Managers.getAccountManager().getAccounts().size()) {
                     if (t != true) {
                         System.out.println("pressed----------------------------------------------");
-                        Managers.getAccountManager().createAccount("Player "+Managers.getAccountManager().getAccounts().size()+1);
+                        Managers.getAccountManager().createAccount("Player");// "+(Managers.getAccountManager().getAccounts().size()+1));
                         t = true;
                     }
                 }

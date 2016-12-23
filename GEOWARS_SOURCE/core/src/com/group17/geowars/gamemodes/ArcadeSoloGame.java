@@ -33,13 +33,13 @@ public class ArcadeSoloGame extends SoloGame implements iGame {
 
         switch (a.profile.getShipType()){
             case ASSAULT:
-                s=new AssaultShip(spawnPoint);
+                s =new AssaultShip(spawnPoint);
             break;
             case DESTROYER:
-                s=new DestroyerShip(spawnPoint);
+                s =new DestroyerShip(spawnPoint);
                 break;
             case TANK:
-                s=new TankShip(spawnPoint);
+                s =new TankShip(spawnPoint);
                 break;
         }
         switch (a.profile.getDroneType())

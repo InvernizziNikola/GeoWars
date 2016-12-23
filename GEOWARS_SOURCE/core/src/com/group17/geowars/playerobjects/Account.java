@@ -48,7 +48,7 @@ public class Account {
     public Account(String username)
     {
         name = username;
-        profile =new Profile(SHIPTYPES.ASSAULT, DRONETYPES.DEFEND);
+        profile =new Profile(SHIPTYPES.DESTROYER, DRONETYPES.ATTACK);
         //getAccountThread = getAccountProfiles();
     }
 

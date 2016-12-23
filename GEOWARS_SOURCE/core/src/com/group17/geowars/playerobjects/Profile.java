@@ -21,13 +21,6 @@ public class Profile {
         this.droneType = droneType;
     }
 
-    public void init()
-    {
-        switch (shipType){
-            case ASSAULT:
-
-        }
-    }
 
     public SHIPTYPES getShipType() {
         return shipType;
