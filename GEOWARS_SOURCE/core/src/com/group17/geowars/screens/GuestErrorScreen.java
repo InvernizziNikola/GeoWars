@@ -59,7 +59,7 @@ public class GuestErrorScreen extends MenuScreen implements iHasStage, iSetActiv
 
     public void Buttons(){
 
-        final ImageButton backButton = newImageButton("BACK", width/2-75,height/5,150,50, new MenuGrid(0, 0));
+        final ImageButton backButton = newImageButton("Menu_backicon", width/2-75,height/5,150,50, new MenuGrid(0, 0));
 
         backButton.addListener(new ChangeListener() {
             public void changed(ChangeEvent event, Actor actor) {

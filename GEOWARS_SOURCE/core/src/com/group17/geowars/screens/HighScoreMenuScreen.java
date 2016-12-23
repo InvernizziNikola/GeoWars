@@ -63,24 +63,17 @@ public class HighScoreMenuScreen extends MenuScreen implements iHasStage, iSetAc
     }
     public void Buttons(){
 
-        final ImageButton campaignButton = newImageButton("CAMPAIGN",width/2-width/5,height-height/3,150,50, new MenuGrid(-1, 0));
+        final ImageButton arcadeButton = newImageButton("Menu_arcadeicon",width/2-75,height-height/3,150,50, new MenuGrid(0, 0));
 
-        final ImageButton arcadeButton = newImageButton("ARCADE",width/2-75,height-height/3,150,50, new MenuGrid(0, 0));
+        final ImageButton multiPlayerButton = newImageButton("Menu_coopicon",width/2+width/8,height-height/3,150,50, new MenuGrid(1, 0));
 
-        final ImageButton multiPlayerButton = newImageButton("CO-OP",width/2+width/8,height-height/3,150,50, new MenuGrid(1, 0));
-
-        final ImageButton backButton = newImageButton("BACK", width/2-75,height/5,150,50, new MenuGrid(0, 1));
+        final ImageButton backButton = newImageButton("Menu_backicon", width/2-75,height/5,150,50, new MenuGrid(0, 1));
 
         /*--------------EVENT HANDLER--------------------------*/
-        campaignButton.addListener(new ChangeListener() {
-            public void changed(ChangeEvent event, Actor actor) {
-                campaignButton.setChecked(false);
-                getHighScore("campaign");
-            }
-        });
+
         multiPlayerButton.addListener(new ChangeListener() {
             public void changed(ChangeEvent event, Actor actor) {
-                campaignButton.setChecked(false);
+                multiPlayerButton.setChecked(false);
                 getHighScore("coop");
             }
         });

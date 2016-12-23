@@ -1,10 +1,11 @@
 package com.group17.geowars.managers;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.group17.geowars.database.DBManager;
 import com.group17.geowars.database.Threads.DifficultyThread;
 import com.group17.geowars.database.Threads.LoadEnemyThread;
 import com.group17.geowars.database.Threads.SaveScoreToDBThread;
+import com.group17.geowars.gamemodes.ArcadeCoopGame;
 import com.group17.geowars.gamemodes.ArcadeSoloGame;
 import com.group17.geowars.gamemodes.base.BaseGame;
 import com.group17.geowars.gamemodes.base.iGame;
@@ -20,12 +21,21 @@ public class GameManager {
 
 
     private float loadTimer = 10.0f;
-    private boolean isLoading = false;
-    public BaseGame game;
+    private BaseGame game;
+    public BaseGame getGame()
+    {
+        return game;
+    }
     private boolean resetGame = false;
     private SaveScoreToDBThread SaveScoreThread;
     private int score = 0;
-    public Float difficultyModifier = -1.0f;
+    private float difficultyModifier = -1.0f;
+    private boolean isDifficultySet = false;
+    public void setDifficultyModifier(float dm)
+    {
+        difficultyModifier = dm;
+        isDifficultySet = true;
+    }
     public void setEndScore(int score)
     {
         this.score = score;
@@ -46,7 +56,7 @@ public class GameManager {
         game.setGameState(gs);
     }
 
-    public void setDifficulty(String difficulty)
+    public void startThreads(String difficulty)
     {
         DT = new DifficultyThread(difficulty);
         DT.start();
@@ -90,20 +100,25 @@ public class GameManager {
         return difficultyModifier;
     }
 
-    private void gameLoad()
+    private void loadGame()
     {
+        loadTimer-= Gdx.graphics.getDeltaTime();
+
         if (DT != null && DT.finished()) {
             difficultyModifier = DT.getDifficultyModifier();
             DT = null;
+            isDifficultySet = true;
         }
         if (LET != null && LET.finished()) {
             Managers.getEnemyManager().setProfiles(LET.getEnemies());
             LET = null;
         }
-        if((isLoading && loadTimer < 0) && (difficultyModifier == -1 || Managers.getEnemyManager().getProfiles() == null))
+
+        if((loadTimer < 0) && (!isDifficultySet || Managers.getEnemyManager().getProfiles() == null))
         {
-            System.out.println("GET HARDCODED PROFILES OF DIFFICULTY");
-            // guess this isnt implemented :/
+            System.out.println("GET HARDCODED PROFILES OR DIFFICULTY");
+            //TODO fallback when no internet
+            // uess this isnt implemented :'( Srry Dirk :(
         }
 
     }
@@ -118,8 +133,8 @@ public class GameManager {
         switch (game.getGameState())
         {
             case GAMELOAD: {
-                gameLoad();
-                if (Managers.getEnemyManager().getProfiles() != null) {
+                loadGame();
+                if (Managers.getEnemyManager().getProfiles() != null && difficultyModifier != -1) {
                     game.setGameState(GAMESTATE.GAMEPLAYING);
                 }
                 break;
@@ -152,15 +167,14 @@ public class GameManager {
     }
     public void newArcadeCoopGame()
     {
-
+        setDifficultyModifier(1.0f);
+        ArcadeCoopGame game = new ArcadeCoopGame();
+        Managers.getGameManager().newGame(game);
     }
     public void newArcadeSoloGame()
     {
         ArcadeSoloGame game = new ArcadeSoloGame();
         Managers.getGameManager().newGame(game);
-
-        MenuScreen nextMenu = Managers.getScreenManager().getScreen("game");
-        Managers.getScreenManager().setScreen(nextMenu);
     }
 
     public void render(Batch batch)

@@ -32,11 +32,10 @@ public class OptionsMenuScreen extends MenuScreen implements iHasStage {
 
     public void Buttons() {
 
-        final ImageButton arrowkeysButton = newImageButton("ARROW KEYS", (width/2)-width/4, height-height/3, 150, 50, new MenuGrid(0, 0));
-        final ImageButton qwertyButton = newImageButton("QWERTY", width/2-75, height-height/3, 150, 50, new MenuGrid(1, 0));
-        final ImageButton azertyButton = newImageButton("AZERTY", (width/2)+width/6, height-height/3, 150, 50, new MenuGrid(2, 0));
-        final ImageButton controllerBindings = newImageButton("VIEW CONTROLLER BINDINGS", width/2-125, height/4, 250, 50, new MenuGrid(0, 1));//TODO add action
-        final ImageButton backButton = newImageButton("BACK", width/2-75, height/6, 150, 50, new MenuGrid(0, 2));
+        final ImageButton arrowkeysButton = newImageButton("Menu_arrowkeysicon", (width/2)-width/4, height-height/3, 150, 50, new MenuGrid(0, 0));
+        final ImageButton qwertyButton = newImageButton("Menu_qwertyicon", width/2-75, height-height/3, 150, 50, new MenuGrid(1, 0));
+        final ImageButton azertyButton = newImageButton("Menu_azertyicon", (width/2)+width/6, height-height/3, 150, 50, new MenuGrid(2, 0));
+        final ImageButton backButton = newImageButton("Menu_backicon", width/2-75, height/6, 150, 50, new MenuGrid(0, 2));
 
 
         /*--------------EVENT HANDLER--------------------------*/
@@ -46,7 +45,7 @@ public class OptionsMenuScreen extends MenuScreen implements iHasStage {
 
                 //Managers.getAccountManager().getAccounts().get(0).getPlayer().getPlayerInput().setArrowkeys();
                 SelectedKeyBinding = 1;
-                test();
+                showText();
 
             }
         });
@@ -55,7 +54,7 @@ public class OptionsMenuScreen extends MenuScreen implements iHasStage {
                 qwertyButton.setChecked(false);
                 //Managers.getAccountManager().getAccounts().get(0).getPlayer().getPlayerInput().setQwerty();
                 SelectedKeyBinding = 2;
-                test();
+                showText();
             }
         });
         azertyButton.addListener(new ChangeListener() {
@@ -63,7 +62,7 @@ public class OptionsMenuScreen extends MenuScreen implements iHasStage {
                 azertyButton.setChecked(false);
                 //Managers.getAccountManager().getAccounts().get(0).getPlayer().getPlayerInput().setAzerty();
                 SelectedKeyBinding = 3;
-                test();
+                showText();
 
             }
         });
@@ -80,7 +79,7 @@ public class OptionsMenuScreen extends MenuScreen implements iHasStage {
 
     }
 
-    public void test() {
+    public void showText() {
         //skin and style
         stage.clear();
         Buttons();
@@ -100,7 +99,7 @@ public class OptionsMenuScreen extends MenuScreen implements iHasStage {
 
     public void create() {
         Gdx.input.setInputProcessor(stage);
-        test();
+        showText();
         
     }
 

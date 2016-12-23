@@ -55,7 +55,7 @@ public class ShopMenuScreen extends MenuScreen implements iHasStage, iSetActive 
 
     public void createButtons()
     {
-        final ImageButton backButton = newImageButton("BACK",width-width/6,20,150,50, new MenuGrid(0,2));
+        final ImageButton backButton = newImageButton("Menu_backicon",width-width/6,20,150,50, new MenuGrid(0,2));
         backButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -65,17 +65,17 @@ public class ShopMenuScreen extends MenuScreen implements iHasStage, iSetActive 
             }
         });
 
-        final ImageButton buyShipTankButton = newImageButton("BUY",width/3,height/2,55,25, new MenuGrid(0,0));
+        final ImageButton buyShipTankButton = newImageButton("Menu_buyicon",width/3,height/2,55,25, new MenuGrid(0,0));
 
-        final ImageButton buyShipAssaultButton = newImageButton("BUY", width/2+width/9,height/2,55,25, new MenuGrid(1,0));
+        final ImageButton buyShipAssaultButton = newImageButton("Menu_buyicon", width/2+width/9,height/2,55,25, new MenuGrid(1,0));
 
-        final ImageButton buyShipDefenseButton = newImageButton("BUY",width-width/10,height/2,55,25, new MenuGrid(2,0));
+        final ImageButton buyShipDefenseButton = newImageButton("Menu_buyicon",width-width/10,height/2,55,25, new MenuGrid(2,0));
 
-        final ImageButton buyDroneDefenseButton = newImageButton("BUY",width/3,height/8,55,25, new MenuGrid(0,1));
+        final ImageButton buyDroneDefenseButton = newImageButton("Menu_buyicon",width/3,height/8,55,25, new MenuGrid(0,1));
 
-        final ImageButton buyDroneSupportButton = newImageButton("BUY", width/2+width/9,height/8,55,25,new MenuGrid(1,1));
+        final ImageButton buyDroneSupportButton = newImageButton("Menu_buyicon", width/2+width/9,height/8,55,25,new MenuGrid(1,1));
 
-        final ImageButton buyDroneAttackButton = newImageButton("BUY",width-width/10,height/8,55,25,new MenuGrid(2,1));
+        final ImageButton buyDroneAttackButton = newImageButton("Menu_buyicon",width-width/10,height/8,55,25,new MenuGrid(2,1));
     }
 
     public void showText()
