@@ -337,6 +337,24 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
         dead = true;
     }
 
+
+    public void upgradeSpeed(int speed)
+    {
+        this.speed+=speed;
+    }
+    public void heal(int health)
+    {
+        this.hp+=health;
+    }
+    public void upgradeFireRate(float rate)
+    {
+        fireDelay-=rate;
+    }
+    public void dubbleMultiplier()
+    {
+        multiplier*=2;
+    }
+
     public void reset() {
         position = new Vector2(Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2);
         score = 0;
