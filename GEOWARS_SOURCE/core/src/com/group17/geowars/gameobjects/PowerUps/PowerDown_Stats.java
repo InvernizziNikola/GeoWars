@@ -18,7 +18,7 @@ public class PowerDown_Stats extends PowerUp {
         super(pos, POWERUPTYPE.POWERDOWN);
         color= Color.SCARLET;
 
-        text="fireRate++ \n"+"hp++ \n"+"speed++ \n";
+        text="Stats Down";
         //get out of DB ? DB.getpowerUP(type)
         //this.fireRate = fireRate;
         //this.extraHp = extraHp;

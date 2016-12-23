@@ -8,6 +8,8 @@ package com.group17.geowars.playerobjects;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.controllers.Controller;
 import com.badlogic.gdx.math.Vector2;
+import com.group17.geowars.gameobjects.playerObjects.DefenceDrone;
+import com.group17.geowars.gameobjects.playerObjects.DestroyerShip;
 import com.group17.geowars.gameobjects.playerObjects.Drone;
 import com.group17.geowars.gameobjects.playerObjects.Ship;
 
@@ -21,7 +23,7 @@ public class Account {
 
     public String name;
 
-    public List<Profile> profiles;
+    public Profile profile;
 
     public boolean main = false;
     private Player player;
@@ -44,8 +46,8 @@ public class Account {
     public Account(String username)
     {
         name = username;
+        profile =new Profile(new DestroyerShip(new Vector2(0,0)),new DefenceDrone(new Vector2(0,0)));
 
-        profiles = new ArrayList<Profile>();
 
         //getAccountThread = getAccountProfiles();
     }
@@ -54,6 +56,10 @@ public class Account {
     {
 
 
+    }
+
+    public void setProfile(Profile profile) {
+        this.profile = profile;
     }
 
     public ArrayList<Profile> getAccountProfiles() {

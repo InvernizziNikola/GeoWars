@@ -1,5 +1,6 @@
 package com.group17.geowars.playerobjects;
 
+import com.group17.geowars.gameobjects.playerObjects.Drone;
 import com.group17.geowars.gameobjects.playerObjects.Ship;
 
 /**
@@ -7,12 +8,12 @@ import com.group17.geowars.gameobjects.playerObjects.Ship;
  */
 
 public class Profile {
-    private ShipProfile shipProfile;
-    private DroneProfile droneProfile;
+    private Ship ship;
+    private Drone drone;
 
-    public Profile(ShipProfile shipProfile, DroneProfile droneProfile)
+    public Profile(Ship shipProfile, Drone droneProfile)
     {
-        this.shipProfile = shipProfile;
-        this.droneProfile = droneProfile;
+        this.ship = shipProfile;
+        this.drone = droneProfile;
     }
 }
