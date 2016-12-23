@@ -65,17 +65,17 @@ public class ShopMenuScreen extends MenuScreen implements iHasStage, iSetActive 
             }
         });
 
-        final ImageButton buyShipTankButton = newImageButton("Menu_buyicon",width/3,height/2,55,25, new MenuGrid(0,0));
+        final ImageButton buyShipTankButton = newImageButton("Menu_buyicon",width/3,height/2,150,75, new MenuGrid(0,0));
 
-        final ImageButton buyShipAssaultButton = newImageButton("Menu_buyicon", width/2+width/9,height/2,55,25, new MenuGrid(1,0));
+        final ImageButton buyShipAssaultButton = newImageButton("Menu_buyicon", width/2+width/9,height/2,150,75, new MenuGrid(1,0));
 
-        final ImageButton buyShipDefenseButton = newImageButton("Menu_buyicon",width-width/10,height/2,55,25, new MenuGrid(2,0));
+        final ImageButton buyShipDefenseButton = newImageButton("Menu_buyicon",width-width/10,height/2,150,75, new MenuGrid(2,0));
 
-        final ImageButton buyDroneDefenseButton = newImageButton("Menu_buyicon",width/3,height/8,55,25, new MenuGrid(0,1));
+        final ImageButton buyDroneDefenseButton = newImageButton("Menu_buyicon",width/3,height/8,150,50, new MenuGrid(0,1));
 
-        final ImageButton buyDroneSupportButton = newImageButton("Menu_buyicon", width/2+width/9,height/8,55,25,new MenuGrid(1,1));
+        final ImageButton buyDroneSupportButton = newImageButton("Menu_buyicon", width/2+width/9,height/8,150,75,new MenuGrid(1,1));
 
-        final ImageButton buyDroneAttackButton = newImageButton("Menu_buyicon",width-width/10,height/8,55,25,new MenuGrid(2,1));
+        final ImageButton buyDroneAttackButton = newImageButton("Menu_buyicon",width-width/10,height/8,150,75,new MenuGrid(2,1));
     }
 
     public void showText()

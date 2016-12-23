@@ -34,14 +34,6 @@ public class CoopMenuScreen extends MenuScreen implements iHasStage, iSetActive 
     public void create() {
         Gdx.input.setInputProcessor(stage);
 
-        final ImageButton playerButton = newImageButton("Menu_player1icon", GeoWars.WIDTH / 3 - 125, GeoWars.HEIGHT / 5 * 4, 250, 50, new MenuGrid(-1, 0));
-        playerButton.addListener(new ChangeListener() {
-            @Override
-            public void changed(ChangeEvent event, Actor actor) {
-                playerButton.setChecked(false);
-            }
-        });
-
         final ImageButton addNewButton = newImageButton("Menu_addplayericon", GeoWars.WIDTH / 3 * 2 - 125, GeoWars.HEIGHT / 5 * 4, 250, 50, new MenuGrid(0, 0));
         addNewButton.addListener(new ChangeListener() {
             @Override
@@ -59,8 +51,7 @@ public class CoopMenuScreen extends MenuScreen implements iHasStage, iSetActive 
         });
 
 
-        final ImageButton startGameButton = newImageButton("Menu_starticon", GeoWars.WIDTH / 2 - 125, GeoWars.HEIGHT / 5 * 2, 250, 50, new MenuGrid(0, 1));
-        startGameButton.addListener(new ChangeListener() {
+        final ImageButton startGameButton = newImageButton("Menu_starticon", GeoWars.WIDTH / 2 - 125, GeoWars.HEIGHT / 5 * 2, 250, 50, new MenuGrid(0, 1));startGameButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 startGameButton.setChecked(false);
@@ -94,9 +85,14 @@ public class CoopMenuScreen extends MenuScreen implements iHasStage, iSetActive 
         batch.begin();
         int count = 0;
         int offset = 30;
+
+
         text.draw(batch, "Maximum players (" + (Managers.getControllerManager().getControllers().size() + 1) + ")", GeoWars.WIDTH / 3 * 2 - 125, GeoWars.HEIGHT / 5 * 4 + 120);
         text.draw(batch, "Maximum Keyboard users: 1", GeoWars.WIDTH / 3 * 2 - 125, GeoWars.HEIGHT / 5 * 4 + 100);
         text.draw(batch, "Maximum Controller users: " + (Managers.getControllerManager().getControllers().size() - Managers.getControllerManager().getUnusedControllers().size()) + "/" + Managers.getControllerManager().getControllers().size(), GeoWars.WIDTH / 3 * 2 - 125, GeoWars.HEIGHT / 5 * 4 + 80);
+
+        BitmapFont newFont = Managers.getAssetManager().getGameFont(Color.WHITE, 30);
+        newFont.draw(batch, "Players:", GeoWars.WIDTH / 3 - 100, GeoWars.HEIGHT / 5 * 4 + 40);
 
         for (Account a : Managers.getAccountManager().getAccounts()) {
             String input = "keyboard";
