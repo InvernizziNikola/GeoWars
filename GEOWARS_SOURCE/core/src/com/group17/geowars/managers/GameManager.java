@@ -33,8 +33,8 @@ public class GameManager {
     private boolean isDifficultySet = false;
     public void setDifficultyModifier(float dm)
     {
-        LET = new LoadEnemyThread();
-        LET.start();
+        //LET = new LoadEnemyThread();
+        //LET.start();
 
         difficultyModifier = dm;
         isDifficultySet = true;
@@ -48,7 +48,7 @@ public class GameManager {
         return score;
     }
     private DifficultyThread DT;
-    private LoadEnemyThread LET;
+    //private LoadEnemyThread LET;
     public void newGame(BaseGame game)
     {
         this.game = game;
@@ -65,11 +65,11 @@ public class GameManager {
         DT = new DifficultyThread(difficulty);
         DT.start();
 
-        if(Managers.getEnemyManager().getProfiles() == null)
+        /*if(Managers.getEnemyManager().getProfiles() == null)
         {
             LET = new LoadEnemyThread();
             LET.start();
-        }
+        }*/
     }
 
     public GameManager()
@@ -116,11 +116,11 @@ public class GameManager {
             DT = null;
             isDifficultySet = true;
         }
-        if (LET != null && LET.finished()) {
+        /*if (LET != null && LET.finished()) {
             Managers.getEnemyManager().setProfiles(LET.getEnemies());
             LET = null;
         }
-
+*/
         if((loadTimer < 0) && (!isDifficultySet || Managers.getEnemyManager().getProfiles() == null))
         {
             //TODO fallback when no internet

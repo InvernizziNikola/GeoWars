@@ -11,14 +11,14 @@ import java.util.ArrayList;
  */
 public class EnemyProfile {
 
-    public String name;
-    public ENEMYTYPE type;
+    public String name = "enemy";
+    public ENEMYTYPE type = ENEMYTYPE.SCOUT;
     public String imageName;
     public int health;
     public float fireDelay;
     public float fireRange;
     public float speed;
-    public Integer difficultyGrade;
+    public Integer difficultyGrade = 2;
     public Integer Spread;
     public Integer red;
     public Integer green;

@@ -26,9 +26,26 @@ public class EnemyManager implements GOInterface {
     public EnemyManager() {
         enemies = new LinkedList<Enemy>();
         toRemove = new LinkedList<Enemy>();
+
+        enemyProfiles = new ArrayList<EnemyProfile>();
+        EnemyProfile eProfile = new EnemyProfile();
+        eProfile.type = ENEMYTYPE.DREADNOUGHT;
+        //eProfile.imageName = "Dreadnought";
+        enemyProfiles.add(eProfile);
+
+        eProfile = new EnemyProfile();
+        eProfile.type = ENEMYTYPE.SCOUT;
+        //eProfile.imageName = "Dreadnought";
+        enemyProfiles.add(eProfile);
+
+        eProfile = new EnemyProfile();
+        eProfile.type = ENEMYTYPE.KAMIKAZE;
+        //eProfile.imageName = "Dreadnought";
+        enemyProfiles.add(eProfile);
+
     }
     public void resetProfiles(){
-        enemyProfiles = null;
+        //enemyProfiles = null;
     }
 
     public void init() { }

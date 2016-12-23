@@ -111,7 +111,7 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
         shield = new Sprite(texture2, texture.getWidth(), texture.getHeight());
         shieldColor = Managers.getAssetManager().getColor("shield");
 
-        Texture greenHptexture = Managers.getAssetManager().getTexture("Nikoala_2");
+        Texture greenHptexture = Managers.getAssetManager().getTexture("hpbar");
         greenHp = new Sprite(greenHptexture, 100, 20);
         red = Color.RED;
         redHp = new Sprite(greenHptexture, 100, 20);
