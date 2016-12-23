@@ -126,7 +126,7 @@ public class ScreenManager {
     {
         MenuScreen screen = menuList.get(name);
         if(screen == null) {
-            System.out.println("SHOULDNT HAPPEN!");
+            System.out.println("Trying to get a screen with the name: " + name + ", which doesnt exist");
             return StartScreen;
         }
         return screen;

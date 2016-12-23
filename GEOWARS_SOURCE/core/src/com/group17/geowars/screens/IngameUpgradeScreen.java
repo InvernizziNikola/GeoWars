@@ -21,7 +21,7 @@ public class IngameUpgradeScreen extends MenuScreen implements iHasStage, iSetAc
     private int width = GeoWars.WIDTH;
     private int height = GeoWars.HEIGHT;
     private boolean quit=false;
-
+    private boolean isButtonDown = false;
     public IngameUpgradeScreen() {
         super();
         create();
@@ -35,14 +35,15 @@ public class IngameUpgradeScreen extends MenuScreen implements iHasStage, iSetAc
         speedButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
+            if(isButtonDown) {
+                isButtonDown = true;
                 speedButton.setChecked(false);
                 //set speed here
                 //set firepower here
-                for(Player p : Managers.getPlayerManager().getPlayers())
-                {
+                for (Player p : Managers.getPlayerManager().getPlayers()) {
                     p.getShip().upgradeSpeed(20);
                 }
-
+            }
             }
         });
 
@@ -50,12 +51,14 @@ public class IngameUpgradeScreen extends MenuScreen implements iHasStage, iSetAc
         firePowerButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
+            if(isButtonDown) {
+                isButtonDown = true;
                 firePowerButton.setChecked(false);
                 //set firepower here
-                for(Player p : Managers.getPlayerManager().getPlayers())
-                {
+                for (Player p : Managers.getPlayerManager().getPlayers()) {
                     p.getShip().upgradeFireRate(0.05f);
                 }
+            }
             }
         });
 
@@ -63,12 +66,14 @@ public class IngameUpgradeScreen extends MenuScreen implements iHasStage, iSetAc
         healButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
+            if(isButtonDown) {
+                isButtonDown = true;
                 healButton.setChecked(false);
                 //set heal here
-                for(Player p : Managers.getPlayerManager().getPlayers())
-                {
+                for (Player p : Managers.getPlayerManager().getPlayers()) {
                     p.getShip().upgradeMaxHp(5);
                 }
+            }
             }
         });
 
@@ -76,34 +81,30 @@ public class IngameUpgradeScreen extends MenuScreen implements iHasStage, iSetAc
         nextLvlButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
+            if(isButtonDown) {
+                isButtonDown = true;
                 nextLvlButton.setChecked(false);
                 //set next level here
                 Managers.getLevelManager().addLevel();
+                Managers.getLevelManager().setCurrentwave(1);
 
                 Managers.getGameManager().getGame().setGameState(GAMESTATE.GAMEPLAYING);
                 MenuScreen upgradeMenu = Managers.getScreenManager().getScreen("game");
                 Managers.getScreenManager().setScreen(upgradeMenu);
+            }
             }
         });
         final ImageButton QuitButton = newImageButton("Menu_speedicon", (width/2)-(width/2)/2,height/2+250,150,50, new MenuGrid(0,4));
         QuitButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
+            if(isButtonDown) {
+                isButtonDown = true;
                 QuitButton.setChecked(false);
-                Skin skin = new Skin(Gdx.files.internal("uiskin.json"));
-                Dialog dialog = new Dialog("Warning", skin, "dialog") {
-                    public void result(Boolean quit) {
-                        if (quit) {
-                            Gdx.app.exit();
-                        }
-                    }
-                };
-                dialog.text("Are you sure you want to quit?");
-                dialog.button("Yes", true); //sends "true" as the result
-                dialog.button("No", false);  //sends "false" as the result
-                dialog.show(stage);
 
-
+                MenuScreen nextMenu = Managers.getScreenManager().getScreen("mainmenu");
+                Managers.getScreenManager().setScreen(nextMenu);
+            }
             }
         });
     }
