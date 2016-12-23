@@ -164,7 +164,7 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
         scorehealer += (geom.getLoot().getScorePoints()) * multiplier;
         score += (geom.getLoot().getScorePoints()) * multiplier;
         if (scorehealer > 50000) {
-            Managers.getFloatingTextManager().addText(new FloatingText(font, "hp++", 5.0f, position));
+            Managers.getFloatingTextManager().addText(new FloatingText(font, "hp++", 5.0f, new Vector2(position)));
             hp++;
             scorehealer %= 50000;
         }
