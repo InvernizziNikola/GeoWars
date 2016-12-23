@@ -142,9 +142,11 @@ public class GameManager {
                 break;
             }
             case GAMESPAWNINGWAVE:{
-                if(!Managers.getLevelManager().isSpawning)
+                if(!Managers.getLevelManager().isSpawning) {
+                    Managers.getLevelManager().addWave();
                     Managers.getLevelManager().newWave();
 
+                }
                 break;
             }
             case GAMEPLAYING:{

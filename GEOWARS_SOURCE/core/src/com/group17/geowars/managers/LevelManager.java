@@ -69,8 +69,6 @@ public class LevelManager {
 
     public void newWave()
     {
-        addWave();
-
         isSpawning = true;
 
         float enemies = (float)currentLevel * 25.0f + MathUtils.ceil((float)currentwave * 2.5f);

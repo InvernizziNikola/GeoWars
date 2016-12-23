@@ -79,6 +79,7 @@ public class IngameUpgradeScreen extends MenuScreen implements iHasStage, iSetAc
                 nextLvlButton.setChecked(false);
                 //set next level here
                 Managers.getLevelManager().addLevel();
+                Managers.getLevelManager().setCurrentwave(1);
 
                 Managers.getGameManager().getGame().setGameState(GAMESTATE.GAMEPLAYING);
                 MenuScreen upgradeMenu = Managers.getScreenManager().getScreen("game");
@@ -90,20 +91,9 @@ public class IngameUpgradeScreen extends MenuScreen implements iHasStage, iSetAc
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 QuitButton.setChecked(false);
-                Skin skin = new Skin(Gdx.files.internal("uiskin.json"));
-                Dialog dialog = new Dialog("Warning", skin, "dialog") {
-                    public void result(Boolean quit) {
-                        if (quit) {
-                            Gdx.app.exit();
-                        }
-                    }
-                };
-                dialog.text("Are you sure you want to quit?");
-                dialog.button("Yes", true); //sends "true" as the result
-                dialog.button("No", false);  //sends "false" as the result
-                dialog.show(stage);
 
-
+                MenuScreen nextMenu = Managers.getScreenManager().getScreen("mainmenu");
+                Managers.getScreenManager().setScreen(nextMenu);
             }
         });
     }
