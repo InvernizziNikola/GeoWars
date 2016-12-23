@@ -36,7 +36,7 @@ public class MainMenuScreen extends MenuScreen implements iHasStage, iSetActive 
             }
         });
 
-        final ImageButton leaderboardButton = newImageButton("Menu_leaderboardicon", GeoWars.WIDTH / 2 - 100, GeoWars.HEIGHT / 2 + 250, 200, 75, new MenuGrid(0,3));
+        final ImageButton leaderboardButton = newImageButton("Menu_leaderboardicon", GeoWars.WIDTH / 2 - 100, GeoWars.HEIGHT / 2 + 250, 200, 75, new MenuGrid(0,1));
         leaderboardButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -47,7 +47,7 @@ public class MainMenuScreen extends MenuScreen implements iHasStage, iSetActive 
             }
         });
 
-        final ImageButton profileButton = newImageButton("Menu_profileicon", GeoWars.WIDTH/2 - 100 , GeoWars.HEIGHT / 2 + 150, 200, 75, new MenuGrid(0, 1));
+        final ImageButton profileButton = newImageButton("Menu_profileicon", GeoWars.WIDTH/2 - 100 , GeoWars.HEIGHT / 2 + 150, 200, 75, new MenuGrid(0, 2));
         profileButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -62,7 +62,7 @@ public class MainMenuScreen extends MenuScreen implements iHasStage, iSetActive 
             }
         });
 
-        final ImageButton optionsButton = newImageButton("Menu_optionicon", GeoWars.WIDTH / 2 - 100, GeoWars.HEIGHT / 2-50, 200, 75, new MenuGrid(0, 2));
+        final ImageButton optionsButton = newImageButton("Menu_optionicon", GeoWars.WIDTH / 2 - 100, GeoWars.HEIGHT / 2-50, 200, 75, new MenuGrid(0, 3));
         optionsButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
