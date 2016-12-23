@@ -197,7 +197,7 @@ public class MenuScreen implements Screen {
         return tempButton;
     }
 
-    protected ImageButton newImageButton(String name, int x, int y, int width, int height, MenuGrid position)
+    protected ExtendeImageButton newImageButton(String name, int x, int y, int width, int height, MenuGrid position)
     {
         ImageButton.ImageButtonStyle overStyle = new ImageButton.ImageButtonStyle();
         Texture overTexture = Managers.getAssetManager().getTexture(name+"_hover");
