@@ -42,6 +42,7 @@ public class LoadEnemyThread implements Runnable {
         Integer CollumCount = 12;
         rows = enemy.size() / CollumCount;
 
+
         for (int i = 0; i < rows; i++) {
             EnemyProfile ep = new EnemyProfile();
 
