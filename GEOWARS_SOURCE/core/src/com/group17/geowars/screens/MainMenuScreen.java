@@ -55,6 +55,18 @@ public class MainMenuScreen extends MenuScreen implements iHasStage, iSetActive 
 
             }
         });
+
+        //// TODO: 23/12/2016 remove this button
+        final TextButton tempButton = newButton("temp upgrade screen", GeoWars.WIDTH / 2 - 500, GeoWars.HEIGHT / 2 - GeoWars.HEIGHT / 8, 200, 75, new MenuGrid(0, 3));
+        tempButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                tempButton.setChecked(false);
+                MenuScreen nextMenu = Managers.getScreenManager().getScreen("inGameUpgradeScreen");
+                Managers.getScreenManager().setScreen(nextMenu);
+
+            }
+        });
         final TextButton profileButton = newButton("PROFILE", GeoWars.WIDTH / 2 - 100, GeoWars.HEIGHT / 2 + GeoWars.HEIGHT / 8, 200, 75, new MenuGrid(0, 1));
         profileButton.addListener(new ChangeListener() {
             @Override
