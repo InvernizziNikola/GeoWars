@@ -61,9 +61,11 @@ public class GameManager {
 
     public void startThreads(String difficulty)
     {
+        isDifficultySet = false;
         DT = new DifficultyThread(difficulty);
         DT.start();
 
+        Managers.getEnemyManager().resetProfiles();
         LET = new LoadEnemyThread();
         LET.start();
     }

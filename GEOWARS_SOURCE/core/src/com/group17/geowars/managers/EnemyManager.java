@@ -27,6 +27,9 @@ public class EnemyManager implements GOInterface {
         enemies = new LinkedList<Enemy>();
         toRemove = new LinkedList<Enemy>();
     }
+    public void resetProfiles(){
+        enemyProfiles = null;
+    }
 
     public void init() { }
     public void addEnemy(Enemy e)

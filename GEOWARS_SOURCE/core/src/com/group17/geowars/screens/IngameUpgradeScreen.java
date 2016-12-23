@@ -13,6 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.group17.geowars.GeoWars;
 import com.group17.geowars.managers.Managers;
 import com.group17.geowars.playerobjects.Player;
+import com.group17.geowars.utils.GAMESTATE;
 import com.group17.geowars.utils.MenuGrid;
 
 public class IngameUpgradeScreen extends MenuScreen implements iHasStage, iSetActive {
@@ -78,6 +79,8 @@ public class IngameUpgradeScreen extends MenuScreen implements iHasStage, iSetAc
                 nextLvlButton.setChecked(false);
                 //set next level here
                 Managers.getLevelManager().addLevel();
+
+                Managers.getGameManager().getGame().setGameState(GAMESTATE.GAMEPLAYING);
                 MenuScreen upgradeMenu = Managers.getScreenManager().getScreen("game");
                 Managers.getScreenManager().setScreen(upgradeMenu);
             }
