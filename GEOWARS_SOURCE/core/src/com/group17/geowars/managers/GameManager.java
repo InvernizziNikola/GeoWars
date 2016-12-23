@@ -136,8 +136,6 @@ public class GameManager {
         {
             case GAMELOAD: {
                 loadGame();
-                System.out.println(Managers.getEnemyManager().getProfiles());
-                System.out.println(isDifficultySet);
                 if (Managers.getEnemyManager().getProfiles() != null && isDifficultySet) {
                     game.setGameState(GAMESTATE.GAMEPLAYING);
                 }
