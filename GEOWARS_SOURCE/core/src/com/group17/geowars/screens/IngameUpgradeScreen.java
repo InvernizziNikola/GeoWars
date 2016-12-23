@@ -49,7 +49,7 @@ public class IngameUpgradeScreen extends MenuScreen implements iHasStage, iSetAc
             }
         });
 
-        final ImageButton healButton = newImageButton("HealButton", (width/2)-(width/2)/2,height/2+50,150,50);
+        final ImageButton healButton = newImageButton("HealButton", (width/2)-(width/2)/2,height/2+100,150,50);
         healButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -59,7 +59,7 @@ public class IngameUpgradeScreen extends MenuScreen implements iHasStage, iSetAc
             }
         });
 
-        final ImageButton nextLvlButton = newImageButton("NextLevel", (width/2)-(width/2)/2,height/2+50,150,50);
+        final ImageButton nextLvlButton = newImageButton("NextLevel", (width/2)-(width/2)/2,height/2+200,150,50);
         nextLvlButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -68,7 +68,7 @@ public class IngameUpgradeScreen extends MenuScreen implements iHasStage, iSetAc
 
             }
         });
-        final ImageButton QuitButton = newImageButton("Speed", (width/2)-(width/2)/2,height/2+50,150,50);
+        final ImageButton QuitButton = newImageButton("Speed", (width/2)-(width/2)/2,height/2+250,150,50);
         QuitButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {

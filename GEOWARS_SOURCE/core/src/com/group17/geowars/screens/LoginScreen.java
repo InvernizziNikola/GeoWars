@@ -39,7 +39,7 @@ public class LoginScreen extends MenuScreen implements iHasStage, iSetActive {
 
     public void Buttons() {
 
-        final TextButton backButton = newButton("continue", width / 2 - 75, height / 6, 150, 50, new MenuGrid(0, 1));
+        final TextButton backButton = newButton("Continue as guest", width / 2 - 75, height / 6, 150, 50, new MenuGrid(0, 1));
 
         /*--------------EVENT HANDLER--------------------------*/
         backButton.addListener(new ChangeListener() {
