@@ -13,6 +13,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.group17.geowars.GeoWars;
 import com.group17.geowars.gameobjects.*;
+import com.group17.geowars.gameobjects.PowerUps.PowerDown_Stats;
 import com.group17.geowars.gameobjects.PowerUps.PowerUp;
 import com.group17.geowars.gameobjects.PowerUps.PowerUp_Nuke;
 import com.group17.geowars.gameobjects.PowerUps.Power_UpPassive;
@@ -86,8 +87,13 @@ public abstract class Enemy extends GameObject implements GOInterface {
                 Managers.getpowerUpManager().addPowerUp(p);
                 return;
             }
-            if (i>295){
+            if (i>=290&&i<295){
                 PowerUp p = new Power_UpPassive(position);
+                Managers.getpowerUpManager().addPowerUp(p);
+                return;
+            }
+            if (i>295&&i<298){
+                PowerUp p = new PowerDown_Stats(position);
                 Managers.getpowerUpManager().addPowerUp(p);
                 return;
             }

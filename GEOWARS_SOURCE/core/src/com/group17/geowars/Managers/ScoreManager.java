@@ -25,7 +25,7 @@ public class ScoreManager {
     public void init() {
         score=0;
         lootTable = new Hashtable<Integer, EnemyLoot>();
-        lootTable.put(0,new EnemyLoot(100,10,1));
+        lootTable.put(0,new EnemyLoot(25,10,1));
 
     }
 

@@ -19,6 +19,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.group17.geowars.GeoWars;
 import com.group17.geowars.gameobjects.*;
 import com.group17.geowars.gameobjects.PowerUps.POWERUPTYPE;
+import com.group17.geowars.gameobjects.PowerUps.PowerDown_Stats;
 import com.group17.geowars.gameobjects.PowerUps.PowerUp;
 import com.group17.geowars.gameobjects.PowerUps.Power_UpPassive;
 import com.group17.geowars.gameobjects.hostileObjects.Enemy;
@@ -41,6 +42,7 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
     protected int exp;
     protected int level;
     protected int score;
+    protected int scorehealer;
     protected int multiplier;
     protected BitmapFont font;
     protected String type;
@@ -60,12 +62,12 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
     protected int popuptextTime;
     protected Vector2 popUpTextPos;
 
-    //weg doen
+
     protected Sound sound;
 
     protected boolean canShoot = true;
     protected float timer = 0;
-    protected float hitTime=0;
+    protected float hitTime = 0;
 
     protected Vector2 shootDir = new Vector2(0, 0);
     protected Vector2 moveDir = new Vector2(0, 0);
@@ -91,6 +93,7 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
         font = Managers.getAssetManager().getGameFont(shipColor, 15); // font size 15 pixels
 
         score = 0;
+        scorehealer=0;
         multiplier = 0;
         level = 1;
         exp = 101;
@@ -156,7 +159,14 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
         }
         level = newlevel;
         multiplier += geom.getLoot().getMultiplier();
+
+        scorehealer+= (geom.getLoot().getScorePoints()) * multiplier;
         score += (geom.getLoot().getScorePoints()) * multiplier;
+        if (scorehealer>50000){
+            hp++;
+            scorehealer%=50000;
+        }
+
     }
 
     public void handlePickedUp(PowerUp pow) {
@@ -169,6 +179,8 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
             case PASSIVE:
                 handlePassivePow(pow);
                 break;
+            case POWERDOWN:
+                handleBadPow(pow);
         }
         popuptext = pow.getText();
         popuptextTime = 50;
@@ -186,11 +198,25 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
         hp += p.getExtraHp();
     }
 
+    public void handleBadPow(PowerUp pow) {
+        PowerDown_Stats p = (PowerDown_Stats) pow;
+        if (fireDelay > 1.0f) {
+            fireDelay /= p.getFireDelay();
+        }
+        if (speed > 200) {
+            speed += p.getSpeed();
+        }
+        if (hp > 1) {
+            maxHp += p.getExtraHp();
+            hp += p.getExtraHp();
+        }
+    }
+
     public void handleEnemyCrash(Enemy enemy) {
         hp -= enemy.getHp();
         //kan even nie dood
         multiplier = 0;
-        hitTime=0.2f;
+        hitTime = 0.2f;
         if (hp < 1) {
             setDead();
             Managers.getGameManager().endGame();
@@ -251,13 +277,12 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
     public void update() {
 
 
-        if (hitTime > 0.01f ) {
+        if (hitTime > 0.01f) {
             shipSprite.setColor(Color.BLACK);
-            hitTime-=Gdx.graphics.getDeltaTime();
+            hitTime -= Gdx.graphics.getDeltaTime();
         } else {
             shipSprite.setColor(shipColor);
         }
-
 
 
         timer += Gdx.graphics.getDeltaTime();

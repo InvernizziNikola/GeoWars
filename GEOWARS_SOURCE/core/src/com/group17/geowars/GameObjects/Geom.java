@@ -49,7 +49,7 @@ public class Geom extends GameObject implements GOInterface
     private void setGeomLoot(int enemyId)
     {
         loot = Managers.getScoreManager().getLoot(enemyId);
-    }
+    }//TODO remove : komt niet uit db
 
     public EnemyLoot getLoot()
     {
