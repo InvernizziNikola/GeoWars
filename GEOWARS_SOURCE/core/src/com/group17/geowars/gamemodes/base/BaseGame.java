@@ -34,7 +34,7 @@ public class BaseGame {
 
     public void placePlayerTextFields()
     {
-        int y=20;
+        int y=30;
         for (Player p: Managers.getPlayerManager().getPlayers()) {
             p.setPlayerTextpos(new Vector2(10,y));
             y+=50;

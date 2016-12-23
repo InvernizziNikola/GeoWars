@@ -147,6 +147,7 @@ public class GameManager {
         Managers.getpowerUpManager().update();
         Managers.getPlayerManager().update();
         Managers.getCollisionManager().update();
+        Managers.getFloatingTextManager().update();
     }
     public void newGame()
     {
@@ -165,6 +166,7 @@ public class GameManager {
         Managers.getBulletManager().render(batch);
         Managers.getEnemyManager().render(batch);
         Managers.getPlayerManager().render(batch);
+        Managers.getFloatingTextManager().render(batch);
     }
 
     public void resetGame()
@@ -175,6 +177,7 @@ public class GameManager {
         Managers.getGeomManager().reset();
         Managers.getLevelManager().reset();
         Managers.getPlayerManager().reset();
+        Managers.getFloatingTextManager().reset();
         game = null;
         resetGame = false;
     }

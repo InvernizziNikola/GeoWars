@@ -1,6 +1,8 @@
 package com.group17.geowars.managers;
 
 
+import com.group17.geowars.gameobjects.FloatingText;
+
 /**
  * Created by nikola on 09/11/2016.
  */
@@ -8,95 +10,117 @@ package com.group17.geowars.managers;
 public class Managers {
     private static Managers _instance;
 
-    private static Managers getInstance()
-    {
-        if(_instance == null) {
+    private static Managers getInstance() {
+        if (_instance == null) {
             _instance = new Managers();
             _instance.init();
         }
         return _instance;
     }
+
     private GameManager gameManager;
-    public static GameManager getGameManager(){
+
+    public static GameManager getGameManager() {
 
         return getInstance().gameManager;
     }
 
     private AccountManager accountManager;
-    public static AccountManager getAccountManager(){
+
+    public static AccountManager getAccountManager() {
 
         return getInstance().accountManager;
     }
 
     private AssetManager assetManager;
-    public static AssetManager getAssetManager(){
+
+    public static AssetManager getAssetManager() {
 
         return getInstance().assetManager;
     }
-    private ControllerManager controllerManager;
-    public static ControllerManager getControllerManager(){
 
-        return  getInstance().controllerManager;
+    private ControllerManager controllerManager;
+
+    public static ControllerManager getControllerManager() {
+
+        return getInstance().controllerManager;
     }
 
     private ScreenManager screenManager;
-    public static ScreenManager getScreenManager(){
 
-        return  getInstance().screenManager;
+    public static ScreenManager getScreenManager() {
+
+        return getInstance().screenManager;
     }
 
     private LevelManager levelManager;
-    public static LevelManager getLevelManager(){
 
-        return  getInstance().levelManager;
+    public static LevelManager getLevelManager() {
+
+        return getInstance().levelManager;
     }
+
     private ScoreManager scoreManager;
-    public static ScoreManager getScoreManager(){
 
-        return  getInstance().scoreManager;
+    public static ScoreManager getScoreManager() {
+
+        return getInstance().scoreManager;
     }
+
     private BulletManager bulletManager;
-    public static BulletManager getBulletManager(){
 
-        return  getInstance().bulletManager;
+    public static BulletManager getBulletManager() {
+
+        return getInstance().bulletManager;
     }
+
     private EnemyManager enemyManager;
-    public static EnemyManager getEnemyManager(){
 
-        return  getInstance().enemyManager;
+    public static EnemyManager getEnemyManager() {
+
+        return getInstance().enemyManager;
     }
-    private GeomManager geomManager;
-    public static GeomManager getGeomManager(){
 
-        return  getInstance().geomManager;
+    private GeomManager geomManager;
+
+    public static GeomManager getGeomManager() {
+
+        return getInstance().geomManager;
     }
 
     private CollisionManager collisionManager;
-    public static CollisionManager getCollisionManager(){
 
-        return  getInstance().collisionManager;
+    public static CollisionManager getCollisionManager() {
+
+        return getInstance().collisionManager;
     }
 
 
     //PowerUpManager
     private PowerUpManager powerUpManager;
-    public static PowerUpManager getpowerUpManager(){
 
-        return  getInstance().powerUpManager;
+    public static PowerUpManager getpowerUpManager() {
+
+        return getInstance().powerUpManager;
     }
 
 
     private PlayerManager playerManager;
-    public static PlayerManager getPlayerManager(){
 
-        return  getInstance().playerManager;
+    public static PlayerManager getPlayerManager() {
+
+        return getInstance().playerManager;
     }
 
     // playerManager
+    private FloatingTextManager floatingTextManager;
+
+    public static FloatingTextManager getFloatingTextManager() {
+        return getInstance().floatingTextManager;
+    }
 
 
-    private Managers()
-    {
+    private Managers() {
         playerManager = new PlayerManager();
         assetManager = new AssetManager();
         controllerManager = new ControllerManager();
@@ -108,13 +132,13 @@ public class Managers {
         accountManager = new AccountManager();
         collisionManager = new CollisionManager();
         screenManager = new ScreenManager();
-        powerUpManager=new PowerUpManager();
+        powerUpManager = new PowerUpManager();
         gameManager = new GameManager();
+        floatingTextManager = new FloatingTextManager();
 
     }
 
-    public void init()
-    {
+    public void init() {
         accountManager.init();
         assetManager.init();
         controllerManager.init();
@@ -127,6 +151,7 @@ public class Managers {
         collisionManager.init();
         powerUpManager.init();
         gameManager.init();
+        floatingTextManager.init();
     }
 
 }

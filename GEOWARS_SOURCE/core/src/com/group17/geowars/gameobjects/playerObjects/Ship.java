@@ -59,10 +59,8 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
     protected int speed;
     protected Player player;
     protected ArrayList<PowerUp> powerups;
+    protected BitmapFont bigFont;
 
-    protected List<FloatingText> textList;
-    protected String popuptext = ""; //text om af te beelden na en pickup enz
-    protected float popuptextTime;
     protected Vector2 popUpTextPos;
 
 
@@ -94,6 +92,7 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
         sound = Managers.getAssetManager().getSounds("sounds/shot.wav");
 
         font = Managers.getAssetManager().getGameFont(shipColor, 15); // font size 15 pixels
+        bigFont=Managers.getAssetManager().getGameFont(shipColor,25);
 
         score = 0;
         scorehealer = 0;
@@ -102,7 +101,6 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
         exp = 101;
         dead = false;
         this.type = type;
-        textList = new ArrayList<FloatingText>();
 
 
         texture = Managers.getAssetManager().getTexture(type);
@@ -154,15 +152,12 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
     public void handlePickedUp(Geom geom) {
         exp += geom.getLoot().getExperience();
         if (exp > 100 * level) {
-
-            textList.add(new FloatingText(font, popuptext, popuptextTime, popUpTextPos));
-            popuptext = "Level up";
-            popuptextTime = 5.0f;
             popUpTextPos = geom.getPosition();
             maxHp += 5;
             hp += 5;
             level++;
             exp = 0;
+            Managers.getFloatingTextManager().addText(new FloatingText(font, "Level up", 5.0f, popUpTextPos));//////////////////////////////////////////////////////////////////
         }
         multiplier += geom.getLoot().getMultiplier();
 
@@ -188,10 +183,8 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
             case POWERDOWN:
                 handleBadPow(pow);
         }
-        textList.add(new FloatingText(font, popuptext, popuptextTime, popUpTextPos));
-        popuptext = pow.getText();
-        popuptextTime = 5.0f;
-        popUpTextPos = pow.getPosition();
+
+        Managers.getFloatingTextManager().addText(new FloatingText(font, pow.getText(), 5.0f, pow.getPosition()));
 
     }
 
@@ -268,12 +261,14 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
         shield.setOrigin(40, 40);
         shield.setPosition(position.x - 40, position.y - 40);
         shield.draw(batch);
-        if (textList.size() > 0) {
-            for (FloatingText f : textList) {
 
-            }
-        }
 
+
+
+        //niet in render
+
+
+/*
         if (!popuptext.equals("")) {
             font.draw(batch, popuptext, popUpTextPos.x, popUpTextPos.y + popuptextTime);
 
@@ -283,8 +278,9 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
             }
             popuptextTime -= Gdx.graphics.getDeltaTime();
         }
-        font.draw(batch, player.getName() + " score " + score + "  " + multiplier + "X" + "    LVL= " + level + "   HP " + hp + " I " + maxHp, player.getPlayerTextpos().x, player.getPlayerTextpos().y);
-        //System.out.println(player.getPlayerTextpos());
+        */
+        bigFont.draw(batch, player.getName() + " score " + score + "  " + multiplier + "X" + "    LVL= " + level + "   HP " + hp + " I " + maxHp, player.getPlayerTextpos().x, player.getPlayerTextpos().y);
+
     }
 
     @Override

@@ -57,6 +57,7 @@ public class BulletManager implements GOInterface {
     public void reset()
     {
         bullets.clear();
+        toAdd.clear();
         toRemove.clear();
     }
 
