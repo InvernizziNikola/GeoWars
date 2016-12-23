@@ -2,6 +2,7 @@ package com.group17.geowars.database.Threads;
 
 import com.group17.geowars.database.DBManager;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 
 public class SaveScoreToDBThread implements Runnable {
@@ -10,11 +11,11 @@ public class SaveScoreToDBThread implements Runnable {
     private Boolean data = false;
     private String gameMode = "";
     private String Playername = "";
-    private Integer Score=0;
+    private BigInteger Score= BigInteger.valueOf(0);
     private Thread t;
     private boolean Succes;
 
-    public SaveScoreToDBThread(String Playername,Integer Score,String gameMode)
+    public SaveScoreToDBThread(String Playername, BigInteger Score, String gameMode)
     {
         this.Score = Score;
         this.gameMode = gameMode;
@@ -34,20 +35,18 @@ public class SaveScoreToDBThread implements Runnable {
         Succes = DBManager.getInstance().DBInsertHighscore(Playername,Score,gameMode);
         while (Succes=false){
             System.out.println("still trying");
-            DBManager.getInstance().DBInsertHighscore(Playername,Score,gameMode);
+            data = DBManager.getInstance().DBInsertHighscore(Playername,Score,gameMode);
         }
     }
 
     public boolean Succes()
     {
-        return data;
+        return Succes;
     }
-    private Integer i;
     public boolean finished()
     {
-        if(data != null&&Succes||i>300)
+        if(data != null)
             return true;
-        i++;
         return false;
 
     }

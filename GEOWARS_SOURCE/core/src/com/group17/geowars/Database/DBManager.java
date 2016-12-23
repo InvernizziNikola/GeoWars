@@ -3,6 +3,7 @@ package com.group17.geowars.database;
 
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
 
+import java.math.BigInteger;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -374,7 +375,7 @@ public class DBManager {
         return succes;
     }
 
-    public boolean DBInsertHighscore(String nameProfile, Integer Score, String Gamemode) {
+    public boolean DBInsertHighscore(String nameProfile, BigInteger Score, String Gamemode) {
 
 
         try {
@@ -382,7 +383,7 @@ public class DBManager {
 
             prep = this.conn.prepareStatement(SQLstring);
             prep.setString(1, nameProfile);
-            prep.setInt(2, Score);
+            prep.setString(2, Score.toString());
             prep.setString(3, Gamemode);
             prep.executeUpdate();
         } catch (SQLException e) {
