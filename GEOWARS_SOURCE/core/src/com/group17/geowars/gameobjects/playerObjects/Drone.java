@@ -33,6 +33,7 @@ public abstract class Drone extends GameObject {
     protected float fireDelay;
     protected int fireRange;
     protected int movementSpeed;
+    protected int size;
 
 
     private boolean canShoot = true;
@@ -42,6 +43,7 @@ public abstract class Drone extends GameObject {
     {
         super(pos);
         fireDelay=0.2f;
+        size=35;
         //this.player = Managers.getPlayerManager().getPlayer(this);
         System.out.println(type);
         texture = Managers.getAssetManager().getTexture(type);
@@ -59,7 +61,7 @@ public abstract class Drone extends GameObject {
     {
 
         sprite.setColor(player.getShip().getShipColor());
-        sprite.setSize(35, 35);
+        sprite.setSize(size, size);
         sprite.setOrigin(10, 10);
         sprite.setRotation(90);
         sprite.setPosition(position.x - 10, position.y - 10);

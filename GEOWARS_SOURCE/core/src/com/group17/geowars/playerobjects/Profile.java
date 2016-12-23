@@ -16,4 +16,12 @@ public class Profile {
         this.ship = shipProfile;
         this.drone = droneProfile;
     }
+
+    public void setShip(Ship ship) {
+        this.ship = ship;
+    }
+
+    public void setDrone(Drone drone) {
+        this.drone = drone;
+    }
 }

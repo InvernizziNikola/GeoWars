@@ -8,13 +8,18 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g3d.utils.MeshBuilder;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.group17.geowars.GeoWars;
 import com.group17.geowars.database.Threads.ShopThread;
+import com.group17.geowars.gameobjects.playerObjects.DefenceDrone;
+import com.group17.geowars.gameobjects.playerObjects.DestroyerShip;
+import com.group17.geowars.gameobjects.playerObjects.Ship;
 import com.group17.geowars.managers.Managers;
+import com.group17.geowars.playerobjects.Profile;
 import com.group17.geowars.utils.MenuGrid;
 
 import java.util.ArrayList;
@@ -31,13 +36,15 @@ public class UpgradeMenuScreen extends MenuScreen implements iHasStage, iSetActi
     private int showShipStats = 0;
     private int showDroneStats = 0;
     private ShopThread ShopThread;
-    private ArrayList ShipData;
-    private ArrayList DroneData;
+    private String ShipData;
+    private Profile profile;
+    private String DroneData;
     private boolean loading = false;
 
     public UpgradeMenuScreen() {
         super();
         create();
+        profile =new Profile(new DestroyerShip(new Vector2(0,0)),new DefenceDrone(new Vector2(0,0)));
     }
 
     public void create() {
@@ -53,6 +60,7 @@ public class UpgradeMenuScreen extends MenuScreen implements iHasStage, iSetActi
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 selectButton(assaultButton);
+                ShipData="ASSAULT";
                 showShip = 0;
             }
         });
@@ -62,6 +70,7 @@ public class UpgradeMenuScreen extends MenuScreen implements iHasStage, iSetActi
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 selectButton(destroyerButton);
+                ShipData="DESTROYER";
                 showShip = 1;
             }
         });
@@ -71,6 +80,7 @@ public class UpgradeMenuScreen extends MenuScreen implements iHasStage, iSetActi
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 selectButton(tankButton);
+                ShipData="TANK";
                 showShip = 2;
             }
         });
@@ -80,6 +90,7 @@ public class UpgradeMenuScreen extends MenuScreen implements iHasStage, iSetActi
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 selectButton(supportButton);
+                DroneData="SUPPORT";
                 showDrone = 0;
             }
         });
@@ -89,6 +100,7 @@ public class UpgradeMenuScreen extends MenuScreen implements iHasStage, iSetActi
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 selectButton(attackButton);
+                DroneData="ATTACK";
                 showDrone = 1;
             }
         });
@@ -98,6 +110,7 @@ public class UpgradeMenuScreen extends MenuScreen implements iHasStage, iSetActi
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 selectButton(defendButton);
+                DroneData="DEFEND";
                 showDrone = 2;
             }
         });
@@ -440,8 +453,8 @@ public class UpgradeMenuScreen extends MenuScreen implements iHasStage, iSetActi
         super.render(delta);
         batch.begin();
         if (ShopThread != null && ShopThread.finished()) {
-            ShipData = ShopThread.getShipData();
-            DroneData = ShopThread.getDronesData();
+          //  ShipData = ShopThread.getShipData();
+           // DroneData = ShopThread.getDronesData();
             ShopThread = null;
 
             loading = false;

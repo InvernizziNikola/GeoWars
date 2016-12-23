@@ -11,7 +11,7 @@ import com.group17.geowars.managers.Managers;
 public class TankShip extends Ship {
     public TankShip(Vector2 pos, String type) {
         super(pos,"TankShip");
-        maxHp=50;
+        maxHp=100;
         hp=maxHp;
         fireDelay =0.3f;
         speed=200;
