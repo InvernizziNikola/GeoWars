@@ -28,7 +28,6 @@ public class LoginScreen extends MenuScreen implements iHasStage, iSetActive {
     private Label errorlable = new Label("", style());
 
     private LoginThread LT;
-    private MusicThread MT;
 
     private Table table;
 
@@ -98,12 +97,6 @@ public class LoginScreen extends MenuScreen implements iHasStage, iSetActive {
         });
 
         stage.addActor(table);
-        if (MT == null) {
-            MT = new MusicThread();
-            MT.start();
-            MT.run();
-        }
-
     }
 
     public void render(float deltaTime) {
@@ -158,6 +151,5 @@ public class LoginScreen extends MenuScreen implements iHasStage, iSetActive {
     @Override
     public void setInActive() {
         active = false;
-
     }
 }

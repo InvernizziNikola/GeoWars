@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class MusicThread implements Runnable {
 
     private Thread t;
-    protected Sound sound;
+    public Music music;
 
     public MusicThread(){}
 
@@ -24,13 +24,14 @@ public class MusicThread implements Runnable {
 
     @Override
     public void run() {
-        Music music = Gdx.audio.newMusic(Gdx.files.internal("sounds/backgroundmusic.mp3"));
-        System.out.println("music: "+music.toString());
-        music.play();
-        music.setLooping(true);
+        music = Gdx.audio.newMusic(Gdx.files.internal("sounds/backgroundmusic.mp3"));
     }
 
+    public boolean finished()
+    {
+        if(music != null)
+            return true;
+        return false;
 
-    Integer i =0;
-
+    }
 }
