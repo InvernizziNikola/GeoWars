@@ -32,7 +32,7 @@ public class EndGameMenuScreen extends MenuScreen implements iHasStage, iSetActi
     public void create() {
         Gdx.input.setInputProcessor(stage);
         batch = new SpriteBatch();
-
+/*
         final ImageButton replayButton = newImageButton("Menu_replayicon", width / 10, height / 2 + height / 8, 150, 50, new MenuGrid(0, 0));
         replayButton.addListener(new ChangeListener() {
             @Override
@@ -43,8 +43,8 @@ public class EndGameMenuScreen extends MenuScreen implements iHasStage, iSetActi
                 Managers.getGameManager().newArcadeSoloGame();
             }
         });
-
-        final ImageButton mainMenuButton = newImageButton("Menu_quittomainicon", width / 10, height / 2, 150, 50, new MenuGrid(0, 1));
+*/
+        final ImageButton mainMenuButton = newImageButton("Menu_quittomainicon", width / 10, height / 2, 150, 50, new MenuGrid(0, 0));
         mainMenuButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -55,7 +55,7 @@ public class EndGameMenuScreen extends MenuScreen implements iHasStage, iSetActi
             }
         });
 
-        final ImageButton highscoreButton = newImageButton("Menu_leaderboardicon", width / 10, height / 2 - height / 8, 150, 50, new MenuGrid(0, 2));
+        final ImageButton highscoreButton = newImageButton("Menu_leaderboardicon", width / 10, height / 2 - height / 8, 150, 50, new MenuGrid(0, 1));
         highscoreButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
