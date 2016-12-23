@@ -35,7 +35,7 @@ public class OptionsMenuScreen extends MenuScreen implements iHasStage {
         final ImageButton arrowkeysButton = newImageButton("Menu_arrowkeysicon", (width/2)-width/4, height-height/3, 150, 50, new MenuGrid(0, 0));
         final ImageButton qwertyButton = newImageButton("Menu_qwertyicon", width/2-75, height-height/3, 150, 50, new MenuGrid(1, 0));
         final ImageButton azertyButton = newImageButton("Menu_azertyicon", (width/2)+width/6, height-height/3, 150, 50, new MenuGrid(2, 0));
-        final ImageButton backButton = newImageButton("Menu_backicon", width/2-75, height/6, 150, 50, new MenuGrid(0, 2));
+        final ImageButton backButton = newImageButton("Menu_backicon", width/2-75, height/6, 150, 50, new MenuGrid(0, 1));
 
 
         /*--------------EVENT HANDLER--------------------------*/
@@ -43,7 +43,6 @@ public class OptionsMenuScreen extends MenuScreen implements iHasStage {
             public void changed(ChangeEvent event, Actor actor) {
                 arrowkeysButton.setChecked(false);
 
-                //Managers.getAccountManager().getAccounts().get(0).getPlayer().getPlayerInput().setArrowkeys();
                 SelectedKeyBinding = 1;
                 showText();
 
@@ -52,7 +51,6 @@ public class OptionsMenuScreen extends MenuScreen implements iHasStage {
         qwertyButton.addListener(new ChangeListener() {
             public void changed(ChangeEvent event, Actor actor) {
                 qwertyButton.setChecked(false);
-                //Managers.getAccountManager().getAccounts().get(0).getPlayer().getPlayerInput().setQwerty();
                 SelectedKeyBinding = 2;
                 showText();
             }
@@ -60,7 +58,6 @@ public class OptionsMenuScreen extends MenuScreen implements iHasStage {
         azertyButton.addListener(new ChangeListener() {
             public void changed(ChangeEvent event, Actor actor) {
                 azertyButton.setChecked(false);
-                //Managers.getAccountManager().getAccounts().get(0).getPlayer().getPlayerInput().setAzerty();
                 SelectedKeyBinding = 3;
                 showText();
 
@@ -80,7 +77,6 @@ public class OptionsMenuScreen extends MenuScreen implements iHasStage {
     }
 
     public void showText() {
-        //skin and style
         stage.clear();
         Buttons();
         skin = new Skin();
