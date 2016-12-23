@@ -132,7 +132,7 @@ public class UpgradeMenuScreen extends MenuScreen implements iHasStage, iSetActi
     }
 
     public void createShipSkillTreeButtons() {
-        final ImageButton extraSpread = newImageButton("skillButton", GeoWars.WIDTH / 4 - 18, GeoWars.HEIGHT / 10, 35, 35);
+        final ImageButton extraSpread = newImageButton("skillButton", GeoWars.WIDTH / 4 - 18, GeoWars.HEIGHT / 10, 35, 35, new MenuGrid(0,3));
         extraSpread.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -140,7 +140,7 @@ public class UpgradeMenuScreen extends MenuScreen implements iHasStage, iSetActi
             }
         });
 
-        final ImageButton bigBullet = newImageButton("skillButton", GeoWars.WIDTH / 4 - 18, GeoWars.HEIGHT / 5 - 18, 35, 35);
+        final ImageButton bigBullet = newImageButton("skillButton", GeoWars.WIDTH / 4 - 18, GeoWars.HEIGHT / 5 - 18, 35, 35, new MenuGrid(0,3));
         bigBullet.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -148,7 +148,7 @@ public class UpgradeMenuScreen extends MenuScreen implements iHasStage, iSetActi
             }
         });
 
-        final ImageButton mirrorShot = newImageButton("skillButton", GeoWars.WIDTH / 5 - 18, GeoWars.HEIGHT / 4 - 18, 35, 35);
+        final ImageButton mirrorShot = newImageButton("skillButton", GeoWars.WIDTH / 5 - 18, GeoWars.HEIGHT / 4 - 18, 35, 35, new MenuGrid(0,3));
         mirrorShot.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -156,7 +156,7 @@ public class UpgradeMenuScreen extends MenuScreen implements iHasStage, iSetActi
             }
         });
 
-        final ImageButton glassCannon = newImageButton("skillButton", GeoWars.WIDTH / 5 - 18, GeoWars.HEIGHT / 3 - 18, 35, 35);
+        final ImageButton glassCannon = newImageButton("skillButton", GeoWars.WIDTH / 5 - 18, GeoWars.HEIGHT / 3 - 18, 35, 35, new MenuGrid(0,3));
         glassCannon.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -164,7 +164,7 @@ public class UpgradeMenuScreen extends MenuScreen implements iHasStage, iSetActi
             }
         });
 
-        final ImageButton smallUnit = newImageButton("skillButton", GeoWars.WIDTH / 4 - 18, GeoWars.HEIGHT / 3 + GeoWars.HEIGHT / 20 - 18, 35, 35);
+        final ImageButton smallUnit = newImageButton("skillButton", GeoWars.WIDTH / 4 - 18, GeoWars.HEIGHT / 3 + GeoWars.HEIGHT / 20 - 18, 35, 35, new MenuGrid(0,3));
         smallUnit.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -175,7 +175,7 @@ public class UpgradeMenuScreen extends MenuScreen implements iHasStage, iSetActi
     }
 
     public void createDroneSkillTreeButtons() {
-        final ImageButton extraSpread = newImageButton("skillButton", GeoWars.WIDTH / 2 + GeoWars.WIDTH / 4 - 18, GeoWars.HEIGHT / 10, 35, 35);
+        final ImageButton extraSpread = newImageButton("skillButton", GeoWars.WIDTH / 2 + GeoWars.WIDTH / 4 - 18, GeoWars.HEIGHT / 10, 35, 35, new MenuGrid(0,3));
         extraSpread.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -183,7 +183,7 @@ public class UpgradeMenuScreen extends MenuScreen implements iHasStage, iSetActi
             }
         });
 
-        final ImageButton bigBullet = newImageButton("skillButton", GeoWars.WIDTH / 2 + GeoWars.WIDTH / 4 - 18, GeoWars.HEIGHT / 5 - 18, 35, 35);
+        final ImageButton bigBullet = newImageButton("skillButton", GeoWars.WIDTH / 2 + GeoWars.WIDTH / 4 - 18, GeoWars.HEIGHT / 5 - 18, 35, 35, new MenuGrid(0,3));
         bigBullet.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -191,7 +191,7 @@ public class UpgradeMenuScreen extends MenuScreen implements iHasStage, iSetActi
             }
         });
 
-        final ImageButton mirrorShot = newImageButton("skillButton", GeoWars.WIDTH / 2 + GeoWars.WIDTH / 5 - 18, GeoWars.HEIGHT / 4 - 18, 35, 35);
+        final ImageButton mirrorShot = newImageButton("skillButton", GeoWars.WIDTH / 2 + GeoWars.WIDTH / 5 - 18, GeoWars.HEIGHT / 4 - 18, 35, 35, new MenuGrid(0,3));
         mirrorShot.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -199,7 +199,7 @@ public class UpgradeMenuScreen extends MenuScreen implements iHasStage, iSetActi
             }
         });
 
-        final ImageButton glassCannon = newImageButton("skillButton", GeoWars.WIDTH / 2 + GeoWars.WIDTH / 5 - 18, GeoWars.HEIGHT / 3 - 18, 35, 35);
+        final ImageButton glassCannon = newImageButton("skillButton", GeoWars.WIDTH / 2 + GeoWars.WIDTH / 5 - 18, GeoWars.HEIGHT / 3 - 18, 35, 35, new MenuGrid(0,3));
         glassCannon.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -207,7 +207,7 @@ public class UpgradeMenuScreen extends MenuScreen implements iHasStage, iSetActi
             }
         });
 
-        final ImageButton bigUnit = newImageButton("skillButton", GeoWars.WIDTH / 2 + GeoWars.WIDTH / 4 - 18, GeoWars.HEIGHT / 3 + GeoWars.HEIGHT / 20 - 18, 35, 35);
+        final ImageButton bigUnit = newImageButton("skillButton", GeoWars.WIDTH / 2 + GeoWars.WIDTH / 4 - 18, GeoWars.HEIGHT / 3 + GeoWars.HEIGHT / 20 - 18, 35, 35, new MenuGrid(0,3));
         bigUnit.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {

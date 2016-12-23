@@ -29,7 +29,7 @@ public class IngameUpgradeScreen extends MenuScreen implements iHasStage, iSetAc
     public void create() {
         Gdx.input.setInputProcessor(stage);
 
-        final ImageButton speedButton = newImageButton("Speed", (width/2)-(width/2)/2,height/2+50,150,50);
+        final ImageButton speedButton = newImageButton("Speed", (width/2)-(width/2)/2,height/2+50,150,50, new MenuGrid(0,0));
         speedButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -39,7 +39,7 @@ public class IngameUpgradeScreen extends MenuScreen implements iHasStage, iSetAc
             }
         });
 
-        final ImageButton firePowerButton = newImageButton("FirePower", (width/2)-(width/2)/2,height/2+50,150,50);
+        final ImageButton firePowerButton = newImageButton("FirePower", (width/2)-(width/2)/2,height/2+50,150,50, new MenuGrid(0,1));
         firePowerButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -49,7 +49,7 @@ public class IngameUpgradeScreen extends MenuScreen implements iHasStage, iSetAc
             }
         });
 
-        final ImageButton healButton = newImageButton("HealButton", (width/2)-(width/2)/2,height/2+100,150,50);
+        final ImageButton healButton = newImageButton("HealButton", (width/2)-(width/2)/2,height/2+100,150,50, new MenuGrid(0,2));
         healButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -59,7 +59,7 @@ public class IngameUpgradeScreen extends MenuScreen implements iHasStage, iSetAc
             }
         });
 
-        final ImageButton nextLvlButton = newImageButton("NextLevel", (width/2)-(width/2)/2,height/2+200,150,50);
+        final ImageButton nextLvlButton = newImageButton("NextLevel", (width/2)-(width/2)/2,height/2+200,150,50, new MenuGrid(0,3));
         nextLvlButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -68,7 +68,7 @@ public class IngameUpgradeScreen extends MenuScreen implements iHasStage, iSetAc
 
             }
         });
-        final ImageButton QuitButton = newImageButton("Speed", (width/2)-(width/2)/2,height/2+250,150,50);
+        final ImageButton QuitButton = newImageButton("Speed", (width/2)-(width/2)/2,height/2+250,150,50, new MenuGrid(0,4));
         QuitButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {

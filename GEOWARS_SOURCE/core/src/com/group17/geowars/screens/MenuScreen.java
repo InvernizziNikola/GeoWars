@@ -36,7 +36,7 @@ public class MenuScreen implements Screen {
     // UP, DOWN, LEFT AND RIGHT. THIS WAY WE CAN 100% DECIDE TO WHICH BUTTON THE
     // SELECTOR GOES WHEN A KEY ON THE DPAD IS PRESSED
 
-    protected Map<MenuGrid, TextButton> menuButtons = new HashMap<MenuGrid, TextButton>();
+    protected Map<MenuGrid, ImageButton> menuButtons = new HashMap<MenuGrid, ImageButton>();
     protected MenuGrid selectedButton = new MenuGrid(0, 0);
     protected boolean pressed = true;
     protected TextButton.TextButtonStyle styleDefault;
@@ -105,7 +105,7 @@ public class MenuScreen implements Screen {
             Gdx.gl.glClearColor(0.2f, 0.2f, 0.2f, 0);
             Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-            newBackground("menuBackground");
+            drawBackground("menuBackground");
 
             stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
             stage.draw();
@@ -128,7 +128,7 @@ public class MenuScreen implements Screen {
 
         MenuGrid newMG = null;
 
-        for(Map.Entry<MenuGrid, TextButton> button : menuButtons.entrySet()) {
+        for(Map.Entry<MenuGrid, ImageButton> button : menuButtons.entrySet()) {
             if (button.getKey().Y() == preferredY) {
                 if (newMG == null || diffx > Math.abs(button.getKey().X() - preferredX)) {
                     diffx = Math.abs(button.getKey().X() - preferredX);
@@ -149,7 +149,7 @@ public class MenuScreen implements Screen {
         MenuGrid newMG = null;
 
         int diffy = 0;
-        for(Map.Entry<MenuGrid, TextButton> button : menuButtons.entrySet()) {
+        for(Map.Entry<MenuGrid, ImageButton> button : menuButtons.entrySet()) {
             if (button.getKey().X() == preferredX) {
                 if (newMG == null || diffy > Math.abs(button.getKey().Y() - preferredY)) {
                     diffy = Math.abs(button.getKey().Y() - preferredY);
@@ -166,7 +166,7 @@ public class MenuScreen implements Screen {
     public void pressButton(MenuGrid menugrid)
     {
         pressed = true;
-        TextButton tempButton = menuButtons.get(menugrid);
+        ImageButton tempButton = menuButtons.get(menugrid);
         if(tempButton != null){
             tempButton.setChecked(true);
         }
@@ -174,7 +174,7 @@ public class MenuScreen implements Screen {
 
     public void deSelectButtons()
     {
-        for(Map.Entry<MenuGrid, TextButton> button : menuButtons.entrySet())
+        for(Map.Entry<MenuGrid, ImageButton> button : menuButtons.entrySet())
         {
             button.getValue().setStyle(styleDefault);
         }
@@ -189,7 +189,7 @@ public class MenuScreen implements Screen {
             tempButton.setWidth(width);
             tempButton.setHeight(height);
 
-            menuButtons.put(position, tempButton);
+            //menuButtons.put(position, tempButton);
             stage.addActor(tempButton);
         }
         catch (Exception e)
@@ -200,7 +200,7 @@ public class MenuScreen implements Screen {
         return tempButton;
     }
 
-    protected ImageButton newImageButton(String name, int x, int y, int width, int height)
+    protected ImageButton newImageButton(String name, int x, int y, int width, int height, MenuGrid position)
     {
         Texture tempImg = Managers.getAssetManager().getTexture(name);
         TextureRegion tempImgReg = new TextureRegion(tempImg);
@@ -209,6 +209,7 @@ public class MenuScreen implements Screen {
         imgbutton.setPosition(x,y);
         imgbutton.setWidth(width);
         imgbutton.setHeight(height);
+        menuButtons.put(position, imgbutton);
         stage.addActor(imgbutton);
         return imgbutton;
     }
@@ -235,11 +236,11 @@ public class MenuScreen implements Screen {
         return img;
     }
 
-    protected Texture newBackground(String name)
+    protected Texture drawBackground(String name)
     {
         Texture background = Managers.getAssetManager().getTexture(name);
         batch.begin();
-        batch.draw(background,0,0);
+        batch.draw(background,0,0,GeoWars.WIDTH, GeoWars.HEIGHT);
         batch.end();
         return background;
     }
