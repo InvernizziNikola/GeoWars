@@ -9,7 +9,7 @@ public class DifficultyThread implements Runnable {
     private ArrayList data = null;
     private String difficulty = null;
     private Thread t;
-    private Integer difficultyModifier;
+    private Float difficultyModifier;
 
     public DifficultyThread(String difficulty)
     {
@@ -31,11 +31,11 @@ public class DifficultyThread implements Runnable {
 
     }
 
-    public Integer getDifficultyModifier()
+    public Float getDifficultyModifier()
     {
         if (data!=null) {
 
-            difficultyModifier = Integer.parseInt(data.get(0).toString());
+            difficultyModifier = Float.parseFloat(data.get(0).toString());
         }
         return difficultyModifier;
     }

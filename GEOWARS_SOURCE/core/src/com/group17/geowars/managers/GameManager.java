@@ -25,7 +25,7 @@ public class GameManager {
     private boolean resetGame = false;
     private SaveScoreToDBThread SaveScoreThread;
     private int score = 0;
-    public int difficultyModifier = -1;
+    public Float difficultyModifier = -1.0f;
     public void setEndScore(int score)
     {
         this.score = score;
@@ -86,7 +86,7 @@ public class GameManager {
         SaveScoreThread = new SaveScoreToDBThread(Playername,Score,Gamemode);
         SaveScoreThread.start();
     }
-    public int getDifficultyModifier(){
+    public Float getDifficultyModifier(){
         return difficultyModifier;
     }
 
