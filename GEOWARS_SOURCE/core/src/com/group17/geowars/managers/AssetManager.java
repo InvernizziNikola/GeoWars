@@ -34,7 +34,8 @@ public class AssetManager {
     {
         colors.put("geom",new Color(1.0f, 1.0f, 0, 0.90f));
         colors.put("shield",new Color(0.1f, 0.8f, 0, 0.5f));
-
+        colors.put("playerbullet",new Color(0.1f,0.8f,0.8f,0.8f));
+        colors.put("enemybullet",new Color(0.9f,0.1f,0.1f,0.9f));
     }
 
     public BitmapFont getGameFont(Color color,int size){

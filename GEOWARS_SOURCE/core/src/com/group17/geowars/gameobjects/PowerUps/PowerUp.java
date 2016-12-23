@@ -26,6 +26,7 @@ public abstract class PowerUp extends GameObject implements GOInterface {
 
     public PowerUp(Vector2 pos, POWERUPTYPE type) {
         super(new Vector2(pos));
+        color= Color.CYAN;
         this.type=type;
 
     }

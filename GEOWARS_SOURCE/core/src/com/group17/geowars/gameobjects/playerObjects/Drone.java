@@ -18,6 +18,8 @@ import com.group17.geowars.gameobjects.GameObject;
 import com.group17.geowars.managers.Managers;
 import com.group17.geowars.playerobjects.Player;
 
+import java.math.BigInteger;
+
 
 public abstract class Drone extends GameObject {
     protected int hp;
@@ -28,6 +30,9 @@ public abstract class Drone extends GameObject {
     protected Texture texture;
     protected Player player;
     protected Enemy target = null;
+    protected float fireDelay;
+    protected int fireRange;
+    protected int movementSpeed;
 
 
     private boolean canShoot = true;
@@ -36,11 +41,13 @@ public abstract class Drone extends GameObject {
     public Drone(Vector2 pos, String type)
     {
         super(pos);
-
+        fireDelay=0.2f;
         //this.player = Managers.getPlayerManager().getPlayer(this);
         System.out.println(type);
         texture = Managers.getAssetManager().getTexture(type);
         sprite = new Sprite(texture,texture.getWidth(),texture.getHeight());
+        fireRange=350;
+        movementSpeed=250;
     }
     public Sprite getShipSprite()
     {
@@ -52,7 +59,7 @@ public abstract class Drone extends GameObject {
     {
 
         sprite.setColor(player.getShip().getShipColor());
-        sprite.setSize(20, 20);
+        sprite.setSize(35, 35);
         sprite.setOrigin(10, 10);
         sprite.setRotation(90);
         sprite.setPosition(position.x - 10, position.y - 10);
@@ -80,8 +87,8 @@ public abstract class Drone extends GameObject {
 
 
         timer += Gdx.graphics.getDeltaTime();
-        if(timer > 0.2f) {
-            timer %= 0.2f;
+        if(timer > fireDelay) {
+            timer %= fireDelay;
             canShoot = true;
         }
         if(player == null) {
@@ -113,12 +120,12 @@ public abstract class Drone extends GameObject {
 
             Vector2 dir = new Vector2(s, o).nor();
 
-            position = pos.lerp(new Vector2(shipPos.x + dir.x * 250,shipPos.y + dir.y * 250), Gdx.graphics.getDeltaTime() * 1.5f);
+            position = pos.lerp(new Vector2(shipPos.x + dir.x * movementSpeed,shipPos.y + dir.y * movementSpeed), Gdx.graphics.getDeltaTime() * 1.5f);
         }
 
         if(target != null)
         {
-            if(target.destroy || new Vector2(target.getPosition().x - position.x, target.getPosition().y - position.y).len() > 250)
+            if(target.destroy || new Vector2(target.getPosition().x - position.x, target.getPosition().y - position.y).len() > fireRange)
             {
                 target = null;
             }
@@ -137,7 +144,7 @@ public abstract class Drone extends GameObject {
                 {
                     distance = tempDist;
 
-                    if(tempDist < 250)
+                    if(tempDist < fireRange)
                         target = e;
                 }
             }

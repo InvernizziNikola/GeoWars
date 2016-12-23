@@ -27,13 +27,13 @@ public class Bullet extends GameObject implements GOInterface {
 
     public Bullet(Vector2 pos, Vector2 dir) {
         this(pos,dir,true);
-        color=new Color(0.1f,0.8f,0.8f,0.8f);
+        color=Managers.getAssetManager().getColor("playerbullet");
         speed = 400;
     }
     public Bullet(Vector2 pos, Vector2 dir, boolean isFriendly) {
         super(pos);
         speed = 200;
-        color=new Color(0.9f,0.1f,0.1f,0.9f);
+        color=Managers.getAssetManager().getColor("enemybullet");
         size=15;
         this.isFriendly =isFriendly;
         direction = dir.nor();// normalize just incase

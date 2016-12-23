@@ -65,6 +65,7 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
 
     protected boolean canShoot = true;
     protected float timer = 0;
+    protected float hitTime=0;
 
     protected Vector2 shootDir = new Vector2(0, 0);
     protected Vector2 moveDir = new Vector2(0, 0);
@@ -87,7 +88,7 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
 
         sound = Managers.getAssetManager().getSounds("sounds/shot.wav");
 
-        font = Managers.getAssetManager().getGameFont(shipColor,15); // font size 15 pixels
+        font = Managers.getAssetManager().getGameFont(shipColor, 15); // font size 15 pixels
 
         score = 0;
         multiplier = 0;
@@ -131,6 +132,7 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
     public void handleHit(int damage) {
         hp -= damage;
         multiplier = 0;
+        hitTime = 0.2f;
         if (hp < 1) {
 
             setDead();
@@ -149,8 +151,8 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
             popuptext = "Level up";
             popuptextTime = 50;
             popUpTextPos = geom.getPosition();
-            maxHp+=5;
-            hp+=5;
+            maxHp += 5;
+            hp += 5;
         }
         level = newlevel;
         multiplier += geom.getLoot().getMultiplier();
@@ -188,6 +190,7 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
         hp -= enemy.getHp();
         //kan even nie dood
         multiplier = 0;
+        hitTime=0.2f;
         if (hp < 1) {
             setDead();
             Managers.getGameManager().endGame();
@@ -208,7 +211,9 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
 
     @Override
     public void render(Batch batch) {
-        shipSprite.setColor(shipColor);
+
+        //shipSprite.setColor(shipColor);
+
         shipSprite.setSize(50, 50);
         shipSprite.setOrigin(25, 25);
         shipSprite.setRotation(lookDir.angle());
@@ -238,12 +243,23 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
             }
             popuptextTime--;
         }
-        font.draw(batch, player.getName()+" score " + score + " multiplier " + multiplier+"X" + "    Shiplevel= " + level + "   HP " + hp+" of "+maxHp, player.getPlayerTextpos().x, player.getPlayerTextpos().y);
+        font.draw(batch, player.getName() + " score " + score + " multiplier " + multiplier + "X" + "    Shiplevel= " + level + "   HP " + hp + " of " + maxHp, player.getPlayerTextpos().x, player.getPlayerTextpos().y);
         //System.out.println(player.getPlayerTextpos());
     }
 
     @Override
     public void update() {
+
+
+        if (hitTime > 0.01f ) {
+            shipSprite.setColor(Color.BLACK);
+            hitTime-=Gdx.graphics.getDeltaTime();
+        } else {
+            shipSprite.setColor(shipColor);
+        }
+
+
+
         timer += Gdx.graphics.getDeltaTime();
         if (timer > fireDelay) {
             timer %= fireDelay;

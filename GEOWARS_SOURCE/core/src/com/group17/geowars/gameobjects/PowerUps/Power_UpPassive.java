@@ -16,14 +16,13 @@ public class Power_UpPassive extends PowerUp {
 
     public Power_UpPassive(Vector2 pos) {
         super(pos,POWERUPTYPE.PASSIVE);
-        text="fireDelay-- \n"+"hp++ \n"+"speed++ \n";
+        text="fireRate++ \n"+"hp++ \n"+"speed++ \n";
         //get out of DB ? DB.getpowerUP(type)
         //this.fireRate = fireRate;
         //this.extraHp = extraHp;
         fireDelay=1.2f;
         extraHp=2;
         speed=50;
-        color= new Color(0.8f, 0.8f,0,0.6f);
         texture = Managers.getAssetManager().getTexture("itsagem:)");
         sprite = new Sprite(texture, texture.getWidth(), texture.getHeight());
     }
