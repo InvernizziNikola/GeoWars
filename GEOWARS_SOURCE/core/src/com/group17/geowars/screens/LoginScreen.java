@@ -50,8 +50,6 @@ public class LoginScreen extends MenuScreen implements iHasStage, iSetActive {
                 Managers.getScreenManager().setScreen(nextMenu);
             }
         });
-
-        System.out.println("test2");
     }
 
     public void setStage() {
@@ -100,7 +98,6 @@ public class LoginScreen extends MenuScreen implements iHasStage, iSetActive {
         });
 
         stage.addActor(table);
-        System.out.println("test1");
         if (MT == null) {
             MT = new MusicThread();
             MT.start();
@@ -122,6 +119,9 @@ public class LoginScreen extends MenuScreen implements iHasStage, iSetActive {
                     Managers.getAccountManager().createAccount(username.getText()).main = true;
                     MenuScreen nextMenu = Managers.getScreenManager().getScreen("mainmenu");
                     Managers.getScreenManager().setScreen(nextMenu);
+                }else {
+                    errorlable.setText("Username or Password are not correct!");
+                    errorlable.setColor(Color.RED);
                 }
                 password.setDisabled(false);
                 username.setDisabled(false);
