@@ -84,14 +84,10 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
         speed = 450;
         maxHp = 1;
         shipColor = new Color(0.8f, new Random().nextFloat(), new Random().nextFloat(), 1);
-                         sound = Gdx.audio.newSound(Gdx.files.internal("sounds/shot.wav"));
-        //font = new BitmapFont();
-        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/Guardians.ttf"));
-        FreeTypeFontParameter parameter = new FreeTypeFontParameter();
-        parameter.size = 15;
-        parameter.color = shipColor;
-        font = generator.generateFont(parameter); // font size 12 pixels
-        generator.dispose();
+
+        sound = Managers.getAssetManager().getSounds("sounds/shot.wav");
+
+        font = Managers.getAssetManager().getGameFont(shipColor,15); // font size 15 pixels
 
         score = 0;
         multiplier = 0;
@@ -107,13 +103,13 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
 
         Texture texture2 = Managers.getAssetManager().getTexture("shield");
         shield = new Sprite(texture2, texture.getWidth(), texture.getHeight());
-        shieldColor = new Color(new Color(0.1f, 0.8f, 0, 0.5f));
+        shieldColor = Managers.getAssetManager().getColor("shield");
 
         Texture greenHptexture = Managers.getAssetManager().getTexture("Nikoala_2");
         greenHp = new Sprite(greenHptexture, 100, 20);
-        red = new Color(1, 0, 0, 1);
+        red = Color.RED;
         redHp = new Sprite(greenHptexture, 100, 20);
-        green = new Color(0, 1, 0, 1);
+        green = Color.GREEN;
     }
 
     public Sprite getShipSprite() {
@@ -212,7 +208,6 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
 
     @Override
     public void render(Batch batch) {
-        // TODO DRAW IMAGE CORRRECTLY
         shipSprite.setColor(shipColor);
         shipSprite.setSize(50, 50);
         shipSprite.setOrigin(25, 25);
@@ -243,7 +238,7 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
             }
             popuptextTime--;
         }
-        font.draw(batch, player.getName()+" score " + score + " multiplier " + multiplier + "    Shiplevel= " + level + "   HP " + hp+" of "+maxHp, player.getPlayerTextpos().x, player.getPlayerTextpos().y);
+        font.draw(batch, player.getName()+" score " + score + " multiplier " + multiplier+"X" + "    Shiplevel= " + level + "   HP " + hp+" of "+maxHp, player.getPlayerTextpos().x, player.getPlayerTextpos().y);
         //System.out.println(player.getPlayerTextpos());
     }
 

@@ -2,7 +2,10 @@ package com.group17.geowars.managers;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.group17.geowars.gameobjects.Bullet;
 import javafx.util.Pair;
 
@@ -16,16 +19,33 @@ public class AssetManager {
 
     private Map<String, Texture> textures;
     private Map<String, Sound> sounds;
+    private Map<String,Color> colors;
+    private Map<String,BitmapFont> fonts;
 
     public AssetManager() {
 
         textures = new HashMap<String, Texture>();
         sounds= new HashMap<String, Sound> ();
+        colors =new HashMap<String, Color>();
+        fonts = new HashMap<String, BitmapFont>();
     }
 
     public void init()
     {
+        colors.put("geom",new Color(1.0f, 1.0f, 0, 0.90f));
+        colors.put("shield",new Color(0.1f, 0.8f, 0, 0.5f));
 
+    }
+
+    public BitmapFont getGameFont(Color color,int size){
+
+        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/Guardians.ttf"));
+        FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
+        parameter.size = size;
+        parameter.color = color;
+        BitmapFont font = generator.generateFont(parameter); // font size 12 pixels
+        generator.dispose();
+        return font;
     }
 
     public Texture getTexture(String name)
@@ -36,6 +56,8 @@ public class AssetManager {
     {
         return addSound(name);
     }
+
+    public Color getColor(String name){return colors.get(name);}
 
     private Texture addTexture(String name)
     {
@@ -57,6 +79,9 @@ public class AssetManager {
         }
     }
 
+
+
+
     private Sound addSound(String name)
     {
         Sound sound = sounds.get(name);
@@ -64,9 +89,9 @@ public class AssetManager {
         if(sound != null)
             return sound;
 
-        File f = new File(name+".wav");
+        File f = new File(name);
         if(f.exists()) {
-            sound =   Gdx.audio.newSound(Gdx.files.internal(name + ".wav"));
+            sound =   Gdx.audio.newSound(Gdx.files.internal(name));
             sounds.put(name, sound);
             return sound;
         }else
