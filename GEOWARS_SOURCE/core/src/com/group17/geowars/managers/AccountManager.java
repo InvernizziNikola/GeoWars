@@ -68,7 +68,7 @@ public class AccountManager {
 
     public Account createDummyAccount()
     {
-        dummyAccount = new Account("Guest");
+        dummyAccount = new Account("Player 1");
         if(Managers.getControllerManager().getUnusedControllers().size() > 0)
             dummyAccount.setController(Managers.getControllerManager().getUnusedControllers().get(0));
 
