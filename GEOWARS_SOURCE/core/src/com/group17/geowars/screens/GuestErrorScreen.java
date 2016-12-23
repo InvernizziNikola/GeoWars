@@ -78,8 +78,9 @@ public class GuestErrorScreen extends MenuScreen implements iHasStage, iSetActiv
 
         super.render(delta);
         batch.begin();
+        //// TODO: Add pic?
         text.draw(batch, "You are a GUEST! This function is disabled for you" +
-                ".... Please login and come back later!", width/2-70, height-height/6);
+                ".... Please login and come back later!", width/2-300, height-height/4);
         batch.end();
     }
 }
