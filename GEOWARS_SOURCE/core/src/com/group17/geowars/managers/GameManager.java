@@ -103,6 +103,7 @@ public class GameManager {
         if((isLoading && loadTimer < 0) && (difficultyModifier == -1 || Managers.getEnemyManager().getProfiles() == null))
         {
             System.out.println("GET HARDCODED PROFILES OF DIFFICULTY");
+            // guess this isnt implemented :/
         }
 
     }

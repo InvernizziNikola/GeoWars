@@ -48,7 +48,7 @@ public class LevelManager {
         font = Managers.getScreenManager().getGameFont();
 
         //backgound stuff
-        textureBG = Managers.getAssetManager().getTexture("test_background_geoWars");
+        textureBG = Managers.getAssetManager().getTexture("test_background_geoWars_blur");
         spriteBG = new Sprite(textureBG, GeoWars.WIDTH, GeoWars.HEIGHT);
     }
 
@@ -62,28 +62,31 @@ public class LevelManager {
 
         isSpawning = true;
 
-        float points = (float)currentLevel * 25.0f + (float)currentwave * 2.5f;
-        float warpGateCount = (points * Managers.getGameManager().getDifficultyModifier())/50.0f ;
+        float enemies = (float)currentLevel * 25.0f + MathUtils.ceil((float)currentwave * 2.5f);
+        float warpGateCount = MathUtils.ceil((enemies * Managers.getGameManager().getDifficultyModifier())/30.0f) ;
 
         Random rand = new Random();
-        List<EnemyProfile> enemyProfiles = Managers.getEnemyManager().getProfiles();
-        for(float i = 0; i < warpGateCount; i++)
-        {
-            float pointsPerWarp =  points / MathUtils.ceil(warpGateCount);
 
+        List<EnemyProfile> enemyProfiles = Managers.getEnemyManager().getProfiles();
+
+        for(int i = 0; i < warpGateCount; i++)
+        {
+            float enemiesPerWarp =  enemies / warpGateCount;
+
+            System.out.println(enemies);
             System.out.println(warpGateCount);
-            System.out.println(pointsPerWarp);
-            System.out.println(points);
+            System.out .println(enemiesPerWarp);
 
             List<EnemyProfile> enemiesToWarp = new ArrayList<EnemyProfile>();
 
-            while (pointsPerWarp > 0) {
+            for(int j = 0; j < enemiesPerWarp;) {
                 EnemyProfile ep = enemyProfiles.get(rand.nextInt(enemyProfiles.size()));
                 if (ep.type != ENEMYTYPE.BOSS) {
-                    pointsPerWarp -= ep.difficultyGrade;
                     enemiesToWarp.add(ep);
+                    j += ep.difficultyGrade;
                 }
             }
+
             Vector2 warpPos;
             boolean okSpawnPoint = true;
             do
