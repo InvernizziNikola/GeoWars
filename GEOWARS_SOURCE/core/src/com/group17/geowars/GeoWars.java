@@ -66,7 +66,6 @@ public class GeoWars extends ApplicationAdapter{
 			music.play();
 			music.setVolume(1.0f);
 			music.setLooping(true);
-			System.out.println("msic laoded");
 		}
 	}
 

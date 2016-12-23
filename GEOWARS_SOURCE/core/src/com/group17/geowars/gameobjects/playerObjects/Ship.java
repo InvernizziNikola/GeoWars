@@ -28,6 +28,7 @@ import com.group17.geowars.playerobjects.Player;
 import com.group17.geowars.screens.MenuScreen;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 
@@ -58,8 +59,10 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
     protected int speed;
     protected Player player;
     protected ArrayList<PowerUp> powerups;
+
+    protected List<FloatingText> textList;
     protected String popuptext = ""; //text om af te beelden na en pickup enz
-    protected int popuptextTime;
+    protected float popuptextTime;
     protected Vector2 popUpTextPos;
 
 
@@ -93,12 +96,13 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
         font = Managers.getAssetManager().getGameFont(shipColor, 15); // font size 15 pixels
 
         score = 0;
-        scorehealer=0;
+        scorehealer = 0;
         multiplier = 0;
         level = 1;
         exp = 101;
         dead = false;
         this.type = type;
+        textList = new ArrayList<FloatingText>();
 
 
         texture = Managers.getAssetManager().getTexture(type);
@@ -135,7 +139,7 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
     public void handleHit(int damage) {
         hp -= damage;
         multiplier = 0;
-        hitTime = 0.2f;
+        hitTime = 0.5f;
         if (hp < 1) {
 
             setDead();
@@ -149,22 +153,24 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
 
     public void handlePickedUp(Geom geom) {
         exp += geom.getLoot().getExperience();
-        if(exp>100*level){
+        if (exp > 100 * level) {
+
+            textList.add(new FloatingText(font, popuptext, popuptextTime, popUpTextPos));
             popuptext = "Level up";
-            popuptextTime = 50;
+            popuptextTime = 5.0f;
             popUpTextPos = geom.getPosition();
             maxHp += 5;
             hp += 5;
-            level ++;
-            exp=0;
+            level++;
+            exp = 0;
         }
         multiplier += geom.getLoot().getMultiplier();
 
-        scorehealer+= (geom.getLoot().getScorePoints()) * multiplier;
+        scorehealer += (geom.getLoot().getScorePoints()) * multiplier;
         score += (geom.getLoot().getScorePoints()) * multiplier;
-        if (scorehealer>50000){
+        if (scorehealer > 50000) {
             hp++;
-            scorehealer%=50000;
+            scorehealer %= 50000;
         }
 
     }
@@ -182,8 +188,9 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
             case POWERDOWN:
                 handleBadPow(pow);
         }
+        textList.add(new FloatingText(font, popuptext, popuptextTime, popUpTextPos));
         popuptext = pow.getText();
-        popuptextTime = 50;
+        popuptextTime = 5.0f;
         popUpTextPos = pow.getPosition();
 
     }
@@ -261,13 +268,20 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
         shield.setOrigin(40, 40);
         shield.setPosition(position.x - 40, position.y - 40);
         shield.draw(batch);
-        if (!popuptext.equals("")) {
-            font.draw(batch, popuptext, popUpTextPos.x, popUpTextPos.y + popuptextTime * 2);
+        if (textList.size() > 0) {
+            for (FloatingText f : textList) {
 
-            if (popuptextTime <= 0) {
-                popuptext = "";
             }
-            popuptextTime--;
+        }
+
+        if (!popuptext.equals("")) {
+            font.draw(batch, popuptext, popUpTextPos.x, popUpTextPos.y + popuptextTime);
+
+            if (popuptextTime <= 0.01f) {
+                popuptext = "";
+                popuptextTime = 0.0f;
+            }
+            popuptextTime -= Gdx.graphics.getDeltaTime();
         }
         font.draw(batch, player.getName() + " score " + score + "  " + multiplier + "X" + "    LVL= " + level + "   HP " + hp + " I " + maxHp, player.getPlayerTextpos().x, player.getPlayerTextpos().y);
         //System.out.println(player.getPlayerTextpos());
