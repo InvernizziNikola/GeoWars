@@ -56,11 +56,10 @@ public class CoopMenuScreen extends MenuScreen implements iHasStage, iSetActive 
             public void changed(ChangeEvent event, Actor actor) {
                 startGameButton.setChecked(false);
 
-                if(Managers.getGameManager().game != null)
+                if(Managers.getGameManager().getGame() != null)
                     return;
 
-                ArcadeCoopGame game = new ArcadeCoopGame();
-                Managers.getGameManager().newGame(game);
+                Managers.getGameManager().newArcadeCoopGame();
 
                 MenuScreen nextMenu = Managers.getScreenManager().getScreen("game");
                 Managers.getScreenManager().setScreen(nextMenu);

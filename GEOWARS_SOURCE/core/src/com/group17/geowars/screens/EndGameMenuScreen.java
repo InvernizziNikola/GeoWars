@@ -40,7 +40,7 @@ public class EndGameMenuScreen extends MenuScreen implements iHasStage, iSetActi
                 replayButton.setChecked(false);
 
                 Managers.getGameManager().resetGame();
-                Managers.getGameManager().newGame();
+                Managers.getGameManager().newArcadeSoloGame();
             }
         });
 

@@ -3,7 +3,6 @@ package com.group17.geowars.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.group17.geowars.GeoWars;
 import com.group17.geowars.managers.Managers;
@@ -29,11 +28,14 @@ public class DifficultyScreen extends MenuScreen implements iHasStage, iSetActiv
             public void changed(ChangeEvent event, Actor actor) {
                 easyButton.setChecked(false);
                 //set here
-                Managers.getGameManager().setDifficulty("Easy");
-                if(Managers.getGameManager().game != null)
+                Managers.getGameManager().startThreads("Easy");
+                if(Managers.getGameManager().getGame() != null)
                     return;
 
                 Managers.getGameManager().newArcadeSoloGame();
+
+                MenuScreen nextMenu = Managers.getScreenManager().getScreen("game");
+                Managers.getScreenManager().setScreen(nextMenu);
             }
         });
 
@@ -43,12 +45,14 @@ public class DifficultyScreen extends MenuScreen implements iHasStage, iSetActiv
             public void changed(ChangeEvent event, Actor actor) {
                 mediumButton.setChecked(false);
                 //sethere
-                Managers.getGameManager().setDifficulty("Normal");
-                if(Managers.getGameManager().game != null)
+                Managers.getGameManager().startThreads("Normal");
+                if(Managers.getGameManager().getGame() != null)
                     return;
 
                 Managers.getGameManager().newArcadeSoloGame();
 
+                MenuScreen nextMenu = Managers.getScreenManager().getScreen("game");
+                Managers.getScreenManager().setScreen(nextMenu);
             }
         });
 
@@ -59,11 +63,14 @@ public class DifficultyScreen extends MenuScreen implements iHasStage, iSetActiv
             public void changed(ChangeEvent event, Actor actor) {
                 hardButton.setChecked(false);
                 //sethere
-                Managers.getGameManager().setDifficulty("Hard");
-                if(Managers.getGameManager().game != null)
+                Managers.getGameManager().startThreads("Hard");
+                if(Managers.getGameManager().getGame() != null)
                     return;
 
                 Managers.getGameManager().newArcadeSoloGame();
+
+                MenuScreen nextMenu = Managers.getScreenManager().getScreen("game");
+                Managers.getScreenManager().setScreen(nextMenu);
 
             }
         });
@@ -74,7 +81,7 @@ public class DifficultyScreen extends MenuScreen implements iHasStage, iSetActiv
             public void changed(ChangeEvent event, Actor actor) {
                 backButton.setChecked(false);
 
-                if(Managers.getGameManager().game != null)
+                if(Managers.getGameManager().getGame() != null)
                     return;
 
                 MenuScreen nextMenu = Managers.getScreenManager().getScreen("mainmenu");
