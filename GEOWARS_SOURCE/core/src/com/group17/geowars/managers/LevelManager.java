@@ -35,6 +35,21 @@ public class LevelManager {
     private Sprite spriteBG;
     public boolean isSpawning;
 
+    public int getCurrentLevel() {
+        return currentLevel;
+    }
+    public int getWaveLevel() {
+        return currentwave;
+    }
+
+    public void addWave()
+    {
+        currentwave++;
+    }
+    public void addLevel()
+    {
+        currentLevel++;
+    }
 
     public LevelManager () {
 
@@ -54,11 +69,7 @@ public class LevelManager {
 
     public void newWave()
     {
-        currentwave++;
-        if(currentwave > 10) {
-            currentwave = 1;
-            currentLevel++;
-        }
+        addWave();
 
         isSpawning = true;
 

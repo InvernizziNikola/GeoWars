@@ -150,8 +150,19 @@ public class GameManager {
             case GAMEPLAYING:{
                 if(Managers.getEnemyManager().getEnemies().size() == 0)
                 {
-                    game.setGameState(GAMESTATE.GAMESPAWNINGWAVE);
+                    if(Managers.getLevelManager().getCurrentwave() == 10)
+                    {
+                        game.setGameState(GAMESTATE.GAMEMENU);
+                        MenuScreen upgradeMenu = Managers.getScreenManager().getScreen("upgrademenuingame");
+                        Managers.getScreenManager().setScreen(upgradeMenu);
+                    }else {
+                        game.setGameState(GAMESTATE.GAMESPAWNINGWAVE);
+                    }
                 }
+                break;
+            }
+            case GAMEMENU:{
+                break;
             }
         }
     }
