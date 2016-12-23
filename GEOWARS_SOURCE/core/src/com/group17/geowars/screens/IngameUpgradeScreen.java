@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
@@ -31,11 +32,11 @@ public class IngameUpgradeScreen extends MenuScreen implements iHasStage, iSetAc
     public void create() {
         Gdx.input.setInputProcessor(stage);
 
-        final ImageButton speedButton = newImageButton("Menu_speedicon", (width/2)-(width/2)/2,height/2+0,150,50, new MenuGrid(0,4));
+        final ImageButton speedButton = newImageButton("Menu_speedicon", (width/2)-(width/2)/2,height/2+200,150,50, new MenuGrid(0,1));
         speedButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-            if(isButtonDown) {
+            if(!isButtonDown) {
                 isButtonDown = true;
                 speedButton.setChecked(false);
                 //set speed here
@@ -47,11 +48,11 @@ public class IngameUpgradeScreen extends MenuScreen implements iHasStage, iSetAc
             }
         });
 
-        final ImageButton firePowerButton = newImageButton("Menu_damageicon_", (width/2)-(width/2)/2,height/2+50,150,50, new MenuGrid(0,3));
+        final ImageButton firePowerButton = newImageButton("Menu_damageicon", (width/2)-(width/2)/2,height/2+100,150,50, new MenuGrid(0,2));
         firePowerButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-            if(isButtonDown) {
+            if(!isButtonDown) {
                 isButtonDown = true;
                 firePowerButton.setChecked(false);
                 //set firepower here
@@ -62,11 +63,11 @@ public class IngameUpgradeScreen extends MenuScreen implements iHasStage, iSetAc
             }
         });
 
-        final ImageButton healButton = newImageButton("Menu_healthicon", (width/2)-(width/2)/2,height/2+100,150,50, new MenuGrid(0,2));
+        final ImageButton healButton = newImageButton("Menu_healthicon", (width/2)-(width/2)/2,height/2,150,50, new MenuGrid(0,3));
         healButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-            if(isButtonDown) {
+            if(!isButtonDown) {
                 isButtonDown = true;
                 healButton.setChecked(false);
                 //set heal here
@@ -77,11 +78,11 @@ public class IngameUpgradeScreen extends MenuScreen implements iHasStage, iSetAc
             }
         });
 
-        final ImageButton nextLvlButton = newImageButton("Menu_nextlevelicon", (width/2)-(width/2)/2,height/2+200,150,50, new MenuGrid(0,1));
+        final ImageButton nextLvlButton = newImageButton("Menu_nextlevelicon", (width/2)-(width/2)/2,height/2+400,150,50, new MenuGrid(0,0));
         nextLvlButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-            if(isButtonDown) {
+            if(!isButtonDown) {
                 isButtonDown = true;
                 nextLvlButton.setChecked(false);
                 //set next level here
@@ -94,11 +95,11 @@ public class IngameUpgradeScreen extends MenuScreen implements iHasStage, iSetAc
             }
             }
         });
-        final ImageButton QuitButton = newImageButton("Menu_quittomainicon", (width/2)-(width/2)/2,height/2+250,150,50, new MenuGrid(0,0));
+        final ImageButton QuitButton = newImageButton("Menu_quittomainicon", (width/2)-(width/2)/2,height/2-200,150,50, new MenuGrid(0,4));
         QuitButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-            if(isButtonDown) {
+            if(!isButtonDown) {
                 isButtonDown = true;
                 QuitButton.setChecked(false);
 
@@ -110,7 +111,13 @@ public class IngameUpgradeScreen extends MenuScreen implements iHasStage, iSetAc
     }
     
     public void render (float deltaTime) {
+        isButtonDown = true;
         super.render(deltaTime);
+
+        batch.begin();
+        BitmapFont newFont = Managers.getAssetManager().getGameFont(Color.WHITE, 30);
+        newFont.draw(batch, "Upgrades:", (width/2)-(width/2)/2, GeoWars.HEIGHT / 2 + 240);
+        batch.end();
     }
 
     @Override
