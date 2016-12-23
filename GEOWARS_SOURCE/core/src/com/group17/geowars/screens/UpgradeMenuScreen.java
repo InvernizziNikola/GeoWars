@@ -456,8 +456,6 @@ public class UpgradeMenuScreen extends MenuScreen implements iHasStage, iSetActi
 
             loading = false;
 
-
-            System.out.println(shipData);
         }
         if (ShopThread != null && !ShopThread.finished()) {
             showLoading();

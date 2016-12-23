@@ -21,6 +21,8 @@ import com.group17.geowars.utils.MenuGrid;
  */
 public class CoopMenuScreen extends MenuScreen implements iHasStage, iSetActive {
 
+    protected float timer = 0;
+    protected boolean t=false;
     public CoopMenuScreen()
     {
         super();
@@ -44,8 +46,13 @@ public class CoopMenuScreen extends MenuScreen implements iHasStage, iSetActive 
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 addNewButton.setChecked(false);
-                
-                Managers.getAccountManager().createAccount("Guest");
+
+                if (t!=true){
+                    System.out.println("pressed----------------------------------------------");
+                    Managers.getAccountManager().createAccount("Guest");
+                    t=true;
+                }
+
             }
         });
 
@@ -81,7 +88,7 @@ public class CoopMenuScreen extends MenuScreen implements iHasStage, iSetActive 
 
     public void render (float deltaTime) {
         super.render(deltaTime);
-
+        t=false;
         batch.begin();
         int count = 0;
         int offset = 20;
