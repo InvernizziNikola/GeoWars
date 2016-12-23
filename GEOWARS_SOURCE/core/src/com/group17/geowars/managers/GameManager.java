@@ -11,8 +11,6 @@ import com.group17.geowars.playerobjects.Account;
 import com.group17.geowars.screens.MenuScreen;
 import com.group17.geowars.utils.GAMESTATE;
 
-import java.math.BigInteger;
-
 /**
  * Created by nikola on 10/11/2016.
  */
@@ -66,7 +64,7 @@ public class GameManager {
 
         for(Account a : Managers.getAccountManager().getAccounts())
         {
-            setHighScore(a.name, BigInteger.valueOf(a.getPlayer().getShip().getScore()),game.getMode());
+            setHighScore(a.name, a.getPlayer().getShip().getScore(),game.getMode());
         }
 
         resetGame = true;
@@ -75,12 +73,12 @@ public class GameManager {
         Managers.getScreenManager().setScreen(mainmenu);
     }
 
-    public void setHighScore(String Playername, BigInteger Score, String Gamemode)
+    public void setHighScore(String Playername,Integer Score,String Gamemode)
     {
         System.out.println("this is our score"+Score);
-
         SaveScoreThread = new SaveScoreToDBThread(Playername,Score,Gamemode);
         SaveScoreThread.start();
+
 
     }
     public void update()
