@@ -20,7 +20,7 @@ public class Geom extends GameObject implements GOInterface
     private float rotateSpeed = 100;
     private float angle = 0;
     private float rotateDirection = 1;
-
+    private Color geomColor;
     private float speed = 0;
     private float maxScale = 1.2f;
     private float minScale = 0.8f;
@@ -34,7 +34,7 @@ public class Geom extends GameObject implements GOInterface
     public Geom(int enemyID, Vector2 pos)
     {
         super(pos);
-        
+        geomColor= Managers.getAssetManager().getColor("geom");
         Random rand = new Random();
         angle = rand.nextInt();
         rotateSpeed *= rand.nextFloat() + 0.5f;
@@ -62,7 +62,7 @@ public class Geom extends GameObject implements GOInterface
     {
         // TODO DRAW IMAGE CORRRECTLY
         // TODO COLOR IN CONSTRUCTOR WITH VARIABLE NT NEW COLOR EVERY FRAME
-        sprite.setColor(new Color(1.0f, 1.0f, 0, 0.90f));
+        sprite.setColor(geomColor);
 
         sprite.setSize(50 * scale, 50 * scale);
         sprite.setOrigin(25 * scale,25 * scale);
