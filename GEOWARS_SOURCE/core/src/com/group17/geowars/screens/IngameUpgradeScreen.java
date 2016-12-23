@@ -31,7 +31,7 @@ public class IngameUpgradeScreen extends MenuScreen implements iHasStage, iSetAc
     public void create() {
         Gdx.input.setInputProcessor(stage);
 
-        final ImageButton speedButton = newImageButton("Menu_speedicon", (width/2)-(width/2)/2,height/2+50,150,50, new MenuGrid(0,0));
+        final ImageButton speedButton = newImageButton("Menu_speedicon", (width/2)-(width/2)/2,height/2+0,150,50, new MenuGrid(0,0));
         speedButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
