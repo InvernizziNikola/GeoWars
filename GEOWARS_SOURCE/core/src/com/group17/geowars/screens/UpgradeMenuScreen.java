@@ -6,25 +6,16 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g3d.utils.MeshBuilder;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.group17.geowars.GeoWars;
 import com.group17.geowars.database.Threads.ShopThread;
-import com.group17.geowars.gameobjects.playerObjects.DefenceDrone;
-import com.group17.geowars.gameobjects.playerObjects.DestroyerShip;
-import com.group17.geowars.gameobjects.playerObjects.Ship;
 import com.group17.geowars.managers.Managers;
 import com.group17.geowars.playerobjects.Profile;
 import com.group17.geowars.utils.DRONETYPES;
+import com.group17.geowars.utils.ExtendeImageButton;
 import com.group17.geowars.utils.MenuGrid;
 import com.group17.geowars.utils.SHIPTYPES;
-
-import java.util.ArrayList;
 
 /**
  * Created by michiel on 4/12/2016.
@@ -38,9 +29,9 @@ public class UpgradeMenuScreen extends MenuScreen implements iHasStage, iSetActi
     private int showShipStats = 0;
     private int showDroneStats = 0;
     private ShopThread ShopThread;
-    private SHIPTYPES ShipData;
+    private SHIPTYPES shipData;
     private Profile profile;
-    private DRONETYPES DroneData;
+    private DRONETYPES droneData;
     private boolean loading = false;
 
     public UpgradeMenuScreen() {
@@ -54,71 +45,73 @@ public class UpgradeMenuScreen extends MenuScreen implements iHasStage, iSetActi
         batch = new SpriteBatch();
         text = new BitmapFont();
         text.setColor(Color.WHITE);
+        shipData=SHIPTYPES.ASSAULT;
+        droneData=DRONETYPES.SUPPORT;
     }
 
     public void createButtons() {
-        final ImageButton assaultButton = newImageButton("ASSAULT", 0, GeoWars.HEIGHT - 75, (GeoWars.WIDTH / 2) / 3, 75, new MenuGrid(0, 0));
+        final ExtendeImageButton assaultButton = newImageButton("ASSAULT", 0, GeoWars.HEIGHT - 75, (GeoWars.WIDTH / 2) / 3, 75, new MenuGrid(0, 0));
         assaultButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 selectButton(assaultButton);
 
-                ShipData=SHIPTYPES.ASSAULT;
+                shipData =SHIPTYPES.ASSAULT;
                 showShip = 0;
             }
         });
 
-        final ImageButton destroyerButton = newImageButton("DESTROYER", (GeoWars.WIDTH / 2) / 3, GeoWars.HEIGHT - 75, (GeoWars.WIDTH / 2) / 3, 75, new MenuGrid(1, 0));
+        final ExtendeImageButton destroyerButton = newImageButton("DESTROYER", (GeoWars.WIDTH / 2) / 3, GeoWars.HEIGHT - 75, (GeoWars.WIDTH / 2) / 3, 75, new MenuGrid(1, 0));
         destroyerButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 selectButton(destroyerButton);
-                ShipData=SHIPTYPES.DESTROYER;
+                shipData =SHIPTYPES.DESTROYER;
                 showShip = 1;
             }
         });
 
-        final ImageButton tankButton = newImageButton("TANK", (GeoWars.WIDTH / 2) / 3 + (GeoWars.WIDTH / 2) / 3, GeoWars.HEIGHT - 75, (GeoWars.WIDTH / 2) / 3, 75, new MenuGrid(2, 0));
+        final ExtendeImageButton tankButton = newImageButton("TANK", (GeoWars.WIDTH / 2) / 3 + (GeoWars.WIDTH / 2) / 3, GeoWars.HEIGHT - 75, (GeoWars.WIDTH / 2) / 3, 75, new MenuGrid(2, 0));
         tankButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 selectButton(tankButton);
-                ShipData=SHIPTYPES.TANK;
+                shipData =SHIPTYPES.TANK;
                 showShip = 2;
             }
         });
 
-        final ImageButton supportButton = newImageButton("SUPPORT", (GeoWars.WIDTH - (GeoWars.WIDTH / 2) / 3) - ((GeoWars.WIDTH / 2) / 3) - (GeoWars.WIDTH / 2) / 3, GeoWars.HEIGHT - 75, (GeoWars.WIDTH / 2) / 3, 75, new MenuGrid(3, 0));
+        final ExtendeImageButton supportButton = newImageButton("SUPPORT", (GeoWars.WIDTH - (GeoWars.WIDTH / 2) / 3) - ((GeoWars.WIDTH / 2) / 3) - (GeoWars.WIDTH / 2) / 3, GeoWars.HEIGHT - 75, (GeoWars.WIDTH / 2) / 3, 75, new MenuGrid(3, 0));
         supportButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 selectButton(supportButton);
-                DroneData=DRONETYPES.SUPPORT;
+                droneData =DRONETYPES.SUPPORT;
                 showDrone = 0;
             }
         });
 
-        final ImageButton attackButton = newImageButton("ATTACK", (GeoWars.WIDTH - (GeoWars.WIDTH / 2) / 3 - 5) - (GeoWars.WIDTH / 2) / 3, GeoWars.HEIGHT - 75, (GeoWars.WIDTH / 2) / 3, 75, new MenuGrid(4, 0));
+        final ExtendeImageButton attackButton = newImageButton("ATTACK", (GeoWars.WIDTH - (GeoWars.WIDTH / 2) / 3 - 5) - (GeoWars.WIDTH / 2) / 3, GeoWars.HEIGHT - 75, (GeoWars.WIDTH / 2) / 3, 75, new MenuGrid(4, 0));
         attackButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 selectButton(attackButton);
-                DroneData=DRONETYPES.ATTACK;
+                droneData =DRONETYPES.ATTACK;
                 showDrone = 1;
             }
         });
 
-        final ImageButton defendButton = newImageButton("DEFEND", GeoWars.WIDTH - (GeoWars.WIDTH / 2) / 3 - 5, GeoWars.HEIGHT - 75, (GeoWars.WIDTH / 2) / 3 + 5, 75, new MenuGrid(5, 0));
+        final ExtendeImageButton defendButton = newImageButton("DEFEND", GeoWars.WIDTH - (GeoWars.WIDTH / 2) / 3 - 5, GeoWars.HEIGHT - 75, (GeoWars.WIDTH / 2) / 3 + 5, 75, new MenuGrid(5, 0));
         defendButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 selectButton(defendButton);
-                DroneData=DRONETYPES.DEFEND;
+                droneData =DRONETYPES.DEFEND;
                 showDrone = 2;
             }
         });
 
-        final ImageButton shipSkillTreeButton = newImageButton("SKILL TREE", 0, GeoWars.HEIGHT / 2, GeoWars.WIDTH / 2, 75, new MenuGrid(0, 1));
+        final ExtendeImageButton shipSkillTreeButton = newImageButton("SKILL TREE", 0, GeoWars.HEIGHT / 2, GeoWars.WIDTH / 2, 75, new MenuGrid(0, 1));
         shipSkillTreeButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -127,7 +120,7 @@ public class UpgradeMenuScreen extends MenuScreen implements iHasStage, iSetActi
             }
         });
 
-        final ImageButton droneSkillTreeButton = newImageButton("SKILL TREE", GeoWars.WIDTH / 2, GeoWars.HEIGHT / 2, GeoWars.WIDTH / 2, 75, new MenuGrid(1, 1));
+        final ExtendeImageButton droneSkillTreeButton = newImageButton("SKILL TREE", GeoWars.WIDTH / 2, GeoWars.HEIGHT / 2, GeoWars.WIDTH / 2, 75, new MenuGrid(1, 1));
         droneSkillTreeButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -136,20 +129,20 @@ public class UpgradeMenuScreen extends MenuScreen implements iHasStage, iSetActi
             }
         });
 
-        final ImageButton confirmButton = newImageButton("CONFIRM", 5, 20, Gdx.graphics.getWidth() - 10, 75, new MenuGrid(0, 2));
+        final ExtendeImageButton confirmButton = newImageButton("CONFIRM", 5, 20, Gdx.graphics.getWidth() - 10, 75, new MenuGrid(0, 2));
         confirmButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 confirmButton.setChecked(false);
                 MenuScreen nextMenu = Managers.getScreenManager().getScreen("mainmenu");
                 Managers.getScreenManager().setScreen(nextMenu);
-                Managers.getAccountManager().getAccounts().get(0).profile=profile;
+                Managers.getAccountManager().getAccounts().get(0).profile=new Profile(shipData,droneData);
             }
         });
     }
 
     public void createShipSkillTreeButtons() {
-        final ImageButton extraSpread = newImageButton("skillButton", GeoWars.WIDTH / 4 - 18, GeoWars.HEIGHT / 10, 35, 35, new MenuGrid(0,3));
+        final ExtendeImageButton extraSpread = newImageButton("skillButton", GeoWars.WIDTH / 4 - 18, GeoWars.HEIGHT / 10, 35, 35, new MenuGrid(0,3));
         extraSpread.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -157,7 +150,7 @@ public class UpgradeMenuScreen extends MenuScreen implements iHasStage, iSetActi
             }
         });
 
-        final ImageButton bigBullet = newImageButton("skillButton", GeoWars.WIDTH / 4 - 18, GeoWars.HEIGHT / 5 - 18, 35, 35, new MenuGrid(0,3));
+        final ExtendeImageButton bigBullet = newImageButton("skillButton", GeoWars.WIDTH / 4 - 18, GeoWars.HEIGHT / 5 - 18, 35, 35, new MenuGrid(0,3));
         bigBullet.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -165,7 +158,7 @@ public class UpgradeMenuScreen extends MenuScreen implements iHasStage, iSetActi
             }
         });
 
-        final ImageButton mirrorShot = newImageButton("skillButton", GeoWars.WIDTH / 5 - 18, GeoWars.HEIGHT / 4 - 18, 35, 35, new MenuGrid(0,3));
+        final ExtendeImageButton mirrorShot = newImageButton("skillButton", GeoWars.WIDTH / 5 - 18, GeoWars.HEIGHT / 4 - 18, 35, 35, new MenuGrid(0,3));
         mirrorShot.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -173,7 +166,7 @@ public class UpgradeMenuScreen extends MenuScreen implements iHasStage, iSetActi
             }
         });
 
-        final ImageButton glassCannon = newImageButton("skillButton", GeoWars.WIDTH / 5 - 18, GeoWars.HEIGHT / 3 - 18, 35, 35, new MenuGrid(0,3));
+        final ExtendeImageButton glassCannon = newImageButton("skillButton", GeoWars.WIDTH / 5 - 18, GeoWars.HEIGHT / 3 - 18, 35, 35, new MenuGrid(0,3));
         glassCannon.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -181,7 +174,7 @@ public class UpgradeMenuScreen extends MenuScreen implements iHasStage, iSetActi
             }
         });
 
-        final ImageButton smallUnit = newImageButton("skillButton", GeoWars.WIDTH / 4 - 18, GeoWars.HEIGHT / 3 + GeoWars.HEIGHT / 20 - 18, 35, 35, new MenuGrid(0,3));
+        final ExtendeImageButton smallUnit = newImageButton("skillButton", GeoWars.WIDTH / 4 - 18, GeoWars.HEIGHT / 3 + GeoWars.HEIGHT / 20 - 18, 35, 35, new MenuGrid(0,3));
         smallUnit.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -192,7 +185,7 @@ public class UpgradeMenuScreen extends MenuScreen implements iHasStage, iSetActi
     }
 
     public void createDroneSkillTreeButtons() {
-        final ImageButton extraSpread = newImageButton("skillButton", GeoWars.WIDTH / 2 + GeoWars.WIDTH / 4 - 18, GeoWars.HEIGHT / 10, 35, 35, new MenuGrid(0,3));
+        final ExtendeImageButton extraSpread = newImageButton("skillButton", GeoWars.WIDTH / 2 + GeoWars.WIDTH / 4 - 18, GeoWars.HEIGHT / 10, 35, 35, new MenuGrid(0,3));
         extraSpread.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -200,7 +193,7 @@ public class UpgradeMenuScreen extends MenuScreen implements iHasStage, iSetActi
             }
         });
 
-        final ImageButton bigBullet = newImageButton("skillButton", GeoWars.WIDTH / 2 + GeoWars.WIDTH / 4 - 18, GeoWars.HEIGHT / 5 - 18, 35, 35, new MenuGrid(0,3));
+        final ExtendeImageButton bigBullet = newImageButton("skillButton", GeoWars.WIDTH / 2 + GeoWars.WIDTH / 4 - 18, GeoWars.HEIGHT / 5 - 18, 35, 35, new MenuGrid(0,3));
         bigBullet.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -208,7 +201,7 @@ public class UpgradeMenuScreen extends MenuScreen implements iHasStage, iSetActi
             }
         });
 
-        final ImageButton mirrorShot = newImageButton("skillButton", GeoWars.WIDTH / 2 + GeoWars.WIDTH / 5 - 18, GeoWars.HEIGHT / 4 - 18, 35, 35, new MenuGrid(0,3));
+        final ExtendeImageButton mirrorShot = newImageButton("skillButton", GeoWars.WIDTH / 2 + GeoWars.WIDTH / 5 - 18, GeoWars.HEIGHT / 4 - 18, 35, 35, new MenuGrid(0,3));
         mirrorShot.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -216,7 +209,7 @@ public class UpgradeMenuScreen extends MenuScreen implements iHasStage, iSetActi
             }
         });
 
-        final ImageButton glassCannon = newImageButton("skillButton", GeoWars.WIDTH / 2 + GeoWars.WIDTH / 5 - 18, GeoWars.HEIGHT / 3 - 18, 35, 35, new MenuGrid(0,3));
+        final ExtendeImageButton glassCannon = newImageButton("skillButton", GeoWars.WIDTH / 2 + GeoWars.WIDTH / 5 - 18, GeoWars.HEIGHT / 3 - 18, 35, 35, new MenuGrid(0,3));
         glassCannon.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -224,7 +217,7 @@ public class UpgradeMenuScreen extends MenuScreen implements iHasStage, iSetActi
             }
         });
 
-        final ImageButton bigUnit = newImageButton("skillButton", GeoWars.WIDTH / 2 + GeoWars.WIDTH / 4 - 18, GeoWars.HEIGHT / 3 + GeoWars.HEIGHT / 20 - 18, 35, 35, new MenuGrid(0,3));
+        final ExtendeImageButton bigUnit = newImageButton("skillButton", GeoWars.WIDTH / 2 + GeoWars.WIDTH / 4 - 18, GeoWars.HEIGHT / 3 + GeoWars.HEIGHT / 20 - 18, 35, 35, new MenuGrid(0,3));
         bigUnit.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -233,10 +226,10 @@ public class UpgradeMenuScreen extends MenuScreen implements iHasStage, iSetActi
         });
     }
 
-    public void selectButton(ImageButton txtB) {
+    public void selectButton(ExtendeImageButton txtB) {
         txtB.setChecked(false);
         deSelectButtons();
-        txtB.setStyle(Managers.getScreenManager().getSelectedStyle());
+        txtB.setHoverStyle();
     }
 
     public void tankText() {
@@ -457,14 +450,14 @@ public class UpgradeMenuScreen extends MenuScreen implements iHasStage, iSetActi
         super.render(delta);
         batch.begin();
         if (ShopThread != null && ShopThread.finished()) {
-          //  ShipData = ShopThread.getShipData();
-           // DroneData = ShopThread.getDronesData();
+          //  shipData = ShopThread.getShipData();
+           // droneData = ShopThread.getDronesData();
             ShopThread = null;
 
             loading = false;
 
 
-            System.out.println(ShipData);
+            System.out.println(shipData);
         }
         if (ShopThread != null && !ShopThread.finished()) {
             showLoading();

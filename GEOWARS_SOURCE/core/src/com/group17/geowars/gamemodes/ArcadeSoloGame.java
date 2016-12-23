@@ -29,6 +29,7 @@ public class ArcadeSoloGame extends SoloGame implements iGame {
         Vector2 spawnPoint = new Vector2(GeoWars.WIDTH / 3, GeoWars.HEIGHT / 3);
         Ship s = new DestroyerShip(spawnPoint);
         Drone d = new DefenceDrone(spawnPoint);
+        System.out.println(a.profile.getShipType() +"  +            "+a.profile.getDroneType());
 
         switch (a.profile.getShipType()){
             case ASSAULT:
