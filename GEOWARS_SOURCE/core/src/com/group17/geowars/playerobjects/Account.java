@@ -12,6 +12,8 @@ import com.group17.geowars.gameobjects.playerObjects.DefenceDrone;
 import com.group17.geowars.gameobjects.playerObjects.DestroyerShip;
 import com.group17.geowars.gameobjects.playerObjects.Drone;
 import com.group17.geowars.gameobjects.playerObjects.Ship;
+import com.group17.geowars.utils.DRONETYPES;
+import com.group17.geowars.utils.SHIPTYPES;
 
 import java.util.*;
 
@@ -46,9 +48,7 @@ public class Account {
     public Account(String username)
     {
         name = username;
-        profile =new Profile(new DestroyerShip(new Vector2(0,0)),new DefenceDrone(new Vector2(0,0)));
-
-
+        profile =new Profile(SHIPTYPES.ASSAULT, DRONETYPES.DEFEND);
         //getAccountThread = getAccountProfiles();
     }
 
