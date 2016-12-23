@@ -11,41 +11,39 @@ public class DifficultyThread implements Runnable {
     private Thread t;
     private Float difficultyModifier;
 
-    public DifficultyThread(String difficulty)
-    {
+    public DifficultyThread(String difficulty) {
         this.difficulty = difficulty;
     }
 
-    public void start()
-    {
+    public void start() {
         if (t == null) {
-            t = new Thread (this);
-            t.start ();
+            t = new Thread(this);
+            t.start();
         }
     }
 
     @Override
     public void run() {
-
         data = DBManager.getInstance().DBSelectDifficulty(difficulty);
-
     }
 
-    public Float getDifficultyModifier()
-    {
-        if (data!=null) {
+    public Float getDifficultyModifier() {
+        if (data != null) {
 
             difficultyModifier = Float.parseFloat(data.get(0).toString());
         }
         return difficultyModifier;
     }
-    Integer i =0;
-    public boolean finished()
-    {
-        if(data != null||i>300){
-            System.out.println("i");
-            return true;}else {
-        i++;
-        return false;}
+
+    Integer timer = 0;
+
+    public boolean finished() {
+        if (data != null || timer > 300) {
+            System.out.println("timer");
+            return true;
+        } else {
+            timer++;
+            return false;
+        }
     }
 }

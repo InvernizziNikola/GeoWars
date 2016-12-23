@@ -11,16 +11,14 @@ public class WaveThread implements Runnable {
     private Integer WaveNumber = 0;
     private Thread t;
 
-    public WaveThread(Integer WaveNumber)
-    {
+    public WaveThread(Integer WaveNumber) {
         this.WaveNumber = WaveNumber;
     }
 
-    public void start()
-    {
+    public void start() {
         if (t == null) {
-            t = new Thread (this);
-            t.start ();
+            t = new Thread(this);
+            t.start();
         }
     }
 
@@ -30,16 +28,16 @@ public class WaveThread implements Runnable {
         data = DBManager.getInstance().DBselectWaveData(WaveNumber);
     }
 
-    public ArrayList getData()
-    {
+    public ArrayList getData() {
         return data;
     }
-    Integer i = 0;
-    public boolean finished()
-    {
-        if(data != null||i>300)
+
+    Integer timer = 0;
+
+    public boolean finished() {
+        if (data != null || timer > 300)
             return true;
-        i++;
+        timer++;
         return false;
     }
 }

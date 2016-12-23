@@ -11,17 +11,16 @@ public class LoginThread implements Runnable {
     private String Name = "";
     private String Password = "";
     private Thread t;
-    public LoginThread(String Name,String Password)
-    {
+
+    public LoginThread(String Name, String Password) {
         this.Name = Name;
         this.Password = Password;
     }
 
-    public void start()
-    {
+    public void start() {
         if (t == null) {
-            t = new Thread (this);
-            t.start ();
+            t = new Thread(this);
+            t.start();
         }
     }
 
@@ -29,29 +28,29 @@ public class LoginThread implements Runnable {
     public void run() {
 
 
-        Player = DBManager.getInstance().DBselectLogin(Name,Password);
+        Player = DBManager.getInstance().DBselectLogin(Name, Password);
         System.out.println(Player);
     }
 
-    public Boolean getLoggedIn()
-    {
-        if(Player!=null){
-        if (Player.size()>0){
-            return true;
-        }else{
-            return false;
-        }
-        }else{
+    public Boolean getLoggedIn() {
+        if (Player != null) {
+            if (Player.size() > 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
             return false;
         }
     }
-    Integer i = 0;
-    public boolean finished()
-    {
-        if(Player != null||i>300)
+
+    Integer timer = 0;
+
+    public boolean finished() {
+        if (Player != null || timer > 300)
             return true;
-        i++;
-        System.out.println(i);
+        timer++;
+        System.out.println(timer);
         return false;
     }
 }

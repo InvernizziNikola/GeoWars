@@ -11,16 +11,14 @@ public class ShopThread implements Runnable {
     private ArrayList dataDrones = null;
     private Thread t;
 
-    public ShopThread()
-    {
+    public ShopThread() {
 
     }
 
-    public void start()
-    {
+    public void start() {
         if (t == null) {
-            t = new Thread (this);
-            t.start ();
+            t = new Thread(this);
+            t.start();
         }
     }
 
@@ -30,27 +28,26 @@ public class ShopThread implements Runnable {
         dataDrones = DBManager.getInstance().DBselectAllDrones();
 
 
-
     }
 
-    public ArrayList getShipData()
-    {
+    public ArrayList getShipData() {
 
 
         return dataShips;
     }
-    public ArrayList getDronesData()
-    {
+
+    public ArrayList getDronesData() {
 
 
         return dataDrones;
     }
-    Integer i = 0;
-    public boolean finished()
-    {
-        if(dataDrones != null && dataShips !=null||i>300)
+
+    Integer timer = 0;
+
+    public boolean finished() {
+        if (dataDrones != null && dataShips != null || timer > 300)
             return true;
-        i++;
+        timer++;
         return false;
     }
 }

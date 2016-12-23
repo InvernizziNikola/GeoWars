@@ -13,16 +13,14 @@ public class ProfileThread implements Runnable {
     private String Name = "";
     private Thread t;
 
-    public ProfileThread(String Name)
-    {
+    public ProfileThread(String Name) {
         this.Name = Name;
     }
 
-    public void start()
-    {
+    public void start() {
         if (t == null) {
-            t = new Thread (this);
-            t.start ();
+            t = new Thread(this);
+            t.start();
         }
     }
 
@@ -31,29 +29,29 @@ public class ProfileThread implements Runnable {
 
         PlayerProfile = DBManager.getInstance().DBselectProfile(Name);
         PlayerHighscoreTemp = DBManager.getInstance().DBselectPlayersHighscore(Name);
-        if (PlayerHighscoreTemp==null){
+        if (PlayerHighscoreTemp == null) {
             PlayerHighscore = 0;
 
-        }else {
+        } else {
             PlayerHighscore = Integer.parseInt(PlayerHighscoreTemp.get(0).toString());
         }
     }
 
-    public ArrayList getPlayerProfile()
-    {
+    public ArrayList getPlayerProfile() {
         return PlayerProfile;
     }
-    public Integer getPlayerHighscore()
-    {
-        System.out.println("highscore"+PlayerHighscore);
+
+    public Integer getPlayerHighscore() {
+        System.out.println("highscore" + PlayerHighscore);
         return PlayerHighscore;
     }
-    private Integer i=0;
-    public boolean finished()
-    {
-        if(PlayerProfile != null&&PlayerHighscore!=null||i>300)
+
+    private Integer timer = 0;
+
+    public boolean finished() {
+        if (PlayerProfile != null && PlayerHighscore != null || timer > 300)
             return true;
-        i++;
+        timer++;
         return false;
     }
 }
