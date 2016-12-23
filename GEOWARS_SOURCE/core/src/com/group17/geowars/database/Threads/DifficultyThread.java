@@ -9,7 +9,7 @@ public class DifficultyThread implements Runnable {
     private ArrayList data = null;
     private String difficulty = null;
     private Thread t;
-    private Float difficultyModifier;
+    private float difficultyModifier;
 
     public DifficultyThread(String difficulty) {
         this.difficulty = difficulty;

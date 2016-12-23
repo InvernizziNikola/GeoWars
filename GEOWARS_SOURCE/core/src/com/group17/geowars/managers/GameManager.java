@@ -122,13 +122,11 @@ public class GameManager {
             //TODO fallback when no internet
             // uess this isnt implemented :'( Srry Dirk :(
         }
-
     }
     public void update()
     {
         if(game instanceof iGame)
             ((iGame)game).update();
-
 
         updateManagers();
 
