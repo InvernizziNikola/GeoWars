@@ -149,15 +149,15 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
 
     public void handlePickedUp(Geom geom) {
         exp += geom.getLoot().getExperience();
-        int newlevel = (exp / (100));
-        if (newlevel > level) {
+        if(exp>100*level){
             popuptext = "Level up";
             popuptextTime = 50;
             popUpTextPos = geom.getPosition();
             maxHp += 5;
             hp += 5;
+            level ++;
+            exp=0;
         }
-        level = newlevel;
         multiplier += geom.getLoot().getMultiplier();
 
         scorehealer+= (geom.getLoot().getScorePoints()) * multiplier;
@@ -269,7 +269,7 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
             }
             popuptextTime--;
         }
-        font.draw(batch, player.getName() + " score " + score + " multiplier " + multiplier + "X" + "    Shiplevel= " + level + "   HP " + hp + " of " + maxHp, player.getPlayerTextpos().x, player.getPlayerTextpos().y);
+        font.draw(batch, player.getName() + " score " + score + "  " + multiplier + "X" + "    LVL= " + level + "   HP " + hp + " I " + maxHp, player.getPlayerTextpos().x, player.getPlayerTextpos().y);
         //System.out.println(player.getPlayerTextpos());
     }
 
