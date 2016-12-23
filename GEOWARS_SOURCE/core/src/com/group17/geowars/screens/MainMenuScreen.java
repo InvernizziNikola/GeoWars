@@ -25,7 +25,7 @@ public class MainMenuScreen extends MenuScreen implements iHasStage, iSetActive 
     public void create() {
         Gdx.input.setInputProcessor(stage);
 
-        final ImageButton playButton = newImageButton("Menu_playicon", GeoWars.WIDTH / 2 - 100, GeoWars.HEIGHT - GeoWars.HEIGHT / 4, 400, 200, new MenuGrid(0, 0));
+        final ImageButton playButton = newImageButton("Menu_playicon", GeoWars.WIDTH / 2 - 100, GeoWars.HEIGHT / 2 + 450, 200, 75, new MenuGrid(0, 0));
         playButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -36,7 +36,7 @@ public class MainMenuScreen extends MenuScreen implements iHasStage, iSetActive 
             }
         });
 
-        final ImageButton leaderboardButton = newImageButton("Menu_leaderboardicon", 0, GeoWars.HEIGHT - 200 , 200, 200, new MenuGrid(-1,0));
+        final ImageButton leaderboardButton = newImageButton("Menu_leaderboardicon", GeoWars.WIDTH / 2 - 100, GeoWars.HEIGHT / 2 + 300, 200, 75, new MenuGrid(0,3));
         leaderboardButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -47,7 +47,7 @@ public class MainMenuScreen extends MenuScreen implements iHasStage, iSetActive 
             }
         });
 
-        final ImageButton profileButton = newImageButton("Menu_profileicon", GeoWars.WIDTH - 200 , GeoWars.HEIGHT - 200, 200, 200, new MenuGrid(1, 0));
+        final ImageButton profileButton = newImageButton("Menu_profileicon", GeoWars.WIDTH/2 - 100 , GeoWars.HEIGHT / 2 + 150, 200, 75, new MenuGrid(0, 1));
         profileButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -62,7 +62,7 @@ public class MainMenuScreen extends MenuScreen implements iHasStage, iSetActive 
             }
         });
 
-        final ImageButton optionsButton = newImageButton("Menu_optionicon", GeoWars.WIDTH / 2 - 100, GeoWars.HEIGHT / 2, 200, 200, new MenuGrid(0, 1));
+        final ImageButton optionsButton = newImageButton("Menu_optionicon", GeoWars.WIDTH / 2 - 100, GeoWars.HEIGHT / 2, 200, 75, new MenuGrid(0, 2));
         optionsButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -73,21 +73,7 @@ public class MainMenuScreen extends MenuScreen implements iHasStage, iSetActive 
         });
 
 
-
-        //// TODO: 23/12/2016 remove this button
-        final ImageButton tempButton = newImageButton("temp upgrade screen", GeoWars.WIDTH / 2 - 500, GeoWars.HEIGHT / 2 - GeoWars.HEIGHT / 8, 200, 200, new MenuGrid(0, 2));
-        tempButton.addListener(new ChangeListener() {
-            @Override
-            public void changed(ChangeEvent event, Actor actor) {
-                tempButton.setChecked(false);
-                MenuScreen nextMenu = Managers.getScreenManager().getScreen("inGameUpgradeScreen");
-                Managers.getScreenManager().setScreen(nextMenu);
-
-            }
-        });
-
-
-        final ImageButton shopButton = newImageButton("Menu_shopicon", GeoWars.WIDTH / 2 - 100, GeoWars.HEIGHT / 2 - GeoWars.HEIGHT / 4, 200, 200, new MenuGrid(0, 3));
+        final ImageButton shopButton = newImageButton("Menu_shopicon", GeoWars.WIDTH / 2 - 100, GeoWars.HEIGHT / 2 - 150, 200, 75, new MenuGrid(0, 4));
         shopButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -102,7 +88,7 @@ public class MainMenuScreen extends MenuScreen implements iHasStage, iSetActive 
             }
         });
 
-        final ImageButton quitButton = newImageButton("Menu_quiticon", GeoWars.WIDTH / 2 - 100, GeoWars.HEIGHT - GeoWars.HEIGHT + 90, 200, 200, new MenuGrid(0, 4));
+        final ImageButton quitButton = newImageButton("Menu_quiticon", GeoWars.WIDTH / 2 - 100, GeoWars.HEIGHT / 2 - 300, 200, 75, new MenuGrid(0, 5));
         quitButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
