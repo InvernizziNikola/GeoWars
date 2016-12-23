@@ -56,8 +56,6 @@ public class CoopMenuScreen extends MenuScreen implements iHasStage, iSetActive 
             public void changed(ChangeEvent event, Actor actor) {
                 startGameButton.setChecked(false);
 
-                startGameButton.setChecked(false);
-
                 if(Managers.getGameManager().game != null)
                     return;
 

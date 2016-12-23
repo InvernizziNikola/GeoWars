@@ -150,7 +150,11 @@ public class GameManager {
         Managers.getCollisionManager().update();
         Managers.getFloatingTextManager().update();
     }
-    public void newGame()
+    public void newArcadeCoopGame()
+    {
+
+    }
+    public void newArcadeSoloGame()
     {
         ArcadeSoloGame game = new ArcadeSoloGame();
         Managers.getGameManager().newGame(game);

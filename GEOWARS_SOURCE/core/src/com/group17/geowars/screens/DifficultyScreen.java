@@ -33,7 +33,7 @@ public class DifficultyScreen extends MenuScreen implements iHasStage, iSetActiv
                 if(Managers.getGameManager().game != null)
                     return;
 
-                Managers.getGameManager().newGame();
+                Managers.getGameManager().newArcadeSoloGame();
             }
         });
 
@@ -47,7 +47,7 @@ public class DifficultyScreen extends MenuScreen implements iHasStage, iSetActiv
                 if(Managers.getGameManager().game != null)
                     return;
 
-                Managers.getGameManager().newGame();
+                Managers.getGameManager().newArcadeSoloGame();
 
             }
         });
@@ -63,7 +63,7 @@ public class DifficultyScreen extends MenuScreen implements iHasStage, iSetActiv
                 if(Managers.getGameManager().game != null)
                     return;
 
-                Managers.getGameManager().newGame();
+                Managers.getGameManager().newArcadeSoloGame();
 
             }
         });
@@ -77,7 +77,8 @@ public class DifficultyScreen extends MenuScreen implements iHasStage, iSetActiv
                 if(Managers.getGameManager().game != null)
                     return;
 
-                Managers.getGameManager().newGame();
+                MenuScreen nextMenu = Managers.getScreenManager().getScreen("mainmenu");
+                Managers.getScreenManager().setScreen(nextMenu);
             }
         });
     }
