@@ -19,7 +19,7 @@ public class ExtendeImageButton extends ImageButton {
         this.overStyle = overStyle;
     }
 
-    public void setDefaultOver()
+    public void setDefaultStyle()
     {
         super.setStyle(defaultStyle);
     }

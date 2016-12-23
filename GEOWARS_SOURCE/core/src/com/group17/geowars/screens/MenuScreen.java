@@ -4,7 +4,6 @@ package com.group17.geowars.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.controllers.Controller;
-import com.badlogic.gdx.controllers.Controllers;
 import com.badlogic.gdx.controllers.PovDirection;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
@@ -12,16 +11,14 @@ import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.scenes.scene2d.EventListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
-import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
-import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.group17.geowars.GeoWars;
 import com.group17.geowars.database.XBOX360KeyMapping;
 import com.group17.geowars.managers.Managers;
+import com.group17.geowars.utils.ExtendeImageButton;
 import com.group17.geowars.utils.MenuGrid;
 import java.util.HashMap;
 import java.util.Map;
@@ -36,7 +33,7 @@ public class MenuScreen implements Screen {
     // UP, DOWN, LEFT AND RIGHT. THIS WAY WE CAN 100% DECIDE TO WHICH BUTTON THE
     // SELECTOR GOES WHEN A KEY ON THE DPAD IS PRESSED
 
-    protected Map<MenuGrid, ImageButton> menuButtons = new HashMap<MenuGrid, ImageButton>();
+    protected Map<MenuGrid, ExtendeImageButton> menuButtons = new HashMap<MenuGrid, ExtendeImageButton>();
     protected MenuGrid selectedButton = new MenuGrid(0, 0);
     protected boolean pressed = true;
     protected TextButton.TextButtonStyle styleDefault;
@@ -116,7 +113,7 @@ public class MenuScreen implements Screen {
     public void setSelectedButton()
     {
         if(menuButtons.get(selectedButton) != null)
-            menuButtons.get(selectedButton).setStyle(styleSelected);
+             menuButtons.get(selectedButton).setHoverStyle();
     }
 
     public void lookForButtonOnRow(MenuGrid preferredMG)
@@ -128,7 +125,7 @@ public class MenuScreen implements Screen {
 
         MenuGrid newMG = null;
 
-        for(Map.Entry<MenuGrid, ImageButton> button : menuButtons.entrySet()) {
+        for(Map.Entry<MenuGrid, ExtendeImageButton> button : menuButtons.entrySet()) {
             if (button.getKey().Y() == preferredY) {
                 if (newMG == null || diffx > Math.abs(button.getKey().X() - preferredX)) {
                     diffx = Math.abs(button.getKey().X() - preferredX);
@@ -149,7 +146,7 @@ public class MenuScreen implements Screen {
         MenuGrid newMG = null;
 
         int diffy = 0;
-        for(Map.Entry<MenuGrid, ImageButton> button : menuButtons.entrySet()) {
+        for(Map.Entry<MenuGrid, ExtendeImageButton> button : menuButtons.entrySet()) {
             if (button.getKey().X() == preferredX) {
                 if (newMG == null || diffy > Math.abs(button.getKey().Y() - preferredY)) {
                     diffy = Math.abs(button.getKey().Y() - preferredY);
@@ -174,9 +171,9 @@ public class MenuScreen implements Screen {
 
     public void deSelectButtons()
     {
-        for(Map.Entry<MenuGrid, ImageButton> button : menuButtons.entrySet())
+        for(Map.Entry<MenuGrid, ExtendeImageButton> button : menuButtons.entrySet())
         {
-            button.getValue().setStyle(styleDefault);
+              button.getValue().setDefaultStyle();
         }
     }
 
@@ -202,16 +199,26 @@ public class MenuScreen implements Screen {
 
     protected ImageButton newImageButton(String name, int x, int y, int width, int height, MenuGrid position)
     {
-        Texture tempImg = Managers.getAssetManager().getTexture(name);
-        TextureRegion tempImgReg = new TextureRegion(tempImg);
-        TextureRegionDrawable tempImgRegDraw = new TextureRegionDrawable(tempImgReg);
-        ImageButton imgbutton = new ImageButton(tempImgRegDraw);
-        imgbutton.setPosition(x,y);
-        imgbutton.setWidth(width);
-        imgbutton.setHeight(height);
-        menuButtons.put(position, imgbutton);
-        stage.addActor(imgbutton);
-        return imgbutton;
+        ImageButton.ImageButtonStyle overStyle = new ImageButton.ImageButtonStyle();
+        Texture overTexture = Managers.getAssetManager().getTexture(name+"_hover");
+        overStyle.imageOver = new TextureRegionDrawable(new TextureRegion(overTexture));
+        overStyle.imageDown = new TextureRegionDrawable(new TextureRegion(overTexture));
+        overStyle.imageUp = new TextureRegionDrawable(new TextureRegion(overTexture));
+
+        ImageButton.ImageButtonStyle defaultStyle = new ImageButton.ImageButtonStyle();
+        Texture defaultTexture = Managers.getAssetManager().getTexture(name+"_default");
+        defaultStyle.imageOver = new TextureRegionDrawable(new TextureRegion(overTexture));
+        defaultStyle.imageDown = new TextureRegionDrawable(new TextureRegion(overTexture));
+        defaultStyle.imageUp = new TextureRegionDrawable(new TextureRegion(defaultTexture));
+
+        ExtendeImageButton tempButton = new ExtendeImageButton(defaultStyle,overStyle);
+
+        tempButton.setPosition(x,y);
+        tempButton.setWidth(width);
+        tempButton.setHeight(height);
+        menuButtons.put(position, tempButton);
+        stage.addActor(tempButton);
+        return tempButton;
     }
 
     protected ShapeRenderer drawTreeLine(int x, int y, int x2, int y2)
