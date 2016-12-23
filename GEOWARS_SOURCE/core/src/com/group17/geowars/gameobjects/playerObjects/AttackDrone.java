@@ -11,7 +11,7 @@ import com.group17.geowars.playerobjects.Account;
 public class AttackDrone extends Drone {
     public AttackDrone(Vector2 pos) {
         super(pos, "attackdrone");
-        size=10;
+        size=30;
         movementSpeed=350;
         fireRange=500;
         fireDelay=0.1f;

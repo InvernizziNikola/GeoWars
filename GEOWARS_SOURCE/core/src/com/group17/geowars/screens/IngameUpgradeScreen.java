@@ -21,8 +21,9 @@ public class IngameUpgradeScreen extends MenuScreen implements iHasStage, iSetAc
 
     private int width = GeoWars.WIDTH;
     private int height = GeoWars.HEIGHT;
-    private boolean quit=false;
     private boolean isButtonDown = false;
+
+    BitmapFont newFont;
     public IngameUpgradeScreen() {
         super();
         create();
@@ -30,21 +31,23 @@ public class IngameUpgradeScreen extends MenuScreen implements iHasStage, iSetAc
 // next level, Quite, speed, firepower,heal
 
     public void create() {
-        Gdx.input.setInputProcessor(stage);
+        newFont = Managers.getAssetManager().getGameFont(Color.WHITE, 30);
 
+        Gdx.input.setInputProcessor(stage);
         final ImageButton speedButton = newImageButton("Menu_speedicon", (width/2)-(width/2)/2,height/2+200,150,50, new MenuGrid(0,1));
         speedButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-            if(!isButtonDown) {
-                isButtonDown = true;
                 speedButton.setChecked(false);
-                //set speed here
-                //set firepower here
-                for (Player p : Managers.getPlayerManager().getPlayers()) {
-                    p.getShip().upgradeSpeed(20);
+                if(!isButtonDown) {
+                    isButtonDown = true;
+                    System.out.println("blub");
+                    //set speed here
+                    //set firepower here
+                    for (Player p : Managers.getPlayerManager().getPlayers()) {
+                        p.getShip().upgradeSpeed(20);
+                    }
                 }
-            }
             }
         });
 
@@ -52,14 +55,14 @@ public class IngameUpgradeScreen extends MenuScreen implements iHasStage, iSetAc
         firePowerButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-            if(!isButtonDown) {
-                isButtonDown = true;
                 firePowerButton.setChecked(false);
-                //set firepower here
-                for (Player p : Managers.getPlayerManager().getPlayers()) {
-                    p.getShip().upgradeFireRate(0.05f);
+                if(!isButtonDown) {
+                    isButtonDown = true;
+                    //set firepower here
+                    for (Player p : Managers.getPlayerManager().getPlayers()) {
+                        p.getShip().upgradeFireRate(0.05f);
+                    }
                 }
-            }
             }
         });
 
@@ -67,14 +70,14 @@ public class IngameUpgradeScreen extends MenuScreen implements iHasStage, iSetAc
         healButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-            if(!isButtonDown) {
-                isButtonDown = true;
                 healButton.setChecked(false);
-                //set heal here
-                for (Player p : Managers.getPlayerManager().getPlayers()) {
-                    p.getShip().upgradeMaxHp(5);
+                if(!isButtonDown) {
+                    isButtonDown = true;
+                    //set heal here
+                    for (Player p : Managers.getPlayerManager().getPlayers()) {
+                        p.getShip().upgradeMaxHp(5);
+                    }
                 }
-            }
             }
         });
 
@@ -82,40 +85,42 @@ public class IngameUpgradeScreen extends MenuScreen implements iHasStage, iSetAc
         nextLvlButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-            if(!isButtonDown) {
-                isButtonDown = true;
                 nextLvlButton.setChecked(false);
-                //set next level here
-                Managers.getLevelManager().addLevel();
-                Managers.getLevelManager().setCurrentwave(1);
+                if(!isButtonDown) {
+                    isButtonDown = true;
+                    //set next level here
+                    Managers.getLevelManager().addLevel();
+                    Managers.getLevelManager().setCurrentwave(0);
 
-                Managers.getGameManager().getGame().setGameState(GAMESTATE.GAMEPLAYING);
-                MenuScreen upgradeMenu = Managers.getScreenManager().getScreen("game");
-                Managers.getScreenManager().setScreen(upgradeMenu);
-            }
+                    Managers.getGameManager().getGame().setGameState(GAMESTATE.GAMEPLAYING);
+                    MenuScreen upgradeMenu = Managers.getScreenManager().getScreen("game");
+                    Managers.getScreenManager().setScreen(upgradeMenu);
+                    System.out.println("blub");
+                }
             }
         });
         final ImageButton QuitButton = newImageButton("Menu_quittomainicon", (width/2)-(width/2)/2,height/2-200,150,50, new MenuGrid(0,4));
         QuitButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-            if(!isButtonDown) {
-                isButtonDown = true;
                 QuitButton.setChecked(false);
+                System.out.println("blub");
+                if(!isButtonDown) {
+                    isButtonDown = true;
 
-                MenuScreen nextMenu = Managers.getScreenManager().getScreen("mainmenu");
-                Managers.getScreenManager().setScreen(nextMenu);
-            }
+                    MenuScreen nextMenu = Managers.getScreenManager().getScreen("mainmenu");
+                    Managers.getScreenManager().setScreen(nextMenu);
+
+                }
             }
         });
     }
     
     public void render (float deltaTime) {
-        isButtonDown = true;
         super.render(deltaTime);
+        isButtonDown = false;
 
         batch.begin();
-        BitmapFont newFont = Managers.getAssetManager().getGameFont(Color.WHITE, 30);
         newFont.draw(batch, "Upgrades:", (width/2)-(width/2)/2, GeoWars.HEIGHT / 2 + 240);
         batch.end();
     }

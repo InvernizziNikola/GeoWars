@@ -87,12 +87,12 @@ public abstract class Enemy extends GameObject implements GOInterface {
                 Managers.getpowerUpManager().addPowerUp(p);
                 return;
             }
-            if (i>=150&&i<295){
+            if (i>=285&&i<292){
                 PowerUp p = new Power_UpPassive(position);
                 Managers.getpowerUpManager().addPowerUp(p);
                 return;
             }
-            if (i>295&&i<298){
+            if (i>293&&i<298){
                 PowerUp p = new PowerDown_Stats(position);
                 Managers.getpowerUpManager().addPowerUp(p);
                 return;

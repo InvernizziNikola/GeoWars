@@ -28,7 +28,7 @@ public class LevelManager {
 
     private List<WarpGate> warpGates;
     private List<WarpGate> toRemove;
-    private int currentwave = 1;
+    private int currentwave = 0;
     private int currentLevel = 1;
     private BitmapFont font;
     private Texture textureBG;
@@ -55,7 +55,7 @@ public class LevelManager {
 
         warpGates = new ArrayList<WarpGate>();
         toRemove = new ArrayList<WarpGate>();
-        currentwave = 8;
+        currentwave = 0;
         currentLevel = 1;
     }
     public void init()
@@ -159,7 +159,7 @@ public class LevelManager {
     {
         warpGates.clear();
         currentwave = 0;
-        currentLevel = 0;
+        currentLevel = 1;
     }
 
 
