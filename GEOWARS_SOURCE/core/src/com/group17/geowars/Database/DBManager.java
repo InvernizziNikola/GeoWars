@@ -127,7 +127,7 @@ public class DBManager {
         String SQLstring = "SELECT Difficulty FROM Difficulty where Name = ?;";
         try {
             prep = this.conn.prepareStatement(SQLstring);
-            prep.setString(1,SQLstring);
+            prep.setString(1,NameDifficulty);
         } catch (SQLException e) {
             System.out.println("error with preparing statment. Are you trying to hack us?");
         }

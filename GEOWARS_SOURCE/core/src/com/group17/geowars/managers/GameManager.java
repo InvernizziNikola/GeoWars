@@ -43,8 +43,12 @@ public class GameManager {
     }
     public void setDifficulty(String difficulty)
     {
-        //thread nog starten en data uithalen
-//        difficultyModifier = DT.getDifficultyModifier();
+
+        DT = new DifficultyThread(difficulty);
+        DT.start();
+        System.out.println("please only run 1time!");
+
+
     }
 
     public GameManager()
@@ -81,8 +85,15 @@ public class GameManager {
 
 
     }
+    public Integer getDifficultyModifier(){
+        return difficultyModifier;
+    }
     public void update()
     {
+        // TODO: Nikola put this in the correct place plz!
+        if(DT.finished()){
+            difficultyModifier = DT.getDifficultyModifier();
+        }
         if(game instanceof iGame)
             ((iGame)game).update();
 

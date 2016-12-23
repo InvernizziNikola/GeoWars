@@ -36,13 +36,13 @@ public class DifficultyScreen extends MenuScreen implements iHasStage, iSetActiv
             }
         });
 
-        final TextButton mediumButton = newButton("Medium",(width/2)-75,height/2+50,150,50, new MenuGrid(1, 0));
+        final TextButton mediumButton = newButton("Normal",(width/2)-75,height/2+50,150,50, new MenuGrid(1, 0));
         mediumButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 mediumButton.setChecked(false);
                 //sethere
-                Managers.getGameManager().setDifficulty("Medium");
+                Managers.getGameManager().setDifficulty("Normal");
                 if(Managers.getGameManager().game != null)
                     return;
 
