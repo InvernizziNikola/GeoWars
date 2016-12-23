@@ -53,7 +53,7 @@ public class MainMenuScreen extends MenuScreen implements iHasStage, iSetActive 
             public void changed(ChangeEvent event, Actor actor) {
                 profileButton.setChecked(false);
                 MenuScreen nextMenu;
-                if(Managers.getAccountManager().getAccounts().get(0).name.toString().equals("Guest")) {
+                if(!Managers.getAccountManager().getLoggedIn()) {
                     nextMenu = Managers.getScreenManager().getScreen("guestErrorScreen");
                 }else {
                     nextMenu = Managers.getScreenManager().getScreen("profilemenu");
