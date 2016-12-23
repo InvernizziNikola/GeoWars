@@ -121,7 +121,7 @@ public class IngameUpgradeScreen extends MenuScreen implements iHasStage, iSetAc
         isButtonDown = false;
 
         batch.begin();
-        newFont.draw(batch, "Upgrades:", (width/2)-(width/2)/2, GeoWars.HEIGHT / 2 + 240);
+        newFont.draw(batch, "Upgrades:", (width/2)-(width/2)/2 - 250, GeoWars.HEIGHT / 2 + 240);
         batch.end();
     }
 
