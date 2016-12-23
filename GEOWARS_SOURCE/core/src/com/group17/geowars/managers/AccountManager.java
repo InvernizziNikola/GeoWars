@@ -12,6 +12,15 @@ import java.util.List;
  */
 public class AccountManager {
 
+    private boolean loggedIn = false;
+    public boolean getLoggedIn()
+    {
+        return loggedIn;
+    }
+    public void setLoggedIn()
+    {
+        loggedIn = true;
+    }
     private Account dummyAccount;
     private List<Account> accounts;
     public List<Account> getAccounts()

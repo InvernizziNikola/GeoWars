@@ -77,20 +77,26 @@ public class LoginScreen extends MenuScreen implements iHasStage, iSetActive {
             public void changed(ChangeEvent event, Actor actor) {
                 loginButton.setChecked(false);
 
-                if (loading)
-                    return;
-                loading = true;
+                if(Managers.getAccountManager().getLoggedIn())
+                {
+                    MenuScreen nextMenu = Managers.getScreenManager().getScreen("mainmenu");
+                    Managers.getScreenManager().setScreen(nextMenu);
+                }else {
+                    if (loading)
+                        return;
+                    loading = true;
 
-                if (!password.getText().equals("") && !username.getText().equals("")) {
-                    password.setDisabled(true);
-                    username.setDisabled(true);
-                    LT = new LoginThread(username.getText(), password.getText());
-                    LT.start();
-                } else {
-                    errorlable.setText("Please fill in a username and password");
-                    errorlable.setColor(Color.RED);
-                    loginButton.setChecked(true);
-                    loading = false;
+                    if (!password.getText().equals("") && !username.getText().equals("")) {
+                        password.setDisabled(true);
+                        username.setDisabled(true);
+                        LT = new LoginThread(username.getText(), password.getText());
+                        LT.start();
+                    } else {
+                        errorlable.setText("Please fill in a username and password");
+                        errorlable.setColor(Color.RED);
+                        loginButton.setChecked(true);
+                        loading = false;
+                    }
                 }
 
             }
@@ -109,6 +115,7 @@ public class LoginScreen extends MenuScreen implements iHasStage, iSetActive {
                 loading = false;
                 System.out.println(loggedIn);
                 if (loggedIn) {
+                    Managers.getAccountManager().setLoggedIn();
                     Managers.getAccountManager().createAccount(username.getText()).main = true;
                     MenuScreen nextMenu = Managers.getScreenManager().getScreen("mainmenu");
                     Managers.getScreenManager().setScreen(nextMenu);

@@ -26,7 +26,6 @@ public class Account {
     public String name;
 
     public Profile profile;
-
     public boolean main = false;
     private Player player;
     public Player getPlayer()
