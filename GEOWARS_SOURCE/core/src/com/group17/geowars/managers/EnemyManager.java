@@ -15,7 +15,6 @@ import java.util.*;
  */
 public class EnemyManager implements GOInterface {
 
-    private LoadEnemyThread LET;
     private List<EnemyProfile> enemyProfiles;
     public List<EnemyProfile> getProfiles()
     {
@@ -25,10 +24,6 @@ public class EnemyManager implements GOInterface {
     private List<Enemy> toRemove;
 
     public EnemyManager() {
-
-        LET = new LoadEnemyThread();
-        LET.start();
-
         enemies = new LinkedList<Enemy>();
         toRemove = new LinkedList<Enemy>();
     }
@@ -75,10 +70,8 @@ public class EnemyManager implements GOInterface {
         enemies.clear();
     }
 
-
     @Override
     public void render(Batch batch) {
-
         for (Enemy e : enemies) {
             e.render(batch);
         }
@@ -92,7 +85,6 @@ public class EnemyManager implements GOInterface {
     @Override
     public void update() {
 
-        loadEnemies();
         for (Enemy e : enemies) {
             e.update();
         }
@@ -100,13 +92,9 @@ public class EnemyManager implements GOInterface {
         toRemove.clear();
     }
 
-    public void loadEnemies()
+    public void setProfiles(ArrayList<EnemyProfile> ep)
     {
-        if(LET != null && LET.finished()) {
-
-            enemyProfiles = LET.getEnemies();
-            LET = null;
-        }
+        enemyProfiles = ep;
     }
     public void remove(Enemy enemy) {
         enemy.destroy = true; //TODO to private

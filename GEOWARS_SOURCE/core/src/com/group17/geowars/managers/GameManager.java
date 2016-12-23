@@ -3,6 +3,7 @@ package com.group17.geowars.managers;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.group17.geowars.database.DBManager;
 import com.group17.geowars.database.Threads.DifficultyThread;
+import com.group17.geowars.database.Threads.LoadEnemyThread;
 import com.group17.geowars.database.Threads.SaveScoreToDBThread;
 import com.group17.geowars.gamemodes.ArcadeSoloGame;
 import com.group17.geowars.gamemodes.base.BaseGame;
@@ -18,11 +19,13 @@ import com.group17.geowars.utils.GAMESTATE;
 public class GameManager {
 
 
+    private float loadTimer = 10.0f;
+    private boolean isLoading = false;
     public BaseGame game;
     private boolean resetGame = false;
     private SaveScoreToDBThread SaveScoreThread;
     private int score = 0;
-    public Integer difficultyModifier;
+    public int difficultyModifier = -1;
     public void setEndScore(int score)
     {
         this.score = score;
@@ -32,6 +35,7 @@ public class GameManager {
         return score;
     }
     private DifficultyThread DT;
+    private LoadEnemyThread LET;
     public void newGame(BaseGame game)
     {
         this.game = game;
@@ -41,14 +45,14 @@ public class GameManager {
     {
         game.setGameState(gs);
     }
+
     public void setDifficulty(String difficulty)
     {
-
         DT = new DifficultyThread(difficulty);
         DT.start();
-        System.out.println("please only run 1time!");
 
-
+        LET = new LoadEnemyThread();
+        LET.start();
     }
 
     public GameManager()
@@ -79,21 +83,31 @@ public class GameManager {
 
     public void setHighScore(String Playername,Integer Score,String Gamemode)
     {
-        System.out.println("this is our score"+Score);
         SaveScoreThread = new SaveScoreToDBThread(Playername,Score,Gamemode);
         SaveScoreThread.start();
-
-
     }
-    public Integer getDifficultyModifier(){
+    public int getDifficultyModifier(){
         return difficultyModifier;
+    }
+
+    private void gameLoad()
+    {
+        if (DT != null && DT.finished()) {
+            difficultyModifier = DT.getDifficultyModifier();
+            DT = null;
+        }
+        if (LET != null && LET.finished()) {
+            Managers.getEnemyManager().setProfiles(LET.getEnemies());
+            LET = null;
+        }
+        if((isLoading && loadTimer < 0) && (difficultyModifier == -1 || Managers.getEnemyManager().getProfiles() == null))
+        {
+            System.out.println("GET HARDCODED PROFILES OF DIFFICULTY");
+        }
+
     }
     public void update()
     {
-        // TODO: Nikola put this in the correct place plz!
-        if(DT.finished()){
-            difficultyModifier = DT.getDifficultyModifier();
-        }
         if(game instanceof iGame)
             ((iGame)game).update();
 
@@ -103,6 +117,7 @@ public class GameManager {
         switch (game.getGameState())
         {
             case GAMELOAD: {
+                gameLoad();
                 if (Managers.getEnemyManager().getProfiles() != null) {
                     game.setGameState(GAMESTATE.GAMEPLAYING);
                 }

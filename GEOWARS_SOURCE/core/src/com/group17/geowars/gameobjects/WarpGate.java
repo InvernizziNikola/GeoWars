@@ -1,5 +1,6 @@
 package com.group17.geowars.gameobjects;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -40,15 +41,15 @@ public class WarpGate {
     {
         return position;
     }
-    public WarpGate(Vector2 position, List<EnemyProfile> enemiesToSpawn)
+    public WarpGate(Vector2 position, List<EnemyProfile> enemiesToSpawn, float waitTime)
     {
+        timer = waitTime * 4;
         this.position = position;
         size = 0;
         this.enemiesToSpawn = enemiesToSpawn;
         maxSize = 200;
         rotateSpeed = 0.5f;
-        state = WARPSTATE.LOADING;
-
+        state = WARPSTATE.WAITING;
         texture = Managers.getAssetManager().getTexture("warp");
         sprite = new Sprite(texture, texture.getWidth(), texture.getHeight());
     }
@@ -57,6 +58,14 @@ public class WarpGate {
     {
         switch(state)
         {
+            case WAITING:{
+                if(timer < 0)
+                {
+                    state = WARPSTATE.LOADING;
+                }
+                timer -= Gdx.graphics.getDeltaTime();
+                break;
+            }
             case LOADING:
             {
                 size+=2;
@@ -88,7 +97,7 @@ public class WarpGate {
                 break;
             }
             case FINISHED:{
-
+                break;
             }
         }
     }

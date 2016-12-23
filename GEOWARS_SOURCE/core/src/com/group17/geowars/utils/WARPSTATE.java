@@ -7,5 +7,6 @@ public enum WARPSTATE {
     LOADING,
     SPAWNING,
     UNLOADING,
+    WAITING,
     FINISHED
 }

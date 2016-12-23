@@ -63,16 +63,18 @@ public class LevelManager {
         isSpawning = true;
 
         float points = (float)currentLevel * 25.0f + (float)currentwave * 2.5f;
-        float warpGateCount = points/50.0f;
+        float warpGateCount = (points * Managers.getGameManager().getDifficultyModifier())/50.0f ;
 
         Random rand = new Random();
         List<EnemyProfile> enemyProfiles = Managers.getEnemyManager().getProfiles();
         for(float i = 0; i < warpGateCount; i++)
         {
+            float pointsPerWarp =  points / MathUtils.ceil(warpGateCount);
+
             System.out.println(warpGateCount);
+            System.out.println(pointsPerWarp);
             System.out.println(points);
 
-            float pointsPerWarp =  points / warpGateCount;
             List<EnemyProfile> enemiesToWarp = new ArrayList<EnemyProfile>();
 
             while (pointsPerWarp > 0) {
@@ -92,21 +94,19 @@ public class LevelManager {
                 {
                     if(warpPos.dst(p.getShip().getPosition()) < 100){
                         okSpawnPoint = false;
-                        return;
                     }
                 }
                 if(okSpawnPoint) {
                     for (WarpGate wg : warpGates) {
                         if (warpPos.dst(wg.GetPosition()) < 300) {
                             okSpawnPoint = false;
-                            return;
                         }
                     }
                 }
             }
             while(!okSpawnPoint);
 
-            warpGates.add(new WarpGate(warpPos, enemiesToWarp));
+            warpGates.add(new WarpGate(warpPos, enemiesToWarp, rand.nextFloat()));
         }
     }
 
