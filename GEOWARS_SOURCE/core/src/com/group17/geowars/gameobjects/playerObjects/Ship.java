@@ -64,7 +64,7 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
     protected Vector2 popUpTextPos;
 
 
-    protected Sound sound;
+    //protected Sound sound;
 
     protected boolean canShoot = true;
     protected float timer = 0;
@@ -89,7 +89,7 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
         maxHp = 1;
         shipColor = new Color(0.8f, new Random().nextFloat(), new Random().nextFloat(), 1);
 
-        sound = Managers.getAssetManager().getSounds("sounds/shot.wav");
+        //sound = Managers.getAssetManager().getSounds("sounds/shot.wav");
 
         font = Managers.getAssetManager().getGameFont(shipColor, 15); // font size 15 pixels
         bigFont=Managers.getAssetManager().getGameFont(shipColor,25);
@@ -262,8 +262,6 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
         shield.setOrigin(40, 40);
         shield.setPosition(position.x - 40, position.y - 40);
         shield.draw(batch);
-
-
 
 
         //niet in render

@@ -185,7 +185,7 @@ public class GameManager {
     }
     public void newArcadeCoopGame()
     {
-        setDifficultyModifier(1.0f);
+        //setDifficultyModifier(1.0f);
         ArcadeCoopGame game = new ArcadeCoopGame();
         Managers.getGameManager().newGame(game);
     }

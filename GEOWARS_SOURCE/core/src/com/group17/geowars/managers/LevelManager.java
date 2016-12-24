@@ -82,9 +82,6 @@ public class LevelManager {
         {
             float enemiesPerWarp =  enemies / warpGateCount;
 
-            System.out.println(enemies);
-            System.out.println(warpGateCount);
-            System.out .println(enemiesPerWarp);
 
             List<EnemyProfile> enemiesToWarp = new ArrayList<EnemyProfile>();
 
