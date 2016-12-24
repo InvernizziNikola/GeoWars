@@ -89,7 +89,7 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
         maxHp = 1;
         shipColor = new Color(0.8f, new Random().nextFloat(), new Random().nextFloat(), 1);
 
-        //sound = Managers.getAssetManager().getSounds("sounds/shot.wav");
+        //sound = Managers.getAssetManager().getSounds("sounds/shot.mp");
 
         font = Managers.getAssetManager().getGameFont(shipColor, 15); // font size 15 pixels
         bigFont=Managers.getAssetManager().getGameFont(shipColor,25);

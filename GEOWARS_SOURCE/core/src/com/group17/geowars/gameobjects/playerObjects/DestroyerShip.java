@@ -31,8 +31,8 @@ Integer i = 0;
             }else {
                 sound.play(0.14f);
                 i=0;
-            }*/
-
+            }
+*/
             Vector2 sd = new Vector2(shootDir.x, shootDir.y);
 
             Managers.getBulletManager().addBullet(new Bullet(new Vector2(position), new Vector2(sd)));
