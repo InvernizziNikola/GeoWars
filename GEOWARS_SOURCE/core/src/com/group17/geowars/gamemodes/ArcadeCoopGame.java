@@ -21,7 +21,6 @@ public class ArcadeCoopGame extends SoloGame implements iGame {
 
         int count = 0;
         for(Account a : Managers.getAccountManager().getAccounts()) {
-
             String name = a.name;
             Controller c = a.getController();
             Player p = Managers.getPlayerManager().createPlayer(name, c);

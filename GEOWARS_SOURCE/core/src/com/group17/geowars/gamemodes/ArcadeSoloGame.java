@@ -63,9 +63,6 @@ public class ArcadeSoloGame extends SoloGame implements iGame {
         d.setPlayer(p);
         p.setDrone(d);
         placePlayerTextFields();
-        
-
-
     }
 
     @Override

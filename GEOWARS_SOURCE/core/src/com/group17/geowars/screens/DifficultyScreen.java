@@ -22,58 +22,43 @@ public class DifficultyScreen extends MenuScreen implements iHasStage, iSetActiv
     public void create() {
         Gdx.input.setInputProcessor(stage);
 
-        final ImageButton easyButton = newImageButton("Menu_easyicon", (width/2)-(width/2)/2,height/2+50,150,50, new MenuGrid(-1, 0));
+        final ImageButton easyButton = newImageButton("Menu_easyicon", (width / 2) - (width / 2) / 2, height / 2 + 50, 150, 50, new MenuGrid(-1, 0));
         easyButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 easyButton.setChecked(false);
                 //set here
-                Managers.getGameManager().startThreads("Easy");
-                if(Managers.getGameManager().getGame() != null)
-                    return;
+                //Managers.getGameManager().startThreads("Easy");
 
-                Managers.getGameManager().newArcadeSoloGame();
-
-                MenuScreen nextMenu = Managers.getScreenManager().getScreen("game");
-                Managers.getScreenManager().setScreen(nextMenu);
+                startSoloGame();
             }
         });
 
-        final ImageButton mediumButton = newImageButton("Menu_normalicon",(width/2)-75,height/2+50,150,50, new MenuGrid(0, 0));
+        final ImageButton mediumButton = newImageButton("Menu_normalicon", (width / 2) - 75, height / 2 + 50, 150, 50, new MenuGrid(0, 0));
         mediumButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 mediumButton.setChecked(false);
                 //sethere
-                Managers.getGameManager().startThreads("Normal");
-                if(Managers.getGameManager().getGame() != null)
-                    return;
+                //Managers.getGameManager().startThreads("Normal");
 
-                Managers.getGameManager().newArcadeSoloGame();
-
-                MenuScreen nextMenu = Managers.getScreenManager().getScreen("game");
-                Managers.getScreenManager().setScreen(nextMenu);
+                startSoloGame();
             }
         });
 
-        final ImageButton hardButton = newImageButton("Menu_hardicon",(width/2)+(width/6),height/2+50,150,50, new MenuGrid(1, 0));
+        final ImageButton hardButton = newImageButton("Menu_hardicon", (width / 2) + (width / 6), height / 2 + 50, 150, 50, new MenuGrid(1, 0));
 
         hardButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 hardButton.setChecked(false);
                 //sethere
-                Managers.getGameManager().startThreads("Hard");
-                if(Managers.getGameManager().getGame() != null)
-                    return;
+                //Managers.getGameManager().startThreads("Hard");
 
-                Managers.getGameManager().newArcadeSoloGame();
-
-                MenuScreen nextMenu = Managers.getScreenManager().getScreen("game");
-                Managers.getScreenManager().setScreen(nextMenu);
-
+                startSoloGame();
             }
         });
+
 
         final ImageButton backButton = newImageButton("Menu_backicon",(width/2)-75,(height/2)-(height/2)+(height/2)/4,150,50, new MenuGrid(0, 1));
         backButton.addListener(new ChangeListener() {
@@ -89,7 +74,16 @@ public class DifficultyScreen extends MenuScreen implements iHasStage, iSetActiv
             }
         });
     }
+    private void startSoloGame()
+    {
+        if (Managers.getGameManager().getGame() != null)
+            return;
 
+        Managers.getGameManager().newArcadeSoloGame();
+
+        MenuScreen nextMenu = Managers.getScreenManager().getScreen("game");
+        Managers.getScreenManager().setScreen(nextMenu);
+    }
 
     public void render (float deltaTime) {
         super.render(deltaTime);

@@ -29,15 +29,15 @@ public class GameManager {
     private boolean resetGame = false;
     private SaveScoreToDBThread SaveScoreThread;
     private int score = 0;
-    private float difficultyModifier = -1.0f;
-    private boolean isDifficultySet = false;
+    private float difficultyModifier = 1.0f;
+    private boolean isDifficultySet = true;
     public void setDifficultyModifier(float dm)
     {
         //LET = new LoadEnemyThread();
         //LET.start();
 
-        difficultyModifier = dm;
-        isDifficultySet = true;
+        //difficultyModifier = dm;
+        //isDifficultySet = true;
     }
     public void setEndScore(int score)
     {
@@ -47,7 +47,7 @@ public class GameManager {
     {
         return score;
     }
-    private DifficultyThread DT;
+    //private DifficultyThread DT;
     //private LoadEnemyThread LET;
     public void newGame(BaseGame game)
     {
@@ -61,9 +61,9 @@ public class GameManager {
 
     public void startThreads(String difficulty)
     {
-        isDifficultySet = false;
-        DT = new DifficultyThread(difficulty);
-        DT.start();
+        //isDifficultySet = false;
+        //DT = new DifficultyThread(difficulty);
+        //DT.start();
 
         /*if(Managers.getEnemyManager().getProfiles() == null)
         {
@@ -111,16 +111,17 @@ public class GameManager {
     {
         loadTimer-= Gdx.graphics.getDeltaTime();
 
-        if (DT != null && DT.finished()) {
+        /*if (DT != null && DT.finished()) {
             difficultyModifier = DT.getDifficultyModifier();
             DT = null;
             isDifficultySet = true;
-        }
+        }*/
         /*if (LET != null && LET.finished()) {
             Managers.getEnemyManager().setProfiles(LET.getEnemies());
             LET = null;
         }
 */
+
         if((loadTimer < 0) && (!isDifficultySet || Managers.getEnemyManager().getProfiles() == null))
         {
             //TODO fallback when no internet
