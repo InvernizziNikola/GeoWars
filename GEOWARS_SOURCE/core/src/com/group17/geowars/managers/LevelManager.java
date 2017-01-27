@@ -72,9 +72,10 @@ public class LevelManager {
     {
         isSpawning = true;
 
-        float enemies = (float)currentLevel * 25.0f + MathUtils.ceil((float)currentwave * 2.5f);
-        float warpGateCount = MathUtils.ceil((enemies * Managers.getGameManager().getDifficultyModifier())/30.0f) ;
+        float enemies = (float)currentLevel * 25.0f + MathUtils.ceil((float)currentwave * 2.5f) * Managers.getGameManager().getDifficultyModifier();
 
+
+        float warpGateCount = MathUtils.ceil((enemies * Managers.getGameManager().getDifficultyModifier())/30.0f);
         Random rand = new Random();
 
         List<EnemyProfile> enemyProfiles = Managers.getEnemyManager().getProfiles();
@@ -88,10 +89,11 @@ public class LevelManager {
 
             for(int j = 0; j < enemiesPerWarp;) {
                 EnemyProfile ep = new EnemyProfile();
-                ep.type = enemyProfiles.get(rand.nextInt(enemyProfiles.size())).type;
+                EnemyProfile epold = enemyProfiles.get(rand.nextInt(enemyProfiles.size()));
+                ep.type = epold.type;
+                ep.difficultyGrade = epold.difficultyGrade;
                 enemiesToWarp.add(ep);
                 j += ep.difficultyGrade;
-
             }
 
             Vector2 warpPos;

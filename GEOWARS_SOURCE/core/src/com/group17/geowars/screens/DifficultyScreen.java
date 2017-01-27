@@ -30,6 +30,7 @@ public class DifficultyScreen extends MenuScreen implements iHasStage, iSetActiv
                 //set here
                 //Managers.getGameManager().startThreads("Easy");
 
+                Managers.getGameManager().setDifficultyModifier(0.6f);
                 startSoloGame();
             }
         });
@@ -42,6 +43,7 @@ public class DifficultyScreen extends MenuScreen implements iHasStage, iSetActiv
                 //sethere
                 //Managers.getGameManager().startThreads("Normal");
 
+                Managers.getGameManager().setDifficultyModifier(1.0f);
                 startSoloGame();
             }
         });
@@ -55,6 +57,7 @@ public class DifficultyScreen extends MenuScreen implements iHasStage, iSetActiv
                 //sethere
                 //Managers.getGameManager().startThreads("Hard");
 
+                Managers.getGameManager().setDifficultyModifier(1.6f);
                 startSoloGame();
             }
         });

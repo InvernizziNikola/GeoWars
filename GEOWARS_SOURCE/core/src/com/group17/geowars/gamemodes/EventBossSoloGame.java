@@ -79,6 +79,7 @@ public class EventBossSoloGame extends SoloGame implements iGame {
 
         EnemyProfile eProfile = new EnemyProfile();
         eProfile.type = ENEMYTYPE.BOSS;
+        eProfile.difficultyGrade = 6;
         //eProfile.imageName = "Dreadnought";
         Managers.getEnemyManager().AddEnemyProfile(eProfile);
     }

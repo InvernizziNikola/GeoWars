@@ -38,7 +38,7 @@ public class DreadnoughtBoss extends DreadnoughtEnemy {
             timer += Gdx.graphics.getDeltaTime();
             if (timer > 20) {
                 timer = 0;
-                spawnEnemies = 5;
+                spawnEnemies = 3;
             }
         }
         else {

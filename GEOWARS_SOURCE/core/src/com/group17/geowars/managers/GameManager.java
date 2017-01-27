@@ -37,7 +37,7 @@ public class GameManager {
         //LET = new LoadEnemyThread();
         //LET.start();
 
-        //difficultyModifier = dm;
+        difficultyModifier = dm;
         //isDifficultySet = true;
     }
     public void setEndScore(int score)
@@ -186,14 +186,13 @@ public class GameManager {
     }
     public void newArcadeCoopGame()
     {
-        //setDifficultyModifier(1.0f);
         ArcadeCoopGame game = new ArcadeCoopGame();
         Managers.getGameManager().newGame(game);
     }
 
     public void newBossSoloGame()
     {
-        setDifficultyModifier(0.1f);
+        setDifficultyModifier(0.3f);
         EventBossSoloGame game = new EventBossSoloGame();
         Managers.getGameManager().newGame(game);
     }
