@@ -19,32 +19,32 @@ public class AssetManager {
 
     private Map<String, Texture> textures;
     private Map<String, Sound> sounds;
-    private Map<String,Color> colors;
-    private Map<String,BitmapFont> fonts;
-    private List<Color>shipColors;
+    private Map<String, Color> colors;
+    private Map<String, BitmapFont> fonts;
+    private List<Color> shipColors;
 
     public AssetManager() {
 
         textures = new HashMap<String, Texture>();
-        sounds= new HashMap<String, Sound> ();
-        colors =new HashMap<String, Color>();
+        sounds = new HashMap<String, Sound>();
+        colors = new HashMap<String, Color>();
         fonts = new HashMap<String, BitmapFont>();
         shipColors = new ArrayList<Color>();
     }
 
-    public void init()
-    {
-        colors.put("geom",new Color(1.0f, 1.0f, 0, 0.90f));
-        colors.put("shield",new Color(0.1f, 0.8f, 0, 0.5f));
-        colors.put("playerbullet",new Color(0.1f,0.8f,0.8f,0.8f));
-        colors.put("enemybullet",new Color(0.9f,0.1f,0.1f,0.9f));
-        shipColors.add(new Color(0.2f,0.9f,0.2f,1));
-        shipColors.add(new Color(0.5f,0.6f,0.0f,1));
-        shipColors.add(new Color(0.1f,0.6f,0.5f,1));
-        shipColors.add(new Color(0.2f,0.5f,0.1f,1));
+    public void init() {
+        colors.put("geom", new Color(1.0f, 1.0f, 0, 0.90f));
+        colors.put("shield", new Color(0.1f, 0.8f, 0, 0.5f));
+        colors.put("playerbullet", new Color(0.1f, 0.8f, 0.8f, 0.8f));
+        colors.put("enemybullet", new Color(0.9f, 0.1f, 0.1f, 0.9f));
+
+        shipColors.add(new Color(0.2f, 0.9f, 0.2f, 1));
+        shipColors.add(new Color(0.5f, 0.6f, 0.0f, 1));
+        shipColors.add(new Color(0.1f, 0.6f, 0.5f, 1));
+        shipColors.add(new Color(0.2f, 0.5f, 0.1f, 1));
     }
 
-    public BitmapFont getGameFont(Color color,int size){
+    public BitmapFont getGameFont(Color color, int size) {
 
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/Guardians.ttf"));
         FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
@@ -55,31 +55,30 @@ public class AssetManager {
         return font;
     }
 
-    public Texture getTexture(String name)
-    {
+    public Texture getTexture(String name) {
         return addTexture(name);
     }
-    public Sound getSounds(String name)
-    {
+
+    public Sound getSounds(String name) {
         return addSound(name);
     }
 
-    public Color getColor(String name){return colors.get(name);}
+    public Color getColor(String name) {
+        return colors.get(name);
+    }
 
-    private Texture addTexture(String name)
-    {
+    private Texture addTexture(String name) {
         Texture texture = textures.get(name);
 
-        if(texture != null)
+        if (texture != null)
             return texture;
 
 
-        try{
+        try {
             texture = new Texture(name + ".png");
             textures.put(name, texture);
             return texture;
-        }catch (Exception e)
-        {
+        } catch (Exception e) {
             texture = new Texture("error.png");
             textures.put(name, texture);
             return texture;
@@ -87,41 +86,35 @@ public class AssetManager {
     }
 
 
-
-
-    private Sound addSound(String name)
-    {
+    private Sound addSound(String name) {
         Sound sound = sounds.get(name);
 
-        if(sound != null)
+        if (sound != null)
             return sound;
 
         File f = new File(name);
-        if(f.exists()) {
-            sound =   Gdx.audio.newSound(Gdx.files.internal(name));
+        if (f.exists()) {
+            sound = Gdx.audio.newSound(Gdx.files.internal(name));
             sounds.put(name, sound);
             return sound;
-        }else
-        {
+        } else {
             sound = Gdx.audio.newSound(Gdx.files.internal("error.wav"));
             sounds.put(name, sound);
             return sound;
         }
     }
-    public void dispose()
-    {
-        for(Texture t : textures.values())
-        {
+
+    public void dispose() {
+        for (Texture t : textures.values()) {
             t.dispose();
         }
     }
-    public Color getShipColor()
-    {
-        Color col=new Color(0,1,0,1);
-        if (shipColors.size()>=1)
-        {
-            col =shipColors.remove(0);
 
+    public Color getShipColor() {
+        Color col = new Color(0, 1, 0, 1);
+        if (shipColors.size() >= 1) {
+            col = shipColors.remove(0);
+            shipColors.add(col);
         }
         return col;
     }
