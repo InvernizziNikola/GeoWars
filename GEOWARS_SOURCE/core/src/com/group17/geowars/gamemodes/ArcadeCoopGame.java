@@ -2,6 +2,7 @@ package com.group17.geowars.gamemodes;
 
 import com.badlogic.gdx.controllers.Controller;
 import com.badlogic.gdx.math.Vector2;
+import com.group17.geowars.DataObjects.EnemyProfile;
 import com.group17.geowars.GeoWars;
 import com.group17.geowars.gamemodes.base.SoloGame;
 import com.group17.geowars.gamemodes.base.iGame;
@@ -10,6 +11,9 @@ import com.group17.geowars.managers.AccountManager;
 import com.group17.geowars.managers.Managers;
 import com.group17.geowars.playerobjects.Account;
 import com.group17.geowars.playerobjects.Player;
+import com.group17.geowars.utils.ENEMYTYPE;
+
+import java.util.ArrayList;
 
 /**
  * Created by nikola on 21/12/2016.
@@ -34,12 +38,14 @@ public class ArcadeCoopGame extends SoloGame implements iGame {
             p.setShip(s);
             s.setPlayer(p);
 
-            Drone d = new DefenceDrone(spawnPoint); // TODO doesnt need accoutn as parameter
+            Drone d = new DefenceDrone(spawnPoint); // TODO doesnt need account as parameter
             p.setDrone(d);
             d.setPlayer(p);
             count++;
         }
         placePlayerTextFields();
+
+        createEnemyProfile();
     }
 
     @Override

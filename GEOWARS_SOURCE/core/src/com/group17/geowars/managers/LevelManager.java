@@ -87,11 +87,11 @@ public class LevelManager {
             List<EnemyProfile> enemiesToWarp = new ArrayList<EnemyProfile>();
 
             for(int j = 0; j < enemiesPerWarp;) {
-                EnemyProfile ep = enemyProfiles.get(rand.nextInt(enemyProfiles.size()));
-                if (ep.type != ENEMYTYPE.BOSS) {
-                    enemiesToWarp.add(ep);
-                    j += ep.difficultyGrade;
-                }
+                EnemyProfile ep = new EnemyProfile();
+                ep.type = enemyProfiles.get(rand.nextInt(enemyProfiles.size())).type;
+                enemiesToWarp.add(ep);
+                j += ep.difficultyGrade;
+
             }
 
             Vector2 warpPos;

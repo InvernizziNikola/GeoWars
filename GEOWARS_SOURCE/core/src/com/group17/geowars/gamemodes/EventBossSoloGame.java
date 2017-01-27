@@ -15,10 +15,10 @@ import com.group17.geowars.utils.ENEMYTYPE;
 /**
  * Created by nikola on 21/12/2016.
  */
-public class ArcadeSoloGame extends SoloGame implements iGame {
+public class EventBossSoloGame extends SoloGame implements iGame {
 
 
-    public ArcadeSoloGame() {
+    public EventBossSoloGame() {
         super();
         super.mode = "Arcade";
         Account a = Managers.getAccountManager().getAccounts().get(0);
@@ -70,10 +70,19 @@ public class ArcadeSoloGame extends SoloGame implements iGame {
         p.setDrone(d);
         placePlayerTextFields();
 
-        createEnemyProfile();
+        createEnemyBossProfile();
     }
 
+    public void createEnemyBossProfile()
+    {
+        Managers.getEnemyManager().resetProfiles();
 
+        EnemyProfile eProfile = new EnemyProfile();
+        eProfile.type = ENEMYTYPE.BOSS;
+        //eProfile.imageName = "Dreadnought";
+        Managers.getEnemyManager().AddEnemyProfile(eProfile);
+        Managers.getGameManager().setDifficultyModifier(0.1f);
+    }
 
     @Override
     public void update() {

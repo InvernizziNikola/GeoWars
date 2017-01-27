@@ -22,30 +22,22 @@ public class EnemyManager implements GOInterface {
     }
     private List<Enemy> enemies;
     private List<Enemy> toRemove;
+    private List<Enemy> toAdd;
 
     public EnemyManager() {
         enemies = new LinkedList<Enemy>();
         toRemove = new LinkedList<Enemy>();
+        toAdd = new LinkedList<Enemy>();
 
         enemyProfiles = new ArrayList<EnemyProfile>();
-        EnemyProfile eProfile = new EnemyProfile();
-        eProfile.type = ENEMYTYPE.DREADNOUGHT;
-        //eProfile.imageName = "Dreadnought";
-        enemyProfiles.add(eProfile);
-
-        eProfile = new EnemyProfile();
-        eProfile.type = ENEMYTYPE.SCOUT;
-        //eProfile.imageName = "Dreadnought";
-        enemyProfiles.add(eProfile);
-
-        eProfile = new EnemyProfile();
-        eProfile.type = ENEMYTYPE.KAMIKAZE;
-        //eProfile.imageName = "Dreadnought";
-        enemyProfiles.add(eProfile);
 
     }
+    public void AddEnemyProfile(EnemyProfile ep)
+    {
+        enemyProfiles.add(ep);
+    }
     public void resetProfiles(){
-        //enemyProfiles = null;
+        enemyProfiles.clear();
     }
 
     public void init() { }
@@ -61,22 +53,22 @@ public class EnemyManager implements GOInterface {
         {
             case SCOUT:{
                 tempEnemy = new ScoutEnemy(position);
-                addEnemy(tempEnemy);
+                toAdd.add(tempEnemy);
                 break;
             }
             case KAMIKAZE:{
                 tempEnemy = new SuicideUnitEnemy(position);
-                addEnemy(tempEnemy);
+                toAdd.add(tempEnemy);
                 break;
             }
             case DREADNOUGHT:{
                 tempEnemy = new DreadnoughtEnemy(position);
-                addEnemy(tempEnemy);
+                toAdd.add(tempEnemy);
                 break;
             }
             case BOSS:{
                 tempEnemy = new DreadnoughtBoss(position);
-                addEnemy(tempEnemy);
+                toAdd.add(tempEnemy);
                 break;
             }
         }
@@ -110,6 +102,8 @@ public class EnemyManager implements GOInterface {
         }
         enemies.removeAll(toRemove);
         toRemove.clear();
+        enemies.addAll(toAdd);
+        toAdd.clear();
     }
 
     public void setProfiles(ArrayList<EnemyProfile> ep)
