@@ -34,7 +34,7 @@ public class Bullet extends GameObject implements GOInterface {
         super(pos);
         speed = 200;
         color=Managers.getAssetManager().getColor("enemybullet");
-        size=15;
+        size=25;
         this.isFriendly =isFriendly;
         direction = dir.nor();// normalize just incase
         damage=1;
@@ -55,7 +55,7 @@ public class Bullet extends GameObject implements GOInterface {
         // TODO DRAW IMAGE CORRRECTLY
         sprite.setColor(color);
         sprite.setSize(size,size);
-        sprite.setOrigin(10,10);
+        sprite.setOrigin(size*0.7f,size*0.7f);
         sprite.setRotation(direction.angle() - 90);
         sprite.setPosition(position.x - 10, position.y - 10);
         sprite.draw(batch);

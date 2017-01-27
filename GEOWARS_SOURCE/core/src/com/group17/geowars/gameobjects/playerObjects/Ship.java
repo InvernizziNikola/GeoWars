@@ -278,7 +278,7 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
             popuptextTime -= Gdx.graphics.getDeltaTime();
         }
         */
-        bigFont.draw(batch, player.getName() + " score " + score + "  " + multiplier + "X" + "    LVL= " + level + "   HP " + hp + " I " + maxHp, player.getPlayerTextpos().x, player.getPlayerTextpos().y);
+        bigFont.draw(batch, player.getName() + " score " + score + "  " + multiplier + "X" + "    LVL= " + level + "   HP " + hp + " I " + maxHp, player.getPlayerTextpos().x+30, player.getPlayerTextpos().y);
 
     }
 

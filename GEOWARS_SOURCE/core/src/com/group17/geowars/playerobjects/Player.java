@@ -35,7 +35,7 @@ public class Player implements GOInterface {
     {
         setController(c);
         name = naam;
-        playerTextpos=new Vector2(0,50);
+        playerTextpos=new Vector2(500,50);
     }
     public void setShip(Ship ship) {
         this.ship = ship;
