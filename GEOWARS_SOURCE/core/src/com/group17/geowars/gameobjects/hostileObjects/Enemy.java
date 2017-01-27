@@ -85,6 +85,7 @@ public abstract class Enemy extends GameObject implements GOInterface {
         Geom g = new Geom(lootId, position);
         Managers.getGeomManager().addGeom(g);
         int i = new Random().nextInt(300);
+
         //dropPowerUp
         if (i > 298) {
             PowerUp p = new PowerUp_Nuke(position);
@@ -113,7 +114,8 @@ public abstract class Enemy extends GameObject implements GOInterface {
 
             destroy = true;
             currentState = ENEMYSTATE.DYING;
-            //dropexp();
+            if(!destroy)
+                dropexp();
         }
         hp--;
     }

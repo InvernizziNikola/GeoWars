@@ -67,27 +67,24 @@ public class CollisionManager
                 }
             }
 
-            for (PowerUp g : Managers.getpowerUpManager().getPowerUpList()) {
-                Vector2 distance = new Vector2(playerPos.x - g.getPosition().x, playerPos.y - g.getPosition().y);
-                if (distance.len() < 25 && !g.isDestroy()) {
+            for (PowerUp pu : Managers.getpowerUpManager().getPowerUpList()) {
+                Vector2 distance = new Vector2(playerPos.x - pu.getPosition().x, playerPos.y - pu.getPosition().y);
+                if (distance.len() < 25 && !pu.isDestroy()) {
 
-                    p.getShip().handlePickedUp(g);
-                    Managers.getpowerUpManager().removePowerUp(g);
+                    p.getShip().handlePickedUp(pu);
+                    Managers.getpowerUpManager().removePowerUp(pu);
                 }
             }
 
             for(Enemy e: Managers.getEnemyManager().getEnemies())
             {
                 Vector2 distance = new Vector2(playerPos.x - e.getPosition().x, playerPos.y - e.getPosition().y);
-                if (distance.len() < 25) {
+                if (distance.len() < 25 && !e.destroy) {
 
                     p.getShip().handleEnemyCrash(e);
 
-
                     //Managers.getGameManager().setEndScore(p.getShip().getScore());
                    // Managers.getGameManager().gameState = GAMESTATE.MENU;
-
-
                 }
             }
         }
