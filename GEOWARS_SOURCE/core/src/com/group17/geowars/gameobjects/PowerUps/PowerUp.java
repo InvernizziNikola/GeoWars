@@ -5,6 +5,7 @@
  */
 package com.group17.geowars.gameobjects.PowerUps;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -22,6 +23,8 @@ public abstract class PowerUp extends GameObject implements GOInterface {
     protected Color color;
     protected POWERUPTYPE type;
     protected String text;
+    private float extrasize = 0;
+    private float mult = 1;
     private boolean destroy = false;
 
     public PowerUp(Vector2 pos, POWERUPTYPE type) {
@@ -31,6 +34,10 @@ public abstract class PowerUp extends GameObject implements GOInterface {
 
     }
 
+    public void activate()
+    {
+
+    }
 
     public Sprite getShipSprite() {
         return sprite;
@@ -54,15 +61,25 @@ public abstract class PowerUp extends GameObject implements GOInterface {
 
     @Override
     public void render(Batch batch) {
+
+
         sprite.setColor(color);
-        sprite.setSize(30, 30);
-        sprite.setOrigin(15, 15);
+        sprite.setSize(30 + extrasize, 30 + extrasize);
+        sprite.setOrigin(15 + (extrasize / 2.0f), 15 + (extrasize / 2.0f));
         sprite.setPosition(position.x - 15, position.y - 15);
         sprite.draw(batch);
     }
 
     @Override
     public void update() {
-
+        extrasize += Gdx.graphics.getDeltaTime() * mult * 10;
+        if(extrasize >= 10) {
+            extrasize = 10;
+            mult *= -1;
+        }
+        if(extrasize <= 0) {
+            extrasize = 0;
+            mult *= -1;
+        }
     }
 }

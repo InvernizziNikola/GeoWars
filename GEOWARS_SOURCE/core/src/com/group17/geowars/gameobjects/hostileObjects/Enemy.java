@@ -87,18 +87,18 @@ public abstract class Enemy extends GameObject implements GOInterface {
         int i = new Random().nextInt(300);
 
         //dropPowerUp
-        if (i > 298) {
-            PowerUp p = new PowerUp_Nuke(position);
+        if (i > 10) {
+            PowerUp_Nuke p = new PowerUp_Nuke(position);
             Managers.getpowerUpManager().addPowerUp(p);
             return;
         }
         if (i >= 285 && i < 292) {
-            PowerUp p = new Power_UpPassive(position);
+            Power_UpPassive p = new Power_UpPassive(position);
             Managers.getpowerUpManager().addPowerUp(p);
             return;
         }
         if (i > 293 && i < 298) {
-            PowerUp p = new PowerDown_Stats(position);
+            PowerDown_Stats p = new PowerDown_Stats(position);
             Managers.getpowerUpManager().addPowerUp(p);
             return;
         }

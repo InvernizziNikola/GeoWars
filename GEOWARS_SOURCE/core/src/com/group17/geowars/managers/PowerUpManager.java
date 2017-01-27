@@ -35,7 +35,8 @@ public class PowerUpManager implements GOInterface {
 
     @Override
     public void render(Batch batch) {
-        for (PowerUp pow : powerUpList) pow.render(batch);
+        for (PowerUp pow : powerUpList)
+            pow.render(batch);
     }
 
     @Override
@@ -50,10 +51,11 @@ public class PowerUpManager implements GOInterface {
         toRemove.clear();
     }
 
-    public void removePowerUp(PowerUp g) {
+    public void removePowerUp(PowerUp pu) {
 
-        toRemove.add(g);
-        g.setDestroy(true);
+        //toRemove.add(g);
+        pu.activate();
+        pu.setDestroy(true);
     }
 
     public void reset()

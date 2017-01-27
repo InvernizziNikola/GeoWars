@@ -185,7 +185,7 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
                 handleBadPow(pow);
         }
 
-        Managers.getFloatingTextManager().addText(new FloatingText(font, pow.getText(), 5.0f, pow.getPosition()));
+        Managers.getFloatingTextManager().addText(new FloatingText(font, pow.getText(), 5.0f, new Vector2(pow.getPosition())));
 
     }
 
