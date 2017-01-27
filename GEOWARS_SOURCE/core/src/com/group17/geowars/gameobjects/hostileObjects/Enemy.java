@@ -114,8 +114,7 @@ public abstract class Enemy extends GameObject implements GOInterface {
 
             destroy = true;
             currentState = ENEMYSTATE.DYING;
-            if(!destroy)
-                dropexp();
+            dropexp();
         }
         hp--;
     }
@@ -242,7 +241,7 @@ public abstract class Enemy extends GameObject implements GOInterface {
             }
             case DYING: {
                 timer+= Gdx.graphics.getDeltaTime();
-                angleEx+=10;
+                angleEx+= Gdx.graphics.getDeltaTime() * 300;
                 if(timer >= 2) {
                     timer = 2;
                     currentState = ENEMYSTATE.REMOVED;
