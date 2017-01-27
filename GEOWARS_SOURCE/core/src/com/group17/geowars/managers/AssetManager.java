@@ -21,6 +21,7 @@ public class AssetManager {
     private Map<String, Sound> sounds;
     private Map<String,Color> colors;
     private Map<String,BitmapFont> fonts;
+    private List<Color>shipColors;
 
     public AssetManager() {
 
@@ -28,6 +29,7 @@ public class AssetManager {
         sounds= new HashMap<String, Sound> ();
         colors =new HashMap<String, Color>();
         fonts = new HashMap<String, BitmapFont>();
+        shipColors = new ArrayList<Color>();
     }
 
     public void init()
@@ -36,6 +38,10 @@ public class AssetManager {
         colors.put("shield",new Color(0.1f, 0.8f, 0, 0.5f));
         colors.put("playerbullet",new Color(0.1f,0.8f,0.8f,0.8f));
         colors.put("enemybullet",new Color(0.9f,0.1f,0.1f,0.9f));
+        shipColors.add(new Color(0.2f,0.9f,0.2f,1));
+        shipColors.add(new Color(0.0f,0.9f,0.0f,1));
+        shipColors.add(new Color(0.3f,0.9f,0.3f,1));
+        shipColors.add(new Color(0.0f,0.7f,0.2f,1));
     }
 
     public BitmapFont getGameFont(Color color,int size){
@@ -108,5 +114,15 @@ public class AssetManager {
         {
             t.dispose();
         }
+    }
+    public Color getShipColor()
+    {
+        Color col=new Color(0,1,0,1);
+        if (shipColors.size()>1)
+        {
+            col =shipColors.remove(0);
+
+        }
+        return col;
     }
 }

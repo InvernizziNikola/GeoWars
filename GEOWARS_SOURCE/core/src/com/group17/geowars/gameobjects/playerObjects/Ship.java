@@ -23,6 +23,7 @@ import com.group17.geowars.gameobjects.PowerUps.PowerDown_Stats;
 import com.group17.geowars.gameobjects.PowerUps.PowerUp;
 import com.group17.geowars.gameobjects.PowerUps.Power_UpPassive;
 import com.group17.geowars.gameobjects.hostileObjects.Enemy;
+import com.group17.geowars.managers.AssetManager;
 import com.group17.geowars.managers.Managers;
 import com.group17.geowars.playerobjects.Player;
 import com.group17.geowars.screens.MenuScreen;
@@ -87,8 +88,7 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
         fireDelay = 0.15f;
         speed = 450;
         maxHp = 1;
-        shipColor = new Color(0.8f, new Random().nextFloat(), new Random().nextFloat(), 1);
-
+        shipColor = Managers.getAssetManager().getShipColor();
         //sound = Managers.getAssetManager().getSounds("sounds/shot.mp");
 
         font = Managers.getAssetManager().getGameFont(shipColor, 15); // font size 15 pixels
