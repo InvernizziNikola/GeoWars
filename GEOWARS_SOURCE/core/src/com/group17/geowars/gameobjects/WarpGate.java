@@ -1,6 +1,7 @@
 package com.group17.geowars.gameobjects;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -104,15 +105,14 @@ public class WarpGate {
 
     public void spawnEnemies()
     {
-
         ArrayList<EnemyProfile> toRemove = new ArrayList<EnemyProfile>();
         for(EnemyProfile ep : enemiesToSpawn)
         {
             // SPAWN ENEMY
-            float x = rand.nextFloat() % 200;
-            float y = rand.nextFloat() % 200;
-            x = position.x+(x - 0.5f)*size/2;
-            y = position.y+(y - 0.5f)*size/2;
+            float randx = rand.nextFloat();
+            float randy = rand.nextFloat();
+            float x = position.x + (randx * maxSize) - (maxSize/2);
+            float y = position.y + (randy * maxSize) - (maxSize/2);
 
             Managers.getEnemyManager().spawnEnemy(ep, new Vector2(x, y));
             toRemove.add(ep);
@@ -122,7 +122,7 @@ public class WarpGate {
     }
     public void render(Batch batch)
     {
-        //sprite.setColor(color);
+        sprite.setColor(new Color(1, 1, 1, 0.4f));
         sprite.setSize(size, size);
         sprite.setOrigin(size / 2, size / 2);
         sprite.setRotation(angle);

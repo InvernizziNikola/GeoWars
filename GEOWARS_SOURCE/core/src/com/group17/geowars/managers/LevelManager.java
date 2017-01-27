@@ -1,5 +1,6 @@
 package com.group17.geowars.managers;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -121,6 +122,7 @@ public class LevelManager {
 
     public void render(Batch batch) {
 
+        spriteBG.setColor(new Color(0.4f, 0.4f, 0.4f, 1f));
         spriteBG.draw(batch);
         font.draw(batch, "Level "+ currentLevel + " Wave " + currentwave, GeoWars.WIDTH/2 - 100, GeoWars.HEIGHT-50);
 
