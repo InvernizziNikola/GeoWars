@@ -1,5 +1,6 @@
 package com.group17.geowars.gameobjects.hostileObjects;
 
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Vector2;
 import com.group17.geowars.gameobjects.ClusterBullet;
 import com.group17.geowars.managers.Managers;
@@ -11,9 +12,9 @@ public class DreadnoughtBoss extends DreadnoughtEnemy {
 
     public DreadnoughtBoss(Vector2 spawnLocation) {
         super(spawnLocation);
-        maxHp =100;
-        hp =100;
-        size =250;
+        maxHp = 100;
+        hp = 100;
+        size = 250;
     }
 
     public void shoot() {
@@ -21,5 +22,21 @@ public class DreadnoughtBoss extends DreadnoughtEnemy {
             Managers.getBulletManager().addBullet(new ClusterBullet(new Vector2(position), new Vector2(lookAt),true));
             canShoot = false;
         }
+    }
+
+    @Override
+    public void fighting() {
+        super.fighting();
+    }
+
+    @Override
+    public void update()
+    {
+        super.update();
+    }
+
+    @Override
+    public void render(Batch batch) {
+        super.render(batch);
     }
 }

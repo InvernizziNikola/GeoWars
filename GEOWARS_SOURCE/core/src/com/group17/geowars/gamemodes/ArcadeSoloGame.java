@@ -63,7 +63,7 @@ public class ArcadeSoloGame extends SoloGame implements iGame {
         s.setPlayer(p);
         p.setShip(s);
 
-         // TODO doesnt need accoutn as parameter
+         // TODO doesnt need account as parameter
         d.setPlayer(p);
         p.setDrone(d);
         placePlayerTextFields();

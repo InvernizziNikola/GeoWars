@@ -2,6 +2,7 @@ package com.group17.geowars.gameobjects.hostileObjects;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Vector2;
 import com.group17.geowars.gameobjects.GOInterface;
 import com.group17.geowars.managers.Managers;
@@ -17,7 +18,19 @@ public class SuicideUnitEnemy extends Enemy implements GOInterface {
     }
 
     @Override
-    public void update() {
+    public void update()
+    {
+        super.update();
+    }
+
+    @Override
+    public void render(Batch batch)
+    {
+        super.render(batch);
+    }
+
+    @Override
+    public void fighting() {
 
 
         target = findTarget();
@@ -42,6 +55,6 @@ public class SuicideUnitEnemy extends Enemy implements GOInterface {
             lookAt = direction.nor();
         }
 
-        super.update();
+        super.fighting();
     }
 }
