@@ -51,6 +51,7 @@ public class ShopMenuScreen extends MenuScreen implements iHasStage, iSetActive 
         batch = new SpriteBatch();
         text = new BitmapFont();
         text.setColor(Color.WHITE);
+        createButtons();
     }
 
     public void createButtons()
@@ -169,7 +170,6 @@ public class ShopMenuScreen extends MenuScreen implements iHasStage, iSetActive 
             armoredShipName = ShipData.get(10).toString();
             armoredShipPrice = ShipData.get(14).toString();
             showText();
-            createButtons();
         }
         batch.end();
         if (ShopThread == null)

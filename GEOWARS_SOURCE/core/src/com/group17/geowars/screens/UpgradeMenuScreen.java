@@ -240,7 +240,6 @@ public class UpgradeMenuScreen extends MenuScreen implements iHasStage, iSetActi
         text.draw(batch, "ATK = 2", GeoWars.WIDTH / 3, GeoWars.HEIGHT / 2 + GeoWars.HEIGHT / 10);
     }
 
-
     public void assaultText() {
         text.draw(batch, "-ASSAULT", 50, GeoWars.HEIGHT - GeoWars.HEIGHT / 6);
         text.draw(batch, "-HIGH ATTACK", 50, (float) (GeoWars.HEIGHT - GeoWars.HEIGHT / 4.75));

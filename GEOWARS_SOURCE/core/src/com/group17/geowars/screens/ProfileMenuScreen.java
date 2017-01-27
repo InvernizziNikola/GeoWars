@@ -40,6 +40,7 @@ public class ProfileMenuScreen extends MenuScreen implements iHasStage, iSetActi
         batch = new SpriteBatch();
         text = new BitmapFont();
         text.setColor(Color.WHITE);
+        createButtons();
     }
     public void createButtons()
     {
@@ -176,7 +177,6 @@ public class ProfileMenuScreen extends MenuScreen implements iHasStage, iSetActi
         if(ProfileThread == null)
         {
             showText();
-            createButtons();
         }
         batch.end();
     }
