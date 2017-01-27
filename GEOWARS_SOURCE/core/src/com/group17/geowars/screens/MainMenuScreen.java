@@ -108,9 +108,7 @@ public class MainMenuScreen extends MenuScreen implements iHasStage, iSetActive 
         if (active)
             return;
         active = true;
-        create();
         // do something when activating
-
     }
 
     @Override
