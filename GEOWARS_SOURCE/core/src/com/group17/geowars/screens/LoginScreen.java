@@ -11,6 +11,7 @@ import com.group17.geowars.database.Threads.LoginThread;
 import com.group17.geowars.database.Threads.MusicThread;
 import com.group17.geowars.managers.AssetManager;
 import com.group17.geowars.managers.Managers;
+import com.group17.geowars.playerobjects.Account;
 import com.group17.geowars.utils.MenuGrid;
 
 import java.util.ArrayList;
@@ -81,8 +82,10 @@ public class LoginScreen extends MenuScreen implements iHasStage, iSetActive {
             public void changed(ChangeEvent event, Actor actor) {
                 loginButton.setChecked(false);
 
+
                 if(Managers.getAccountManager().getLoggedIn())
                 {
+                    System.out.println(Managers.getAccountManager().getAccounts());
                     MenuScreen nextMenu = Managers.getScreenManager().getScreen("mainmenu");
                     Managers.getScreenManager().setScreen(nextMenu);
                 }else {

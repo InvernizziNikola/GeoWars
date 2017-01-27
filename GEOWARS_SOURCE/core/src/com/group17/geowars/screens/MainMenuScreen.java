@@ -58,6 +58,7 @@ public class MainMenuScreen extends MenuScreen implements iHasStage, iSetActive 
                 }else {
                     nextMenu = Managers.getScreenManager().getScreen("profilemenu");
                 }
+
                 Managers.getScreenManager().setScreen(nextMenu);
             }
         });
@@ -79,11 +80,12 @@ public class MainMenuScreen extends MenuScreen implements iHasStage, iSetActive 
             public void changed(ChangeEvent event, Actor actor) {
                 shopButton.setChecked(false);
                 MenuScreen nextMenu;
-                if(!Managers.getAccountManager().getLoggedIn()) {
+/*                if(!Managers.getAccountManager().getLoggedIn()) {
                     nextMenu = Managers.getScreenManager().getScreen("guestErrorScreen");
                 }else {
                     nextMenu = Managers.getScreenManager().getScreen("shopmenu");
-                }
+                }*/
+                nextMenu = Managers.getScreenManager().getScreen("shopmenu");
                 Managers.getScreenManager().setScreen(nextMenu);
             }
         });
