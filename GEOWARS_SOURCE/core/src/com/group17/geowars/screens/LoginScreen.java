@@ -2,12 +2,14 @@ package com.group17.geowars.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.group17.geowars.GeoWars;
 import com.group17.geowars.database.Threads.LoginThread;
 import com.group17.geowars.database.Threads.MusicThread;
+import com.group17.geowars.managers.AssetManager;
 import com.group17.geowars.managers.Managers;
 import com.group17.geowars.utils.MenuGrid;
 
@@ -26,6 +28,7 @@ public class LoginScreen extends MenuScreen implements iHasStage, iSetActive {
     private TextField username;
     private TextField password;
     private Label errorlable = new Label("", style());
+    private BitmapFont myText = Managers.getAssetManager().getGameFont(Color.WHITE,15);
 
     private LoginThread LT;
 
@@ -39,12 +42,12 @@ public class LoginScreen extends MenuScreen implements iHasStage, iSetActive {
 
     public void Buttons() {
 
-        final ImageButton backButton = newImageButton("Menu_continueicon", width / 2 - 75, height / 6, 150, 50, new MenuGrid(0, 1));
-
+        final ImageButton continueButton = newImageButton("Menu_continueicon", GeoWars.WIDTH / 2 - 100, GeoWars.HEIGHT - GeoWars.HEIGHT / 4, 200, 75, new MenuGrid(0, 0));
+        // newImageButton("Menu_loginicon", GeoWars.WIDTH / 2 - 100, GeoWars.HEIGHT - GeoWars.HEIGHT / 4, 200, 75, new MenuGrid(0, 0));
         /*--------------EVENT HANDLER--------------------------*/
-        backButton.addListener(new ChangeListener() {
+        continueButton.addListener(new ChangeListener() {
             public void changed(ChangeEvent event, Actor actor) {
-                backButton.setChecked(false);
+                continueButton.setChecked(false);
                 MenuScreen nextMenu = Managers.getScreenManager().getScreen("mainmenu");
                 Managers.getScreenManager().setScreen(nextMenu);
             }
@@ -71,7 +74,8 @@ public class LoginScreen extends MenuScreen implements iHasStage, iSetActive {
         table.add(password).width(200);
         table.row();
 
-        final ImageButton loginButton = newImageButton("Menu_loginicon", GeoWars.WIDTH / 2 - 100, GeoWars.HEIGHT - GeoWars.HEIGHT / 4, 200, 75, new MenuGrid(0, 0));
+        final ImageButton loginButton = newImageButton("Menu_loginicon", width / 2 - 75, height / 3, 150, 50, new MenuGrid(0, 1));
+        //newImageButton("Menu_continueicon", width / 2 - 75, height / 6, 150, 50, new MenuGrid(0, 1));
         loginButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -133,7 +137,7 @@ public class LoginScreen extends MenuScreen implements iHasStage, iSetActive {
 
     public void showLoading() {
         batch.begin();
-        text.draw(batch, "Loading...", 350, 380);
+        myText.draw(batch, "Loading...", 350, 380);
         batch.end();
     }
 

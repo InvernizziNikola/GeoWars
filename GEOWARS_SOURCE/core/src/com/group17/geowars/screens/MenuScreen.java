@@ -247,6 +247,7 @@ public class MenuScreen implements Screen {
     {
         Texture background = Managers.getAssetManager().getTexture(name);
         batch.begin();
+        batch.setColor(0.5f,0.5f,0.5f,1);
         batch.draw(background,0,0,GeoWars.WIDTH, GeoWars.HEIGHT);
         batch.end();
         return background;
