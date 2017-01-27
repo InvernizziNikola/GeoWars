@@ -39,9 +39,9 @@ public class AssetManager {
         colors.put("playerbullet",new Color(0.1f,0.8f,0.8f,0.8f));
         colors.put("enemybullet",new Color(0.9f,0.1f,0.1f,0.9f));
         shipColors.add(new Color(0.2f,0.9f,0.2f,1));
-        shipColors.add(new Color(0.0f,0.9f,0.0f,1));
-        shipColors.add(new Color(0.3f,0.9f,0.3f,1));
-        shipColors.add(new Color(0.0f,0.7f,0.2f,1));
+        shipColors.add(new Color(0.5f,0.6f,0.0f,1));
+        shipColors.add(new Color(0.1f,0.6f,0.5f,1));
+        shipColors.add(new Color(0.2f,0.5f,0.1f,1));
     }
 
     public BitmapFont getGameFont(Color color,int size){
@@ -118,7 +118,7 @@ public class AssetManager {
     public Color getShipColor()
     {
         Color col=new Color(0,1,0,1);
-        if (shipColors.size()>1)
+        if (shipColors.size()>=1)
         {
             col =shipColors.remove(0);
 
