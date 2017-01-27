@@ -7,6 +7,7 @@ import com.group17.geowars.database.Threads.LoadEnemyThread;
 import com.group17.geowars.database.Threads.SaveScoreToDBThread;
 import com.group17.geowars.gamemodes.ArcadeCoopGame;
 import com.group17.geowars.gamemodes.ArcadeSoloGame;
+import com.group17.geowars.gamemodes.EventBossSoloGame;
 import com.group17.geowars.gamemodes.base.BaseGame;
 import com.group17.geowars.gamemodes.base.iGame;
 import com.group17.geowars.playerobjects.Account;
@@ -189,6 +190,14 @@ public class GameManager {
         ArcadeCoopGame game = new ArcadeCoopGame();
         Managers.getGameManager().newGame(game);
     }
+
+    public void newBossSoloGame()
+    {
+        setDifficultyModifier(0.1f);
+        EventBossSoloGame game = new EventBossSoloGame();
+        Managers.getGameManager().newGame(game);
+    }
+
     public void newArcadeSoloGame()
     {
         ArcadeSoloGame game = new ArcadeSoloGame();

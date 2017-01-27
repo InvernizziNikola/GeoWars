@@ -51,6 +51,17 @@ public class PlayMenuScreen extends MenuScreen implements iHasStage, iSetActive 
             }
         });
 
+        final ImageButton eventButton = newImageButton("Menu_eventicon",(width/2)+150,height/2+50,150,50, new MenuGrid(0, 2));
+        eventButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                arcadeButton.setChecked(false);
+
+                startEventBossGame();
+
+            }
+        });
+
         final ImageButton backButton = newImageButton("Menu_backicon",(width/2)-75,(height/2)-(height/2)+(height/2)/4,150,50, new MenuGrid(0, 2));
         backButton.addListener(new ChangeListener() {
 
@@ -63,6 +74,17 @@ public class PlayMenuScreen extends MenuScreen implements iHasStage, iSetActive 
         });
     }
 
+
+    private void startEventBossGame()
+    {
+        if (Managers.getGameManager().getGame() != null)
+            return;
+
+        Managers.getGameManager().newBossSoloGame();
+
+        MenuScreen nextMenu = Managers.getScreenManager().getScreen("game");
+        Managers.getScreenManager().setScreen(nextMenu);
+    }
 
     public void render (float deltaTime) {
         super.render(deltaTime);

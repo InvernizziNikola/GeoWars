@@ -81,7 +81,6 @@ public class EventBossSoloGame extends SoloGame implements iGame {
         eProfile.type = ENEMYTYPE.BOSS;
         //eProfile.imageName = "Dreadnought";
         Managers.getEnemyManager().AddEnemyProfile(eProfile);
-        Managers.getGameManager().setDifficultyModifier(0.1f);
     }
 
     @Override
