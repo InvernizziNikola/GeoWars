@@ -14,9 +14,10 @@ import net.dermetfan.gdx.physics.box2d.Breakable;
 /**
  * Created by kevin on 20/12/2016.
  */
+
 public class PowerUp_Nuke extends PowerUp {
 
-    private float range = 1200;
+    private float range = 1600;
     private float size = 0;
     private boolean activated = false;
     private Texture textEx;
@@ -25,7 +26,6 @@ public class PowerUp_Nuke extends PowerUp {
 
         super(pos,POWERUPTYPE.NUKE);
         text="BOOM!!!";
-        color = Color.RED;
         texture = Managers.getAssetManager().getTexture("images/powerup_nuke");
         sprite = new Sprite(texture, texture.getWidth(), texture.getHeight());
 
@@ -53,7 +53,7 @@ public class PowerUp_Nuke extends PowerUp {
             super.update();
         }else{
             if(size < range)
-            size += Gdx.graphics.getDeltaTime() * 2000;
+            size += Gdx.graphics.getDeltaTime() * 1600;
 
             enemiesInBlastRadius();
 
@@ -79,6 +79,7 @@ public class PowerUp_Nuke extends PowerUp {
     @Override
     public void activate()
     {
+        color = Color.RED;
         activated = true;
     }
 }
