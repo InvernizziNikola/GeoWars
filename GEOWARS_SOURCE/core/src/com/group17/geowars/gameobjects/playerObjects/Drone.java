@@ -141,13 +141,14 @@ public abstract class Drone extends GameObject {
         if(target == null) {
             float distance = 0;
             for (Enemy e : Managers.getEnemyManager().getEnemies()) {
-                float tempDist = new Vector2(e.getPosition().x - position.x, e.getPosition().y - position.y).len();
-                if(distance == 0 || tempDist < distance)
-                {
-                    distance = tempDist;
+                if(!e.destroy) {
+                    float tempDist = new Vector2(e.getPosition().x - position.x, e.getPosition().y - position.y).len();
+                    if (distance == 0 || tempDist < distance) {
+                        distance = tempDist;
 
-                    if(tempDist < fireRange)
-                        target = e;
+                        if (tempDist < fireRange)
+                            target = e;
+                    }
                 }
             }
         }

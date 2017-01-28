@@ -176,13 +176,15 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
         switch (x) {
 
             case NUKE:
-                Managers.getEnemyManager().clearAll();
+                Managers.getpowerUpManager().activatePowerUp(pow);
                 break;
             case PASSIVE:
                 handlePassivePow(pow);
+                Managers.getpowerUpManager().activatePowerUp(pow);
                 break;
             case POWERDOWN:
                 handleBadPow(pow);
+                Managers.getpowerUpManager().activatePowerUp(pow);
         }
 
         Managers.getFloatingTextManager().addText(new FloatingText(font, pow.getText(), 5.0f, new Vector2(pow.getPosition())));
