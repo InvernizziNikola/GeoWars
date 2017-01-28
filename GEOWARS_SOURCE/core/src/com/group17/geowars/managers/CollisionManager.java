@@ -72,7 +72,7 @@ public class CollisionManager
                 if (distance.len() < 25 && !pu.isDestroy()) {
 
                     p.getShip().handlePickedUp(pu);
-                    Managers.getpowerUpManager().removePowerUp(pu);
+                    //Managers.getpowerUpManager().removePowerUp(pu);
                 }
             }
 

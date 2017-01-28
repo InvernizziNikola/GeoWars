@@ -3,6 +3,7 @@ package com.group17.geowars.managers;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Vector2;
 import com.group17.geowars.gameobjects.GOInterface;
+import com.group17.geowars.gameobjects.PowerUps.POWERUPTYPE;
 import com.group17.geowars.gameobjects.PowerUps.PowerUp;
 import com.group17.geowars.gameobjects.PowerUps.PowerUp_Nuke;
 
@@ -17,10 +18,12 @@ public class PowerUpManager implements GOInterface {
 
     private List<PowerUp> powerUpList;
     private List<PowerUp> toRemove;
+    private List<PowerUp> toAdd;
 
     public PowerUpManager(){
         powerUpList = new ArrayList<PowerUp>();
         toRemove = new ArrayList<PowerUp>();
+        toAdd = new ArrayList<PowerUp>();
     }
 
     public void init()
@@ -30,7 +33,7 @@ public class PowerUpManager implements GOInterface {
 
     public void addPowerUp(PowerUp powerUp)
     {
-        powerUpList.add(powerUp);
+        toAdd.add(powerUp);
     }
 
     @Override
@@ -42,20 +45,24 @@ public class PowerUpManager implements GOInterface {
     @Override
     public void update() {
 
+        powerUpList.addAll(toAdd);
+        toAdd.clear();
+
         for (PowerUp pow : powerUpList)
-        {
             pow.update();
-        }
 
         powerUpList.removeAll(toRemove);
         toRemove.clear();
     }
 
-    public void removePowerUp(PowerUp pu) {
-
-        //toRemove.add(g);
+    public void activatePowerUp(PowerUp pu)
+    {
         pu.activate();
         pu.setDestroy(true);
+    }
+    public void removePowerUp(PowerUp pu)
+    {
+        toRemove.add(pu);
     }
 
     public void reset()

@@ -36,7 +36,8 @@ public abstract class PowerUp extends GameObject implements GOInterface {
 
     public void activate()
     {
-
+        System.out.println("SHOULDNT HAPPEN WITH NUKES");
+        Managers.getpowerUpManager().removePowerUp(this);
     }
 
     public Sprite getShipSprite() {
@@ -66,7 +67,7 @@ public abstract class PowerUp extends GameObject implements GOInterface {
         sprite.setColor(color);
         sprite.setSize(30 + extrasize, 30 + extrasize);
         sprite.setOrigin(15 + (extrasize / 2.0f), 15 + (extrasize / 2.0f));
-        sprite.setPosition(position.x - 15, position.y - 15);
+        sprite.setPosition(position.x - (30 + extrasize) /2.0f , position.y - (30 + extrasize) / 2.0f);
         sprite.draw(batch);
     }
 
