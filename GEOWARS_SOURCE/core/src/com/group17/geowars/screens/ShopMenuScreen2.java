@@ -55,7 +55,7 @@ public class ShopMenuScreen2 extends MenuScreen implements iHasStage, iSetActive
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 backButton.setChecked(false);
-                MenuScreen nextMenu = Managers.getScreenManager().getScreen("mainmenu");
+                MenuScreen nextMenu = Managers.getScreenManager().getScreen("shopmenu");
                 Managers.getScreenManager().setScreen(nextMenu);
             }
         });
@@ -122,11 +122,51 @@ public class ShopMenuScreen2 extends MenuScreen implements iHasStage, iSetActive
             }
         });
 
-        final ImageButton currencyButton = newImageButton("credit ;)", GeoWars.WIDTH - 250, GeoWars.HEIGHT - 85, 50, 50, new MenuGrid(1, 0));
+        final ImageButton currencyButton = newImageButton("credit ;)", GeoWars.WIDTH - GeoWars.WIDTH/4 - 40, GeoWars.HEIGHT - 85, 50, 50, new MenuGrid(1, 0));
+
+        final ImageButton pouchOfCrystalsButton = newImageButton("shop2", GeoWars.WIDTH/2 + 50, GeoWars.HEIGHT/2 + GeoWars.HEIGHT/20, 200, 400, new MenuGrid(1,0));
+        pouchOfCrystalsButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                buyCredits(220);
+            }
+        });
+
+        final ImageButton bagOfCrystalsButton = newImageButton("shop5", GeoWars.WIDTH/2 + 260, GeoWars.HEIGHT/2 + GeoWars.HEIGHT/20, 200, 400, new MenuGrid(2,0));
+        bagOfCrystalsButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                buyCredits(610);
+            }
+        });
+
+        final ImageButton boxOfCrystalsButton = newImageButton("shop10", GeoWars.WIDTH/2 + GeoWars.WIDTH/4 - 10, GeoWars.HEIGHT/2 + GeoWars.HEIGHT/20, 200, 400, new MenuGrid(3, 0));
+        boxOfCrystalsButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                buyCredits(1340);
+            }
+        });
+
+        final ImageButton chestOfCrystalsButton = newImageButton("shop20", GeoWars.WIDTH/2 + 50, GeoWars.HEIGHT/4 - 20, 200, 400, new MenuGrid(1,1));
+        chestOfCrystalsButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                buyCredits(2800);
+            }
+        });
+
+        final ImageButton crateOfCrystalsButton = newImageButton("shop50", GeoWars.WIDTH/2 + 260, GeoWars.HEIGHT/4 - 20, 200, 400, new MenuGrid(2, 1));
+        crateOfCrystalsButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                buyCredits(7370);
+            }
+        });
     }
 
     public void showText() {
-        bigFont.draw(batch, "" + coins, GeoWars.WIDTH - 150, GeoWars.HEIGHT - 50);
+        bigFont.draw(batch, "" + coins, GeoWars.WIDTH - GeoWars.WIDTH/4 +10, GeoWars.HEIGHT - 50);
         bigFont.draw(batch, "price 500 current " + extraLife, GeoWars.WIDTH / 4, GeoWars.HEIGHT - 65);
         bigFont.draw(batch, "price 450 current " + shield, GeoWars.WIDTH / 4, GeoWars.HEIGHT - 215);
         bigFont.draw(batch, "price 400 current " + extraFirePower, GeoWars.WIDTH / 4, GeoWars.HEIGHT - GeoWars.HEIGHT / 4 - GeoWars.HEIGHT / 6 + 85);
@@ -143,6 +183,12 @@ public class ShopMenuScreen2 extends MenuScreen implements iHasStage, iSetActive
             return coins;
         }
 
+    }
+
+    public int buyCredits(int amount)
+    {
+        coins += amount;
+        return coins;
     }
 
     @Override

@@ -106,7 +106,7 @@ public class ScreenManager {
         menuList.put("LoginScreen", StartScreen = new LoginScreen());
         menuList.put("upgrademenu", new UpgradeMenuScreen());
         menuList.put("shopmenu", new ShopMenuScreen());
-        //menuList.put("shopmenu", new ShopMenuScreen2());
+        menuList.put("shopmenu2", new ShopMenuScreen2());
         menuList.put("coopmenu", new CoopMenuScreen());
         menuList.put("upgrademenuingame", new IngameUpgradeScreen());
         menuList.put("difficulty", new DifficultyScreen());
