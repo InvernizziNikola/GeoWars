@@ -42,6 +42,8 @@ public class MenuScreen implements Screen {
     protected Batch batch;
     protected BitmapFont text;
 
+    private BitmapFont myText = Managers.getAssetManager().getGameFont(Color.WHITE,15);
+
     protected boolean active = false;
 
     public MenuScreen()
@@ -265,7 +267,7 @@ public class MenuScreen implements Screen {
         txtStyle.fontColor = Color.WHITE;
         txtStyle.font = font;
         Label.LabelStyle style = new Label.LabelStyle();
-        style.font = font;
+        style.font = myText;
 
         TextField TxtUsername = new TextField("", txtStyle);
         TxtUsername.setMessageText("type username here");
@@ -293,7 +295,7 @@ public class MenuScreen implements Screen {
         txtStyle.fontColor = Color.WHITE;
         txtStyle.font = font;
         Label.LabelStyle style = new Label.LabelStyle();
-        style.font = font;
+        style.font = myText;
 
         TextField TxtPw = new TextField("", txtStyle);
         TxtPw.setMessageText("type password here");

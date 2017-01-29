@@ -21,30 +21,31 @@ import com.group17.geowars.utils.SHIPTYPES;
  * Created by michiel on 4/12/2016.
  */
 public class UpgradeMenuScreen extends MenuScreen implements iHasStage, iSetActive {
-    private BitmapFont text;
-    private Batch batch;
-
-    private int showShip = 0;
-    private int showDrone = 0;
-    private int showShipStats = 0;
-    private int showDroneStats = 0;
-    private ShopThread ShopThread;
-    private SHIPTYPES shipData;
-    private Profile profile;
-    private DRONETYPES droneData;
-    private boolean loading = false;
+    protected Batch batch;
+    protected int showShip = 0;
+    protected int showDrone = 0;
+    protected int showShipStats = 0;
+    protected int showDroneStats = 0;
+    protected ShopThread ShopThread;
+    protected SHIPTYPES shipData;
+    protected Profile profile;
+    protected DRONETYPES droneData;
+    protected boolean loading = false;
+    protected Color color;
+    protected BitmapFont bigFont;
 
     public UpgradeMenuScreen() {
         super();
         create();
-        profile =new Profile(SHIPTYPES.DESTROYER, DRONETYPES.DEFEND);
+        profile = new Profile(SHIPTYPES.DESTROYER, DRONETYPES.DEFEND);
+        createButtons();
+        color = Color.WHITE;
+        bigFont = Managers.getAssetManager().getGameFont(color, 15);
     }
 
     public void create() {
         Gdx.input.setInputProcessor(stage);
         batch = new SpriteBatch();
-        text = new BitmapFont();
-        text.setColor(Color.WHITE);
         shipData=SHIPTYPES.ASSAULT;
         droneData=DRONETYPES.SUPPORT;
     }
@@ -233,65 +234,64 @@ public class UpgradeMenuScreen extends MenuScreen implements iHasStage, iSetActi
     }
 
     public void tankText() {
-        text.draw(batch, "-TANK", 50, GeoWars.HEIGHT - GeoWars.HEIGHT / 6);
-        text.draw(batch, "-HIGH HP", 50, (float) (GeoWars.HEIGHT - GeoWars.HEIGHT / 4.75));
-        text.draw(batch, "-LOW ATK", 50, GeoWars.HEIGHT - GeoWars.HEIGHT / 4);
-        text.draw(batch, "HP = 30", 50, GeoWars.HEIGHT / 2 + GeoWars.HEIGHT / 10);
-        text.draw(batch, "ATK = 2", GeoWars.WIDTH / 3, GeoWars.HEIGHT / 2 + GeoWars.HEIGHT / 10);
+        bigFont.draw(batch, "-TANK", 50, GeoWars.HEIGHT - GeoWars.HEIGHT / 6);
+        bigFont.draw(batch, "-HIGH HP", 50, (float) (GeoWars.HEIGHT - GeoWars.HEIGHT / 4.75));
+        bigFont.draw(batch, "-LOW ATK", 50, GeoWars.HEIGHT - GeoWars.HEIGHT / 4);
+        bigFont.draw(batch, "HP = 30", 50, GeoWars.HEIGHT / 2 + GeoWars.HEIGHT / 10);
+        bigFont.draw(batch, "ATK = 2", GeoWars.WIDTH / 3, GeoWars.HEIGHT / 2 + GeoWars.HEIGHT / 10);
     }
 
     public void assaultText() {
-        text.draw(batch, "-ASSAULT", 50, GeoWars.HEIGHT - GeoWars.HEIGHT / 6);
-        text.draw(batch, "-HIGH ATTACK", 50, (float) (GeoWars.HEIGHT - GeoWars.HEIGHT / 4.75));
-        text.draw(batch, "-MED HP", 50, GeoWars.HEIGHT - GeoWars.HEIGHT / 4);
-        text.draw(batch, "HP = 20", 50, GeoWars.HEIGHT / 2 + GeoWars.HEIGHT / 10);
-        text.draw(batch, "ATK = 10", GeoWars.WIDTH / 3, GeoWars.HEIGHT / 2 + GeoWars.HEIGHT / 10);
+        bigFont.draw(batch, "-ASSAULT", 50, GeoWars.HEIGHT - GeoWars.HEIGHT / 6);
+        bigFont.draw(batch, "-HIGH ATTACK", 50, (float) (GeoWars.HEIGHT - GeoWars.HEIGHT / 4.75));
+        bigFont.draw(batch, "-MED HP", 50, GeoWars.HEIGHT - GeoWars.HEIGHT / 4);
+        bigFont.draw(batch, "HP = 20", 50, GeoWars.HEIGHT / 2 + GeoWars.HEIGHT / 10);
+        bigFont.draw(batch, "ATK = 10", GeoWars.WIDTH / 3, GeoWars.HEIGHT / 2 + GeoWars.HEIGHT / 10);
     }
 
     public void destroyerText() {
-        text.draw(batch, "-DESTROYER", 50, GeoWars.HEIGHT - GeoWars.HEIGHT / 6);
-        text.draw(batch, "-HIGH ATK", 50, (float) (GeoWars.HEIGHT - GeoWars.HEIGHT / 4.75));
-        text.draw(batch, "-LOW DEF", 50, GeoWars.HEIGHT - GeoWars.HEIGHT / 4);
-        text.draw(batch, "HP = 10", 50, GeoWars.HEIGHT / 2 + GeoWars.HEIGHT / 10);
-        text.draw(batch, "ATK = 10", GeoWars.WIDTH / 3, GeoWars.HEIGHT / 2 + GeoWars.HEIGHT / 10);
+        bigFont.draw(batch, "-DESTROYER", 50, GeoWars.HEIGHT - GeoWars.HEIGHT / 6);
+        bigFont.draw(batch, "-HIGH ATK", 50, (float) (GeoWars.HEIGHT - GeoWars.HEIGHT / 4.75));
+        bigFont.draw(batch, "-LOW DEF", 50, GeoWars.HEIGHT - GeoWars.HEIGHT / 4);
+        bigFont.draw(batch, "HP = 10", 50, GeoWars.HEIGHT / 2 + GeoWars.HEIGHT / 10);
+        bigFont.draw(batch, "ATK = 10", GeoWars.WIDTH / 3, GeoWars.HEIGHT / 2 + GeoWars.HEIGHT / 10);
     }
 
     public void supportText() {
-        text.draw(batch, "-SLOW DOWN ENEMIES", GeoWars.WIDTH / 2 + (GeoWars.WIDTH / 3), GeoWars.HEIGHT - GeoWars.HEIGHT / 6);
-        text.draw(batch, "-CAN'T DIE", GeoWars.WIDTH / 2 + (GeoWars.WIDTH / 3), GeoWars.HEIGHT - GeoWars.HEIGHT / 4);
-        text.draw(batch, "ATK= 0", GeoWars.WIDTH / 2 + 50, GeoWars.HEIGHT / 2 + GeoWars.HEIGHT / 10);
-        text.draw(batch, "HP = INFINITE", GeoWars.WIDTH / 2 + (GeoWars.WIDTH / 3), GeoWars.HEIGHT / 2 + GeoWars.HEIGHT / 10);
+        bigFont.draw(batch, "-SLOW DOWN ENEMIES", GeoWars.WIDTH / 2 + (GeoWars.WIDTH / 3), GeoWars.HEIGHT - GeoWars.HEIGHT / 6);
+        bigFont.draw(batch, "-CAN'T DIE", GeoWars.WIDTH / 2 + (GeoWars.WIDTH / 3), GeoWars.HEIGHT - GeoWars.HEIGHT / 4);
+        bigFont.draw(batch, "ATK= 0", GeoWars.WIDTH / 2 + 50, GeoWars.HEIGHT / 2 + GeoWars.HEIGHT / 10);
+        bigFont.draw(batch, "HP = INFINITE", GeoWars.WIDTH / 2 + (GeoWars.WIDTH / 3), GeoWars.HEIGHT / 2 + GeoWars.HEIGHT / 10);
     }
 
     public void attackText() {
-        text.draw(batch, "-SHOOTS UNITS", GeoWars.WIDTH / 2 + (GeoWars.WIDTH / 3), GeoWars.HEIGHT - GeoWars.HEIGHT / 6);
-        text.draw(batch, "-CAN'T DIE", GeoWars.WIDTH / 2 + (GeoWars.WIDTH / 3), GeoWars.HEIGHT - GeoWars.HEIGHT / 4);
-        text.draw(batch, "ATK= 1", GeoWars.WIDTH / 2 + 50, GeoWars.HEIGHT / 2 + GeoWars.HEIGHT / 10);
-        text.draw(batch, "HP = INFINITE", GeoWars.WIDTH / 2 + (GeoWars.WIDTH / 3), GeoWars.HEIGHT / 2 + GeoWars.HEIGHT / 10);
+        bigFont.draw(batch, "-SHOOTS UNITS", GeoWars.WIDTH / 2 + (GeoWars.WIDTH / 3), GeoWars.HEIGHT - GeoWars.HEIGHT / 6);
+        bigFont.draw(batch, "-CAN'T DIE", GeoWars.WIDTH / 2 + (GeoWars.WIDTH / 3), GeoWars.HEIGHT - GeoWars.HEIGHT / 4);
+        bigFont.draw(batch, "ATK= 1", GeoWars.WIDTH / 2 + 50, GeoWars.HEIGHT / 2 + GeoWars.HEIGHT / 10);
+        bigFont.draw(batch, "HP = INFINITE", GeoWars.WIDTH / 2 + (GeoWars.WIDTH / 3), GeoWars.HEIGHT / 2 + GeoWars.HEIGHT / 10);
     }
 
     public void defendText() {
-        text.draw(batch, "-DEFENDS SHIP", GeoWars.WIDTH / 2 + (GeoWars.WIDTH / 3), GeoWars.HEIGHT - GeoWars.HEIGHT / 6);
-        text.draw(batch, "-CAN'T DIE", GeoWars.WIDTH / 2 + (GeoWars.WIDTH / 3), GeoWars.HEIGHT - GeoWars.HEIGHT / 4);
-        text.draw(batch, "ATK= 0", GeoWars.WIDTH / 2 + 50, GeoWars.HEIGHT / 2 + GeoWars.HEIGHT / 10);
-        text.draw(batch, "HP = INFINITE", GeoWars.WIDTH / 2 + (GeoWars.WIDTH / 3), GeoWars.HEIGHT / 2 + GeoWars.HEIGHT / 10);
+        bigFont.draw(batch, "-DEFENDS SHIP", GeoWars.WIDTH / 2 + (GeoWars.WIDTH / 3), GeoWars.HEIGHT - GeoWars.HEIGHT / 6);
+        bigFont.draw(batch, "-CAN'T DIE", GeoWars.WIDTH / 2 + (GeoWars.WIDTH / 3), GeoWars.HEIGHT - GeoWars.HEIGHT / 4);
+        bigFont.draw(batch, "ATK= 0", GeoWars.WIDTH / 2 + 50, GeoWars.HEIGHT / 2 + GeoWars.HEIGHT / 10);
+        bigFont.draw(batch, "HP = INFINITE", GeoWars.WIDTH / 2 + (GeoWars.WIDTH / 3), GeoWars.HEIGHT / 2 + GeoWars.HEIGHT / 10);
     }
 
     public void shipSkillTreeText() {
-        text.draw(batch, "SKILL TREE", 50, GeoWars.HEIGHT / 2 - 50);
-        text.draw(batch, "SKILL POINTS 2/2", GeoWars.WIDTH / 3, GeoWars.HEIGHT / 2 - 50);
+        bigFont.draw(batch, "SKILL TREE", 50, GeoWars.HEIGHT / 2 - 50);
+        bigFont.draw(batch, "SKILL POINTS 2 of 2", GeoWars.WIDTH / 3, GeoWars.HEIGHT / 2 - 50);
     }
 
     public void droneSkillTreeText() {
-        text.draw(batch, "SKILL TREE", GeoWars.WIDTH / 2 + 50, GeoWars.HEIGHT / 2 - 50);
-        text.draw(batch, "SKILL POINTS 2/2", GeoWars.WIDTH / 2 + (GeoWars.WIDTH / 3), GeoWars.HEIGHT / 2 - 50);
+        bigFont.draw(batch, "SKILL TREE", GeoWars.WIDTH / 2 + 50, GeoWars.HEIGHT / 2 - 50);
+        bigFont.draw(batch, "SKILL POINTS 2 of 2", GeoWars.WIDTH / 2 + (GeoWars.WIDTH / 3), GeoWars.HEIGHT / 2 - 50);
     }
 
     public void showText() {
-        text.draw(batch, "SHIP", (GeoWars.WIDTH / 2) / 2 - 15, GeoWars.HEIGHT - 90);
-        text.draw(batch, "DRONE", GeoWars.WIDTH / 2 + (GeoWars.WIDTH / 2 / 2 - 30), GeoWars.HEIGHT - 90);
+        bigFont.draw(batch, "SHIP", (GeoWars.WIDTH / 2) / 2 - 15, GeoWars.HEIGHT - 90);
+        bigFont.draw(batch, "DRONE", GeoWars.WIDTH / 2 + (GeoWars.WIDTH / 2 / 2 - 30), GeoWars.HEIGHT - 90);
         changeText();
-        createButtons();
     }
 
     public void changeText() {
@@ -368,7 +368,7 @@ public class UpgradeMenuScreen extends MenuScreen implements iHasStage, iSetActi
         drawTreeLine(GeoWars.WIDTH / 4, GeoWars.HEIGHT / 5, GeoWars.WIDTH / 5, GeoWars.HEIGHT / 4);
         drawTreeLine(GeoWars.WIDTH / 5, GeoWars.HEIGHT / 4, GeoWars.WIDTH / 5, GeoWars.HEIGHT / 3);
         drawTreeLine(GeoWars.WIDTH / 5, GeoWars.HEIGHT / 3, GeoWars.WIDTH / 4, GeoWars.HEIGHT / 3 + GeoWars.HEIGHT / 20);
-        drawTreeLine(GeoWars.WIDTH / 2, 75, GeoWars.WIDTH / 2, GeoWars.HEIGHT);
+        drawTreeLine(GeoWars.WIDTH / 2, 95, GeoWars.WIDTH / 2, GeoWars.HEIGHT);
     }
 
     public void droneSkillTree() {
@@ -430,10 +430,6 @@ public class UpgradeMenuScreen extends MenuScreen implements iHasStage, iSetActi
         active = false;
     }
 
-    public void showLoading() {
-        text.draw(batch, "Loading...", 350, 380);
-    }
-
     public void getAllData() {
         if (loading)
             return;
@@ -448,24 +444,12 @@ public class UpgradeMenuScreen extends MenuScreen implements iHasStage, iSetActi
 
         super.render(delta);
         batch.begin();
-        if (ShopThread != null && ShopThread.finished()) {
-          //  shipData = ShopThread.getShipData();
-           // droneData = ShopThread.getDronesData();
-            ShopThread = null;
 
-            loading = false;
-
-        }
-        if (ShopThread != null && !ShopThread.finished()) {
-            showLoading();
-        }
-        if (ShopThread == null) {
             showText();
-        }
+
         batch.end();
-        if (ShopThread == null) {
             changeImage();
             showSkillTrees();
-        }
+
     }
 }

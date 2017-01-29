@@ -62,20 +62,22 @@ public class LoginScreen extends MenuScreen implements iHasStage, iSetActive {
 
         this.username = newTextField();
         this.password = newPwField();
+        Label.LabelStyle style = new Label.LabelStyle();
+        style.font = myText;
         table = new Table();
         table.setFillParent(true);
         table.add(errorlable).width(200);
         errorlable.setColor(Color.RED);
         table.row();
 
-        table.add(new Label("Username", style())).width(200);
+        table.add(new Label("Username", style)).width(200);
         table.add(username).width(200);
         table.row();
-        table.add(new Label("Password", style())).width(200);
+        table.add(new Label("Password", style)).width(200);
         table.add(password).width(200);
         table.row();
-
-        final ImageButton loginButton = newImageButton("Menu_loginicon", width / 2 - 75, height / 3, 150, 50, new MenuGrid(0, 1));
+        table.setPosition(GeoWars.WIDTH/25 - 50, GeoWars.HEIGHT/2 - 500);
+        final ImageButton loginButton = newImageButton("Menu_loginicon", width / 2 - 100, height / 3, 200, 75, new MenuGrid(0, 1));
         //newImageButton("Menu_continueicon", width / 2 - 75, height / 6, 150, 50, new MenuGrid(0, 1));
         loginButton.addListener(new ChangeListener() {
             @Override

@@ -26,6 +26,8 @@ public class ProfileMenuScreen extends MenuScreen implements iHasStage, iSetActi
     private Integer PlayerHighscore;
     private Table table;
     private String playerName,playerScore,gamesPlayed,hoursPlayed,playerLvl,currentShip,currentDrone;
+    protected Color color;
+    protected BitmapFont bigFont;
 
 
     private boolean loading = false;
@@ -33,6 +35,8 @@ public class ProfileMenuScreen extends MenuScreen implements iHasStage, iSetActi
     public ProfileMenuScreen() {
         super();
         create();
+        color = Color.WHITE;
+        bigFont = Managers.getAssetManager().getGameFont(color, 25);
     }
 
     public void create() {
@@ -78,38 +82,36 @@ public class ProfileMenuScreen extends MenuScreen implements iHasStage, iSetActi
     }
     public void showText() {
 
-        text.draw(batch, "GEOMETRYWARS", GeoWars.WIDTH / 2 - 70, GeoWars.HEIGHT - GeoWars.HEIGHT / 10);
+        bigFont.draw(batch, "GEOMETRYWARS", GeoWars.WIDTH / 2 - 150, GeoWars.HEIGHT - GeoWars.HEIGHT / 10);
 
-
-        BitmapFont font = new BitmapFont();
         Label.LabelStyle style = new Label.LabelStyle();
-        style.font = font;
+        style.font = bigFont;
 
         table = new Table();
         table.setFillParent(true);
-        table.add(new Label("Username :", style)).width(200);
-        table.add(new Label(playerName, style)).width(200);
+        table.add(new Label("Username :", style)).width(500);
+        table.add(new Label(playerName, style)).width(500);
         table.row();
-        table.add(new Label("HIGHSCORE ARCADE: ", style)).width(200);
-        table.add(new Label(playerScore,style)).width(200);
+        table.add(new Label("HIGHSCORE ARCADE: ", style)).width(500);
+        table.add(new Label(playerScore,style)).width(500);
         table.row();
-        table.add(new Label("GAMES PLAYED:", style)).width(200);
-        table.add(new Label(gamesPlayed,style)).width(200);
+        table.add(new Label("GAMES PLAYED:", style)).width(500);
+        table.add(new Label(gamesPlayed,style)).width(500);
         table.row();
-        table.add(new Label("HOURS PLAYED:", style)).width(200);
-        table.add(new Label(hoursPlayed,style)).width(200);
+        table.add(new Label("HOURS PLAYED:", style)).width(500);
+        table.add(new Label(hoursPlayed,style)).width(500);
         table.row();
-        table.add(new Label("LEVEL: ", style)).width(200);
-        table.add(new Label(playerLvl,style)).width(200);
+        table.add(new Label("LEVEL: ", style)).width(500);
+        table.add(new Label(playerLvl,style)).width(500);
         table.row();
-        table.add(new Label("CURRENT SHIP: ", style)).width(200);
-        table.add(new Label(currentShip,style)).width(200);
+        table.add(new Label("CURRENT SHIP: ", style)).width(500);
+        table.add(new Label(currentShip,style)).width(500);
         table.row();
-        table.add(new Label("CURRENT Drone: ", style)).width(200);
-        table.add(new Label(currentDrone,style)).width(200);
+        table.add(new Label("CURRENT Drone: ", style)).width(500);
+        table.add(new Label(currentDrone,style)).width(500);
 
         table.row();
-
+        table.setPosition(GeoWars.WIDTH/15, GeoWars.HEIGHT/2 - 500);
         stage.addActor(table);
     }
 
