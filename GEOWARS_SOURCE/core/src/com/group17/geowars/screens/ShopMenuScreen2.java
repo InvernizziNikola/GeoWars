@@ -70,6 +70,7 @@ public class ShopMenuScreen2 extends MenuScreen implements iHasStage, iSetActive
                     if (extraLife < max) {
                         buy(price);
                         extraLife++;
+                        Managers.getAccountManager().getAccounts().get(0).setHpUpgrade(50);
                     }
                 }
             }
@@ -102,6 +103,8 @@ public class ShopMenuScreen2 extends MenuScreen implements iHasStage, iSetActive
                     if (extraFirePower < max) {
                         buy(price);
                         extraFirePower ++;
+                        Managers.getAccountManager().getAccounts().get(0).setFirePowerUpgrade(0.15f);
+
                     }
                 }
             }
@@ -117,6 +120,8 @@ public class ShopMenuScreen2 extends MenuScreen implements iHasStage, iSetActive
                     if (extraSpeed < max) {
                         buy(price);
                         extraSpeed ++;
+                        Managers.getAccountManager().getAccounts().get(0).setSpeedPowerUpgrade(100);
+
                     }
                 }
             }

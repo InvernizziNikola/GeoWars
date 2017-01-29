@@ -349,6 +349,7 @@ public abstract class Ship extends GameObject implements GOInterface { //interfa
     public void upgradeMaxHp(int health)
     {
         this.maxHp+=health;
+        this.hp=maxHp;
     }
     public void upgradeFireRate(float rate)
     {

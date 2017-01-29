@@ -35,6 +35,13 @@ public class ArcadeCoopGame extends SoloGame implements iGame {
             Vector2 spawnPoint = new Vector2(GeoWars.WIDTH / 3 , GeoWars.HEIGHT / 2 - 100 * count);
 
             Ship s = new DestroyerShip(spawnPoint);
+            //HANDLE UPGRADES
+            s.upgradeFireRate(a.getFirePowerUpgrade());
+            s.upgradeMaxHp(a.getHpUpgrade());
+            s.upgradeSpeed(a.getSpeedPowerUpgrade());
+
+
+
             p.setShip(s);
             s.setPlayer(p);
 
@@ -42,6 +49,9 @@ public class ArcadeCoopGame extends SoloGame implements iGame {
             p.setDrone(d);
             d.setPlayer(p);
             count++;
+
+
+
         }
         placePlayerTextFields();
 

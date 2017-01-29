@@ -34,6 +34,9 @@ public class Account {
     }
     public void setPlayer(Player p) {player = p; }
     private Controller controller;
+    private int hpUpgrade;
+    private float FirePowerUpgrade;
+    private int speedPowerUpgrade;
 
     public void setController(Controller c)
     {
@@ -55,6 +58,30 @@ public class Account {
     {
 
 
+    }
+
+    public int getHpUpgrade() {
+        return hpUpgrade;
+    }
+
+    public void setHpUpgrade(int hpUpgrade) {
+        this.hpUpgrade = hpUpgrade;
+    }
+
+    public float getFirePowerUpgrade() {
+        return FirePowerUpgrade;
+    }
+
+    public void setFirePowerUpgrade(float firePowerUpgrade) {
+        FirePowerUpgrade = firePowerUpgrade;
+    }
+
+    public int getSpeedPowerUpgrade() {
+        return speedPowerUpgrade;
+    }
+
+    public void setSpeedPowerUpgrade(int speedPowerUpgrade) {
+        this.speedPowerUpgrade = speedPowerUpgrade;
     }
 
     public void setProfile(Profile profile) {

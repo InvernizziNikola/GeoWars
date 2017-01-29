@@ -13,7 +13,6 @@ import com.group17.geowars.gameobjects.GOInterface;
 import com.group17.geowars.gameobjects.playerObjects.Ship;
 
 /**
- *
  * @author kevin
  */
 
@@ -24,19 +23,20 @@ public class Player implements GOInterface {
     private PlayerInput playerInput;
     private Vector2 playerTextpos;
 
+
     private int score = 0;
-    public int getScore()
-    {
+
+    public int getScore() {
         return score;
     }
 
 
-    public Player(String naam, Controller c)
-    {
+    public Player(String naam, Controller c) {
         setController(c);
         name = naam;
-        playerTextpos=new Vector2(500,50);
+        playerTextpos = new Vector2(500, 50);
     }
+
     public void setShip(Ship ship) {
         this.ship = ship;
     }
@@ -53,8 +53,7 @@ public class Player implements GOInterface {
         this.playerTextpos = playerTextpos;
     }
 
-    public PlayerInput getPlayerInput()
-    {
+    public PlayerInput getPlayerInput() {
         return playerInput;
     }
 
@@ -70,6 +69,8 @@ public class Player implements GOInterface {
         return drone;
     }
 
+
+
     public void setController(Controller controller) {
         playerInput = new PlayerInput(controller, this);
         //controller.addListener(playerInput);
@@ -82,21 +83,19 @@ public class Player implements GOInterface {
     }
 
     @Override
-    public void render(Batch batch)
-    {
+    public void render(Batch batch) {
         drone.render(batch);
         ship.render(batch);
     }
 
     @Override
-    public void update()
-    {
+    public void update() {
         playerInput.update();
         drone.update();
         ship.update();
     }
-    public void reset()
-    {
+
+    public void reset() {
         ship.reset();
         drone.reset();
     }

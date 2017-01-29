@@ -61,6 +61,10 @@ public class ArcadeSoloGame extends SoloGame implements iGame {
                 d = new AttackDrone(spawnPoint);
         }
 
+        //HANDLE UPGRADES
+        s.upgradeFireRate(a.getFirePowerUpgrade());
+        s.upgradeMaxHp(a.getHpUpgrade());
+        s.upgradeSpeed(a.getSpeedPowerUpgrade());
 
         s.setPlayer(p);
         p.setShip(s);
