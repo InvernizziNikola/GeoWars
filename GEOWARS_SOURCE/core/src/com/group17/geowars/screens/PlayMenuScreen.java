@@ -51,7 +51,7 @@ public class PlayMenuScreen extends MenuScreen implements iHasStage, iSetActive 
             }
         });
 
-        final ImageButton eventButton = newImageButton("Menu_eventicon",(width/2)+150,height/2+50,150,50, new MenuGrid(0, 2));
+        final ImageButton eventButton = newImageButton("Menu_eventicon",(width/2)+150,height/2+50,150,50, new MenuGrid(1, 0));
         eventButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
