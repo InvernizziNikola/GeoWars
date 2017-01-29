@@ -60,7 +60,7 @@ public class ShopMenuScreen2 extends MenuScreen implements iHasStage, iSetActive
             }
         });
 
-        final ImageButton extraLifeButton = newImageButton("extra_life", 50, GeoWars.HEIGHT - 100, 250, 50, new MenuGrid(0, 0));
+        final ImageButton extraLifeButton = newImageButton("extra_life", 50, GeoWars.HEIGHT/2 + GeoWars.HEIGHT/4 -40, 250, 50, new MenuGrid(0, 0));
         extraLifeButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -76,7 +76,7 @@ public class ShopMenuScreen2 extends MenuScreen implements iHasStage, iSetActive
             }
         });
 
-        final ImageButton shieldButton = newImageButton("shield", 50, GeoWars.HEIGHT - 250, 250, 50, new MenuGrid(0, 1));
+        final ImageButton shieldButton = newImageButton("shield", 50, GeoWars.HEIGHT/2 + GeoWars.HEIGHT/8 -40, 250, 50, new MenuGrid(0, 1));
         shieldButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -93,7 +93,7 @@ public class ShopMenuScreen2 extends MenuScreen implements iHasStage, iSetActive
             }
         });
 
-        final ImageButton extraFirePowerButton = newImageButton("extra_fire_power", 50, GeoWars.HEIGHT - GeoWars.HEIGHT / 4 + 50 - GeoWars.HEIGHT / 6, 250, 50, new MenuGrid(0, 2));
+        final ImageButton extraFirePowerButton = newImageButton("extra_fire_power", 50, GeoWars.HEIGHT/2 - 40, 250, 50, new MenuGrid(0, 2));
         extraFirePowerButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -110,7 +110,7 @@ public class ShopMenuScreen2 extends MenuScreen implements iHasStage, iSetActive
             }
         });
 
-        final ImageButton extraSpeedButton = newImageButton("extra_speed", 50, GeoWars.HEIGHT / 2, 250, 50, new MenuGrid(0, 3));
+        final ImageButton extraSpeedButton = newImageButton("extra_speed", 50, GeoWars.HEIGHT / 2 - GeoWars.HEIGHT/6, 250, 50, new MenuGrid(0, 3));
         extraSpeedButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -172,10 +172,10 @@ public class ShopMenuScreen2 extends MenuScreen implements iHasStage, iSetActive
 
     public void showText() {
         bigFont.draw(batch, "" + coins, GeoWars.WIDTH - GeoWars.WIDTH/4 +10, GeoWars.HEIGHT - 50);
-        bigFont.draw(batch, "price 500 current " + extraLife, GeoWars.WIDTH / 4, GeoWars.HEIGHT - 65);
-        bigFont.draw(batch, "price 450 current " + shield, GeoWars.WIDTH / 4, GeoWars.HEIGHT - 215);
-        bigFont.draw(batch, "price 400 current " + extraFirePower, GeoWars.WIDTH / 4, GeoWars.HEIGHT - GeoWars.HEIGHT / 4 - GeoWars.HEIGHT / 6 + 85);
-        bigFont.draw(batch, "price 350 current " + extraSpeed, GeoWars.WIDTH / 4, GeoWars.HEIGHT / 2 + 35);
+        bigFont.draw(batch, "price 500 current " + extraLife, GeoWars.WIDTH / 4, GeoWars.HEIGHT /2 + GeoWars.HEIGHT/4);
+        bigFont.draw(batch, "price 450 current " + shield, GeoWars.WIDTH / 4, GeoWars.HEIGHT /2 + GeoWars.HEIGHT/8);
+        bigFont.draw(batch, "price 400 current " + extraFirePower, GeoWars.WIDTH / 4, GeoWars.HEIGHT/2);
+        bigFont.draw(batch, "price 350 current " + extraSpeed, GeoWars.WIDTH / 4, GeoWars.HEIGHT / 2 - GeoWars.HEIGHT/6 + 45);
     }
 
 
