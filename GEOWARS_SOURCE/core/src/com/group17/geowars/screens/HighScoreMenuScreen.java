@@ -27,6 +27,9 @@ public class HighScoreMenuScreen extends MenuScreen implements iHasStage, iSetAc
     private boolean loading = false;
     private int width = GeoWars.WIDTH;
     private int height = GeoWars.HEIGHT;
+    protected Color color;
+    protected BitmapFont bigFont;
+    protected BitmapFont title;
 
 
     public HighScoreMenuScreen() {
@@ -36,9 +39,9 @@ public class HighScoreMenuScreen extends MenuScreen implements iHasStage, iSetAc
     public void create()
     {
         Gdx.input.setInputProcessor(stage);
-        text = new BitmapFont();
-        text.setColor(Color.WHITE);
-
+        color = Color.WHITE;
+        bigFont = Managers.getAssetManager().getGameFont(color, 15);
+        title = Managers.getAssetManager().getGameFont(color, 25);
         batch = new SpriteBatch();
 
         Buttons();
@@ -59,7 +62,7 @@ public class HighScoreMenuScreen extends MenuScreen implements iHasStage, iSetAc
 
     public void showLoading()
     {
-        text.draw(batch, "Loading...", 350, 380);
+        bigFont.draw(batch, "Loading...", 350, 380);
     }
     public void Buttons(){
 
@@ -115,9 +118,8 @@ public class HighScoreMenuScreen extends MenuScreen implements iHasStage, iSetAc
 
         skin.add("white", new Texture(pixmap));
 
-        BitmapFont font = new BitmapFont();
         Label.LabelStyle style = new Label.LabelStyle();
-        style.font = font;
+        style.font = bigFont;
 
         table = new Table();
         table.setFillParent(true);
@@ -134,7 +136,7 @@ public class HighScoreMenuScreen extends MenuScreen implements iHasStage, iSetAc
                 i++;
             }
         }
-
+        table.setPosition(GeoWars.WIDTH/20 - 50,GeoWars.HEIGHT/40 - 50);
         stage.addActor(table);
     }
 
@@ -159,7 +161,7 @@ public class HighScoreMenuScreen extends MenuScreen implements iHasStage, iSetAc
 
 
 
-        text.draw(batch, "GEOMETRYWARS", width/2-70, height-height/6);
+        title.draw(batch, "GEOMETRYWARS", width/2-175, height-height/6);
         batch.end();
     }
 }

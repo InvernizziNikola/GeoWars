@@ -135,7 +135,7 @@ public class UpgradeMenuScreen extends MenuScreen implements iHasStage, iSetActi
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 confirmButton.setChecked(false);
-                MenuScreen nextMenu = Managers.getScreenManager().getScreen("mainmenu");
+                MenuScreen nextMenu = Managers.getScreenManager().getScreen("profilemenu");
                 Managers.getScreenManager().setScreen(nextMenu);
                 Managers.getAccountManager().getAccounts().get(0).profile=new Profile(shipData,droneData);
             }
